@@ -12,7 +12,7 @@ class MidiDevice {
 
         for (let deviceKey of Object.keys(devices)) {
             let device = devices[deviceKey];
-            if (device.name === deviceOptions.name) {
+            if (device.names[0] === deviceOptions.names[0]) {
                 if (!(device.instance instanceof MidiDevice)) {
                     device.instance = new MidiDevice(deviceOptions);
                     device.instance.open();
@@ -20,6 +20,10 @@ class MidiDevice {
                 return device.instance;
             }
         }
+    }
+
+    get options() {
+        return this._options;
     }
 
     get input() {
@@ -35,45 +39,37 @@ class MidiDevice {
     }
 
     open() {
-        this._inputPort = MidiDevice.openInput(this._options.name);
-        this._outputPort = MidiDevice.openOutput(this._options.name);
+        this.openInput();
+        this.openOutput();
     }
 
-    static openInput(name) {
+    openInput() {
         let input = new midi.input();
         let port;
         let portCount = input.getPortCount();
         for (let i = 0; i < portCount; i++) {
             let portName = input.getPortName(i);
-            if (portName === name) {
+            if (this.options.names.indexOf(portName) >= 0) {
                 port = input.openPort(i);
                 console.log(`Input Open: \t${colors.green(portName)}`);
             }
         }
 
-        /*
-         input.ignoreTypes(false, false, false);
-         input.on('message', function(deltaTime, message) {
-         //console.log('m:' + message + ' d:' + deltaTime);
-         });
-         */
-
-
-        return input;
+        this._inputPort = input;
     }
 
-    static openOutput(name) {
+    openOutput() {
         let output = new midi.output();
         let port;
         let portCount = output.getPortCount();
         for (let i = 0; i < portCount; i++) {
             let portName = output.getPortName(i);
-            if (portName === name) {
+            if (this.options.names.indexOf(portName) >= 0) {
                 port = output.openPort(i);
                 console.log(`Output Open: \t${colors.blue(portName)}`);
             }
         }
-        return output;
+        this._outputPort = output;
     }
 
 }
@@ -82,15 +78,15 @@ module.exports = MidiDevice;
 
 let devices = {
     BeatStepPro: {
-        name: 'Arturia BeatStep Pro Arturia BeatStepPro',
+        names: ['Arturia BeatStep Pro Arturia BeatStepPro', 'Arturia BeatStep Pro 20:0'],
         instance: null
     },
     Minilogue: {
-        name: 'minilogue SOUND',
+        names: ['minilogue SOUND'],
         instance: null
     },
     MOTU828x: {
-        name: '828x MIDI Port',
+        names: ['828x MIDI Port'],
         instance: null
     }
 };
