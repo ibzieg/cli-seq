@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nanotimer": "^0.3.14"
+    "nanotimer": "^0.3.14",
+    "raspi": "^4.0.0",
+    "raspi-i2c": "^5.0.4",
+    "rpi-gpio": "^0.8.1"
   }
 }
