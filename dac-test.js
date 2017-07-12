@@ -16,6 +16,7 @@ const I2C = isDeviceRaspberryPi ? require("raspi-i2c").I2C : null;
 const DAC_BASE_ADDR = 0x4C; /* Base i2c addressof DAC8574 */
 const MCP_BASE_ADDR = 0x20; /* Base i2c address of MCP23008 GPIO Expander */
 
+
 /* Channels */
 const CV_OUT = 0x00; /* Europi and Minion */
 const GATE_OUT = 0x01; /* Europi and Minion */
@@ -30,18 +31,29 @@ const DEV_DAC8574 = 1;
 
 class EuropiMinionInterface {
 
-    static GATE_A = 0;
-    static GATE_B = 1;
-    static GATE_C = 2;
-    static GATE_D = 1;
+//    static GATE_A = 0;
+//    static GATE_B = 1;
+//    static GATE_C = 2;
+//    static GATE_D = 1;
 
-    static CV_A = 0;
-    static CV_B = 1;
-    static CV_C = 2;
-    static CV_D = 3;
+//    static CV_A = 0;
+//    static CV_B = 1;
+//    static CV_C = 2;
+//    static CV_D = 3;
 
     constructor() {
-        this._I2C = new I2C();
+        this._I2C = new I2C(['P1-3','P1-5']);
+
+	        let address = 0x0;
+        let i2cAddr = MCP_BASE_ADDR | (address & 0x7);
+/*	this._I2C.writeWord(i2cAddr, 0x0, 0x0, (error) => {
+	    if (error) {
+		console.log(`${colors.red("Error writeWord:")} ${error}`);
+            } else {
+		console.log(`${colors.green("writeWord:")} done`);
+	    }
+	});*/
+	    
         this.mcp23008_state = 0;
     }
 
@@ -66,20 +78,20 @@ class EuropiMinionInterface {
 
             if (Value > 0) {
                 // Set corresponding bit high
-                mcp23008_state |= (0x01 << channel);
-                mcp23008_state |= (0x01 << (channel + 4));
+                this.mcp23008_state |= (0x01 << channel);
+                this.mcp23008_state |= (0x01 << (channel + 4));
             } else {
                 // Set corresponding bit low
-                mcp23008_state &= ~(0x01 << channel);
-                mcp23008_state &= ~(0x01 << (channel + 4));
+                this.mcp23008_state &= ~(0x01 << channel);
+                this.mcp23008_state &= ~(0x01 << (channel + 4));
             }
 
 
             //i2cWriteByteData(handle, 0x09, mcp23008_state[handle]);
 
         let address = 0x0;
-        i2cAddr = MCP_BASE_ADDR | (address & 0x7);
-        this._I2C.writeByte(i2cAddr, 0x9, mcp23008_state, (error) => {
+        let i2cAddr = MCP_BASE_ADDR | (address & 0x7);
+        this._I2C.writeByte(i2cAddr, 0x9, this.mcp23008_state, (error) => {
             if (error) {
                 console.log(`${colors.red("Error:")} ${error}`);
             } else {
@@ -129,4 +141,27 @@ class EuropiMinionInterface {
 }
 
 let minion = new EuropiMinionInterface();
-minion.GATESingleOutput(EuropiMinionInterface.GATE_A, HIGH);
+let counter = 0;
+let max = 64;
+let interval = 50;
+minion.GATESingleOutput(0, HIGH);
+let timer = setInterval(() => {
+
+    minion.GATESingleOutput(counter % 4, HIGH);
+    if (counter > 0) {
+	minion.GATESingleOutput((counter-1) % 4, LOW);
+    }
+    
+    
+    counter++;
+    if (counter >= max) {
+	clearTimeout(timer);
+        minion.GATESingleOutput(0, LOW);
+	minion.GATESingleOutput(1, LOW);
+	minion.GATESingleOutput(2, LOW);
+	minion.GATESingleOutput(3, LOW);
+	
+    }
+
+    
+}, interval);
