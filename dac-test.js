@@ -36,7 +36,7 @@ class EuropiMinionInterface {
      * @return {number}
      */
     get MCP23008Address() {
-        return MCP_BASE_ADDR | (this.i2cAddress & 0x7);
+        return MCP_BASE_ADDR | (this._i2cAddress & 0x7);
     }
 
     constructor(i2cAddress) {
@@ -55,9 +55,10 @@ class EuropiMinionInterface {
         this._mcp23008_state = 0;
         this._I2C.writeWord(this.MCP23008Address, 0x0, 0x0, (error) => {
             if (error) {
-                console.log(`${colors.red("\u2717")} MCP230008 unavailable at address 0x${Number(this.MCP23008Address).toString(16)}: ${error} `);
+                console.log(`${colors.red("\u2717")} MCP23008 unavailable at address 0x${Number(this.MCP23008Address).toString(16)}: ${error} `);
             } else {
-                console.log(`${colors.green("\u2713")} MCP230008 initialized at address 0x${Number(this.MCP23008Address).toString(16)} `);
+		this._mcp23008_initialized = true;
+                console.log(`${colors.green("\u2713")} MCP23008 initialized at address 0x${Number(this.MCP23008Address).toString(16)} `);
             }
         });
     }
@@ -136,7 +137,7 @@ class EuropiMinionInterface {
 
 }
 
-let minion = new EuropiMinionInterface();
+let minion = new EuropiMinionInterface(0x1);
 let counter = 0;
 let max = 64;
 let interval = 50;
