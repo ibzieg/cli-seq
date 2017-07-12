@@ -16,6 +16,7 @@ const I2C = isDeviceRaspberryPi ? require("raspi-i2c").I2C : null;
 const DAC_BASE_ADDR = 0x4C; /* Base i2c addressof DAC8574 */
 const MCP_BASE_ADDR = 0x20; /* Base i2c address of MCP23008 GPIO Expander */
 
+const MCP_CONTROL_REG = 0x9; /* Control Register for MCP23008 GPIO Expander */
 
 /* Channels */
 const CV_OUT = 0x00; /* Europi and Minion */
@@ -31,30 +32,34 @@ const DEV_DAC8574 = 1;
 
 class EuropiMinionInterface {
 
-//    static GATE_A = 0;
-//    static GATE_B = 1;
-//    static GATE_C = 2;
-//    static GATE_D = 1;
+    /**
+     * @return {number}
+     */
+    get MCP23008Address() {
+        return MCP_BASE_ADDR | (this.i2cAddress & 0x7);
+    }
 
-//    static CV_A = 0;
-//    static CV_B = 1;
-//    static CV_C = 2;
-//    static CV_D = 3;
+    constructor(i2cAddress) {
+        if (typeof i2cAddress !== "number") {
+            i2cAddress = 0x0;
+        }
+        this._i2cAddress = i2cAddress;
 
-    constructor() {
         this._I2C = new I2C(['P1-3','P1-5']);
 
-	        let address = 0x0;
-        let i2cAddr = MCP_BASE_ADDR | (address & 0x7);
-/*	this._I2C.writeWord(i2cAddr, 0x0, 0x0, (error) => {
-	    if (error) {
-		console.log(`${colors.red("Error writeWord:")} ${error}`);
+        this.initializeMCP23008();
+
+    }
+
+    initializeMCP23008() {
+        this._mcp23008_state = 0;
+        this._I2C.writeWord(this.MCP23008Address, 0x0, 0x0, (error) => {
+            if (error) {
+                console.log(`${colors.red("\u2717")} MCP230008 unavailable at address 0x${Number(this.MCP23008Address).toString(16)}: ${error} `);
             } else {
-		console.log(`${colors.green("writeWord:")} done`);
-	    }
-	});*/
-	    
-        this.mcp23008_state = 0;
+                console.log(`${colors.green("\u2713")} MCP230008 initialized at address 0x${Number(this.MCP23008Address).toString(16)} `);
+            }
+        });
     }
 
     /*
@@ -70,32 +75,23 @@ class EuropiMinionInterface {
      * to ports 4 - 7
      */
 
-    GATESingleOutput(
-                     /*uint8_t*/ channel,
-                     /*int*/ Value) {
+    GATESingleOutput(/*uint8_t*/ channel, /*int*/ value) {
 
+        if (value > 0) {
+            // Set corresponding bit high
+            this._mcp23008_state |= (0x01 << channel); // Gate bit
+            this._mcp23008_state |= (0x01 << (channel + 4)); // LED bit
+        } else {
+            // Set corresponding bit low
+            this._mcp23008_state &= ~(0x01 << channel); // Gate bit
+            this._mcp23008_state &= ~(0x01 << (channel + 4)); // LED bit
+        }
 
-
-            if (Value > 0) {
-                // Set corresponding bit high
-                this.mcp23008_state |= (0x01 << channel);
-                this.mcp23008_state |= (0x01 << (channel + 4));
-            } else {
-                // Set corresponding bit low
-                this.mcp23008_state &= ~(0x01 << channel);
-                this.mcp23008_state &= ~(0x01 << (channel + 4));
-            }
-
-
-            //i2cWriteByteData(handle, 0x09, mcp23008_state[handle]);
-
-        let address = 0x0;
-        let i2cAddr = MCP_BASE_ADDR | (address & 0x7);
-        this._I2C.writeByte(i2cAddr, 0x9, this.mcp23008_state, (error) => {
+        this._I2C.writeByte(this.MCP23008Address, MCP_CONTROL_REG, this._mcp23008_state, (error) => {
             if (error) {
                 console.log(`${colors.red("Error:")} ${error}`);
             } else {
-                console.log(`${colors.green("writeByte:")} ${channel} ${Value}`);
+                // console.log(`${colors.green("writeByte:")} ${channel} ${value}`);
             }
         });
 
