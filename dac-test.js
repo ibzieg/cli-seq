@@ -124,10 +124,12 @@ class EuropiMinionInterface {
         let /*uint16_t*/ v_out;
         let /*uint8_t*/ ctrl_reg;
 
-        ctrl_reg = (((this.DAC8574Address & 0xC) << 4) | 0x10) | ((channel << 1) & 0x06);
+        ctrl_reg = (((this._address & 0xC) << 4) | 0x10) | ((channel << 1) & 0x06);
+//	ctrl_reg = 0b00010000;
 
         //swap MSB & LSB because i2cWriteWordData sends LSB first, but the DAC expects MSB first
         v_out = ((voltage >> 8) & 0x00FF) | ((voltage << 8) & 0xFF00);
+        console.log(`\u26A1 DACSingleChannelWrite: channel=${channel} voltage=${voltage} ctrl_reg=0b${Number(ctrl_reg).toString(2)} v_out=0b${Number(v_out).toString(2)} `);
         this._I2C.writeWord(this.DAC8574Address, ctrl_reg, v_out, (error) => {
             if (error) {
                 console.log(`${colors.red("\u2717")} DACSingleChannelWrite: ${error} `);
@@ -177,21 +179,24 @@ class EuropiMinionInterface {
 
 
 
-let minion = new EuropiMinionInterface(0x1);
-
-
-minion.DACSingleChannelWrite(0, 1000);
+let minion = new EuropiMinionInterface();
 
 let counter = 0;
-let max = 64;
-let interval = 50;
+let max = 32;
+let interval = 75;
+
 minion.GATESingleOutput(0, HIGH);
+minion.DACSingleChannelWrite(0,0x8888);
+
 let timer = setInterval(() => {
 
     minion.GATESingleOutput(counter % 4, HIGH);
     if (counter > 0) {
 	minion.GATESingleOutput((counter-1) % 4, LOW);
     }
+
+    minion.DACSingleChannelWrite(0, ((counter/max) * 0xffff) & 0xffff);
+    minion.DACSingleChannelWrite(2, ((1.0 - counter/max) * 0xffff) & 0xffff);
     
     
     counter++;
