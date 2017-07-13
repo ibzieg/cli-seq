@@ -39,6 +39,13 @@ class EuropiMinionInterface {
         return MCP_BASE_ADDR | (this._i2cAddress & 0x7);
     }
 
+    /**
+     * @return {number}
+     */
+    get DAC8574Address() {
+        return DAC_BASE_ADDR | (this._i2cAddress & 0x7);
+    }
+
     constructor(i2cAddress) {
         if (typeof i2cAddress !== "number") {
             i2cAddress = 0x0;
@@ -90,12 +97,43 @@ class EuropiMinionInterface {
 
         this._I2C.writeByte(this.MCP23008Address, MCP_CONTROL_REG, this._mcp23008_state, (error) => {
             if (error) {
-                console.log(`${colors.red("Error:")} ${error}`);
+                console.log(`${colors.red("\u2717")} GATESingleOutput: ${error} `);
             } else {
                 // console.log(`${colors.green("writeByte:")} ${channel} ${value}`);
             }
         });
 
+    }
+
+
+    /*
+     * DAC8574 16-Bit DAC single channel write
+     * Channel, in this context is the full 6-Bit address
+     * of the channel - ie [A3][A2][A1][A0][C1][C0]
+     * [A1][A0] are ignored, because we already have a
+     * handle to a device on that address.
+     * [A3][A2] are significant, as they need to match
+     * the state of the address lines on the DAC
+     * The ctrl_reg needs to look like this:
+     * [A3][A2][0][1][x][C1][C0][0]
+     */
+    DACSingleChannelWrite(
+        /*uint8_t*/ channel,
+        /*uint16_t*/ voltage) {
+
+        let /*uint16_t*/ v_out;
+        let /*uint8_t*/ ctrl_reg;
+
+        ctrl_reg = (((this.DAC8574Address & 0xC) << 4) | 0x10) | ((channel << 1) & 0x06);
+
+        //swap MSB & LSB because i2cWriteWordData sends LSB first, but the DAC expects MSB first
+        v_out = ((voltage >> 8) & 0x00FF) | ((voltage << 8) & 0xFF00);
+        this._I2C.writeWord(this.DAC8574Address, ctrl_reg, v_out, (error) => {
+            if (error) {
+                console.log(`${colors.red("\u2717")} DACSingleChannelWrite: ${error} `);
+            }
+        });
+        //i2cWriteWordData(handle,ctrl_reg,v_out);
     }
 
 
@@ -137,7 +175,13 @@ class EuropiMinionInterface {
 
 }
 
+
+
 let minion = new EuropiMinionInterface(0x1);
+
+
+minion.DACSingleChannelWrite(0, 1000);
+
 let counter = 0;
 let max = 64;
 let interval = 50;
