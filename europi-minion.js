@@ -176,7 +176,3 @@ class EuropiMinion {
 
 }
 module.exports = EuropiMinion;
-
-
-let minion = new EuropiMinion();
-minion.GatePulse(0, 1000);
