@@ -1,7 +1,4 @@
 const raspi = require("raspi");
-const colors = require("colors");
-
-const Log = require("./log-util");
 
 let isDeviceRaspberryPi = true;
 try {
@@ -11,15 +8,17 @@ try {
 }
 const I2C = isDeviceRaspberryPi ? require("raspi-i2c").I2C : null;
 
+const NanoTimer = require("nanotimer");
 
-/* Hardware Address Constants */
+const Log = require("./log-util");
+
+
 const DAC_BASE_ADDR = 0x4C; /* Base i2c addressof DAC8574 */
 const MCP_BASE_ADDR = 0x20; /* Base i2c address of MCP23008 GPIO Expander */
 const MCP_CONTROL_REG = 0x9; /* Control Register for MCP23008 GPIO Expander */
-
-/* Useful Logicals */
 const HIGH = 1;
 const LOW = 0;
+
 
 class EuropiMinion {
 
@@ -44,11 +43,17 @@ class EuropiMinion {
         return DAC_BASE_ADDR | (this._i2cAddress & 0x7);
     }
 
+    /***
+     *
+     * @param i2cAddress
+     */
     constructor(i2cAddress) {
         if (typeof i2cAddress !== "number") {
             i2cAddress = 0x0;
         }
         this._i2cAddress = i2cAddress;
+
+        this._timers = [];
 
         if (!isDeviceRaspberryPi) {
             Log.error(`I2C interface cannot be initialized: 'raspi-i2c' module not detected`);
@@ -57,6 +62,9 @@ class EuropiMinion {
         this.initializeI2CDevice();
     }
 
+    /***
+     *
+     */
     initializeI2CDevice() {
         this._mcp23008_initialized = false;
         this._mcp23008_state = 0;
@@ -71,7 +79,9 @@ class EuropiMinion {
         });
     }
 
-    /*
+
+    /***
+     *
      * Outputs the passed value to the GATE output identified
      * by the Handle to the Open device, and the channel (0-3)
      * As this is just a single bit, this function has to
@@ -82,8 +92,10 @@ class EuropiMinion {
      * though the gate indicator LEDs are on GPIO Ports 4 to 7, so
      * the output values from ports 0 to 3 need to be mirrored
      * to ports 4 - 7
+     *
+     * @param channel
+     * @param value
      */
-
     GateOutput(/*uint8_t*/ channel, /*int*/ value) {
         if (!this.isInitialized) {
             return;
@@ -104,11 +116,29 @@ class EuropiMinion {
                 Log.error(`GateOutput: ${error} `);
             }
         });
+    }
 
+    /***
+     *
+     * @param channel 0-3
+     * @param duration milliseconds
+     */
+    GatePulse(channel, /*milliseconds*/ duration) {
+        this.GateOutput(channel, HIGH);
+        if (this._timers[channel] instanceof NanoTimer) {
+            this._timers[channel].clearInterval();
+        } else {
+            this._timers[channel] = new NanoTimer();
+        }
+
+        this._timers[channel].setInterval(() => {
+            this.GateOutput(channel, LOW);
+        }, '', `${duration}m`);
     }
 
 
-    /*
+    /***
+     *
      * DAC8574 16-Bit DAC single channel write
      * Channel, in this context is the full 6-Bit address
      * of the channel - ie [A3][A2][A1][A0][C1][C0]
@@ -118,6 +148,9 @@ class EuropiMinion {
      * the state of the address lines on the DAC
      * The ctrl_reg needs to look like this:
      * [A3][A2][0][1][x][C1][C0][0]
+     *
+     * @param channel 0-3
+     * @param voltage 0.0-1.0
      */
     CVOutput(/*0 - 3*/ channel, /*0.0 - 1.0*/ voltage) {
         if (!this.isInitialized) {
@@ -139,41 +172,11 @@ class EuropiMinion {
                 Log.error(`CVOutput: ${error}`);
             }
         });
-
     }
 
 }
+module.exports = EuropiMinion;
 
 
 let minion = new EuropiMinion();
-
-let counter = 0;
-let max = 32;
-let interval = 75;
-
-minion.GateOutput(0, HIGH);
-minion.CVOutput(0,0.5);
-
-let timer = setInterval(() => {
-
-    minion.GateOutput(counter % 4, HIGH);
-    if (counter > 0) {
-	minion.GateOutput((counter-1) % 4, LOW);
-    }
-
-    minion.CVOutput(0, counter/max);
-    minion.CVOutput(2, 1.0 - counter/max);
-    
-    
-    counter++;
-    if (counter >= max) {
-	clearTimeout(timer);
-        minion.GateOutput(0, LOW);
-	minion.GateOutput(1, LOW);
-	minion.GateOutput(2, LOW);
-	minion.GateOutput(3, LOW);
-	
-    }
-
-    
-}, interval);
+minion.GatePulse(0, 1000);

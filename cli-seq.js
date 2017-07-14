@@ -8,6 +8,7 @@ const MidiController = require("./midi-controller");
 const MidiInstrument = require("./midi-instrument");
 
 const Sequencer = require("./sequencer");
+const Log = require("./log-util");
 
 
 let controller = new MidiController({
@@ -58,7 +59,7 @@ let seq = new Sequencer({
         if (endCount % 12) {
             seq.data = getRandomSequence();
         }
-        console.log(`${colors.green(`Seq1:`)} ended`)
+        Log.music(`Seq1 ended`);
         endCount++;
     }
 });
