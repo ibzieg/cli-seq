@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "rsync -avh ./ pi@192.168.0.147:code/cli-seq-dev/ --exclude node_modules"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "blessed": "^0.1.81",
     "colors": "^1.1.2",
     "nanotimer": "^0.3.14",
     "raspi": "^4.0.0",

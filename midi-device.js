@@ -1,6 +1,6 @@
 const midi = require("midi");
 const colors = require("colors");
-
+const Log = require("./log-util");
 
 class MidiDevice {
 
@@ -51,7 +51,7 @@ class MidiDevice {
             let portName = input.getPortName(i);
             if (this.options.names.indexOf(portName) >= 0) {
                 port = input.openPort(i);
-                console.log(`Input Open: \t${colors.green(portName)}`);
+                Log.success(`${portName}: Input port open`);
             }
         }
 
@@ -66,7 +66,7 @@ class MidiDevice {
             let portName = output.getPortName(i);
             if (this.options.names.indexOf(portName) >= 0) {
                 port = output.openPort(i);
-                console.log(`Output Open: \t${colors.blue(portName)}`);
+                Log.success(`${portName}: Output port open`);
             }
         }
         this._outputPort = output;

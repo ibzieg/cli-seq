@@ -3,23 +3,69 @@ const midi = require("midi");
 const colors = require("colors");
 const NanoTimer = require("nanotimer");
 
+const ChordHarmonizer = require("./chord-harmonizer");
+
 const MidiDevice = require("./midi-device");
 const MidiController = require("./midi-controller");
 const MidiInstrument = require("./midi-instrument");
+const EuropiMinion = require("./europi-minion");
 
 const Sequencer = require("./sequencer");
 const Log = require("./log-util");
 
 
+
+let minion = new EuropiMinion();
+
 let controller = new MidiController({
     device: MidiDevice.devices.BeatStepPro,
+    channel: 7,
+    receiveMessage: (status, d1, d2) => {
+        controllerMessage(status, d1, d2);
+    },
     postClock: () => {
-
     },
     stop: () => {
-        seq.data = getRandomSequence();
+        //seq.data = getRandomSequence();
     }
 });
+
+function controllerMessage(status, d1, d2) {
+    switch (status) {
+        case 144: // Note on
+            switch (d1) {
+                case MidiController.BeatStepMap.Pad9:  minion.GateOutput(0, 1); break;
+                case MidiController.BeatStepMap.Pad10: minion.GateOutput(1, 1); break;
+                case MidiController.BeatStepMap.Pad11: minion.GateOutput(2, 1); break;
+                case MidiController.BeatStepMap.Pad12: minion.GateOutput(3, 1); break;
+
+                case MidiController.BeatStepMap.Pad1:
+                    randomKickSequence();
+                    randomSnareSequence();
+                    randomizeSeq1();
+                    break;
+            }
+            break;
+        case 128: // Note off
+            switch (d1) {
+                case MidiController.BeatStepMap.Pad9:  minion.GateOutput(0, 0); break;
+                case MidiController.BeatStepMap.Pad10: minion.GateOutput(1, 0); break;
+                case MidiController.BeatStepMap.Pad11: minion.GateOutput(2, 0); break;
+                case MidiController.BeatStepMap.Pad12: minion.GateOutput(3, 0); break;
+            }
+            break;
+        case 176: // Control Change
+            switch (d1) {
+                case MidiController.BeatStepMap.Knob1: minion.CVOutput(0, d2/127.0); break;
+                case MidiController.BeatStepMap.Knob2: minion.CVOutput(1, d2/127.0); break;
+                case MidiController.BeatStepMap.Knob3: minion.CVOutput(2, d2/127.0); break;
+                case MidiController.BeatStepMap.Knob4: minion.CVOutput(3, d2/127.0); break;
+            }
+            break;
+
+    }
+
+}
 
 
 function getRandomNote() {
@@ -29,17 +75,22 @@ function getRandomNote() {
     return note;
 }
 
-function getRandomSequence() {
-    let min = 4;
-    let max = 16;
+function getRandomSequence(nextNote, min, max, density) {
+    min = Math.floor(min/2)*2; // force even
+    max = Math.floor(max/2)*2; // force even
+    if (density < 0) density = 0;
+    if (density > 1) density = 1;
     let length = Math.floor(min+Math.random()*(max-min+1));
-    length = length * 2;
     let seq = [];
     for (let i = 0; i < length; i++) {
-        if (i % 2 !== 0 && Math.random() < 0.4) {
-            seq.push(null);
+        if (Math.random() < density) {
+            if (i % 2 !== 0 && Math.random() < density) {
+                seq.push(null);
+            } else {
+                seq.push([nextNote(), 127, 127]);
+            }
         } else {
-            seq.push([getRandomNote(), 127, 127]);
+            seq.push(null);
         }
     }
     return seq;
@@ -54,154 +105,94 @@ let seq = new Sequencer({
         mode: "VI  Aeolian (Nat. Minor)"
     },
     rate: 4,
-    data: getRandomSequence(),
-    onEnd: () => {
-        if (endCount % 12) {
-            seq.data = getRandomSequence();
+    data: getRandomSequence(getRandomNote, 8, 32, 0.7),
+    play: (index, event) => {
+        minion.CVOutput(0,Math.random());
+        minion.CVOutput(1,index / seq.data.length);
+        minion.CVOutput(2, 1.0 - (index / seq.data.length));
+        seq.play(event[0], event[1], event[2]);
+    },
+    end: () => {
+        if (endCount % 4) {
+            // seq.data = getRandomSequence(getRandomNote, 8, 32, 0.7);
         }
-        Log.music(`Seq1 ended`);
+        //Log.music(`Seq1 ended`);
         endCount++;
     }
 });
 controller.register(seq);
 
+function randomizeSeq1() {
+
+    seq.data = getRandomSequence(getRandomNote, 8, 32, 0.7);
+
+    let modeCount = ChordHarmonizer.ModeNames.length;
+
+    seq.chord = {
+        root: "G",
+        mode: ChordHarmonizer.ModeNames[Math.floor(Math.random() * modeCount)]
+    };
+
+    Log.music(`Voice 1 Sequence: ${seq.data.map((stage) => stage ? stage[0] : 'null').join(' ')}`);
+
+}
+
+
 
 let kick = MidiInstrument.drumMap[0];
 let kickSeq = new Sequencer({
     instrument: MidiInstrument.instruments.BSPDrum,
-    rate: 24,
-    data: [
-        [kick, 127, 127],
-        [kick, 127, 127],
-        [kick, 127, 127],
-        [kick, 127, 127],
-        [kick, 127, 127],
-        null,
-        [kick, 127, 127],
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        [kick, 127, 127],
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-    ]
+    rate: 1,
+    //data: getRandomSequence(() => kick, 4, 64, 0.5),
+    data: [[kick, 127, 100]],
+    end: () => {
+        snareSeq.reset();
+        seq.reset();
+        //Log.music(`Kick sequenced ended`);
+    }
 });
 controller.register(kickSeq);
 
+function randomKickSequence() {
+    kickSeq.data = getRandomSequence(() => kick, 4, 64, 0.5);
+    Log.music(`Kick Sequence: ${kickSeq.data.map((stage) => stage ? stage[0] : 'null').join(' ')}`);
+}
+
+function randomSnareSequence() {
+    snareSeq.data = getRandomSequence(() => snare, 4, 64, 0.5);
+    Log.music(`Snare Sequence: ${snareSeq.data.map((stage) => stage ? stage[0] : 'null').join(' ')}`);
+}
 
 
+let snare = MidiInstrument.drumMap[6];
+let snareSeq = new Sequencer({
+    instrument: MidiInstrument.instruments.BSPDrum,
+    rate: 2,
+    data: getRandomSequence(() => snare, 8, 32, 0.4)
+});
+controller.register(snareSeq);
+
+
+let stageSeq = new Sequencer({
+    partsPerQuant: 1,
+    rate: 1,
+    data: [
+        () => {},
+        () => {},
+        () => {},
+    ]
+});
+
+
+let stageIndex = 0;
+let stages = [
+    () => {},
+    () => {},
+    () => {},
+];
+function nextStage() {
+    stages[++stageIndex % stages.length]();
+};
+
+
+Log.info("reached end of cli-seq ");

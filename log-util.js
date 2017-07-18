@@ -1,29 +1,46 @@
 const colors = require("colors");
+const Screen = require("./screen");
 
 class Console {
 
+    static log(text) {
+        try {
+            process.send({text: text});
+        } catch (error) {
+            if(error.toString().indexOf("ERR_IPC_CHANNEL_CLOSED") < 0) {
+                console.log(`${colors.green("\u2717")} ${error}`);
+            }
+        }
+/*        if (Screen.Instance) {
+            Screen.Instance.log(text);
+        } else {
+            console.log(text);
+        }*/
+
+    }
+
     static error(text) {
-        console.log(`${colors.red("\u2717")} ${text}`);
+        Console.log(`${colors.red("\u2717")} ${text}`);
     }
 
     static warning(text) {
-        console.log(`${colors.yellow("\u26A0")} ${text}`);
+        Console.log(`${colors.yellow("\u26A0")} ${text}`);
     }
 
     static info(text) {
-        console.log(`${colors.gray("\u21D2")} ${text}`);
+        Console.log(`${colors.gray("\u21D2")} ${text}`);
     }
 
     static success(text) {
-        console.log(`${colors.green("\u2713")} ${text}`);
+        Console.log(`${colors.green("\u2713")} ${text}`);
     }
 
     static debug(text) {
-        console.log(`${colors.magenta("\u2699")} ${text}`);
+        Console.log(`${colors.magenta("\u2699")} ${text}`);
     }
 
     static music(text) {
-        console.log(`${colors.cyan("\u266A")} ${text}`);
+        Console.log(`${colors.cyan("\u266A")} ${text}`);
     }
 }
 module.exports = Console;
