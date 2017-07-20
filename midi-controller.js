@@ -72,13 +72,13 @@ class MidiController {
                 }
                 switch (status) {
                     case 144: // Note on
-                        Log.info(`Controller Note On:  ${colors.cyan(d1)} Velocity: ${colors.cyan(d2)}`);
+                        //Log.info(`Controller Note On:  ${colors.cyan(d1)} Velocity: ${colors.cyan(d2)}`);
                         break;
                     case 128: // Note off
-                        Log.info(`Controller Note Off: ${colors.gray(d1)} Velocity: ${colors.gray(d2)}`);
+                        //Log.info(`Controller Note Off: ${colors.gray(d1)} Velocity: ${colors.gray(d2)}`);
                         break;
                     case 176: // Control Change
-                        Log.info(`Controller Change: ${colors.magenta(d1)} Value: ${colors.magenta(d2)}`);
+                        //Log.info(`Controller Change: ${colors.magenta(d1)} Value: ${colors.magenta(d2)}`);
                         break;
                     default:
                         Log.info(`Controller Message: ${colors.red(d1)},  ${colors.red(d2)}`);

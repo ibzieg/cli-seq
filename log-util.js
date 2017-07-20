@@ -5,7 +5,10 @@ class Console {
 
     static log(text) {
         try {
-            process.send({text: text});
+            process.send({
+                type: "log",
+                text: text
+            });
         } catch (error) {
             if(error.toString().indexOf("ERR_IPC_CHANNEL_CLOSED") < 0) {
                 console.log(`${colors.green("\u2717")} ${error}`);

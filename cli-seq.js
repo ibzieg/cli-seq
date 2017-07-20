@@ -21,6 +21,12 @@ let controller = new MidiController({
     device: MidiDevice.devices.BeatStepPro,
     channel: 7,
     receiveMessage: (status, d1, d2) => {
+        process.send({
+            type: "controller",
+            status: status,
+            d1: d1,
+            d2: d2
+        });
         controllerMessage(status, d1, d2);
     },
     postClock: () => {
@@ -192,7 +198,4 @@ let stages = [
 ];
 function nextStage() {
     stages[++stageIndex % stages.length]();
-};
-
-
-Log.info("reached end of cli-seq ");
+}

@@ -1,3 +1,4 @@
+const colors = require("colors");
 const { fork } = require('child_process');
 
 const forked = fork('cli-seq.js');
@@ -11,9 +12,21 @@ Screen.create({
     }
 });
 
-forked.on('message', (msg) => {
-    //console.log(msg.text);
-    Screen.Instance.log(msg.text);
-});
+forked.on('message', (message) => {
+    try {
+        switch (message.type) {
+            case "log":
+                Screen.Instance.log(message.text);
+                break;
+            case "controller":
+                Screen.Instance.controller(message.status, message.d1, message.d2);
+                break;
+            default:
+                Screen.Instance.log(`Unknown message type: ${JSON.stringify(message)}`);
+                break;
+        }
+    } catch (error) {
+        Screen.Instance.log(`${colors.red("\u2717")} ${error}`);
+    }
 
-//forked.send({ hello: 'world' });
+});
