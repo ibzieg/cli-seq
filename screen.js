@@ -4,6 +4,33 @@ const blessed = require('blessed');
 const SCREEN_HEIGHT = 30;
 const SCREEN_WIDTH = 100;
 
+const layout = {
+    statusBar: {
+        left: 0,
+        top: 0,
+        width: SCREEN_WIDTH,
+        height: 10
+    },
+    controller: {
+        left: 0,
+        top: 3,
+        width: SCREEN_WIDTH,
+        height: 8
+    },
+    logBox: {
+        top: 10,
+        left: 0,
+        width: SCREEN_WIDTH,
+        height: 18
+    },
+    inputBox: {
+        top: 27,
+        left: 0,
+        width: SCREEN_WIDTH,
+        height: 3,
+    }
+};
+
 class Screen {
 
     static create(options) {
@@ -18,8 +45,19 @@ class Screen {
 
         this.initialize();
 
+        this._tickDurations = [];
+        this._commandHistory = [];
+        this._commandHistoryIndex = 0;
         this._logLines = [];
 
+    }
+
+    exit() {
+        if (this.options.onExit) {
+            return this.options.onExit();
+        } else {
+            return process.exit(0);
+        }
     }
 
     initialize() {
@@ -32,26 +70,14 @@ class Screen {
         this._screen.title = 'Parallelepiped';
 
         // Quit on Escape, q, or Control-C.
-        this._screen.key(['escape', 'q', 'C-c'],  (ch, key) => {
-            if (this.options.onExit) {
-                return this.options.onExit();
-            } else {
-                return process.exit(0);
-            }
+        this._screen.key([/*'escape', 'q', */'C-c'],  (ch, key) => {
+            this.exit();
         });
 
-
-
-        this.controllerBox = blessed.box({
-            top: 0,
-            left: 0,
-            width: SCREEN_WIDTH,
-            height: '34%',
-            //content: 'Hello {bold}world{/bold}!',
+        this.statusBar = blessed.box(Object.assign({
             scrollable: true,
             tags: true,
-            label: "Controller",
-            //keys: true,
+            // label: "Controller",
             border: {
                 type: 'bg',
                 fg: '#ff0000',
@@ -60,15 +86,34 @@ class Screen {
             },
             style: {
                 fg: 'white',
-                // bg: 'magenta',
                 border: {
                     fg: '#f0f0f0'
-                },
-                hover: {
-                    // bg: 'green'
                 }
             }
+        }, layout.statusBar));
+        this._screen.append(this.statusBar);
+
+        this.bpmText = blessed.text({
+            parent: this.statusBar
         });
+
+        this.controllerBox = blessed.box(Object.assign({
+            scrollable: true,
+            tags: true,
+            // label: "Controller",
+            border: {
+                type: 'bg',
+                fg: '#ff0000',
+                bg: '#00ff00'
+
+            },
+            style: {
+                fg: 'white',
+                border: {
+                    fg: '#f0f0f0'
+                }
+            }
+        }, layout.controller));
         this._screen.append(this.controllerBox);
 
         this.knobsDisplays = [];
@@ -76,19 +121,15 @@ class Screen {
             this.knobsDisplays.push(this.createKnobDisplay({
                 label: `Knob${i+1}`,
                 left: (i%8)*12,
-                top: i < 8 ? 0 : 3
+                top: i < 8 ? 0 : 2
             }));
         }
 
 
 
         // Create a box perfectly centered horizontally and vertically.
-        this.logBox = blessed.box({
-            top: '33%',
-            left: 0,
-            width: SCREEN_WIDTH,
-            height: '34%',
-            label: "Log",
+        this.logBox = blessed.box(Object.assign({
+            // label: "Log",
             scrollable: true,
             tags: true,
             keys: true,
@@ -97,31 +138,24 @@ class Screen {
             },
             style: {
                 fg: 'white',
-                // bg: 'magenta',
                 border: {
                     fg: '#f0f0f0'
-                },
-                hover: {
-                    // bg: 'green'
                 }
             }
-        });
+        }, layout.logBox));
 
         // Append our box to the screen.
         this._screen.append(this.logBox);
 
         // If our box is clicked, change the content.
         this.logBox.on('click',  (data) => {
-            this.log("click: "+data);
+            //this.log("click: "+data);
+            //this.logBox.focus();
         });
 
         // Create a box perfectly centered horizontally and vertically.
-        this.inputBox = blessed.box({
-            top: '66%',
-            left: 0,
-            width: SCREEN_WIDTH,
-            height: '34%',
-            label: "Input",
+        this.inputBox = blessed.box(Object.assign({
+            // label: "Input",
             scrollable: true,
             tags: true,
             keys: true,
@@ -133,19 +167,51 @@ class Screen {
             },
             style: {
                 fg: 'white',
-                // bg: 'magenta',
                 border: {
                     fg: '#f0f0f0'
-                },
-                hover: {
-                    // bg: 'green'
                 }
             }
-        });
+        }, layout.inputBox));
         this._screen.append(this.inputBox);
 
+        this.commandInput = blessed.textbox({
+            parent: this.inputBox,
+            width: SCREEN_WIDTH,
+            content: "test",
+            inputOnFocus: true,
+            keys: true,
+            mouse: true
+        });
+        this.commandInput.focus();
+        this.commandInput.on('keypress', (ch, key) => {
+            //this.log(`keypress ${ch} ${JSON.stringify(key)}`);
+            if (key.name === "up") {
+                this._commandHistoryIndex = Math.max(this._commandHistoryIndex - 1, 0);
+                let cmd = this._commandHistory[this._commandHistoryIndex];
+                this.commandInput.setValue(cmd);
+                this._screen.render();
+            } else if (key.name === "down") {
+                this._commandHistoryIndex = Math.min(this._commandHistoryIndex + 1, this._commandHistory.length);
+                let cmd = this._commandHistory[this._commandHistoryIndex];
+                this.commandInput.setValue(cmd);
+                this._screen.render();
+            } else {
+                this._commandHistoryIndex = this._commandHistory.length;
+            }
+        });
+        this.commandInput.on('submit',(value) => {
+            this.commandInput.clearValue();
+            this.commandInput.focus();
 
+            if (value === "exit") {
+                this.exit();
+            }
 
+            this.log(`readInput: ${value}`);
+
+            this._commandHistory.push(value);
+            this._commandHistoryIndex = this._commandHistory.length;
+        });
 
 
 
@@ -157,7 +223,7 @@ class Screen {
         return new blessed.progressbar({
             parent: this.controllerBox,
             height: 3,
-            width: 12,
+            width: 13,
             top: options.top,
             left: options.left,
             label: options.label,
@@ -202,7 +268,19 @@ class Screen {
         this._screen.render();
     }
 
-
+    updateClock(duration) {
+        const historyLength = 48; // TODO Move constant
+        const ppq = 24; // TODO Move constant
+        this._tickDurations.push(duration);
+        this._tickDurations = this._tickDurations.splice(Math.max(0, this._tickDurations.length-historyLength), historyLength);
+        let tickMillis = this._tickDurations.reduce((sum, value) => sum + value) / this._tickDurations.length;
+        let beatMillis = tickMillis * ppq;
+        const millisPerMin = 60000;
+        let bpm = Math.round(millisPerMin / beatMillis);
+        // this.inputBox.setLabel(`${bpm}bpm`);
+        this.bpmText.setContent(`${bpm}bpm`);
+        this._screen.render();
+    }
 
     controller(status, d1, d2) {
 

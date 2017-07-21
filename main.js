@@ -21,6 +21,9 @@ forked.on('message', (message) => {
             case "controller":
                 Screen.Instance.controller(message.status, message.d1, message.d2);
                 break;
+            case "clock":
+                Screen.Instance.updateClock(message.tickDuration);
+                break;
             default:
                 Screen.Instance.log(`Unknown message type: ${JSON.stringify(message)}`);
                 break;

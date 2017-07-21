@@ -16,6 +16,8 @@ class MidiController {
 
         this._options = options;
 
+        this._lastClockTime = process.hrtime();
+
         let device = options.device;
         if (device) {
             this.initializeDevice(device);
@@ -66,7 +68,6 @@ class MidiController {
             let channel = status & 0b00001111;
             status = status & 0b011110000;
             if (channel === this._options.channel-1) {
-                //Log.info(`Controller: ch=${colors.blue(channel)} st=${status} d1=${d1} d2=${d2}`);
                 if (typeof this._options.receiveMessage === "function") {
                     this._options.receiveMessage(status, d1, d2);
                 }
@@ -106,6 +107,14 @@ class MidiController {
 
 
     clock() {
+
+        let lastClockDur = process.hrtime(this._lastClockTime);
+        this._lastClockTime = process.hrtime();
+        process.send({
+            type: "clock",
+            tickDuration: lastClockDur[0]/1000.0 + lastClockDur[1]/1000000.0
+        });
+
         for (let sequencer of this._sequencerMap.keys()) {
             sequencer.clock();
         }
