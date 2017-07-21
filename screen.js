@@ -185,16 +185,20 @@ class Screen {
         this.commandInput.focus();
         this.commandInput.on('keypress', (ch, key) => {
             //this.log(`keypress ${ch} ${JSON.stringify(key)}`);
-            if (key.name === "up") {
+            if (key.name === "up" || (key.ctrl && key.name === "p")) {
                 this._commandHistoryIndex = Math.max(this._commandHistoryIndex - 1, 0);
                 let cmd = this._commandHistory[this._commandHistoryIndex];
                 this.commandInput.setValue(cmd);
                 this._screen.render();
-            } else if (key.name === "down") {
+            } else if (key.name === "down" || (key.ctrl && key.name === "n")) {
                 this._commandHistoryIndex = Math.min(this._commandHistoryIndex + 1, this._commandHistory.length);
                 let cmd = this._commandHistory[this._commandHistoryIndex];
                 this.commandInput.setValue(cmd);
                 this._screen.render();
+            } else if (key.ctrl && key.name === "c") {
+                this.commandInput.clearValue();
+                this._screen.render();
+                this._commandHistoryIndex = this._commandHistory.length;
             } else {
                 this._commandHistoryIndex = this._commandHistory.length;
             }
@@ -205,9 +209,11 @@ class Screen {
 
             if (value === "exit") {
                 this.exit();
+            } else {
+                if (this.options.onCommandInput) {
+                    this.options.onCommandInput(value);
+                }
             }
-
-            this.log(`readInput: ${value}`);
 
             this._commandHistory.push(value);
             this._commandHistoryIndex = this._commandHistory.length;

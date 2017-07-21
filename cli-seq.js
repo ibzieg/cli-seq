@@ -13,7 +13,18 @@ const EuropiMinion = require("./europi-minion");
 const Sequencer = require("./sequencer");
 const Log = require("./log-util");
 
-
+process.on('message', (message) => {
+    //Log.debug(`cli-seq receive: ${message.script}`);
+    try {
+        let result = eval(message.script);
+        Log.success(message.script);
+        if (result) {
+            Log.info(result);
+        }
+    } catch(error) {
+        Log.error(error);
+    }
+});
 
 let minion = new EuropiMinion();
 
@@ -139,7 +150,7 @@ function randomizeSeq1() {
         mode: ChordHarmonizer.ModeNames[Math.floor(Math.random() * modeCount)]
     };
 
-    Log.music(`Voice 1 Sequence: ${seq.data.map((stage) => stage ? stage[0] : 'null').join(' ')}`);
+    Log.music(`Voice 1 Sequence: ${seq.data.map((stage) => stage ? stage[0] : '__').join(' ')}`);
 
 }
 
@@ -161,12 +172,12 @@ controller.register(kickSeq);
 
 function randomKickSequence() {
     kickSeq.data = getRandomSequence(() => kick, 4, 64, 0.5);
-    Log.music(`Kick Sequence: ${kickSeq.data.map((stage) => stage ? stage[0] : 'null').join(' ')}`);
+    Log.music(`Kick Sequence: ${kickSeq.data.map((stage) => stage ? stage[0] : '__').join(' ')}`);
 }
 
 function randomSnareSequence() {
     snareSeq.data = getRandomSequence(() => snare, 4, 64, 0.5);
-    Log.music(`Snare Sequence: ${snareSeq.data.map((stage) => stage ? stage[0] : 'null').join(' ')}`);
+    Log.music(`Snare Sequence: ${snareSeq.data.map((stage) => stage ? stage[0] : '__').join(' ')}`);
 }
 
 

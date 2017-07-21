@@ -9,6 +9,12 @@ Screen.create({
     onExit: () => {
         forked.kill("SIGINT");
         return process.exit(0);
+    },
+    onCommandInput: (cmd) => {
+        forked.send({
+            type: "command",
+            script: cmd
+        });
     }
 });
 
