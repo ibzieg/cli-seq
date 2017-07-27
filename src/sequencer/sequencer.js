@@ -1,4 +1,4 @@
-const MidiInstrument = require("./midi-instrument");
+const MidiInstrument = require("./../midi/midi-instrument");
 const ChordHarmonizer = require("./chord-harmonizer");
 
 class Sequencer {

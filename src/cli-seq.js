@@ -3,18 +3,20 @@ const midi = require("midi");
 const colors = require("colors");
 const NanoTimer = require("nanotimer");
 
-const ChordHarmonizer = require("./chord-harmonizer");
+const ChordHarmonizer = require("./sequencer/chord-harmonizer");
 
-const MidiDevice = require("./midi-device");
-const MidiController = require("./midi-controller");
-const MidiInstrument = require("./midi-instrument");
-const EuropiMinion = require("./europi-minion");
+const MidiDevice = require("./midi/midi-device");
+const MidiController = require("./midi/midi-controller");
+const MidiInstrument = require("./midi/midi-instrument");
+const EuropiMinion = require("./europi/europi-minion");
 
-const Sequencer = require("./sequencer");
-const Log = require("./log-util");
+const Sequencer = require("./sequencer/sequencer");
+const Log = require("./display/log-util");
 
+/***
+ * Live scripting console
+ */
 process.on('message', (message) => {
-    //Log.debug(`cli-seq receive: ${message.script}`);
     try {
         let result = eval(message.script);
         Log.success(message.script);
@@ -58,6 +60,7 @@ function controllerMessage(status, d1, d2) {
 
                 case MidiController.BeatStepMap.Pad1:
                     randomKickSequence();
+                    randomChordSeq();
                     randomSnareSequence();
                     randomizeSeq1();
                     break;
@@ -83,7 +86,6 @@ function controllerMessage(status, d1, d2) {
     }
 
 }
-
 
 function getRandomNote() {
     let min = 36;
@@ -139,19 +141,49 @@ let seq = new Sequencer({
 });
 controller.register(seq);
 
+
+
 function randomizeSeq1() {
 
     seq.data = getRandomSequence(getRandomNote, 8, 32, 0.7);
 
     let modeCount = ChordHarmonizer.ModeNames.length;
 
-    seq.chord = {
+    let newChord = {
         root: "G",
         mode: ChordHarmonizer.ModeNames[Math.floor(Math.random() * modeCount)]
     };
 
+    seq.chord = Object.assign({}, newChord);
+
+    chordSeq.chord = Object.assign({
+        //third: true,
+        fifth: true
+    }, newChord);
+
     Log.music(`Voice 1 Sequence: ${seq.data.map((stage) => stage ? stage[0] : '__').join(' ')}`);
 
+}
+
+
+let chordSeq = new Sequencer({
+    instrument: MidiInstrument.instruments.Minilogue,
+    chord: {
+        root: "G",
+        mode: "VI  Aeolian (Nat. Minor)"
+    },
+    rate: 2,
+    data: getRandomSequence(() => getRandomNote()+12, 8, 32, 0.7),
+    play: (index, event) => {
+        //Log.music(`minilogue note: ${event}`);
+        chordSeq.play(event[0], event[1], event[2]);
+    }
+});
+controller.register(chordSeq);
+
+function randomChordSeq() {
+    chordSeq.data = getRandomSequence(getRandomNote, 8, 32, 0.7);
+    Log.music(`Chord Sequence: ${seq.data.map((stage) => stage ? stage[0] : '__').join(' ')}`);
 }
 
 
@@ -165,6 +197,7 @@ let kickSeq = new Sequencer({
     end: () => {
         snareSeq.reset();
         seq.reset();
+        chordSeq.reset();
         //Log.music(`Kick sequenced ended`);
     }
 });

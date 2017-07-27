@@ -1,9 +1,9 @@
 const colors = require("colors");
 const { fork } = require('child_process');
 
-const forked = fork('cli-seq.js');
+const forked = fork('./src/cli-seq.js');
 
-const Screen = require("./screen");
+const Screen = require("./display/screen");
 
 Screen.create({
     onExit: () => {

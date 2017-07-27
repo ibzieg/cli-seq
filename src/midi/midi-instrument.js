@@ -58,7 +58,7 @@ const instruments = {
     },
     Minilogue: {
         device: MidiDevice.devices.Minilogue,
-        channel: 0
+        channel: 1
     },
     Juno106: {
         device: MidiDevice.devices.MOTU828x,

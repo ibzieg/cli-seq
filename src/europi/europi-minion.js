@@ -10,7 +10,7 @@ const I2C = isDeviceRaspberryPi ? require("raspi-i2c").I2C : null;
 
 const NanoTimer = require("nanotimer");
 
-const Log = require("./log-util");
+const Log = require("./../display/log-util");
 
 
 const DAC_BASE_ADDR = 0x4C; /* Base i2c addressof DAC8574 */

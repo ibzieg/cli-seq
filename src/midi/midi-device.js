@@ -1,11 +1,29 @@
 const midi = require("midi");
 const colors = require("colors");
-const Log = require("./log-util");
+const Log = require("./../display/log-util");
 
 class MidiDevice {
 
     static get devices() {
         return devices;
+    }
+
+    static listOutputPorts() {
+        let output = new midi.output();
+        let portCount = output.getPortCount();
+        for (let i = 0; i < portCount; i++) {
+            let portName = output.getPortName(i);
+            Log.info(portName);
+        }
+    }
+
+    static listInputPorts() {
+        let input = new midi.input();
+        let portCount = input.getPortCount();
+        for (let i = 0; i < portCount; i++) {
+            let portName = input.getPortName(i);
+            Log.info(portName);
+        }
     }
 
     static getInstance(deviceOptions) {
@@ -82,7 +100,7 @@ let devices = {
         instance: null
     },
     Minilogue: {
-        names: ['minilogue SOUND'],
+        names: ['minilogue SOUND', 'minilogue 24:1'],
         instance: null
     },
     MOTU828x: {

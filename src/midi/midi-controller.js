@@ -1,7 +1,7 @@
 const colors = require("colors");
 const NanoTimer = require("nanotimer");
 
-const Log = require("./log-util");
+const Log = require("./../display/log-util");
 const MidiDevice = require("./midi-device");
 
 
