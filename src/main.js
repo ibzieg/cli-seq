@@ -1,7 +1,8 @@
 const colors = require("colors");
 const { fork } = require('child_process');
 
-const forked = fork('./src/cli-seq.js');
+//const forked = fork('./src/cli-seq.js');
+const forked = fork('./src/sequencer/arrangement-thread.js');
 
 const Screen = require("./display/screen");
 

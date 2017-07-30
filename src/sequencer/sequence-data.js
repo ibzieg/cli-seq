@@ -3,12 +3,10 @@ class SequenceData {
 
     /***
      *
-     * @returns {number}
+     * @returns {Array}
      */
-    static getRandomNote() {
-        let min = 36;
-        let max = 72;
-        return Math.floor(min+Math.random()*(max-min+1));
+    static getRandomNote(min, max) {
+        return [Math.floor(min+Math.random()*(max-min+1)), 127, 100];
     }
 
     /***
@@ -29,9 +27,11 @@ class SequenceData {
         for (let i = 0; i < length; i++) {
             if (Math.random() < density) {
                 if (i % 2 !== 0 && Math.random() < density) {
-                    seq.push(null);
+                    //seq.push(null);
+                    seq[i] = null;
                 } else {
-                    seq.push([nextNote(), 127, 127]);
+                    //seq.push(nextNote());
+                    seq[i] = nextNote();
                 }
             } else {
                 seq.push(null);

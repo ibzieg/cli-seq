@@ -1,6 +1,6 @@
 
 
-class arrangement {
+class Arrangement {
 
     constructor(options) {
         this._state = {};
@@ -12,12 +12,16 @@ class arrangement {
 
     }
 
-    register(controller) {
-        this._sequencers.forEach((v, k, m) => controller.register(v));
+    registerController(controller) {
+        this._sequencers.forEach((v, k, m) => controller.register(k));
     }
 
-    unregister(controller) {
-        this._sequencers.forEach((v, k, m) => controller.unregister(v));
+    unregisterController(controller) {
+        this._sequencers.forEach((v, k, m) => controller.unregister(k));
+    }
+
+    addSequencer(sequencer) {
+        this._sequencers.set(sequencer, null);
     }
 
     start() {
@@ -33,4 +37,4 @@ class arrangement {
     }
 
 }
-module.exports = arrangement;
+module.exports = Arrangement;
