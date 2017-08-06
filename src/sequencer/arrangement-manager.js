@@ -55,11 +55,13 @@ class ArrangementManager {
                 this.controllerMessage(status, d1, d2);
             },
             postClock: () => {
+                this.activeArrangement.postClock();
             },
             start: () => {
-
+                this.activeArrangement.start();
             },
             stop: () => {
+                this.activeArrangement.stop();
             }
         });
 

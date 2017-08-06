@@ -10,25 +10,26 @@ const MidiInstrument = require("../../midi/midi-instrument");
 class Arrangement02 extends Arrangement {
 
     get title() {
-        return "mv_stage_sq";
+        let stage = this.state.stageIndex % this.state.stageCount;
+        let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
+
+        return `Multistage {green-fg}${iteration}.${stage}{/}`;
     }
 
     createControllerMap() {
         return {
             noteOn: {
                 Pad1: {
-                    label: "RndSQ",
+                    label: "Rnd Seq",
                     callback: (velocity) => {
-                        this.randomSeq1();
-                        this.randomChordSeq();
-                        this.randomSnareSeq();
-                        this.randomKickSeq();
+                        Log.success(`Randomized stage data`);
+                        this.state.data = this.getRandomStageData();
                     }
                 },
                 Pad2: {
-                    label: "RndCH",
+                    label: "Rnd Scl",
                     callback: (velocity) => {
-                        this.randomScale();
+                        this.setScale(this.getRandomScale());
                     }
                 },
                 Pad9: {
@@ -110,63 +111,75 @@ class Arrangement02 extends Arrangement {
 
     initialize() {
 
+        this.state = {
+            stageCount: 3,
+            stageIndex: 0,
+            chord: this.getRandomScale(),
+            data: this.getRandomStageData()
+        };
+
         ////////////////////////////////////////////////////////////////
-        this.seq1 = new Sequencer({
+        this.voice1 = new Sequencer({
             instrument: MidiInstrument.instruments.BSPSeq1,
-            chord: {
-                root: "G",
-                mode: "VI  Aeolian (Nat. Minor)"
-            },
+            chord: this.state.chord,
             rate: 4,
-            data: SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 8, 32, 0.7),
+            data: this.state.data.voice1[0][0],
+            play: (index, event) => {
+                this.minion.CVOutput(1,index / this.voice1.data.length);
+                this.voice1.play(event[0], event[1], event[2]);
+            },
+            end: () => {
+            }
+        });
+        this.addSequencer(this.voice1);
+
+        ////////////////////////////////////////////////////////////////
+        this.voice2 = new Sequencer({
+            instrument: MidiInstrument.instruments.BSPSeq2,
+            chord: this.state.chord,
+            rate: 2,
+            data: this.state.data.voice1[0][0],
+            play: (index, event) => {
+                this.minion.CVOutput(2, 1.0 - (index / this.voice2.data.length));
+                this.voice2.play(event[0], event[1], event[2]);
+            },
+            end: () => {
+            }
+        });
+        this.addSequencer(this.voice2);
+
+        ////////////////////////////////////////////////////////////////
+        this.poly1 = new Sequencer({
+            instrument: MidiInstrument.instruments.Minilogue,
+            chord: this.state.chord,
+            rate: 1,
+            data: this.state.data.poly1[0][0],
             play: (index, event) => {
                 this.minion.CVOutput(0,Math.random());
-                this.minion.CVOutput(1,index / this.seq1.data.length);
-                this.minion.CVOutput(2, 1.0 - (index / this.seq1.data.length));
-                this.seq1.play(event[0], event[1], event[2]);
-            },
-            end: () => {
+                this.poly1.play(event[0], event[1], event[2]);
             }
         });
-        this.addSequencer(this.seq1);
+        this.addSequencer(this.poly1);
 
         ////////////////////////////////////////////////////////////////
-        this.chordSeq = new Sequencer({
-            instrument: MidiInstrument.instruments.Minilogue,
-            chord: {
-                root: "G",
-                mode: "VI  Aeolian (Nat. Minor)"
-            },
-            rate: 2,
-            data: SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 8, 32, 0.7),
-            play: (index, event) => {
-                this.chordSeq.play(event[0], event[1], event[2]);
-            }
-        });
-        this.addSequencer(this.chordSeq);
-
-        ////////////////////////////////////////////////////////////////
-        this.kick = MidiInstrument.drumMap[0];
-        this.kickSeq = new Sequencer({
+        this.kickDrum = new Sequencer({
             instrument: MidiInstrument.instruments.BSPDrum,
             rate: 1,
-            data: [[this.kick, 127, 100]],
+            data: this.state.data.kickDrum[0][0],
             end: () => {
-                this.seq1.reset();
-                this.chordSeq.reset();
-                this.snareSeq.reset();
+                this.setStage(this.state.stageIndex+1);
             }
         });
-        this.addSequencer(this.kickSeq);
+        this.addSequencer(this.kickDrum);
 
         ////////////////////////////////////////////////////////////////
         this.snare = MidiInstrument.drumMap[1];
-        this.snareSeq = new Sequencer({
+        this.snareDrum = new Sequencer({
             instrument: MidiInstrument.instruments.BSPDrum,
             rate: 2,
-            data: SequenceData.getRandomSequence(() => [this.snare, 127, 100], 8, 32, 0.4)
+            data: this.state.data.snareDrum[0][0]
         });
-        this.addSequencer(this.snareSeq);
+        this.addSequencer(this.snareDrum);
 
     }
 
@@ -175,46 +188,114 @@ class Arrangement02 extends Arrangement {
     }
 
     stop() {
-
+        this.setStage(0);
     }
 
     postClock() {
 
     }
 
-    ////////////////////////////////////////////////////////////////
-    randomSeq1() {
-        this.seq1.data = SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 8, 32, 0.7);
-        Log.music(`Voice 1 Sequence: ${this.seq1.data.map((stage) => stage ? stage[0] : '__').join(' ')}`);
+    setStage(index) {
+        this.state.stageIndex = index;
+        let stage = index % this.state.stageCount;
+        let iteration = Math.floor(index / this.state.stageCount);
+
+        this.setSequencerStage("voice1", stage, iteration);
+        this.setSequencerStage("voice2", stage, iteration);
+        this.setSequencerStage("poly1", stage, iteration);
+        this.setSequencerStage("snareDrum", stage, iteration);
+        this.setSequencerStage("kickDrum", stage, iteration);
+
+        //Log.debug(`setStage index=${index} stage=${stage} iter=${iteration}`);
+        this.updateTitle();
 
     }
 
-    ////////////////////////////////////////////////////////////////
-    randomChordSeq() {
-        this.chordSeq.data = SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 8, 32, 0.7);
+    setSequencerStage(seqName, stage, iteration) {
+        let stageData = this.state.data[seqName][stage];
+        this[seqName].data =  stageData[iteration % stageData.length];
+        this[seqName].reset();
+    }
+
+    getRandomStageData() {
+        return {
+            voice1: [
+                [this.getRandomVoice1Data()],
+                [this.getRandomVoice1Data(), this.getRandomVoice1Data() ],
+                [this.getRandomVoice1Data()]
+            ],
+            voice2: [
+                [this.getRandomVoice2Data()],
+                [this.getRandomVoice2Data()],
+                [this.getRandomVoice2Data()],
+            ],
+            poly1: [
+                [this.getRandomPoly1Data()],
+                [this.getRandomPoly1Data()],
+                [this.getRandomPoly1Data()]
+            ],
+            snareDrum: [
+                [this.getRandomSnareDrumData()],
+                [this.getRandomSnareDrumData()],
+                [this.getRandomSnareDrumData()],
+            ],
+            kickDrum: [
+                [
+                    this.getRandomKickDrumData(),
+                    this.getRandomKickDrumData()
+                ],
+                [
+                    this.getRandomKickDrumData(),
+                    this.getRandomKickDrumData()
+                ],
+                [
+                    this.getRandomKickDrumData(),
+                    this.getRandomKickDrumData()
+                ]
+            ]
+        }
     }
 
     ////////////////////////////////////////////////////////////////
-    randomKickSeq() {
-        this.kickSeq.data = SequenceData.getRandomSequence(() => [this.kick, 127, 100], 4, 64, 0.5);
+    getRandomVoice1Data() {
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 8, 32, 0.7);
     }
 
     ////////////////////////////////////////////////////////////////
-    randomSnareSeq() {
-        this.snareSeq.data = SequenceData.getRandomSequence(() => [this.snare, 127, 100], 8, 32, 0.4);
+    getRandomVoice2Data() {
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60), 8, 32, 0.7);
     }
 
     ////////////////////////////////////////////////////////////////
-    randomScale() {
-        let newChord = {
+    getRandomPoly1Data() {
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 8, 32, 0.7);
+    }
+
+    ////////////////////////////////////////////////////////////////
+    getRandomKickDrumData() {
+        return SequenceData.getRandomSequence(() => [MidiInstrument.drumMap[0], 127, 100], 2, 6, 0.5);
+    }
+
+    ////////////////////////////////////////////////////////////////
+    getRandomSnareDrumData() {
+        return SequenceData.getRandomSequence(() => [MidiInstrument.drumMap[1], 127, 100], 8, 32, 0.4);
+    }
+
+    ////////////////////////////////////////////////////////////////
+    getRandomScale() {
+        return {
             root: ChordHarmonizer.NoteNames[Math.floor(Math.random() * ChordHarmonizer.NoteNames.length)],
             mode: ChordHarmonizer.ModeNames[Math.floor(Math.random() * ChordHarmonizer.ModeNames.length)]
         };
+    }
 
-        this.seq1.chord = Object.assign({}, newChord);
-        this.chordSeq.chord = Object.assign({ fifth: true }, newChord);
-
-        Log.music(`Changed scale: ${newChord.root} '${newChord.mode}'`);
+    ////////////////////////////////////////////////////////////////
+    setScale(scale) {
+        this.state.chord = scale;
+        this.voice1.chord = Object.assign({}, this.state.chord);
+        this.voice2.chord = Object.assign({}, this.state.chord);
+        this.poly1.chord = Object.assign({ fifth: true }, this.state.chord);
+        Log.music(`Set Scale: ${scale.root} '${scale.mode}'`);
     }
 
 }

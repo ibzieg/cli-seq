@@ -17,7 +17,6 @@ class Arrangement {
 
     constructor(context) {
         this._context = context;
-        this._state = {};
         this._sequencers = new Map();
         this._controllerMap = this.createControllerMap();
         this.initialize();
