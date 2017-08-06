@@ -61,7 +61,7 @@ const instruments = {
         channel: 1
     },
     Juno106: {
-        device: MidiDevice.devices.MOTU828x,
+        device: MidiDevice.devices.Midisport,
         channel: 13
     },
     NordG2A: {

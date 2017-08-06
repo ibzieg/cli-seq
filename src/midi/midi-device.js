@@ -73,6 +73,10 @@ class MidiDevice {
             }
         }
 
+        if (!port) {
+            Log.error(`No MIDI devices found matching ${this.options.names}`);
+        }
+
         this._inputPort = input;
     }
 
@@ -96,15 +100,29 @@ module.exports = MidiDevice;
 
 let devices = {
     BeatStepPro: {
-        names: ['Arturia BeatStep Pro Arturia BeatStepPro', 'Arturia BeatStep Pro 20:0'],
+        names: [
+            'Arturia BeatStep Pro Arturia BeatStepPro',
+            'Arturia BeatStep Pro 20:0',
+            'Arturia BeatStep Pro 24:0',
+            'Arturia BeatStep Pro 28:0'],
         instance: null
     },
     Minilogue: {
-        names: ['minilogue SOUND', 'minilogue 24:1'],
+        names: [
+            'minilogue SOUND',
+            'minilogue 24:1',
+            'minilogue 28:1'
+        ],
         instance: null
     },
     MOTU828x: {
         names: ['828x MIDI Port'],
+        instance: null
+    },
+    Midisport: {
+        names: [
+            'USB Uno MIDI Interface 28:0',
+            'USB Uno MIDI Interface 20:0'],
         instance: null
     }
 };

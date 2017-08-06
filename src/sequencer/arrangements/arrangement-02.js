@@ -4,12 +4,13 @@ const Sequencer = require("../sequencer");
 const ChordHarmonizer = require("../chord-harmonizer");
 const Log = require("../../display/log-util");
 
+const EuropiMinion = require("../../europi/europi-minion");
 const MidiInstrument = require("../../midi/midi-instrument");
 
-class Arrangement01 extends Arrangement {
+class Arrangement02 extends Arrangement {
 
     get title() {
-        return "Default Arrangement";
+        return "mv_stage_sq";
     }
 
     createControllerMap() {
@@ -39,19 +40,19 @@ class Arrangement01 extends Arrangement {
                 Pad10: {
                     label: "GateB",
                     callback: (velocity) => {
-                        this.minion.GateOutput(1, 1);
+                        this.minion.GateOutput(0, 1);
                     }
                 },
                 Pad11: {
                     label: "GateC",
                     callback: (velocity) => {
-                        this.minion.GateOutput(2, 1);
+                        this.minion.GateOutput(0, 1);
                     }
                 },
                 Pad12: {
                     //label: "Gate D",
                     callback: (velocity) => {
-                        this.minion.GateOutput(3, 1);
+                        this.minion.GateOutput(0, 1);
                     }
                 }
             },
@@ -63,18 +64,18 @@ class Arrangement01 extends Arrangement {
                 },
                 Pad10: {
                     callback: (velocity) => {
-                        this.minion.GateOutput(1, 0);
+                        this.minion.GateOutput(0, 0);
                     }
                 },
                 Pad11: {
                     callback: (velocity) => {
-                        this.minion.GateOutput(2, 0);
+                        this.minion.GateOutput(0, 0);
                     }
                 },
                 Pad12: {
                     label: "GateD",
                     callback: (velocity) => {
-                        this.minion.GateOutput(3, 0);
+                        this.minion.GateOutput(0, 0);
                     }
                 }
             },
@@ -108,8 +109,6 @@ class Arrangement01 extends Arrangement {
     }
 
     initialize() {
-        ////////////////////////////////////////////////////////////////
-
 
         ////////////////////////////////////////////////////////////////
         this.seq1 = new Sequencer({
@@ -219,4 +218,4 @@ class Arrangement01 extends Arrangement {
     }
 
 }
-module.exports = Arrangement01;
+module.exports = Arrangement02;

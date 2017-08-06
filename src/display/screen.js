@@ -45,10 +45,16 @@ class Screen {
 
         this.initialize();
 
-        this._tickDurations = [];
-        this._commandHistory = [];
-        this._commandHistoryIndex = 0;
-        this._logLines = [];
+        this._state = {
+            tickDurations: [],
+            commandHistory: [],
+            commandHistoryIndex: 0,
+            logLines: [],
+            statusBar: {
+                bpm: 0,
+                title: "Loading..."
+            }
+        }
 
     }
 
@@ -93,7 +99,12 @@ class Screen {
         }, layout.statusBar));
         this._screen.append(this.statusBar);
 
-        this.bpmText = blessed.text({
+        this.statusBarText = blessed.text({
+            parent: this.statusBar,
+            tags: true
+        });
+
+        this.arrangementText = blessed.text({
             parent: this.statusBar
         });
 
@@ -186,21 +197,21 @@ class Screen {
         this.commandInput.on('keypress', (ch, key) => {
             //this.log(`keypress ${ch} ${JSON.stringify(key)}`);
             if (key.name === "up" || (key.ctrl && key.name === "p")) {
-                this._commandHistoryIndex = Math.max(this._commandHistoryIndex - 1, 0);
-                let cmd = this._commandHistory[this._commandHistoryIndex];
+                this._state.commandHistoryIndex = Math.max(this._state.commandHistoryIndex - 1, 0);
+                let cmd = this._state.commandHistory[this._state.commandHistoryIndex];
                 this.commandInput.setValue(cmd);
                 this._screen.render();
             } else if (key.name === "down" || (key.ctrl && key.name === "n")) {
-                this._commandHistoryIndex = Math.min(this._commandHistoryIndex + 1, this._commandHistory.length);
-                let cmd = this._commandHistory[this._commandHistoryIndex];
+                this._state.commandHistoryIndex = Math.min(this._state.commandHistoryIndex + 1, this._state.commandHistory.length);
+                let cmd = this._state.commandHistory[this._state.commandHistoryIndex];
                 this.commandInput.setValue(cmd);
                 this._screen.render();
             } else if (key.ctrl && key.name === "c") {
                 this.commandInput.clearValue();
                 this._screen.render();
-                this._commandHistoryIndex = this._commandHistory.length;
+                this._state.commandHistoryIndex = this._state.commandHistory.length;
             } else {
-                this._commandHistoryIndex = this._commandHistory.length;
+                this._state.commandHistoryIndex = this._state.commandHistory.length;
             }
         });
         this.commandInput.on('submit',(value) => {
@@ -215,8 +226,8 @@ class Screen {
                 }
             }
 
-            this._commandHistory.push(value);
-            this._commandHistoryIndex = this._commandHistory.length;
+            this._state.commandHistory.push(value);
+            this._state.commandHistoryIndex = this._state.commandHistory.length;
         });
 
 
@@ -252,8 +263,8 @@ class Screen {
     }
 
     log(text) {
-            // this._logLines.push(text);
-            // this.logBox.setContent(this._logLines.join('\n'));
+            // this._state.logLines.push(text);
+            // this.logBox.setContent(this._state.logLines.join('\n'));
         this.logBox.insertBottom(text);
             this._screen.render();
             this.logBox.setScrollPerc(100);
@@ -277,14 +288,25 @@ class Screen {
     updateClock(duration) {
         const historyLength = 48; // TODO Move constant
         const ppq = 24; // TODO Move constant
-        this._tickDurations.push(duration);
-        this._tickDurations = this._tickDurations.splice(Math.max(0, this._tickDurations.length-historyLength), historyLength);
-        let tickMillis = this._tickDurations.reduce((sum, value) => sum + value) / this._tickDurations.length;
+        this._state.tickDurations.push(duration);
+        this._state.tickDurations = this._state.tickDurations.splice(Math.max(0, this._state.tickDurations.length-historyLength), historyLength);
+        let tickMillis = this._state.tickDurations.reduce((sum, value) => sum + value) / this._state.tickDurations.length;
         let beatMillis = tickMillis * ppq;
         const millisPerMin = 60000;
         let bpm = Math.round(millisPerMin / beatMillis);
-        // this.inputBox.setLabel(`${bpm}bpm`);
-        this.bpmText.setContent(`${bpm}bpm`);
+
+        this._state.statusBar.bpm = bpm;
+        this.renderStatusBar();
+    }
+
+    arrangement(title) {
+        this._state.statusBar.title = title;
+        this.renderStatusBar();
+    }
+
+    renderStatusBar() {
+        let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`
+        this.statusBarText.setContent(text);
         this._screen.render();
     }
 

@@ -1,25 +1,24 @@
 const colors = require("colors");
 const { fork } = require('child_process');
 
-//const forked = fork('./src/cli-seq.js');
-const forked = fork('./src/sequencer/arrangement-thread.js');
-
 const Screen = require("./display/screen");
 
 Screen.create({
     onExit: () => {
-        forked.kill("SIGINT");
+        arrangmentThread.kill("SIGINT");
         return process.exit(0);
     },
     onCommandInput: (cmd) => {
-        forked.send({
+        arrangmentThread.send({
             type: "command",
             script: cmd
         });
     }
 });
 
-forked.on('message', (message) => {
+const arrangmentThread = fork('./src/sequencer/arrangement-thread.js');
+
+arrangmentThread.on('message', (message) => {
     try {
         switch (message.type) {
             case "log":
@@ -27,6 +26,9 @@ forked.on('message', (message) => {
                 break;
             case "controller":
                 Screen.Instance.controller(message.status, message.d1, message.d2);
+                break;
+            case "arrangement":
+                Screen.Instance.arrangement(message.title);
                 break;
             case "clock":
                 Screen.Instance.updateClock(message.tickDuration);

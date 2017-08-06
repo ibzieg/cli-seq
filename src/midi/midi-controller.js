@@ -130,6 +130,9 @@ class MidiController {
         for (let sequencer of this._sequencerMap.keys()) {
             sequencer.start();
         }
+        if (this._options.start) {
+            this._options.start();
+        }
     }
 
     stop() {
