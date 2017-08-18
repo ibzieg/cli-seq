@@ -1,3 +1,6 @@
+const Log = require("../display/log-util");
+
+
 const Notes = [
     { Name: "C" , Type: "natural" },
     { Name: "C#", Type: "sharp"   },
@@ -15,13 +18,13 @@ const Notes = [
 
 
 const Modes = [
-    { Name: "I   Ionian (Major)",       Sequence: [2, 2, 1, 2, 2, 2, 1] },
-    { Name: "II  Dorian",               Sequence: [2, 1, 2, 2, 2, 1, 2] },
+    { Name: "I Ionian (Major)",       Sequence: [2, 2, 1, 2, 2, 2, 1] },
+    { Name: "II Dorian",               Sequence: [2, 1, 2, 2, 2, 1, 2] },
     { Name: "III Phrygian",             Sequence: [1, 2, 2, 2, 1, 2, 2] },
-    { Name: "IV  Lydian",               Sequence: [2, 2, 2, 1, 2, 2, 1] },
-    { Name: "V   Mixolydian",           Sequence: [2, 2, 1, 2, 2, 1, 2] },
-    { Name: "VI  Aeolian (Nat. Minor)", Sequence: [2, 1, 2, 2, 1, 2, 2] },
-    { Name: "VII  Locrian",             Sequence: [1, 2, 2, 1, 2, 2, 2] }
+    { Name: "IV Lydian",               Sequence: [2, 2, 2, 1, 2, 2, 1] },
+    { Name: "V Mixolydian",           Sequence: [2, 2, 1, 2, 2, 1, 2] },
+    { Name: "VI Aeolian (Nat. Minor)", Sequence: [2, 1, 2, 2, 1, 2, 2] },
+    { Name: "VII Locrian",             Sequence: [1, 2, 2, 1, 2, 2, 2] }
 ];
 
 
@@ -202,14 +205,19 @@ class ChordHarmonizer {
         note = this.getNoteIndexFromName(this._masterScale[note]);
         let chord = this.getHarmonizedChord(note, this._masterScale);
 
-        return chord.map((noteName) => {
-            let chordNoteIndex = this.getNoteIndexFromName(noteName);
-            let octaveOut = octave;
-            if (chordNoteIndex < note) {
-                octaveOut++;
-            }
-            return chordNoteIndex + (octaveOut*12);
-        });
+        if (chord) {
+            return chord.map((noteName) => {
+                let chordNoteIndex = this.getNoteIndexFromName(noteName);
+                let octaveOut = octave;
+                if (chordNoteIndex < note) {
+                    octaveOut++;
+                }
+                return chordNoteIndex + (octaveOut * 12);
+            });
+        } else {
+            Log.debug(`makeChord: no chord exists for note=${note} name=${this._masterScale[note]} scale=${this._masterScale}`);
+            return [];
+        }
 
     }
 

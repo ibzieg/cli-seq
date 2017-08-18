@@ -116,7 +116,7 @@ class Arrangement01 extends Arrangement {
             instrument: MidiInstrument.instruments.BSPSeq1,
             chord: {
                 root: "G",
-                mode: "VI  Aeolian (Nat. Minor)"
+                mode: "VI Aeolian (Nat. Minor)"
             },
             rate: 4,
             data: SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 8, 32, 0.7),
@@ -136,7 +136,7 @@ class Arrangement01 extends Arrangement {
             instrument: MidiInstrument.instruments.Minilogue,
             chord: {
                 root: "G",
-                mode: "VI  Aeolian (Nat. Minor)"
+                mode: "VI Aeolian (Nat. Minor)"
             },
             rate: 2,
             data: SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 8, 32, 0.7),

@@ -46,12 +46,6 @@ class ArrangementManager {
             device: MidiDevice.devices.BeatStepPro,
             channel: 7,
             receiveMessage: (status, d1, d2) => {
-                process.send({
-                    type: "controller",
-                    status: status,
-                    d1: d1,
-                    d2: d2
-                });
                 this.controllerMessage(status, d1, d2);
             },
             postClock: () => {
@@ -100,12 +94,28 @@ class ArrangementManager {
         this.activeArrangement.registerController(this.controller);
         this.activeArrangement.updateTitle();
         Log.music(`${colors.blue(`Playing arrangement ${index}:`)} ${this.activeArrangement.title}`);
+
+        process.send({
+            type: "controllerMap",
+            map: this.activeArrangement.controllerMap
+        });
+
     }
 
-    invokeControllerMapCallback(ctrl, data) {
+    invokeControllerMapCallback(ctrl, status, d1, d2) {
+        let value = d2;
         if (ctrl && ctrl.callback) {
-            ctrl.callback(data);
+            value = ctrl.callback(d2);
+        } else {
+            value = " ";
         }
+
+        process.send({
+            type: "controller",
+            status: status,
+            d1: d1,
+            d2: value ? "" + value : d2
+        });
     }
 
     onClickStageButton(index, data) {
@@ -123,62 +133,62 @@ class ArrangementManager {
         switch (status) {
             case 144: // Note on
                 switch (d1) {
-                    case MidiController.BeatStepMap.Pad1: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad1,d2); break;
-                    case MidiController.BeatStepMap.Pad2: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad2,d2); break;
-                    case MidiController.BeatStepMap.Pad3: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad3,d2); break;
-                    case MidiController.BeatStepMap.Pad4: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad4,d2); break;
-                    case MidiController.BeatStepMap.Pad5: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad5,d2); break;
-                    case MidiController.BeatStepMap.Pad6: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad6,d2); break;
-                    case MidiController.BeatStepMap.Pad7: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad7,d2); break;
-                    case MidiController.BeatStepMap.Pad8: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad8,d2); break;
-                    case MidiController.BeatStepMap.Pad9: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad9,d2); break;
-                    case MidiController.BeatStepMap.Pad10: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad10,d2); break;
-                    case MidiController.BeatStepMap.Pad11: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad11,d2); break;
-                    case MidiController.BeatStepMap.Pad12: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad12,d2); break;
-                    case MidiController.BeatStepMap.Pad13: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad13,d2); break;
-                    case MidiController.BeatStepMap.Pad14: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad14,d2); break;
-                    case MidiController.BeatStepMap.Pad15: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad15,d2); break;
-                    case MidiController.BeatStepMap.Pad16: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad16,d2); break;
+                    case MidiController.BeatStepMap.Pad1: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad1,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad2: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad2,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad3: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad3,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad4: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad4,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad5: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad5,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad6: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad6,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad7: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad7,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad8: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad8,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad9: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad9,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad10: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad10,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad11: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad11,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad12: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad12,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad13: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad13,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad14: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad14,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad15: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad15,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad16: this.invokeControllerMapCallback(this.controllerMap.noteOn.Pad16,status, d1, d2); break;
                 }
                 break;
             case 128: // Note off
                 switch (d1) {
-                    case MidiController.BeatStepMap.Pad1: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad1,d2); break;
-                    case MidiController.BeatStepMap.Pad2: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad2,d2); break;
-                    case MidiController.BeatStepMap.Pad3: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad3,d2); break;
-                    case MidiController.BeatStepMap.Pad4: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad4,d2); break;
-                    case MidiController.BeatStepMap.Pad5: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad5,d2); break;
-                    case MidiController.BeatStepMap.Pad6: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad6,d2); break;
-                    case MidiController.BeatStepMap.Pad7: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad7,d2); break;
-                    case MidiController.BeatStepMap.Pad8: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad8,d2); break;
-                    case MidiController.BeatStepMap.Pad9: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad9,d2); break;
-                    case MidiController.BeatStepMap.Pad10: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad10,d2); break;
-                    case MidiController.BeatStepMap.Pad11: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad11,d2); break;
-                    case MidiController.BeatStepMap.Pad12: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad12,d2); break;
-                    case MidiController.BeatStepMap.Pad13: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad13,d2); break;
-                    case MidiController.BeatStepMap.Pad14: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad14,d2); break;
-                    case MidiController.BeatStepMap.Pad15: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad15,d2); break;
-                    case MidiController.BeatStepMap.Pad16: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad16,d2); break;
+                    case MidiController.BeatStepMap.Pad1: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad1,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad2: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad2,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad3: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad3,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad4: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad4,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad5: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad5,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad6: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad6,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad7: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad7,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad8: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad8,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad9: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad9,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad10: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad10,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad11: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad11,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad12: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad12,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad13: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad13,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad14: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad14,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad15: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad15,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Pad16: this.invokeControllerMapCallback(this.controllerMap.noteOff.Pad16,status, d1, d2); break;
                 }
                 break;
             case 176: // Control Change
                 switch (d1) {
-                    case MidiController.BeatStepMap.Knob1: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob1,d2); break;
-                    case MidiController.BeatStepMap.Knob2: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob2,d2); break;
-                    case MidiController.BeatStepMap.Knob3: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob3,d2); break;
-                    case MidiController.BeatStepMap.Knob4: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob4,d2); break;
-                    case MidiController.BeatStepMap.Knob5: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob5,d2); break;
-                    case MidiController.BeatStepMap.Knob6: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob6,d2); break;
-                    case MidiController.BeatStepMap.Knob7: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob7,d2); break;
-                    case MidiController.BeatStepMap.Knob8: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob8,d2); break;
-                    case MidiController.BeatStepMap.Knob9: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob9,d2); break;
-                    case MidiController.BeatStepMap.Knob10: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob10,d2); break;
-                    case MidiController.BeatStepMap.Knob11: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob11,d2); break;
-                    case MidiController.BeatStepMap.Knob12: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob12,d2); break;
-                    case MidiController.BeatStepMap.Knob13: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob13,d2); break;
-                    case MidiController.BeatStepMap.Knob14: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob14,d2); break;
-                    case MidiController.BeatStepMap.Knob15: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob15,d2); break;
-                    case MidiController.BeatStepMap.Knob16: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob16,d2); break;
+                    case MidiController.BeatStepMap.Knob1: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob1,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob2: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob2,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob3: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob3,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob4: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob4,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob5: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob5,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob6: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob6,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob7: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob7,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob8: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob8,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob9: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob9,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob10: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob10,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob11: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob11,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob12: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob12,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob13: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob13,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob14: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob14,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob15: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob15,status, d1, d2); break;
+                    case MidiController.BeatStepMap.Knob16: this.invokeControllerMapCallback(this.controllerMap.controlChange.Knob16,status, d1, d2); break;
 
                     case MidiController.BeatStepMap.Stage1: this.onClickStageButton(0,d2); break;
                     case MidiController.BeatStepMap.Stage2: this.onClickStageButton(1,d2); break;

@@ -7,13 +7,13 @@ const Log = require("../../display/log-util");
 const EuropiMinion = require("../../europi/europi-minion");
 const MidiInstrument = require("../../midi/midi-instrument");
 
-class Arrangement02 extends Arrangement {
+class Arrangement04 extends Arrangement {
 
     get title() {
         let stage = this.state.stageIndex % this.state.stageCount;
         let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
 
-        return `Multistage {green-fg}${iteration}.${stage}{/}`;
+        return `3 Stage Evolver {green-fg}${iteration}.${stage}{/}`;
     }
 
     createControllerMap() {
@@ -24,85 +24,98 @@ class Arrangement02 extends Arrangement {
                     callback: (velocity) => {
                         Log.success(`Randomized stage data`);
                         this.state.data = this.getRandomStageData();
+                        return "Randomize";
                     }
                 },
                 Pad2: {
-                    label: "Rnd Scl",
+                    label: "Rnd Scale",
                     callback: (velocity) => {
                         this.setScale(this.getRandomScale());
+                        return "Randomize";
                     }
                 },
                 Pad9: {
-                    label: "GateA",
+                    label: "Evo mono1",
                     callback: (velocity) => {
-                        this.minion.GateOutput(0, 1);
+                        this.state.data.mono1 = this.evolveSequenceStages(this.state.data.mono1, 0.5, this.getRandomMono1Data.bind(this));
+                        return "Evolve";
                     }
                 },
                 Pad10: {
-                    label: "GateB",
+                    label: "Evo mono2",
                     callback: (velocity) => {
-                        this.minion.GateOutput(0, 1);
+                        this.state.data.mono2 = this.evolveSequenceStages(this.state.data.mono2, 0.5, this.getRandomMono2Data.bind(this));
+                        return "Evolve";
                     }
                 },
                 Pad11: {
-                    label: "GateC",
+                    label: "Evo poly1",
                     callback: (velocity) => {
-                        this.minion.GateOutput(0, 1);
+                        this.state.data.poly1 = this.evolveSequenceStages(this.state.data.poly1, 0.5, this.getRandomPoly1Data.bind(this));
+                        return "Evolve";
                     }
                 },
                 Pad12: {
-                    //label: "Gate D",
+                    label: "Evo kick",
                     callback: (velocity) => {
-                        this.minion.GateOutput(0, 1);
+                        this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, 0.5, this.getRandomKickDrumData.bind(this));
+                        return "Evolve";
                     }
+                },
+                Pad13: {
+                    label: "Evo snare",
+                    callback: (velocity) => {
+                        this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, 0.5, this.getRandomSnareDrumData.bind(this));
+                        return "Evolve";
+                    }
+                },
+                Pad14: {
+
+                },
+                Pad15: {
+
+                },
+                Pad16: {
+
                 }
             },
             noteOff: {
-                Pad9: {
-                    callback: (velocity) => {
-                        this.minion.GateOutput(0, 0);
-                    }
-                },
-                Pad10: {
-                    callback: (velocity) => {
-                        this.minion.GateOutput(0, 0);
-                    }
-                },
-                Pad11: {
-                    callback: (velocity) => {
-                        this.minion.GateOutput(0, 0);
-                    }
-                },
-                Pad12: {
-                    label: "GateD",
-                    callback: (velocity) => {
-                        this.minion.GateOutput(0, 0);
-                    }
-                }
             },
             controlChange: {
                 Knob1: {
-                    label: "CV A",
+                    label: "Root",
                     callback: (data) => {
-                        this.minion.CVOutput(0, data/127.0);
+                        let chord = Object.assign(this.state.chord, {
+                            root: ChordHarmonizer.NoteNames[data % ChordHarmonizer.NoteNames.length]
+                        });
+                        this.setScale(chord);
+                        return chord.root;
                     }
                 },
                 Knob2: {
-                    label: "CV B",
+                    label: "Mode",
                     callback: (data) => {
-                        this.minion.CVOutput(1, data/127.0);
+                        let chord = Object.assign(this.state.chord, {
+                            mode: ChordHarmonizer.ModeNames[data % ChordHarmonizer.ModeNames.length]
+                        });
+                        this.setScale(chord);
+                        return chord.mode;
                     }
                 },
                 Knob3: {
                     label: "CV C",
                     callback: (data) => {
-                        this.minion.CVOutput(2, data/127.0);
+                        let value = data/127.0;
+                        this.minion.CVOutput(2, value);
+                        return value;
                     }
                 },
                 Knob4: {
                     label: "CV D",
                     callback: (data) => {
-                        this.minion.CVOutput(4, data/127.0);
+                        let value = data/127.0;
+                        this.minion.CVOutput(4, value);
+                        return value;
                     }
                 }
             }
@@ -119,34 +132,34 @@ class Arrangement02 extends Arrangement {
         };
 
         ////////////////////////////////////////////////////////////////
-        this.voice1 = new Sequencer({
+        this.mono1 = new Sequencer({
             instrument: MidiInstrument.instruments.BSPSeq1,
             chord: this.state.chord,
             rate: 4,
-            data: this.state.data.voice1[0][0],
+            data: this.state.data.mono1[0][0],
             play: (index, event) => {
-                this.minion.CVOutput(0,index / this.voice1.data.length);
-                this.voice1.play(event[0], event[1], event[2]);
+                this.minion.CVOutput(0,index / this.mono1.data.length);
+                this.mono1.play(event[0], event[1], event[2]);
             },
             end: () => {
             }
         });
-        this.addSequencer(this.voice1);
+        this.addSequencer(this.mono1);
 
         ////////////////////////////////////////////////////////////////
-        this.voice2 = new Sequencer({
+        this.mono2 = new Sequencer({
             instrument: MidiInstrument.instruments.BSPSeq2,
             chord: this.state.chord,
             rate: 4,
-            data: this.state.data.voice2[0][0],
+            data: this.state.data.mono2[0][0],
             play: (index, event) => {
-                this.minion.CVOutput(1, 1.0 - (index / this.voice2.data.length));
-                this.voice2.play(event[0], event[1], event[2]);
+                this.minion.CVOutput(1, 1.0 - (index / this.mono2.data.length));
+                this.mono2.play(event[0], event[1], event[2]);
             },
             end: () => {
             }
         });
-        this.addSequencer(this.voice2);
+        this.addSequencer(this.mono2);
 
         ////////////////////////////////////////////////////////////////
         this.poly1 = new Sequencer({
@@ -219,11 +232,11 @@ class Arrangement02 extends Arrangement {
     postClock() {
         if (this.ticksSinceSnare <= this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
             if (this.ticksSinceSnare === this.rainmakerCVDelayTicks) {
- /*               if (this.rainmakerFreezeCount % 2 === 0) {
-                    // Don't send if already frozen.
-                    this.minion.GatePulse(3, 25);
-                    this.rainmakerFreezeCount++;
-                }*/
+                /*               if (this.rainmakerFreezeCount % 2 === 0) {
+                 // Don't send if already frozen.
+                 this.minion.GatePulse(3, 25);
+                 this.rainmakerFreezeCount++;
+                 }*/
                 this.minion.GateOutput(3, 1);
                 if (this.rainmakerCVDirection > 0) { // up
                     this.rainmakerCV = 0.0;
@@ -243,11 +256,11 @@ class Arrangement02 extends Arrangement {
                 } else {
                     this.rainmakerCV = 0.0;
                 }
-   /*             if (this.rainmakerFreezeCount % 2 === 1) {
-                    // Don't unfreeze if already unfrozen
-                    this.minion.GatePulse(3, 25);
-                    this.rainmakerFreezeCount = this.rainmakerFreezeCount + 1;
-                }*/
+                /*             if (this.rainmakerFreezeCount % 2 === 1) {
+                 // Don't unfreeze if already unfrozen
+                 this.minion.GatePulse(3, 25);
+                 this.rainmakerFreezeCount = this.rainmakerFreezeCount + 1;
+                 }*/
                 this.minion.GateOutput(3, 0);
             }
         } else {
@@ -262,8 +275,8 @@ class Arrangement02 extends Arrangement {
         let stage = index % this.state.stageCount;
         let iteration = Math.floor(index / this.state.stageCount);
 
-        this.setSequencerStage("voice1", stage, iteration);
-        this.setSequencerStage("voice2", stage, iteration);
+        this.setSequencerStage("mono1", stage, iteration);
+        this.setSequencerStage("mono2", stage, iteration);
         this.setSequencerStage("poly1", stage, iteration);
         this.setSequencerStage("snareDrum", stage, iteration);
         this.setSequencerStage("kickDrum", stage, iteration);
@@ -287,8 +300,8 @@ class Arrangement02 extends Arrangement {
     }
 
     iteration(count) {
-        this.voice1.enabled = true;
-        this.voice2.enabled = true;
+        this.mono1.enabled = true;
+        this.mono2.enabled = true;
         this.poly1.enabled = true;
         this.kickDrum.enabled = true;
         this.snareDrum.enabled = true;
@@ -296,8 +309,8 @@ class Arrangement02 extends Arrangement {
 
         switch (count) {
             case 0:
-                this.voice1.enabled = true;
-                this.voice2.enabled = false;
+                this.mono1.enabled = true;
+                this.mono2.enabled = false;
                 this.poly1.enabled = false;
                 this.kickDrum.enabled = false;
                 this.snareDrum.enabled = false;
@@ -310,11 +323,11 @@ class Arrangement02 extends Arrangement {
                 this.snareDrum.enabled = true;
                 break;
             case 12:
-                this.voice2.enabled = true;
-                this.voice1.enabled = false;
+                this.mono2.enabled = true;
+                this.mono1.enabled = false;
                 break;
             case 14:
-                this.voice1.enabled = true;
+                this.mono1.enabled = true;
                 break;
             case 22:
                 this.kickDrum.enabled = false;
@@ -323,11 +336,11 @@ class Arrangement02 extends Arrangement {
                 this.poly1.enabled = false;
                 break;
             case 30:
-                this.voice1.enabled = false;
+                this.mono1.enabled = false;
                 break;
             case 32:
                 this.snareDrum.enabled = false;
-                this.voice2.enabled = false;
+                this.mono2.enabled = false;
                 break;
 
 
@@ -336,15 +349,15 @@ class Arrangement02 extends Arrangement {
 
     getRandomStageData() {
         return {
-            voice1: [
-                [this.getRandomVoice1Data()],
-                [this.getRandomVoice1Data(), this.getRandomVoice1Data() ],
-                [this.getRandomVoice1Data()]
+            mono1: [
+                [this.getRandomMono1Data()],
+                [this.getRandomMono1Data(), this.getRandomMono1Data() ],
+                [this.getRandomMono1Data()]
             ],
-            voice2: [
-                [this.getRandomVoice2Data()],
-                [this.getRandomVoice2Data()],
-                [this.getRandomVoice2Data()],
+            mono2: [
+                [this.getRandomMono2Data()],
+                [this.getRandomMono2Data()],
+                [this.getRandomMono2Data()],
             ],
             poly1: [
                 [this.getRandomPoly1Data()],
@@ -374,12 +387,23 @@ class Arrangement02 extends Arrangement {
     }
 
     ////////////////////////////////////////////////////////////////
-    getRandomVoice1Data() {
+    evolveSequenceStages(stages, prob, generatorFn) {
+        return stages.map((stage) => stage.map((data) => {
+            if (Math.random() < prob) {
+                return data;
+            } else {
+                return SequenceData.evolveSequence(data, generatorFn(), prob);
+            }
+        }));
+    }
+
+    ////////////////////////////////////////////////////////////////
+    getRandomMono1Data() {
         return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 2, 16, 0.7);
     }
 
     ////////////////////////////////////////////////////////////////
-    getRandomVoice2Data() {
+    getRandomMono2Data() {
         return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60), 2, 16, 0.7);
     }
 
@@ -445,11 +469,11 @@ class Arrangement02 extends Arrangement {
     ////////////////////////////////////////////////////////////////
     setScale(scale) {
         this.state.chord = scale;
-        this.voice1.chord = Object.assign({}, this.state.chord);
-        this.voice2.chord = Object.assign({}, this.state.chord);
+        this.mono1.chord = Object.assign({}, this.state.chord);
+        this.mono2.chord = Object.assign({}, this.state.chord);
         this.poly1.chord = Object.assign({ fifth: true }, this.state.chord);
         Log.music(`Set Scale: ${scale.root} '${scale.mode}'`);
     }
 
 }
-module.exports = Arrangement02;
+module.exports = Arrangement04;

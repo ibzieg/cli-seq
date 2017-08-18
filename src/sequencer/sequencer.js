@@ -33,6 +33,14 @@ class Sequencer {
         this.harmonizer.mode = value.mode;
     }
 
+    get enabled() {
+        return this._options.enabled === true;
+    }
+
+    set enabled(value) {
+        this._options.enabled = value;
+    }
+
     get harmonizer() {
         return this._harmonizer;
     }
@@ -63,7 +71,7 @@ class Sequencer {
         let clockMod = Math.floor(this._options.partsPerQuant / this.rate);
         if (this._count % clockMod === 0) {
             let event = this.data[this._index];
-            if (event && event.length) {
+            if (event && event.length && this.enabled) {
                 if (typeof this._options.play === "function") {
                     this._options.play(this._index, event);
                 } else {
@@ -125,6 +133,7 @@ class Sequencer {
         if (typeof this._options.stop === "function") {
             this._options.stop();
         }
+        this._count = 0;
         this.reset();
     }
 
@@ -132,7 +141,6 @@ class Sequencer {
         if (typeof this._options.reset === "function") {
             this._options.reset();
         }
-        this._count = 0;
         this._index = 0;
     }
 

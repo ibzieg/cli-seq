@@ -13,15 +13,15 @@ const layout = {
     },
     controller: {
         left: 0,
-        top: 3,
+        top: 2,
         width: SCREEN_WIDTH,
-        height: 8
+        height: 13
     },
     logBox: {
-        top: 10,
+        top: 13,
         left: 0,
         width: SCREEN_WIDTH,
-        height: 18
+        height: 15
     },
     inputBox: {
         top: 27,
@@ -129,13 +129,21 @@ class Screen {
 
         this.knobsDisplays = [];
         for (let i = 0; i < 16; i++) {
-            this.knobsDisplays.push(this.createKnobDisplay({
-                label: `Knob${i+1}`,
+            this.knobsDisplays.push(this.createControllerDisplay({
+                label: ``,
                 left: (i%8)*12,
                 top: i < 8 ? 0 : 2
             }));
         }
 
+        this.padDisplays = [];
+        for (let i = 0; i < 16; i++) {
+            this.padDisplays.push(this.createControllerDisplay({
+                label: ``,
+                left: (i%8)*12,
+                top: i < 8 ? 5 : 7
+            }));
+        }
 
 
         // Create a box perfectly centered horizontally and vertically.
@@ -236,8 +244,9 @@ class Screen {
         this._screen.render();
     }
 
-    createKnobDisplay(options) {
-        return new blessed.progressbar({
+    createControllerDisplay(options) {
+        //return new blessed.progressbar({
+        return new blessed.box({
             parent: this.controllerBox,
             height: 3,
             width: 13,
@@ -245,6 +254,7 @@ class Screen {
             left: options.left,
             label: options.label,
             filled: 0,
+            tags: true,
 
             fg: '#ff0000',
             bg: '#00ff00',
@@ -267,22 +277,19 @@ class Screen {
             // this.logBox.setContent(this._state.logLines.join('\n'));
         this.logBox.insertBottom(text);
             this._screen.render();
-            this.logBox.setScrollPerc(100);
+            this.logBox.setScrollPerc(100); 
     }
 
-    updateKnob(index, d2) {
-        let pct = Math.round((d2 / 127.0) * 100);
-        let pctStr = `${pct}%`;
-        let width = 12-3;
-        let label = `Knob`;
-        label = label.substr(0, width - pctStr.length);
-        let pad = Array(width - label.length - pctStr.length).join(" ");
+    updateControllerLabel(element, ctrl) {
+        let label = "";
+        if (ctrl && ctrl.label) {
+            label = ctrl.label;
+        }
+        element.setLabel(`{bold}${label}{/}`);
+    }
 
-        let knobDisplay = this.knobsDisplays[index];
-
-        knobDisplay.setLabel( label + pad + pctStr);
-        knobDisplay.setProgress(pct);
-        this._screen.render();
+    updateControllerValue(element, value) {
+        element.setContent(`{green-fg}${value}{/}`);
     }
 
     updateClock(duration) {
@@ -314,41 +321,144 @@ class Screen {
 
 
         switch (status) {
-            /*            case 144: // Note on
-             switch (d1) {
-             case MidiController.BeatStepMap.Pad9:  minion.GateOutput(0, 1); break;
-             case MidiController.BeatStepMap.Pad10: minion.GateOutput(1, 1); break;
-             case MidiController.BeatStepMap.Pad11: minion.GateOutput(2, 1); break;
-             case MidiController.BeatStepMap.Pad12: minion.GateOutput(3, 1); break;
-
-             case MidiController.BeatStepMap.Pad1:
-             randomKickSequence();
-             randomSnareSequence();
-             randomizeSeq1();
-             break;
-             }
-             break;
-             case 128: // Note off
-             switch (d1) {
-             case MidiController.BeatStepMap.Pad9:  minion.GateOutput(0, 0); break;
-             case MidiController.BeatStepMap.Pad10: minion.GateOutput(1, 0); break;
-             case MidiController.BeatStepMap.Pad11: minion.GateOutput(2, 0); break;
-             case MidiController.BeatStepMap.Pad12: minion.GateOutput(3, 0); break;
-             }
-             break;*/
+            case 144: // Note on
+                switch (d1) {
+                    case BeatStepControllerMap.Pad1:  this.updateControllerValue(this.padDisplays[8], d2); break;
+                    case BeatStepControllerMap.Pad2:  this.updateControllerValue(this.padDisplays[9], d2); break;
+                    case BeatStepControllerMap.Pad3:  this.updateControllerValue(this.padDisplays[10], d2); break;
+                    case BeatStepControllerMap.Pad4:  this.updateControllerValue(this.padDisplays[11], d2); break;
+                    case BeatStepControllerMap.Pad5:  this.updateControllerValue(this.padDisplays[12], d2); break;
+                    case BeatStepControllerMap.Pad6:  this.updateControllerValue(this.padDisplays[13], d2); break;
+                    case BeatStepControllerMap.Pad7:  this.updateControllerValue(this.padDisplays[14], d2); break;
+                    case BeatStepControllerMap.Pad8:  this.updateControllerValue(this.padDisplays[15], d2); break;
+                    case BeatStepControllerMap.Pad9:  this.updateControllerValue(this.padDisplays[0], d2); break;
+                    case BeatStepControllerMap.Pad10: this.updateControllerValue(this.padDisplays[1], d2); break;
+                    case BeatStepControllerMap.Pad11: this.updateControllerValue(this.padDisplays[2], d2); break;
+                    case BeatStepControllerMap.Pad12: this.updateControllerValue(this.padDisplays[3], d2); break;
+                    case BeatStepControllerMap.Pad13: this.updateControllerValue(this.padDisplays[4], d2); break;
+                    case BeatStepControllerMap.Pad14: this.updateControllerValue(this.padDisplays[5], d2); break;
+                    case BeatStepControllerMap.Pad15: this.updateControllerValue(this.padDisplays[6], d2); break;
+                    case BeatStepControllerMap.Pad16: this.updateControllerValue(this.padDisplays[7], d2); break;
+                }
+                break;
+            case 128: // Note off
+                switch (d1) {
+                    case BeatStepControllerMap.Pad1:  this.updateControllerValue(this.padDisplays[8], d2); break;
+                    case BeatStepControllerMap.Pad2:  this.updateControllerValue(this.padDisplays[9], d2); break;
+                    case BeatStepControllerMap.Pad3:  this.updateControllerValue(this.padDisplays[10], d2); break;
+                    case BeatStepControllerMap.Pad4:  this.updateControllerValue(this.padDisplays[11], d2); break;
+                    case BeatStepControllerMap.Pad5:  this.updateControllerValue(this.padDisplays[12], d2); break;
+                    case BeatStepControllerMap.Pad6:  this.updateControllerValue(this.padDisplays[13], d2); break;
+                    case BeatStepControllerMap.Pad7:  this.updateControllerValue(this.padDisplays[14], d2); break;
+                    case BeatStepControllerMap.Pad8:  this.updateControllerValue(this.padDisplays[15], d2); break;
+                    case BeatStepControllerMap.Pad9:  this.updateControllerValue(this.padDisplays[0], d2); break;
+                    case BeatStepControllerMap.Pad10: this.updateControllerValue(this.padDisplays[1], d2); break;
+                    case BeatStepControllerMap.Pad11: this.updateControllerValue(this.padDisplays[2], d2); break;
+                    case BeatStepControllerMap.Pad12: this.updateControllerValue(this.padDisplays[3], d2); break;
+                    case BeatStepControllerMap.Pad13: this.updateControllerValue(this.padDisplays[4], d2); break;
+                    case BeatStepControllerMap.Pad14: this.updateControllerValue(this.padDisplays[5], d2); break;
+                    case BeatStepControllerMap.Pad15: this.updateControllerValue(this.padDisplays[6], d2); break;
+                    case BeatStepControllerMap.Pad16: this.updateControllerValue(this.padDisplays[7], d2); break;
+                }
+                break;
             case 176: // Control Change
                 switch (d1) {
-                    case BeatStepControllerMap.Knob1: this.updateKnob(0, d2); break;
-                    case BeatStepControllerMap.Knob2: this.updateKnob(1, d2); break;
-                    case BeatStepControllerMap.Knob3: this.updateKnob(2, d2); break;
-                    case BeatStepControllerMap.Knob4: this.updateKnob(3, d2); break;
-
-                    /*                    case MidiController.BeatStepMap.Knob2: minion.CVOutput(1, d2/127.0); break;
-                     case MidiController.BeatStepMap.Knob3: minion.CVOutput(2, d2/127.0); break;
-                     case MidiController.BeatStepMap.Knob4: minion.CVOutput(3, d2/127.0); break;*/
+                    case BeatStepControllerMap.Knob1: this.updateControllerValue(this.knobsDisplays[0], d2); break;
+                    case BeatStepControllerMap.Knob2: this.updateControllerValue(this.knobsDisplays[1], d2); break;
+                    case BeatStepControllerMap.Knob3: this.updateControllerValue(this.knobsDisplays[2], d2); break;
+                    case BeatStepControllerMap.Knob4: this.updateControllerValue(this.knobsDisplays[3], d2); break;
+                    case BeatStepControllerMap.Knob5: this.updateControllerValue(this.knobsDisplays[4], d2); break;
+                    case BeatStepControllerMap.Knob6: this.updateControllerValue(this.knobsDisplays[5], d2); break;
+                    case BeatStepControllerMap.Knob7: this.updateControllerValue(this.knobsDisplays[6], d2); break;
+                    case BeatStepControllerMap.Knob8: this.updateControllerValue(this.knobsDisplays[7], d2); break;
+                    case BeatStepControllerMap.Knob9: this.updateControllerValue(this.knobsDisplays[8], d2); break;
+                    case BeatStepControllerMap.Knob10: this.updateControllerValue(this.knobsDisplays[9], d2); break;
+                    case BeatStepControllerMap.Knob11: this.updateControllerValue(this.knobsDisplays[10], d2); break;
+                    case BeatStepControllerMap.Knob12: this.updateControllerValue(this.knobsDisplays[11], d2); break;
+                    case BeatStepControllerMap.Knob13: this.updateControllerValue(this.knobsDisplays[12], d2); break;
+                    case BeatStepControllerMap.Knob14: this.updateControllerValue(this.knobsDisplays[13], d2); break;
+                    case BeatStepControllerMap.Knob15: this.updateControllerValue(this.knobsDisplays[14], d2); break;
+                    case BeatStepControllerMap.Knob16: this.updateControllerValue(this.knobsDisplays[15], d2); break;
                 }
                 break;
         }
+
+        this._screen.render();
+
+    }
+
+    setControllerMap(ctrlMap) {
+        this._controllerMap = Object.assign({},ctrlMap);
+
+        this.updateControllerLabel(this.knobsDisplays[0]  ,this._controllerMap.controlChange.Knob1  );
+        this.updateControllerLabel(this.knobsDisplays[1]  ,this._controllerMap.controlChange.Knob2  );
+        this.updateControllerLabel(this.knobsDisplays[2]  ,this._controllerMap.controlChange.Knob3  );
+        this.updateControllerLabel(this.knobsDisplays[3]  ,this._controllerMap.controlChange.Knob4  );
+        this.updateControllerLabel(this.knobsDisplays[4]  ,this._controllerMap.controlChange.Knob5  );
+        this.updateControllerLabel(this.knobsDisplays[5]  ,this._controllerMap.controlChange.Knob6  );
+        this.updateControllerLabel(this.knobsDisplays[6]  ,this._controllerMap.controlChange.Knob7  );
+        this.updateControllerLabel(this.knobsDisplays[7]  ,this._controllerMap.controlChange.Knob8  );
+        this.updateControllerLabel(this.knobsDisplays[8]  ,this._controllerMap.controlChange.Knob9  );
+        this.updateControllerLabel(this.knobsDisplays[9]  ,this._controllerMap.controlChange.Knob10 );
+        this.updateControllerLabel(this.knobsDisplays[10] ,this._controllerMap.controlChange.Knob11 );
+        this.updateControllerLabel(this.knobsDisplays[11] ,this._controllerMap.controlChange.Knob12 );
+        this.updateControllerLabel(this.knobsDisplays[12] ,this._controllerMap.controlChange.Knob13 );
+        this.updateControllerLabel(this.knobsDisplays[13] ,this._controllerMap.controlChange.Knob14 );
+        this.updateControllerLabel(this.knobsDisplays[14] ,this._controllerMap.controlChange.Knob15 );
+        this.updateControllerLabel(this.knobsDisplays[15] ,this._controllerMap.controlChange.Knob16 );
+
+        this.updateControllerLabel(this.padDisplays[8] ,this._controllerMap.noteOn.Pad1  );
+        this.updateControllerLabel(this.padDisplays[9] ,this._controllerMap.noteOn.Pad2  );
+        this.updateControllerLabel(this.padDisplays[10],this._controllerMap.noteOn.Pad3  );
+        this.updateControllerLabel(this.padDisplays[11],this._controllerMap.noteOn.Pad4  );
+        this.updateControllerLabel(this.padDisplays[12],this._controllerMap.noteOn.Pad5  );
+        this.updateControllerLabel(this.padDisplays[13],this._controllerMap.noteOn.Pad6  );
+        this.updateControllerLabel(this.padDisplays[14],this._controllerMap.noteOn.Pad7  );
+        this.updateControllerLabel(this.padDisplays[15],this._controllerMap.noteOn.Pad8  );
+        this.updateControllerLabel(this.padDisplays[0] ,this._controllerMap.noteOn.Pad9  );
+        this.updateControllerLabel(this.padDisplays[1] ,this._controllerMap.noteOn.Pad10 );
+        this.updateControllerLabel(this.padDisplays[2] ,this._controllerMap.noteOn.Pad11 );
+        this.updateControllerLabel(this.padDisplays[3] ,this._controllerMap.noteOn.Pad12 );
+        this.updateControllerLabel(this.padDisplays[4] ,this._controllerMap.noteOn.Pad13 );
+        this.updateControllerLabel(this.padDisplays[5] ,this._controllerMap.noteOn.Pad14 );
+        this.updateControllerLabel(this.padDisplays[6] ,this._controllerMap.noteOn.Pad15 );
+        this.updateControllerLabel(this.padDisplays[7] ,this._controllerMap.noteOn.Pad16 );
+
+        this.updateControllerValue(this.padDisplays[8], "");
+        this.updateControllerValue(this.padDisplays[9], "");
+        this.updateControllerValue(this.padDisplays[10], "");
+        this.updateControllerValue(this.padDisplays[11], "");
+        this.updateControllerValue(this.padDisplays[12], "");
+        this.updateControllerValue(this.padDisplays[13], "");
+        this.updateControllerValue(this.padDisplays[14], "");
+        this.updateControllerValue(this.padDisplays[15], "");
+        this.updateControllerValue(this.padDisplays[0], "");
+        this.updateControllerValue(this.padDisplays[1], "");
+        this.updateControllerValue(this.padDisplays[2], "");
+        this.updateControllerValue(this.padDisplays[3], "");
+        this.updateControllerValue(this.padDisplays[4], "");
+        this.updateControllerValue(this.padDisplays[5], "");
+        this.updateControllerValue(this.padDisplays[6], "");
+        this.updateControllerValue(this.padDisplays[7], "");
+
+        this.updateControllerValue(this.knobsDisplays[0], "");
+        this.updateControllerValue(this.knobsDisplays[1], "");
+        this.updateControllerValue(this.knobsDisplays[2], "");
+        this.updateControllerValue(this.knobsDisplays[3], "");
+        this.updateControllerValue(this.knobsDisplays[4], "");
+        this.updateControllerValue(this.knobsDisplays[5], "");
+        this.updateControllerValue(this.knobsDisplays[6], "");
+        this.updateControllerValue(this.knobsDisplays[7], "");
+        this.updateControllerValue(this.knobsDisplays[8], "");
+        this.updateControllerValue(this.knobsDisplays[9], "");
+        this.updateControllerValue(this.knobsDisplays[10], "");
+        this.updateControllerValue(this.knobsDisplays[11], "");
+        this.updateControllerValue(this.knobsDisplays[12], "");
+        this.updateControllerValue(this.knobsDisplays[13], "");
+        this.updateControllerValue(this.knobsDisplays[14], "");
+        this.updateControllerValue(this.knobsDisplays[15], "");
+
+        this._screen.render();
     }
 
 }

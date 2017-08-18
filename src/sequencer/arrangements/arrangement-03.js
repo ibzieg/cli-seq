@@ -7,13 +7,13 @@ const Log = require("../../display/log-util");
 const EuropiMinion = require("../../europi/europi-minion");
 const MidiInstrument = require("../../midi/midi-instrument");
 
-class Arrangement02 extends Arrangement {
+class Arrangement03 extends Arrangement {
 
     get title() {
         let stage = this.state.stageIndex % this.state.stageCount;
         let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
 
-        return `Multistage {green-fg}${iteration}.${stage}{/}`;
+        return `minimal 3 stage {yellow-fg}${iteration}.${stage}{/}`;
     }
 
     createControllerMap() {
@@ -177,8 +177,6 @@ class Arrangement02 extends Arrangement {
 
         ////////////////////////////////////////////////////////////////
         this.ticksSinceSnare = 0;
-        this.rainmakerFreezeCount = 0;
-
         this.rainmakerCV = 0.0;
         this.rainmakerCVPeak = 0.5;
         this.rainmakerCVTickCount = 24;
@@ -187,14 +185,14 @@ class Arrangement02 extends Arrangement {
 
         this.snareDrum = new Sequencer({
             instrument: MidiInstrument.instruments.BSPDrum,
-            rate: 4,
+            rate: 2,
             data: this.state.data.snareDrum[0][0],
             play: (index, event) => {
                 this.ticksSinceSnare = 0;
 
                 this.rainmakerCVPeak = (Math.random() * 0.1) + 0.2;
                 this.rainmakerCVDelayTicks = SequenceData.getRandomEven(4, 8);
-                this.rainmakerCVTickCount = SequenceData.getRandomEven(16, 36);
+                this.rainmakerCVTickCount = SequenceData.getRandomEven(8, 24);
                 this.rainmakerCVDirection = Math.random() > 0.5 ? 1 : 0;
 
                 //this.minion.CVOutput(3,event[3]*0.5);
@@ -211,19 +209,12 @@ class Arrangement02 extends Arrangement {
 
     stop() {
         this.setStage(0);
-
-        this.rainmakerFreezeCount = 0;
         this.minion.GateOutput(3, 0);
     }
 
     postClock() {
         if (this.ticksSinceSnare <= this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
             if (this.ticksSinceSnare === this.rainmakerCVDelayTicks) {
- /*               if (this.rainmakerFreezeCount % 2 === 0) {
-                    // Don't send if already frozen.
-                    this.minion.GatePulse(3, 25);
-                    this.rainmakerFreezeCount++;
-                }*/
                 this.minion.GateOutput(3, 1);
                 if (this.rainmakerCVDirection > 0) { // up
                     this.rainmakerCV = 0.0;
@@ -243,11 +234,6 @@ class Arrangement02 extends Arrangement {
                 } else {
                     this.rainmakerCV = 0.0;
                 }
-   /*             if (this.rainmakerFreezeCount % 2 === 1) {
-                    // Don't unfreeze if already unfrozen
-                    this.minion.GatePulse(3, 25);
-                    this.rainmakerFreezeCount = this.rainmakerFreezeCount + 1;
-                }*/
                 this.minion.GateOutput(3, 0);
             }
         } else {
@@ -270,7 +256,6 @@ class Arrangement02 extends Arrangement {
 
         this.iteration(iteration);
 
-        //Log.debug(`setStage index=${index} stage=${stage} iter=${iteration}`);
         this.updateTitle();
 
 
@@ -375,25 +360,37 @@ class Arrangement02 extends Arrangement {
 
     ////////////////////////////////////////////////////////////////
     getRandomVoice1Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 2, 16, 0.7);
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 2, 16, 0.3);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomVoice2Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60), 2, 16, 0.7);
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60), 2, 16, 0.2);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomPoly1Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 2, 16, 0.7);
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 2, 16, 0.2);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomKickDrumData() {
         let makeKick = () => [MidiInstrument.drumMap[0], 127, 100, Math.random()];
-        let data = SequenceData.getRandomSequence(makeKick, 2, 8, 0.5);
+/*        let data = SequenceData.getRandomSequence(makeKick, 2, 8, 0.5);
         data[0] = makeKick();
-        data[0][3] = 1.0;
+        data[0][3] = 1.0;*/
+
+        let data = [
+            makeKick(),
+            null,
+            makeKick(),
+            null,
+            makeKick(),
+            null,
+            makeKick(),
+            null,
+        ];
+
         return data;
     }
 
@@ -403,34 +400,18 @@ class Arrangement02 extends Arrangement {
 
         let makeSnare = () => [MidiInstrument.drumMap[1], 127, 100, Math.random()];
 
-        let min = 12;
-        let max = 16;
+        let data = [
+            null,
+            null,
+            makeSnare(),
+            null,
+            null,
+            null,
+            makeSnare(),
+            null
+        ];
 
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));
-
-        let density = [0.4, 0.3, 0.2, 0.1];
-        let half = Math.floor(length/2.0);
-        let fourth = Math.floor(length/4.0);
-        let eighth = Math.floor(length/8.0);
-        let sixteenth = Math.floor(length/16.0);
-
-        let seq = [];
-        for (let i = 0; i < length; i++) {
-
-            if (i !== 0 && (
-                    (i % half === 0 && density[0] > Math.random()) ||
-                    (i % fourth === 0 && density[1] > Math.random()) ||
-                    (i % eighth === 0 && density[2] > Math.random()) ||
-                    (i % sixteenth === 0 && density[3] > Math.random())
-                )) {
-                seq.push(makeSnare());
-            } else {
-                seq.push(null);
-            }
-        }
-        return seq;
+        return data;
 
     }
 
@@ -452,4 +433,4 @@ class Arrangement02 extends Arrangement {
     }
 
 }
-module.exports = Arrangement02;
+module.exports = Arrangement03;
