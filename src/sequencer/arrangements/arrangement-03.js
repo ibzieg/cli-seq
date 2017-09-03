@@ -82,15 +82,23 @@ class Arrangement03 extends Arrangement {
             },
             controlChange: {
                 Knob1: {
-                    label: "CV A",
+                    label: "Root",
                     callback: (data) => {
-                        this.minion.CVOutput(0, data/127.0);
+                        let chord = Object.assign(this.state.chord, {
+                            root: ChordHarmonizer.NoteNames[data % ChordHarmonizer.NoteNames.length]
+                        });
+                        this.setScale(chord);
+                        return chord.root;
                     }
                 },
                 Knob2: {
-                    label: "CV B",
+                    label: "Mode",
                     callback: (data) => {
-                        this.minion.CVOutput(1, data/127.0);
+                        let chord = Object.assign(this.state.chord, {
+                            mode: ChordHarmonizer.ModeNames[data % ChordHarmonizer.ModeNames.length]
+                        });
+                        this.setScale(chord);
+                        return chord.mode;
                     }
                 },
                 Knob3: {

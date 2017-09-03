@@ -46,7 +46,9 @@ class Sequencer {
     }
 
     constructor(options) {
-        this._options = options;
+        this._options = Object.assign({
+            enabled: true
+        },options);
         if (options.instrument) {
             this._instrument = new MidiInstrument(options.instrument);
         }

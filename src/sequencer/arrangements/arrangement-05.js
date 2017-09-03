@@ -7,13 +7,13 @@ const Log = require("../../display/log-util");
 const EuropiMinion = require("../../europi/europi-minion");
 const MidiInstrument = require("../../midi/midi-instrument");
 
-class Arrangement04 extends Arrangement {
+class Arrangement05 extends Arrangement {
 
     get title() {
         let stage = this.state.stageIndex % this.state.stageCount;
         let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
 
-        return `3 Stage Evolver {green-fg}${iteration}.${stage}{/}`;
+        return `4 Stages {green-fg}${iteration}.${stage}{/}`;
     }
 
     createControllerMap() {
@@ -149,7 +149,7 @@ class Arrangement04 extends Arrangement {
     initialize() {
 
         this.state = {
-            stageCount: 3,
+            stageCount: 4,
             stageIndex: 0,
             chord: this.getRandomScale(),
             data: this.getRandomStageData(),
@@ -162,9 +162,9 @@ class Arrangement04 extends Arrangement {
         this.mono1 = new Sequencer({
             instrument: MidiInstrument.instruments.BSPSeq1,
             chord: this.state.chord,
-            rate: 4,
+            rate: 2,
             data: this.state.data.mono1[0][0],
-            play: (index, event) => { 
+            play: (index, event) => {
                 this.minion.CVOutput(0,index / this.mono1.data.length);
                 this.mono1.play(event[0], event[1], event[2]);
             },
@@ -177,7 +177,7 @@ class Arrangement04 extends Arrangement {
         this.mono2 = new Sequencer({
             instrument: MidiInstrument.instruments.BSPSeq2,
             chord: this.state.chord,
-            rate: 4,
+            rate: 2,
             data: this.state.data.mono2[0][0],
             play: (index, event) => {
                 this.minion.CVOutput(1, 1.0 - (index / this.mono2.data.length));
@@ -322,11 +322,11 @@ class Arrangement04 extends Arrangement {
 
     iteration(count) {
 
-/*        this.mono1.enabled = true;
-        this.mono2.enabled = true;
-        this.poly1.enabled = true;
-        this.kickDrum.enabled = true;
-        this.snareDrum.enabled = true;*/
+        /*        this.mono1.enabled = true;
+         this.mono2.enabled = true;
+         this.poly1.enabled = true;
+         this.kickDrum.enabled = true;
+         this.snareDrum.enabled = true;*/
 
         if (count % 2 === 0) {
             this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, this.state.evolveAmount, this.getRandomKickDrumData.bind(this));
@@ -350,28 +350,37 @@ class Arrangement04 extends Arrangement {
     getRandomStageData() {
         return {
             mono1: [
-                [this.getRandomMono1Data()],
+                [[]],
                 [this.getRandomMono1Data(), this.getRandomMono1Data() ],
-                [this.getRandomMono1Data()]
+                [this.getRandomMono1Data()],
+                [this.getRandomMono1Data(), this.getRandomMono1Data() ]
             ],
             mono2: [
+                [this.getRandomMono2Data(), this.getRandomMono2Data()],
                 [this.getRandomMono2Data()],
-                [this.getRandomMono2Data()],
-                [this.getRandomMono2Data()],
+                [[]],
+                [this.getRandomMono2Data(), this.getRandomMono2Data()]
             ],
             poly1: [
                 [this.getRandomPoly1Data()],
                 [this.getRandomPoly1Data()],
                 [this.getRandomPoly1Data(), this.getRandomPoly1Data()],
+                [this.getRandomPoly1Data(), this.getRandomPoly1Data()]
             ],
             snareDrum: [
                 [this.getRandomSnareDrumData()],
-                [this.getRandomSnareDrumData()],
-                [this.getRandomSnareDrumData()],
+                [this.getRandomSnareDrumData(), this.getRandomSnareDrumData()],
+                [[]],
+                [this.getRandomSnareDrumData(), this.getRandomSnareDrumData()]
             ],
             kickDrum: [
                 [
                     this.getRandomKickDrumData(),
+                    this.getRandomKickDrumData(),
+                    this.getRandomKickDrumData()
+                ],
+                [
+                    this.getRandomKickDrumData(),
                     this.getRandomKickDrumData()
                 ],
                 [
@@ -379,7 +388,6 @@ class Arrangement04 extends Arrangement {
                     this.getRandomKickDrumData()
                 ],
                 [
-                    this.getRandomKickDrumData(),
                     this.getRandomKickDrumData()
                 ]
             ]
@@ -399,17 +407,17 @@ class Arrangement04 extends Arrangement {
 
     ////////////////////////////////////////////////////////////////
     getRandomMono1Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 2, 16, 0.7);
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72), 2, 12, 0.5);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomMono2Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60), 2, 16, 0.7);
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60), 2, 12, 0.5);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomPoly1Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 2, 16, 0.7);
+        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(48, 84), 2, 12, 0.5);
     }
 
     ////////////////////////////////////////////////////////////////
@@ -476,4 +484,4 @@ class Arrangement04 extends Arrangement {
     }
 
 }
-module.exports = Arrangement04;
+module.exports = Arrangement05;
