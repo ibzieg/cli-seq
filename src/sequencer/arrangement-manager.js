@@ -61,7 +61,8 @@ class ArrangementManager {
 
 
         let context = {
-            minion: this.minion
+            minion: this.minion,
+            controller: this.controller
         };
 
         this.arrangements = [

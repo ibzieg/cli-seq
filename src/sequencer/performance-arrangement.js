@@ -1,4 +1,5 @@
-const Arrangement = require("../arrangement");
+
+const Arrangement = require("./arrangement");
 const SequenceData = require("../sequence-data");
 const Sequencer = require("../sequencer");
 const ChordHarmonizer = require("../chord-harmonizer");
@@ -7,14 +8,11 @@ const Log = require("../../display/log-util");
 const EuropiMinion = require("../../europi/europi-minion");
 const MidiInstrument = require("../../midi/midi-instrument");
 
-class Arrangement01 extends Arrangement {
-
-    get title() {
-        return "3 stages quantized";
-    }
+class PerformanceArrangement extends Arrangement {
 
     get defaultState() {
         return {
+            title: "PerformanceArrangement",
             stageCount: 3,
             stageIndex: 0,
             enableEvolve: false,
@@ -24,6 +22,16 @@ class Arrangement01 extends Arrangement {
             rainmakerCVTickCountMax: 36,
             evolveAmount: 0.5
         };
+    }
+
+    get title() {
+        return "PerformanceArrangement";
+    }
+
+    get screenTitle() {
+        let stage = this.state.stageIndex % this.state.stageCount;
+        let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
+        return `${this.title} {green-fg}${iteration}.${stage}{/}`;
     }
 
     createControllerMap() {
@@ -47,35 +55,35 @@ class Arrangement01 extends Arrangement {
                 Pad9: {
                     label: "Evo mono1",
                     callback: (velocity) => {
-                        this.state.data.mono1 = this.evolveSequenceStages(this.state.data.mono1, 0.5, this.getRandomMono1Data.bind(this));
+                        this.state.data.mono1 = this.evolveSequenceStages(this.state.data.mono1, this.state.evolveAmount, this.getRandomMono1Data.bind(this));
                         return "Evolve";
                     }
                 },
                 Pad10: {
                     label: "Evo mono2",
                     callback: (velocity) => {
-                        this.state.data.mono2 = this.evolveSequenceStages(this.state.data.mono2, 0.5, this.getRandomMono2Data.bind(this));
+                        this.state.data.mono2 = this.evolveSequenceStages(this.state.data.mono2, this.state.evolveAmount, this.getRandomMono2Data.bind(this));
                         return "Evolve";
                     }
                 },
                 Pad11: {
                     label: "Evo poly1",
                     callback: (velocity) => {
-                        this.state.data.poly1 = this.evolveSequenceStages(this.state.data.poly1, 0.5, this.getRandomPoly1Data.bind(this));
+                        this.state.data.poly1 = this.evolveSequenceStages(this.state.data.poly1, this.state.evolveAmount, this.getRandomPoly1Data.bind(this));
                         return "Evolve";
                     }
                 },
                 Pad12: {
                     label: "Evo kick",
                     callback: (velocity) => {
-                        this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, 0.5, this.getRandomKickDrumData.bind(this));
+                        this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, this.state.evolveAmount, this.getRandomKickDrumData.bind(this));
                         return "Evolve";
                     }
                 },
                 Pad13: {
                     label: "Evo snare",
                     callback: (velocity) => {
-                        this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, 0.5, this.getRandomSnareDrumData.bind(this));
+                        this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, this.state.evolveAmount, this.getRandomSnareDrumData.bind(this));
                         return "Evolve";
                     }
                 },
@@ -137,7 +145,7 @@ class Arrangement01 extends Arrangement {
                     callback: (data) => {
                         let pct = data / 127.0;
                         this.state.evolveAmount = pct;
-                        return this.state.evolveAmount;
+                        return Math.round(100*this.state.evolveAmount)+'%';
                     }
                 },
                 Knob7: {
@@ -160,8 +168,9 @@ class Arrangement01 extends Arrangement {
         }
     }
 
-    initialize() {
 
+
+    initialize() {
 
         ////////////////////////////////////////////////////////////////
         this.mono1 = new Sequencer({
@@ -463,4 +472,4 @@ class Arrangement01 extends Arrangement {
     }
 
 }
-module.exports = Arrangement01;
+module.exports = PerformanceArrangement;

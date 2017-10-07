@@ -10,10 +10,7 @@ const MidiInstrument = require("../../midi/midi-instrument");
 class Arrangement05 extends Arrangement {
 
     get title() {
-        let stage = this.state.stageIndex % this.state.stageCount;
-        let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
-
-        return `4 Stages {green-fg}${iteration}.${stage}{/}`;
+        return `4 Stages`;
     }
 
     createControllerMap() {
@@ -76,7 +73,11 @@ class Arrangement05 extends Arrangement {
 
                 },
                 Pad16: {
-
+                    label: "EnableEvo",
+                    callback: (velocity) => {
+                        this.state.enableEvolve = !this.state.enableEvolve;
+                        return this.state.enableEvolve ? "ON" : "OFF";
+                    }
                 }
             },
             noteOff: {
@@ -127,7 +128,7 @@ class Arrangement05 extends Arrangement {
                     }
                 },
                 Knob7: {
-                    label: "RMTikMin",
+                    label: "RMTicMin",
                     callback: (data) => {
                         let pct = data / 127.0;
                         this.state.rainmakerCVTickCountMin = Math.floor(pct * 128);
@@ -135,7 +136,7 @@ class Arrangement05 extends Arrangement {
                     }
                 },
                 Knob8: {
-                    label: "RMTikMax",
+                    label: "RMTicMax",
                     callback: (data) => {
                         let pct = data / 127.0;
                         this.state.rainmakerCVTickCountMax = Math.floor(pct * 128);
@@ -151,6 +152,7 @@ class Arrangement05 extends Arrangement {
         this.state = {
             stageCount: 4,
             stageIndex: 0,
+            enableEvolve: false,
             chord: this.getRandomScale(),
             data: this.getRandomStageData(),
             rainmakerCVTickCountMin: 12,
@@ -322,27 +324,18 @@ class Arrangement05 extends Arrangement {
 
     iteration(count) {
 
-        /*        this.mono1.enabled = true;
-         this.mono2.enabled = true;
-         this.poly1.enabled = true;
-         this.kickDrum.enabled = true;
-         this.snareDrum.enabled = true;*/
-
-        if (count % 2 === 0) {
-            this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, this.state.evolveAmount, this.getRandomKickDrumData.bind(this));
-            // Log.music(`Evolve kickDrum`);
-        } else if (count % 4 === 0) {
-            this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, this.state.evolveAmount, this.getRandomSnareDrumData.bind(this));
-            // Log.music(`Evolve snareDrum`);
-        } else if (count % 3 === 0) {
-            this.state.data.mono1 = this.evolveSequenceStages(this.state.data.mono1, this.state.evolveAmount, this.getRandomMono1Data.bind(this));
-            // Log.music(`Evolve mono1`);
-        } else if (count % 5 === 0) {
-            this.state.data.mono2 = this.evolveSequenceStages(this.state.data.mono2, this.state.evolveAmount, this.getRandomMono2Data.bind(this));
-            // Log.music(`Evolve mono2`);
-        } else if (count % 4 === 0) {
-            this.state.data.poly1 = this.evolveSequenceStages(this.state.data.poly1, this.state.evolveAmount, this.getRandomPoly1Data.bind(this));
-            // Log.music(`Evolve poly1`);
+        if (this.state.enableEvolve) {
+            if (count % 2 === 0) {
+                this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, this.state.evolveAmount, this.getRandomKickDrumData.bind(this));
+            } else if (count % 4 === 0) {
+                this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, this.state.evolveAmount, this.getRandomSnareDrumData.bind(this));
+            } else if (count % 3 === 0) {
+                this.state.data.mono1 = this.evolveSequenceStages(this.state.data.mono1, this.state.evolveAmount, this.getRandomMono1Data.bind(this));
+            } else if (count % 5 === 0) {
+                this.state.data.mono2 = this.evolveSequenceStages(this.state.data.mono2, this.state.evolveAmount, this.getRandomMono2Data.bind(this));
+            } else if (count % 4 === 0) {
+                this.state.data.poly1 = this.evolveSequenceStages(this.state.data.poly1, this.state.evolveAmount, this.getRandomPoly1Data.bind(this));
+            }
         }
 
     }
@@ -356,13 +349,13 @@ class Arrangement05 extends Arrangement {
                 [this.getRandomMono1Data(), this.getRandomMono1Data() ]
             ],
             mono2: [
-                [this.getRandomMono2Data(), this.getRandomMono2Data()],
+                [[]],
                 [this.getRandomMono2Data()],
                 [[]],
                 [this.getRandomMono2Data(), this.getRandomMono2Data()]
             ],
             poly1: [
-                [this.getRandomPoly1Data()],
+                [[]],
                 [this.getRandomPoly1Data()],
                 [this.getRandomPoly1Data(), this.getRandomPoly1Data()],
                 [this.getRandomPoly1Data(), this.getRandomPoly1Data()]

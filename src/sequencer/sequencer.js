@@ -7,6 +7,10 @@ class Sequencer {
         return this._instrument
     }
 
+    set instrument(value) {
+        this._instrument = new MidiInstrument(value);
+    }
+
     set data(value) {
         this._options.data = value;
     }
@@ -53,6 +57,7 @@ class Sequencer {
             this._instrument = new MidiInstrument(options.instrument);
         }
 
+
         this._options.partsPerQuant = options.partsPerQuant ? options.partsPerQuant : 24;
         this._options.rate = options.rate ? options.rate : 1;
 
@@ -69,7 +74,9 @@ class Sequencer {
         });
     }
 
-    clock() {
+    clock(bpm) {
+        this._options.bpm = bpm;
+
         let clockMod = Math.floor(this._options.partsPerQuant / this.rate);
         if (this._count % clockMod === 0) {
             let event = this.data[this._index];
@@ -97,6 +104,20 @@ class Sequencer {
         }
     }
 
+
+    getNoteDuration(quant) {
+        quant = parseInt(quant);
+
+        const millisPerMin = 60000;
+        const ppq = this._options.partsPerQuant;
+        const bpm = this._options.bpm;
+
+        let millisPerQuarter = millisPerMin / bpm;
+        let duration = (4.0 / quant) * millisPerQuarter;
+
+        return duration;
+    }
+
     /***
      *
      * @param note
@@ -105,6 +126,11 @@ class Sequencer {
      * @returns {void}
      */
     play(note, velocity, duration) {
+
+        if (typeof duration === "string") {
+            duration = this.getNoteDuration(duration);
+        }
+
         if (this.instrument) {
             if (!this.harmonizer) {
                 this.instrument.play(note, velocity, duration);

@@ -10,10 +10,7 @@ const MidiInstrument = require("../../midi/midi-instrument");
 class Arrangement04 extends Arrangement {
 
     get title() {
-        let stage = this.state.stageIndex % this.state.stageCount;
-        let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
-
-        return `3 Stage Evolver {green-fg}${iteration}.${stage}{/}`;
+        return `3 Stage Evolver`;
     }
 
     createControllerMap() {

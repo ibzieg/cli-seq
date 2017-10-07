@@ -17,6 +17,8 @@ class MidiController {
         this._options = options;
 
         this._lastClockTime = process.hrtime();
+        this._tickDurations = [];
+        this._bpm = 0;
 
         let device = options.device;
         if (device) {
@@ -105,18 +107,30 @@ class MidiController {
         }
     }
 
+    updateClock(duration) {
+        const historyLength = 36; // TODO Move constant
+        const ppq = 24; // TODO Move constant
+        this._tickDurations.push(duration);
+        this._tickDurations = this._tickDurations.splice(Math.max(0, this._tickDurations.length-historyLength), historyLength);
+        let tickMillis = this._tickDurations.reduce((sum, value) => sum + value) / this._tickDurations.length;
+        let beatMillis = tickMillis * ppq;
+        const millisPerMin = 60000;
+        this._bpm = Math.round(millisPerMin / beatMillis);
+    }
 
     clock() {
 
         let lastClockDur = process.hrtime(this._lastClockTime);
         this._lastClockTime = process.hrtime();
+        let tickDuration = lastClockDur[0]/1000.0 + lastClockDur[1]/1000000.0;
+        this.updateClock(tickDuration);
         process.send({
             type: "clock",
-            tickDuration: lastClockDur[0]/1000.0 + lastClockDur[1]/1000000.0
+            tickDuration: tickDuration
         });
 
         for (let sequencer of this._sequencerMap.keys()) {
-            sequencer.clock();
+            sequencer.clock(this._bpm);
         }
         for (let sequencer of this._sequencerMap.keys()) {
             sequencer.postClock();

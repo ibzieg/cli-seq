@@ -5,8 +5,11 @@ class SequenceData {
      *
      * @returns {Array}
      */
-    static getRandomNote(min, max) {
-        return [Math.floor(min+Math.random()*(max-min+1)), 127, 100];
+    static getRandomNote(min, max, duration) {
+        if (!duration) {
+            duration = "8n";
+        }
+        return [Math.floor(min+Math.random()*(max-min+1)), 127, duration];
     }
 
     /***
