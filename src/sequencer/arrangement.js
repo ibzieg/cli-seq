@@ -36,7 +36,7 @@ class Arrangement {
             this.initialize();
         }).catch((error) => {
             //Log.warning(`Failed to load state from '${this.filename}': ${error}. Using default state instead.`);
-            Log.warning(`Failed to load state from '${this.filename}'.`);
+            //Log.warning(`Failed to load state from '${this.filename}'.`);
             this.initialize();
         });
     }
@@ -75,7 +75,7 @@ class Arrangement {
                     }
 
                 }
-            });
+            })
         });
     }
 

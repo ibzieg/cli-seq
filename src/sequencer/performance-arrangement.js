@@ -1,27 +1,96 @@
 
 const Arrangement = require("./arrangement");
-const SequenceData = require("../sequence-data");
-const Sequencer = require("../sequencer");
-const ChordHarmonizer = require("../chord-harmonizer");
-const Log = require("../../display/log-util");
+const SequenceData = require("./sequence-data");
+const Sequencer = require("./sequencer");
+const ChordHarmonizer = require("./chord-harmonizer");
+const Log = require("../display/log-util");
 
-const EuropiMinion = require("../../europi/europi-minion");
-const MidiInstrument = require("../../midi/midi-instrument");
+const EuropiMinion = require("../europi/europi-minion");
+const MidiInstrument = require("../midi/midi-instrument");
 
 class PerformanceArrangement extends Arrangement {
 
     get defaultState() {
-        return {
-            title: "PerformanceArrangement",
+        let state = {
             stageCount: 3,
             stageIndex: 0,
+            evolveAmount: 0.5,
             enableEvolve: false,
-            chord: this.getRandomScale(),
-            data: this.getRandomStageData(),
             rainmakerCVTickCountMin: 12,
             rainmakerCVTickCountMax: 36,
-            evolveAmount: 0.5
+            mono1: {
+                instrument: "BSPSeq1",
+                rate: 2,
+                low: 36,
+                high: 64,
+                algorithm: "random",
+                density: 0.5,
+                min: 8,
+                max: 16,
+                stages: [1, 2, 1]
+            },
+            mono2: {
+                instrument: "BSPSeq2",
+                rate: 2,
+                low: 36,
+                high: 64,
+                algorithm: "random",
+                density: 0.5,
+                min: 8,
+                max: 16,
+                stages: [1, 1, 2]
+            },
+            poly1: {
+                instrument: "NordG2A",
+                rate: 2,
+                low: 36,
+                high: 64,
+                algorithm: "random",
+                density: 0.5,
+                min: 8,
+                max: 16,
+                stages: [2, 1, 1]
+            },
+            perc1: {
+                instrument: "BSPDrum",
+                rate: 2,
+                algorithm: "perc",
+                density: 0.5,
+                min: 32,
+                max: 32,
+                stages: [2, 1, 2]
+            },
+            perc2: {
+                instrument: "BSPDrum",
+                rate: 2,
+                algorithm: "perc",
+                density: 0.5,
+                min: 16,
+                max: 16,
+                stages: [1, 1, 1]
+            },
+            perc3: {
+                instrument: "BSPDrum",
+                rate: 2,
+                algorithm: "perc",
+                density: 0.5,
+                min: 16,
+                max: 16,
+                stages: [0, 1, 1]
+            },
+            perc4: {
+                instrument: "BSPDrum",
+                rate: 2,
+                algorithm: "perc",
+                density: 0.5,
+                min: 16,
+                max: 16,
+                stages: [1, 0, 1]
+            }
         };
+        state.chord = this.getRandomScale();
+        state.data = this.getRandomStageData();
+        return state;
     }
 
     get title() {
@@ -74,24 +143,32 @@ class PerformanceArrangement extends Arrangement {
                     }
                 },
                 Pad12: {
-                    label: "Evo kick",
+                    label: "Evo perc1",
                     callback: (velocity) => {
-                        this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, this.state.evolveAmount, this.getRandomKickDrumData.bind(this));
+                        this.state.data.perc1 = this.evolveSequenceStages(this.state.data.perc1, this.state.evolveAmount, this.getRandomPerc1DrumData.bind(this));
                         return "Evolve";
                     }
                 },
                 Pad13: {
-                    label: "Evo snare",
+                    label: "Evo perc2",
                     callback: (velocity) => {
-                        this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, this.state.evolveAmount, this.getRandomSnareDrumData.bind(this));
+                        this.state.data.perc2 = this.evolveSequenceStages(this.state.data.perc2, this.state.evolveAmount, this.getRandomPerc2DrumData.bind(this));
                         return "Evolve";
                     }
                 },
                 Pad14: {
-
+                    label: "Evo perc3",
+                    callback: (velocity) => {
+                        this.state.data.perc3 = this.evolveSequenceStages(this.state.data.perc3, this.state.evolveAmount, this.getRandomPerc3DrumData.bind(this));
+                        return "Evolve";
+                    }
                 },
                 Pad15: {
-
+                    label: "Evo perc4",
+                    callback: (velocity) => {
+                        this.state.data.perc4 = this.evolveSequenceStages(this.state.data.perc4, this.state.evolveAmount, this.getRandomPerc4DrumData.bind(this));
+                        return "Evolve";
+                    }
                 },
                 Pad16: {
                     label: "EnableEvo",
@@ -168,18 +245,23 @@ class PerformanceArrangement extends Arrangement {
         }
     }
 
-
-
+    /***
+     *
+     */
     initialize() {
+
+        if (!this.state.chord) {
+            this.state.chord = this.getRandomScale();
+        }
 
         ////////////////////////////////////////////////////////////////
         this.mono1 = new Sequencer({
-            instrument: MidiInstrument.instruments.BSPSeq1,
+            instrument: MidiInstrument.instruments[this.state.mono1.instrument],
             chord: this.state.chord,
-            rate: 2,
+            rate: this.state.mono1.rate,
             data: this.state.data.mono1[0][0],
             play: (index, event) => {
-                this.minion.CVOutput(0,index / this.mono1.data.length);
+                this.minion.CVOutput(0, event[3]);
                 this.mono1.play(event[0], event[1], event[2]);
             },
             end: () => {
@@ -189,12 +271,12 @@ class PerformanceArrangement extends Arrangement {
 
         ////////////////////////////////////////////////////////////////
         this.mono2 = new Sequencer({
-            instrument: MidiInstrument.instruments.BSPSeq2,
+            instrument: MidiInstrument.instruments[this.state.mono2.instrument],
             chord: this.state.chord,
-            rate: 2,
+            rate: this.state.mono2.rate,
             data: this.state.data.mono2[0][0],
             play: (index, event) => {
-                this.minion.CVOutput(1, 1.0 - (index / this.mono2.data.length));
+                this.minion.CVOutput(1, event[3]);
                 this.mono2.play(event[0], event[1], event[2]);
             },
             end: () => {
@@ -204,91 +286,114 @@ class PerformanceArrangement extends Arrangement {
 
         ////////////////////////////////////////////////////////////////
         this.poly1 = new Sequencer({
-            instrument: MidiInstrument.instruments.Minilogue,
+            instrument: MidiInstrument.instruments[this.state.poly1.instrument],
             chord: this.state.chord,
-            rate: 1,
+            rate: this.state.poly1.rate,
             data: this.state.data.poly1[0][0],
             play: (index, event) => {
+                let duration = event[2];
+                if (typeof duration === "string") {
+                    duration = this.poly1.getNoteDuration(duration);
+                }
+                this.minion.GatePulse(2, duration);
                 this.poly1.play(event[0], event[1], event[2]);
             }
         });
         this.addSequencer(this.poly1);
 
         ////////////////////////////////////////////////////////////////
-        this.kickDrum = new Sequencer({
-            instrument: MidiInstrument.instruments.BSPDrum,
-            rate: 2,
-            data: this.state.data.kickDrum[0][0],
+        this.perc1 = new Sequencer({
+            instrument: MidiInstrument.instruments[this.state.perc1.instrument],
+            rate: this.state.perc1.rate,
+            data: this.state.data.perc1[0][0],
             play: (index, event) => {
-                this.minion.CVOutput(2,event[3]*0.5);
-                this.kickDrum.play(event[0], event[1], event[2]);
+                this.minion.CVOutput(2,event[3]);
+                this.perc1.play(event[0], event[1], event[2]);
             },
             end: () => {
                 this.setStage(this.state.stageIndex+1);
             }
         });
-        this.addSequencer(this.kickDrum);
+        this.addSequencer(this.perc1);
 
         ////////////////////////////////////////////////////////////////
-        this.ticksSinceSnare = 0;
-        this.rainmakerFreezeCount = 0;
 
+
+        this.perc2 = new Sequencer({
+            instrument: MidiInstrument.instruments[this.state.perc1.instrument],
+            rate: 4,
+            data: this.state.data.perc2[0][0],
+            play: (index, event) => {
+                this.rainmakerTrigger();
+                this.perc2.play(event[0], event[1], event[2]);
+            },
+        });
+        this.addSequencer(this.perc2);
+
+        this.perc3 = new Sequencer({
+            instrument: MidiInstrument.instruments[this.state.perc3.instrument],
+            rate: 4,
+            data: this.state.data.perc2[0][0],
+            play: (index, event) => {
+                this.perc2.play(event[0], event[1], event[2]);
+            },
+        });
+        this.addSequencer(this.perc3);
+
+        this.perc4 = new Sequencer({
+            instrument: MidiInstrument.instruments[this.state.perc4.instrument],
+            rate: 4,
+            data: this.state.data.perc2[0][0],
+            play: (index, event) => {
+                this.perc2.play(event[0], event[1], event[2]);
+            },
+        });
+        this.addSequencer(this.perc4);
+
+        // init rainmaker states
+        this.ticksSinceRainmaker = 0;
+        this.rainmakerFreezeCount = 0;
         this.rainmakerCV = 0.0;
         this.rainmakerCVPeak = 0.5;
         this.rainmakerCVTickCount = 24;
         this.rainmakerCVDelayTicks = 6;
         this.rainmakerCVDirection = 1; // up
 
-        this.snareDrum = new Sequencer({
-            instrument: MidiInstrument.instruments.BSPDrum,
-            rate: 4,
-            data: this.state.data.snareDrum[0][0],
-            play: (index, event) => {
-                this.ticksSinceSnare = 0;
-
-                this.rainmakerCVPeak = (Math.random() * 0.1) + 0.2;
-                this.rainmakerCVDelayTicks = SequenceData.getRandomEven(4, 8);
-                this.rainmakerCVTickCount = SequenceData.getRandomEven(
-                    Math.min(this.state.rainmakerCVTickCountMin,this.state.rainmakerCVTickCountMax),
-                    Math.max(this.state.rainmakerCVTickCountMin,this.state.rainmakerCVTickCountMax));
-                this.rainmakerCVDirection = Math.random() > 0.5 ? 1 : 0;
-
-                //this.minion.CVOutput(3,event[3]*0.5);
-                this.snareDrum.play(event[0], event[1], event[2]);
-            },
-        });
-        this.addSequencer(this.snareDrum);
+        // init random gate states
+        this.randomGateLength = 0; // 4, 8, 16
+        this.randomGateTicks = 0;
+        this.randomGateState = 0;
 
     }
+    
+    rainmakerTrigger() {
+        this.ticksSinceRainmaker = 0;
 
-    start() {
-
+        this.rainmakerCVPeak = (Math.random() * 0.1) + 0.2;
+        this.rainmakerCVDelayTicks = SequenceData.getRandomEven(4, 8);
+        this.rainmakerCVTickCount = SequenceData.getRandomEven(
+            Math.min(this.state.rainmakerCVTickCountMin,this.state.rainmakerCVTickCountMax),
+            Math.max(this.state.rainmakerCVTickCountMin,this.state.rainmakerCVTickCountMax));
+        this.rainmakerCVDirection = Math.random() > 0.5 ? 1 : 0;
     }
 
-    stop() {
-        this.setStage(0);
-
-        this.rainmakerFreezeCount = 0;
-        this.minion.GateOutput(3, 0);
-    }
-
-    postClock() {
-        if (this.ticksSinceSnare <= this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
-            if (this.ticksSinceSnare === this.rainmakerCVDelayTicks) {
+    rainmakerClock() {
+        if (this.ticksSinceRainmaker <= this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
+            if (this.ticksSinceRainmaker === this.rainmakerCVDelayTicks) {
                 this.minion.GateOutput(3, 1);
                 if (this.rainmakerCVDirection > 0) { // up
                     this.rainmakerCV = 0.0;
                 } else {
                     this.rainmakerCV = this.rainmakerCVPeak;
                 }
-            } else if (this.ticksSinceSnare < this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
+            } else if (this.ticksSinceRainmaker < this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
                 let deltaCV = this.rainmakerCVPeak / this.rainmakerCVTickCount;
                 if (this.rainmakerCVDirection > 0) { // up
                     this.rainmakerCV = this.rainmakerCV + deltaCV;
                 } else {
                     this.rainmakerCV = this.rainmakerCV - deltaCV;
                 }
-            } else if (this.ticksSinceSnare === this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
+            } else if (this.ticksSinceRainmaker === this.rainmakerCVDelayTicks+this.rainmakerCVTickCount) {
                 if (this.rainmakerCVDirection > 0) { // up
                     this.rainmakerCV = this.rainmakerCVPeak;
                 } else {
@@ -300,9 +405,57 @@ class PerformanceArrangement extends Arrangement {
             this.rainmakerCV = 0.0;
         }
         this.minion.CVOutput(3, this.rainmakerCV);
-        this.ticksSinceSnare = this.ticksSinceSnare+1;
+        this.ticksSinceRainmaker = this.ticksSinceRainmaker+1;
     }
 
+    randomGateClock() {
+        const ppq = 24; // TODO add to default state?
+
+        this.randomGateTicks = this.randomGateTicks+1;
+        if (this.randomGateTicks >= this.randomGateLength) {
+            this.randomGateState = this.randomGateState > 0 ? 0 : 1; // invert
+            this.minion.GateOutput(1, this.randomGateState);
+
+            let r = Math.round(Math.random() * 2);
+            let p = [4, 8, 16];
+            let n = p[r];
+
+            this.randomGateLength = ppq / (n / 4);
+            //Log.debug(this.randomGateLength);
+            this.randomGateTicks = 0;
+        }
+
+    }
+
+    /***
+     *
+     */
+    start() {
+
+    }
+
+    /***
+     *
+     */
+    stop() {
+        this.setStage(0);
+        this.randomGateTicks = 0;
+        this.rainmakerFreezeCount = 0;
+        this.minion.GateOutput(3, 0);
+    }
+
+    /***
+     *
+     */
+    postClock() {
+        this.randomGateClock();
+        this.rainmakerClock();
+    }
+
+    /***
+     *
+     * @param index
+     */
     setStage(index) {
         this.state.stageIndex = index;
         let stage = index % this.state.stageCount;
@@ -311,19 +464,26 @@ class PerformanceArrangement extends Arrangement {
         this.setSequencerStage("mono1", stage, iteration);
         this.setSequencerStage("mono2", stage, iteration);
         this.setSequencerStage("poly1", stage, iteration);
-        this.setSequencerStage("snareDrum", stage, iteration);
-        this.setSequencerStage("kickDrum", stage, iteration);
+        this.setSequencerStage("perc1", stage, iteration);
+        this.setSequencerStage("perc2", stage, iteration);
+        this.setSequencerStage("perc3", stage, iteration);
+        this.setSequencerStage("perc4", stage, iteration);
 
         if (stage === 0) {
+            this.minion.GatePulse(0, this.perc1.getNoteDuration("8n"));
             this.iteration(iteration);
         }
 
-        //Log.debug(`setStage index=${index} stage=${stage} iter=${iteration}`);
         this.updateTitle();
-
 
     }
 
+    /***
+     *
+     * @param seqName
+     * @param stage
+     * @param iteration
+     */
     setSequencerStage(seqName, stage, iteration) {
         let stageData = this.state.data[seqName][stage];
         if (stageData) {
@@ -334,13 +494,17 @@ class PerformanceArrangement extends Arrangement {
         this[seqName].reset();
     }
 
+    /***
+     *
+     * @param count
+     */
     iteration(count) {
 
         if (this.state.enableEvolve) {
             if (count % 2 === 0) {
-                this.state.data.kickDrum = this.evolveSequenceStages(this.state.data.kickDrum, this.state.evolveAmount, this.getRandomKickDrumData.bind(this));
+                this.state.data.perc1 = this.evolveSequenceStages(this.state.data.perc1, this.state.evolveAmount, this.getRandomPerc1DrumData.bind(this));
             } else if (count % 4 === 0) {
-                this.state.data.snareDrum = this.evolveSequenceStages(this.state.data.snareDrum, this.state.evolveAmount, this.getRandomSnareDrumData.bind(this));
+                this.state.data.perc2 = this.evolveSequenceStages(this.state.data.perc2, this.state.evolveAmount, this.getRandomPerc2DrumData.bind(this));
             } else if (count % 3 === 0) {
                 this.state.data.mono1 = this.evolveSequenceStages(this.state.data.mono1, this.state.evolveAmount, this.getRandomMono1Data.bind(this));
             } else if (count % 5 === 0) {
@@ -352,37 +516,51 @@ class PerformanceArrangement extends Arrangement {
 
     }
 
+    /***
+     *
+     * @returns {{mono1: Array, mono2: Array, poly1: Array, perc1: Array, perc2: Array, perc3: Array, perc4: Array}}
+     */
     getRandomStageData() {
         return {
-            mono1: [
-                [this.getRandomMono1Data()],
-                [this.getRandomMono1Data(), this.getRandomMono1Data() ],
-                [this.getRandomMono1Data()],
-            ],
-            mono2: [
-                [this.getRandomMono2Data()],
-                [this.getRandomMono2Data()],
-                [this.getRandomMono2Data(), this.getRandomMono2Data()]
-            ],
-            poly1: [
-                [this.getRandomPoly1Data(), this.getRandomPoly1Data()],
-                [this.getRandomPoly1Data()],
-                [this.getRandomPoly1Data()],
-            ],
-            snareDrum: [
-                [this.getRandomSnareDrumData(), this.getRandomSnareDrumData()],
-                [this.getRandomSnareDrumData()],
-                [this.getRandomSnareDrumData()]
-            ],
-            kickDrum: [
-                [this.getRandomKickDrumData()],
-                [this.getRandomKickDrumData(), this.getRandomKickDrumData()],
-                [this.getRandomKickDrumData()]
-            ]
+            mono1: this.generateStages(this.getRandomMono1Data.bind(this), this.state.mono1),
+            mono2: this.generateStages(this.getRandomMono2Data.bind(this), this.state.mono2),
+            poly1: this.generateStages(this.getRandomPoly1Data.bind(this), this.state.poly1),
+            perc1: this.generateStages(this.getRandomPerc1DrumData.bind(this), this.state.perc1),
+            perc2: this.generateStages(this.getRandomPerc2DrumData.bind(this), this.state.perc2),
+            perc3: this.generateStages(this.getRandomPerc3DrumData.bind(this), this.state.perc3),
+            perc4: this.generateStages(this.getRandomPerc4DrumData.bind(this), this.state.perc4)
         }
     }
 
-    ////////////////////////////////////////////////////////////////
+    /***
+     *
+     * @param fn
+     * @param seq
+     * @returns {Array}
+     */
+    generateStages(fn, seq) {
+        let stages = [];
+        for (let i = 0; i < this.state.stageCount; i++) {
+            let stage = [];
+            if (seq.stages[i] > 0) {
+                for (let j = 0; j < seq.stages[i]; j++) {
+                    stage.push(fn());
+                }
+            } else {
+                stage.push([]);
+            }
+            stages.push(stage);
+        }
+        return stages;
+    }
+
+    /***
+     *
+     * @param stages
+     * @param prob
+     * @param generatorFn
+     * @returns {Array|*}
+     */
     evolveSequenceStages(stages, prob, generatorFn) {
         return stages.map((stage) => stage.map((data) => {
             if (Math.random() < prob) {
@@ -395,63 +573,59 @@ class PerformanceArrangement extends Arrangement {
 
     ////////////////////////////////////////////////////////////////
     getRandomMono1Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60, Math.random() > 0.25 ? "8n" : "4n"), 8, 16, 0.5);
+        return SequenceData.getSequence(
+            () => SequenceData.getRandomNote(
+                this.state.mono1.low,
+                this.state.mono1.high,
+                Math.random() > 0.25 ? "8n" : "4n"),
+            this.state.mono1);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomMono2Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(24, 60, Math.random() > 0.25 ? "16n" : "8n"), 16, 24, 0.5);
+        return SequenceData.getSequence(
+            () => SequenceData.getRandomNote(
+                this.state.mono2.low,
+                this.state.mono2.high,
+                Math.random() > 0.25 ? "16n" : "8n"),
+            this.state.mono2);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomPoly1Data() {
-        return SequenceData.getRandomSequence(() => SequenceData.getRandomNote(36, 72, "4n"), 16, 16, 0.4);
+        return SequenceData.getSequence(
+            () => SequenceData.getRandomNote(
+                this.state.poly1.low,
+                this.state.poly1.high,
+                "4n"),
+            this.state.poly1);
     }
 
     ////////////////////////////////////////////////////////////////
-    getRandomKickDrumData() {
-        let makeKick = () => [MidiInstrument.drumMap[0], 127, "8n", Math.random()];
-        let data = SequenceData.getRandomSequence(makeKick, 32, 32, 0.4);
+    getRandomPerc1DrumData() {
+        let makeKick = () => [MidiInstrument.drumMap[0], 127, "16n", Math.random()];
+        let data = SequenceData.getSequence(makeKick, this.state.perc1);
         data[0] = makeKick();
         data[0][3] = 1.0;
         return data;
     }
 
     ////////////////////////////////////////////////////////////////
-    getRandomSnareDrumData() {
-        //return SequenceData.getRandomSequence(() => [MidiInstrument.drumMap[1], 127, 100], 2, 8, 0.4);
-
+    getRandomPerc2DrumData() {
         let makeSnare = () => [MidiInstrument.drumMap[1], 127, "16n", Math.random()];
+        return SequenceData.getSequence(makeSnare, this.state.perc2);
+    }
 
-        let min = 12;
-        let max = 16;
+    ////////////////////////////////////////////////////////////////
+    getRandomPerc3DrumData() {
+        let makeSnare = () => [MidiInstrument.drumMap[2], 127, "16n", Math.random()];
+        return SequenceData.getSequence(makeSnare, this.state.perc3);
+    }
 
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));
-
-        let density = [0.4, 0.3, 0.2, 0.1];
-        let half = Math.floor(length/2.0);
-        let fourth = Math.floor(length/4.0);
-        let eighth = Math.floor(length/8.0);
-        let sixteenth = Math.floor(length/16.0);
-
-        let seq = [];
-        for (let i = 0; i < length; i++) {
-
-            if (i !== 0 && (
-                    (i % half === 0 && density[0] > Math.random()) ||
-                    (i % fourth === 0 && density[1] > Math.random()) ||
-                    (i % eighth === 0 && density[2] > Math.random()) ||
-                    (i % sixteenth === 0 && density[3] > Math.random())
-                )) {
-                seq.push(makeSnare());
-            } else {
-                seq.push(null);
-            }
-        }
-        return seq;
-
+    ////////////////////////////////////////////////////////////////
+    getRandomPerc4DrumData() {
+        let makeSnare = () => [MidiInstrument.drumMap[3], 127, "16n", Math.random()];
+        return SequenceData.getSequence(makeSnare, this.state.perc4);
     }
 
     ////////////////////////////////////////////////////////////////

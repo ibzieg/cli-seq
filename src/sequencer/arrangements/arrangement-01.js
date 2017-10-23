@@ -195,7 +195,7 @@ class Arrangement01 extends Arrangement {
 
         ////////////////////////////////////////////////////////////////
         this.poly1 = new Sequencer({
-            instrument: MidiInstrument.instruments.Minilogue,
+            instrument: MidiInstrument.instruments.NordG2A,
             chord: this.state.chord,
             rate: 1,
             data: this.state.data.poly1[0][0],

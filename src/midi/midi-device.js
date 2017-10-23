@@ -74,7 +74,7 @@ class MidiDevice {
         }
 
         if (!port) {
-            //Log.error(`No MIDI devices found matching ${this.options.names}`);
+            Log.error(`No MIDI devices found matching ${this.options.names}`);
         }
 
         this._inputPort = input;

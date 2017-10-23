@@ -65,7 +65,8 @@ const instruments = {
         channel: 13
     },
     NordG2A: {
-        device: MidiDevice.devices.MOTU828x,
+        //device: MidiDevice.devices.MOTU828x,
+        device: MidiDevice.devices.Midisport,
         channel: 7
     }
 };

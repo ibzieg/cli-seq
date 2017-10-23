@@ -13,4 +13,4 @@ module.exports.Arrangement12 = require("../arrangement");
 module.exports.Arrangement13 = require("../arrangement");
 module.exports.Arrangement14 = require("../arrangement");
 module.exports.Arrangement15 = require("../arrangement");
-module.exports.Arrangement16 = require("../arrangement");
+module.exports.Arrangement16 = require("./arrangement-16");

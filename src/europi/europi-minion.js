@@ -125,15 +125,14 @@ class EuropiMinion {
      */
     GatePulse(channel, /*milliseconds*/ duration) {
         this.GateOutput(channel, HIGH);
-        if (this._timers[channel] instanceof NanoTimer) {
-            this._timers[channel].clearInterval();
-        } else {
-            this._timers[channel] = new NanoTimer();
+        if (this._timers[channel]) {
+            clearTimeout(this._timers[channel]);
+            this._timers[channel] = null;
         }
 
-        this._timers[channel].setInterval(() => {
+        this._timers[channel] = setTimeout(() => {
             this.GateOutput(channel, LOW);
-        }, '', `${duration}m`);
+        }, duration);
     }
 
 

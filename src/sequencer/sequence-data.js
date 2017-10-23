@@ -9,18 +9,29 @@ class SequenceData {
         if (!duration) {
             duration = "8n";
         }
-        return [Math.floor(min+Math.random()*(max-min+1)), 127, duration];
+        return [Math.floor(min+Math.random()*(max-min+1)), 127, duration, Math.random()];
+    }
+
+    static getSequence(fn, config) {
+        switch (config.algorithm) {
+            case "perc":
+                return SequenceData.getRandomPercData(fn, config);
+            case "random":
+            default:
+                return SequenceData.getRandomSequence(fn, config);
+        }
     }
 
     /***
      *
      * @param nextNote
-     * @param min
-     * @param max
-     * @param density
+     * @param config
      * @returns {Array}
      */
-    static getRandomSequence(nextNote, min, max, density) {
+    static getRandomSequence(nextNote, config) {
+        let min = config.min;
+        let max = config.max;
+        let density = config.density;
         // min = Math.floor(min/2)*2; // force even
         // max = Math.floor(max/2)*2; // force even
         if (density < 0) density = 0;
@@ -44,6 +55,45 @@ class SequenceData {
             }
         }
         return seq;
+    }
+
+    /***
+     *
+     * @param makeSnare
+     * @param config
+     * @returns {Array}
+     */
+    static getRandomPercData(makeSnare, config) {
+        let min = config.min;
+        let max = config.max;
+        let d = config.density;
+
+        min = Math.floor(min/2)*2; // force even
+        max = Math.floor(max/2)*2; // force even
+        let length = Math.floor(min+Math.random()*(max-min+1));
+
+        let density = [0.4*d, 0.3*d, 0.2*d, 0.1*d];
+        let half = Math.floor(length/2.0);
+        let fourth = Math.floor(length/4.0);
+        let eighth = Math.floor(length/8.0);
+        let sixteenth = Math.floor(length/16.0);
+
+        let seq = [];
+        for (let i = 0; i < length; i++) {
+
+            if (i !== 0 && (
+                    (i % half === 0 && density[0] > Math.random()) ||
+                    (i % fourth === 0 && density[1] > Math.random()) ||
+                    (i % eighth === 0 && density[2] > Math.random()) ||
+                    (i % sixteenth === 0 && density[3] > Math.random())
+                )) {
+                seq.push(makeSnare());
+            } else {
+                seq.push(null);
+            }
+        }
+        return seq;
+
     }
 
     static getRandomEven(min, max) {
