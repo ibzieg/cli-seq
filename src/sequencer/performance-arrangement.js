@@ -247,6 +247,14 @@ class PerformanceArrangement extends Arrangement {
 
     /***
      *
+     * @param changes
+     */
+    setState(changes) {
+        this.state = Object.assign(state, changes);
+    }
+
+    /***
+     *
      */
     initialize() {
 
@@ -321,7 +329,7 @@ class PerformanceArrangement extends Arrangement {
 
         this.perc2 = new Sequencer({
             instrument: MidiInstrument.instruments[this.state.perc1.instrument],
-            rate: 4,
+            rate: this.state.perc2.rate,
             data: this.state.data.perc2[0][0],
             play: (index, event) => {
                 this.rainmakerTrigger();
@@ -332,7 +340,7 @@ class PerformanceArrangement extends Arrangement {
 
         this.perc3 = new Sequencer({
             instrument: MidiInstrument.instruments[this.state.perc3.instrument],
-            rate: 4,
+            rate: this.state.perc3.rate,
             data: this.state.data.perc2[0][0],
             play: (index, event) => {
                 this.perc2.play(event[0], event[1], event[2]);
@@ -342,7 +350,7 @@ class PerformanceArrangement extends Arrangement {
 
         this.perc4 = new Sequencer({
             instrument: MidiInstrument.instruments[this.state.perc4.instrument],
-            rate: 4,
+            rate: this.state.perc4.rate,
             data: this.state.data.perc2[0][0],
             play: (index, event) => {
                 this.perc2.play(event[0], event[1], event[2]);

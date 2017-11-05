@@ -23,9 +23,17 @@ class MidiInstrument {
         let noteOnStatus = 144 + this.channel-1;
         let noteOffStatus = 128 + this.channel-1;
 
-        this._midiDevice.output.sendMessage([noteOnStatus, note, velocity]);
+        try {
+            this._midiDevice.output.sendMessage([noteOnStatus, note, velocity]);
+        } catch (ex) {
+            Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+        }
         setTimeout(() => {
-            this._midiDevice.output.sendMessage([noteOffStatus, note, velocity]);
+            try {
+                this._midiDevice.output.sendMessage([noteOffStatus, note, velocity]);
+            } catch (ex) {
+                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+            }
         }, duration);
     }
 

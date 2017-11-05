@@ -24,7 +24,10 @@ class Sequencer {
     }
 
     set rate(value) {
-        this._options.rate = value;
+        this.setState({
+            rate: value
+        });
+        //this._options.rate = value;
     }
 
     get chord() {
@@ -65,6 +68,13 @@ class Sequencer {
             this.initializeChord();
         }
         this.reset();
+    }
+
+    setState(changes) {
+        this._options = Object.assign(this._options, changes);
+        if (this._options.setState) {
+            this._options.setState(changes);
+        }
     }
 
     initializeChord() {

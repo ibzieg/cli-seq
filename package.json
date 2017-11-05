@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodejs src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "rsync -avh ./ pi@192.168.0.147:code/cli-seq-dev/ --exclude node_modules"
   },
