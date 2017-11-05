@@ -1,3 +1,28 @@
+/******************************************************************************
+ * Copyright 2017 Ian Bertram Zieg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
+
+/******************************************************************************
+ * Parts of the code below are adapted from the Europi project.
+ * The Europi Minion module allows output of Eurorack-compatible voltages using
+ * the Raspberry Pi's I2C bus.
+ *
+ * https://github.com/AudioMorphology/Europi
+ * Author: Richard R. Goodwin (richard.goodwin@morphology.co.uk)
+ ******************************************************************************/
+
 const raspi = require("raspi");
 
 let isDeviceRaspberryPi = true;
@@ -125,10 +150,10 @@ class EuropiMinion {
      */
     GatePulse(channel, /*milliseconds*/ duration) {
         this.GateOutput(channel, HIGH);
-        if (this._timers[channel]) {
-            clearTimeout(this._timers[channel]);
-            this._timers[channel] = null;
-        }
+        // if (this._timers[channel]) {
+        //     clearTimeout(this._timers[channel]);
+        //     this._timers[channel] = null;
+        // }
 
         this._timers[channel] = setTimeout(() => {
             this.GateOutput(channel, LOW);

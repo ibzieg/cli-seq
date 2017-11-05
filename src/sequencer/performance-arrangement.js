@@ -1,3 +1,18 @@
+/******************************************************************************
+ * Copyright 2017 Ian Bertram Zieg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 
 const Arrangement = require("./arrangement");
 const SequenceData = require("./sequence-data");
@@ -285,6 +300,12 @@ class PerformanceArrangement extends Arrangement {
             data: this.state.data.mono2[0][0],
             play: (index, event) => {
                 this.minion.CVOutput(1, event[3]);
+                let duration = event[2];
+                if (typeof duration === "string") {
+                    duration = this.poly1.getNoteDuration(duration);
+                }
+                //let duration = this.poly1.getNoteDuration("4n");
+                this.morphageneTrigger(duration);
                 this.mono2.play(event[0], event[1], event[2]);
             },
             end: () => {
@@ -373,7 +394,22 @@ class PerformanceArrangement extends Arrangement {
         this.randomGateState = 0;
 
     }
-    
+
+    morphageneTrigger(duration) {
+        if (!this.morphageneState) {
+            let pulseInterval = Math.round(duration * 0.75);
+            let pulseLength = Math.round(duration / 8);
+            this.morphageneState = 1;
+            this.minion.GatePulse(2, pulseLength); // start recording
+            setTimeout(() => {
+                this.minion.GatePulse(2, pulseLength); // stop recording
+            }, pulseInterval);
+            setTimeout(() => {
+                this.morphageneState = 0;
+            }, pulseInterval + pulseLength*2);
+        }
+    }
+
     rainmakerTrigger() {
         this.ticksSinceRainmaker = 0;
 
@@ -429,7 +465,6 @@ class PerformanceArrangement extends Arrangement {
             let n = p[r];
 
             this.randomGateLength = ppq / (n / 4);
-            //Log.debug(this.randomGateLength);
             this.randomGateTicks = 0;
         }
 
@@ -456,7 +491,7 @@ class PerformanceArrangement extends Arrangement {
      *
      */
     postClock() {
-        this.randomGateClock();
+        //this.randomGateClock();
         this.rainmakerClock();
     }
 
@@ -595,7 +630,7 @@ class PerformanceArrangement extends Arrangement {
             () => SequenceData.getRandomNote(
                 this.state.mono2.low,
                 this.state.mono2.high,
-                Math.random() > 0.25 ? "16n" : "8n"),
+                Math.random() > 0.25 ? "8n" : "4n"),
             this.state.mono2);
     }
 
