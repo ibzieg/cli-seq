@@ -19,13 +19,17 @@ const PerformanceArrangement = require("../performance-arrangement");
 
 class Arrangement13 extends PerformanceArrangement {
 
+    get title() {
+        return "perf13 - three euclideans";
+    }
+
     get defaultState() {
         let state = {
             stageCount: 3,
             stageIndex: 0,
             evolveAmount: 0.5,
             enableEvolve: false,
-            rainmakerCVTickCountMin: 48,
+            rainmakerCVTickCountMin: 36,
             rainmakerCVTickCountMax: 48,
             data: {
                 mono1: [[]],
@@ -116,9 +120,6 @@ class Arrangement13 extends PerformanceArrangement {
         return state;
     }
 
-    get title() {
-        return "perf13 - three euclideans";
-    }
 
 }
 module.exports = Arrangement13;

@@ -281,6 +281,8 @@ class PerformanceArrangement extends Arrangement {
         this.mono1 = new Sequencer({
             instrument: MidiInstrument.instruments[this.state.mono1.instrument],
             chord: this.state.chord,
+            arpMode: this.state.mono1.arpMode,
+            arpRate: this.state.mono1.arpRate,
             rate: this.state.mono1.rate,
             data: this.state.data.mono1[0][0],
             play: (index, event) => {

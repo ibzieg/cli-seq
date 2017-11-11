@@ -43,9 +43,29 @@ class Sequencer {
         this.setState({
             rate: value
         });
-        //this._options.rate = value;
     }
 
+    get arpRate() {
+        return this._options.arpRate;
+    }
+
+    set arpRate(value) {
+        this.setState({
+            arpRate: value
+        });
+    }
+
+    get arpMode() {
+        return (typeof this._options.arpMode !== "string" || this._options.arpMode === "none") ?
+            undefined : this._options.arpMode;
+    }
+
+    set arpMode(value) {
+        this.setState({
+            arpMode: value
+        });
+    }
+    
     get chord() {
         return this._options.chord;
     }
@@ -104,19 +124,49 @@ class Sequencer {
         this._options.bpm = bpm;
 
         let clockMod = Math.floor(this._options.partsPerQuant / this.rate);
+        let arpMod = Math.floor(this._options.partsPerQuant / this.arpRate);
+
         if (this._count % clockMod === 0) {
             let event = this.data[this._index];
             if (event && event.length && this.enabled) {
+
+                this._lastEvent = [...event];
+                // Set up arpeggiator for this note event
+                if (this.harmonizer) {
+                    this._arpSeq = this.generateArpSeq(event[0]);
+
+                } else {
+                    this._arpSeq = [];
+                }
+                this._arpIndex = 1;
+
+                if (this.arpMode) {
+                    // override duration with arp note length
+                    event[2] = this.getArpNoteDuration();
+                }
+
+                // Execute the event
                 if (typeof this._options.play === "function") {
                     this._options.play(this._index, event);
                 } else {
                     this.play(event[0], event[1], event[2]);
                 }
+                
+                
             }
             this._index = (this._index+1) % this.data.length;
             if (this._index === 0) {
                 this._signalEnd = true;
             }
+        } else if (this.arpMode && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
+            //Log.debug(`playing arp mode '${this.arpMode}' at rate=${this.arpRate}`);
+            let note = this._arpSeq[this._arpIndex];
+            let velocity = this._lastEvent[1];
+            let duration = this.getArpNoteDuration();
+            this.play(note, velocity, duration);
+
+            this._arpIndex = (this._arpIndex+1) % this._arpSeq.length;
+
         }
         this._count++;
     }
@@ -130,6 +180,9 @@ class Sequencer {
         }
     }
 
+    getArpNoteDuration() {
+        return this.getNoteDuration(this.arpRate * 2) + "n";
+    }
 
     getNoteDuration(quant) {
         quant = parseInt(quant);
@@ -176,6 +229,35 @@ class Sequencer {
         }
     }
 
+    generateArpSeq(note) {
+        let superchord = this.harmonizer.makeChord(note+12);
+        let chord = this.harmonizer.makeChord(note);
+        let subchord = this.harmonizer.makeChord(note-12);
+        switch (this.arpMode) {
+            case "up1":
+                return [chord[0], chord[1]];
+            case "up2":
+                return [chord[0], chord[1], chord[2]];
+            case "up3":
+                return [chord[0], chord[1], chord[2], superchord[0]];
+            case "up2alt":
+                return [chord[0], chord[2], chord[1]];
+            case "up3alt":
+                return [chord[0], chord[2], chord[1], superchord[0]];
+            case "down1":
+                return [chord[0], subchord[2]];
+            case "down2":
+                return [chord[0], subchord[2], subchord[1]];
+            case "down3":
+                return [chord[0], subchord[2], subchord[1], subchord[0]];
+            case "down2alt":
+                return [chord[0], subchord[1], subchord[2]];
+            case "down3alt":
+                return [chord[0], subchord[1], subchord[2], subchord[0]];
+        }
+    }
+
+
     start() {
         if (typeof this._options.start === "function") {
             this._options.start();
@@ -196,6 +278,7 @@ class Sequencer {
             this._options.reset();
         }
         this._index = 0;
+        this._arpIndex = 0;
     }
 
 }

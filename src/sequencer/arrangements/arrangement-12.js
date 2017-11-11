@@ -16,7 +16,12 @@
 
 const PerformanceArrangement = require("../performance-arrangement");
 
-class Arrangement16 extends PerformanceArrangement {
+
+class Arrangement12 extends PerformanceArrangement {
+
+    get title() {
+        return "perf12 - 3s arp";
+    }
 
     get defaultState() {
         let state = {
@@ -24,8 +29,8 @@ class Arrangement16 extends PerformanceArrangement {
             stageIndex: 0,
             evolveAmount: 0.5,
             enableEvolve: false,
-            rainmakerCVTickCountMin: 12,
-            rainmakerCVTickCountMax: 36,
+            rainmakerCVTickCountMin: 48,
+            rainmakerCVTickCountMax: 48,
             data: {
                 mono1: [[]],
                 mono2: [[]],
@@ -42,8 +47,11 @@ class Arrangement16 extends PerformanceArrangement {
                 high: 64,
                 algorithm: "random",
                 density: 0.5,
-                min: 8,
-                max: 16,
+                min: 16,
+                max: 24,
+                arpMode: "up2",
+                arpRate: 8,
+
                 stages: [1, 2, 1]
             },
             mono2: {
@@ -51,15 +59,15 @@ class Arrangement16 extends PerformanceArrangement {
                 rate: 2,
                 low: 24,
                 high: 64,
-                algorithm: "random",
-                density: 0.5,
-                min: 8,
-                max: 16,
+                algorithm: "ryk",
+                density: 0.75,
+                min: 32,
+                max: 32,
                 stages: [1, 1, 2]
             },
             poly1: {
                 instrument: "Minilogue",
-                rate: 1,
+                rate: 4,
                 low: 36,
                 high: 72,
                 algorithm: "random",
@@ -73,44 +81,43 @@ class Arrangement16 extends PerformanceArrangement {
                 rate: 4,
                 algorithm: "perc",
                 density: 0.5,
-                min: 32,
-                max: 32,
-                stages: [2, 1, 2]
+                min: 16,
+                max: 16,
+                stages: [2, 1, 1]
             },
             perc2: {
                 instrument: "BSPDrum",
-                rate: 2,
+                rate: 8,
                 algorithm: "perc",
                 density: 0.5,
-                min: 16,
-                max: 16,
+                min: 32,
+                max: 32,
                 stages: [1, 1, 1]
             },
             perc3: {
                 instrument: "BSPDrum",
-                rate: 2,
-                algorithm: "perc",
-                density: 0.5,
-                min: 16,
-                max: 16,
+                rate: 8,
+                algorithm: "euclid",
+                density: 0.75,
+                n: 24,
+                kmin: 3,
+                kmax: 7,
                 stages: [0, 1, 1]
             },
             perc4: {
                 instrument: "BSPDrum",
                 rate: 4,
-                algorithm: "perc",
+                algorithm: "euclid",
                 density: 0.5,
-                min: 16,
-                max: 16,
+                n: 32,
+                kmin: 3,
+                kmax: 9,
                 stages: [1, 0, 1]
             }
         };
         return state;
     }
 
-    get title() {
-        return "perf_16_x3";
-    }
 
 }
-module.exports = Arrangement16;
+module.exports = Arrangement12;
