@@ -16,6 +16,8 @@
 
 let MidiDevice = require("./midi-device");
 
+const Log = require("./../display/log-util");
+
 class MidiInstrument {
 
     static get instruments() {
@@ -39,18 +41,20 @@ class MidiInstrument {
         let noteOnStatus = 144 + this.channel-1;
         let noteOffStatus = 128 + this.channel-1;
 
-        try {
-            this._midiDevice.output.sendMessage([noteOnStatus, note, velocity]);
-        } catch (ex) {
-            Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-        }
-        setTimeout(() => {
+        if (this._midiDevice.outputStatus) {
             try {
-                this._midiDevice.output.sendMessage([noteOffStatus, note, velocity]);
+                this._midiDevice.output.sendMessage([noteOnStatus, note, velocity]);
             } catch (ex) {
                 Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
             }
-        }, duration);
+            setTimeout(() => {
+                try {
+                    this._midiDevice.output.sendMessage([noteOffStatus, note, velocity]);
+                } catch (ex) {
+                    Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+                }
+            }, duration);
+        }
     }
 
 }

@@ -52,6 +52,8 @@ class ArrangementManager {
             }
         });
 
+
+
     }
 
     initialize() {

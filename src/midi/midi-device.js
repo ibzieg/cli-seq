@@ -64,8 +64,16 @@ class MidiDevice {
         return this._inputPort;
     }
 
+    get inputStatus() {
+        return this._inputPortStatus;
+    }
+
     get output() {
         return this._outputPort;
+    }
+
+    get outputStatus() {
+        return this._outputPortStatus;
     }
 
     constructor(options) {
@@ -79,35 +87,46 @@ class MidiDevice {
 
     openInput() {
         let input = new midi.input();
+        let foundPort = false;
         let port;
         let portCount = input.getPortCount();
         for (let i = 0; i < portCount; i++) {
             let portName = input.getPortName(i);
             if (this.options.names.indexOf(portName) >= 0) {
                 port = input.openPort(i);
+                foundPort = true;
                 Log.success(`${portName}: Input port open`);
             }
         }
 
-        if (!port) {
-            Log.error(`No MIDI devices found matching ${this.options.names}`);
+        if (!foundPort) {
+            Log.error(`No Input MIDI Output devices found matching ${this.options.names}`);
         }
-
+        this._inputPortStatus = foundPort;
         this._inputPort = input;
+
     }
 
     openOutput() {
         let output = new midi.output();
         let port;
         let portCount = output.getPortCount();
+        let foundPort = false;
         for (let i = 0; i < portCount; i++) {
             let portName = output.getPortName(i);
             if (this.options.names.indexOf(portName) >= 0) {
                 port = output.openPort(i);
+                foundPort = true;
                 Log.success(`${portName}: Output port open`);
             }
         }
+        if (!foundPort) {
+            Log.error(`No MIDI Output devices found matching ${this.options.names}`);
+
+        }
+        this._outputPortStatus = foundPort;
         this._outputPort = output;
+
     }
 
 }

@@ -618,21 +618,27 @@ class PerformanceArrangement extends Arrangement {
 
     ////////////////////////////////////////////////////////////////
     getRandomMono1Data() {
-        return SequenceData.getSequence(
-            () => SequenceData.getRandomNote(
-                this.state.mono1.low,
-                this.state.mono1.high,
-                Math.random() > 0.25 ? "8n" : "4n"),
+        return SequenceData.getSequence(() => {
+                let nextNote = SequenceData.getRandomNote(
+                    this.state.mono1.low,
+                    this.state.mono1.high,
+                    Math.random() > 0.25 ? "8n" : "4n");
+                nextNote[1] = Math.round(Math.random()*127); // random velocity
+                return nextNote;
+            },
             this.state.mono1);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomMono2Data() {
-        return SequenceData.getSequence(
-            () => SequenceData.getRandomNote(
-                this.state.mono2.low,
-                this.state.mono2.high,
-                Math.random() > 0.25 ? "8n" : "4n"),
+        return SequenceData.getSequence(() => {
+                let nextNote = SequenceData.getRandomNote(
+                    this.state.mono2.low,
+                    this.state.mono2.high,
+                    Math.random() > 0.25 ? "8n" : "4n");
+                nextNote[1] = Math.round(Math.random()*127); // random velocity
+                return nextNote;
+            },
             this.state.mono2);
     }
 

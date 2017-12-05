@@ -46,8 +46,10 @@ class MidiController {
 
     initializeDevice(device) {
         this._midiDevice = MidiDevice.getInstance(device);
-        this._midiDevice.input.ignoreTypes(true, false, true);
-        this._midiDevice.input.on("message", this.receiveMessage.bind(this));
+        if (this._midiDevice.input) {
+            this._midiDevice.input.ignoreTypes(true, false, true);
+            this._midiDevice.input.on("message", this.receiveMessage.bind(this));
+        }
     }
 
     initializeInternalClock() {
