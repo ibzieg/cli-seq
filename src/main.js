@@ -50,6 +50,9 @@ arrangmentThread.on('message', (message) => {
             case "controllerMap":
                 Screen.Instance.setControllerMap(message.map);
                 break;
+            case "deviceState":
+                Screen.Instance.updateDeviceState(message.deviceState);
+                break;
             case "arrangement":
                 Screen.Instance.arrangement(message.title);
                 break;

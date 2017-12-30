@@ -20,6 +20,7 @@ const Sequencer = require("./sequencer");
 const ChordHarmonizer = require("./chord-harmonizer");
 const Log = require("../display/log-util");
 
+const MidiController = require("../midi/midi-controller");
 const EuropiMinion = require("../europi/europi-minion");
 const MidiInstrument = require("../midi/midi-instrument");
 
@@ -27,9 +28,12 @@ class PerformanceArrangement extends Arrangement {
 
     get defaultState() {
         let state = {
+            selectedDeviceIndex: 0,
             stageCount: 3,
             stageIndex: 0,
             evolveAmount: 0.5,
+            noteSet: [64],
+            noteSetSize: 15,
             enableEvolve: false,
             rainmakerCVTickCountMin: 12,
             rainmakerCVTickCountMax: 36,
@@ -103,8 +107,8 @@ class PerformanceArrangement extends Arrangement {
                 stages: [1, 0, 1]
             }
         };
-        state.chord = this.getRandomScale();
-        state.data = this.getRandomStageData();
+        // state.chord = this.getRandomScale();
+        // state.data = this.getRandomStageData();
         return state;
     }
 
@@ -116,6 +120,70 @@ class PerformanceArrangement extends Arrangement {
         let stage = this.state.stageIndex % this.state.stageCount;
         let iteration = Math.floor(this.state.stageIndex / this.state.stageCount);
         return `${this.title} {green-fg}${iteration}.${stage}{/}`;
+    }
+
+    get deviceState() {
+        if (this.mono1) {
+            return [
+                { name: this.state.mono1.instrument, enabled: this.mono1.enabled, selected: this.state.selectedDeviceIndex === 0, connected: this.mono1.instrument.isConnected },
+                { name: this.state.mono2.instrument, enabled: this.mono2.enabled, selected: this.state.selectedDeviceIndex === 1, connected: this.mono2.instrument.isConnected },
+                { name: this.state.poly1.instrument, enabled: this.poly1.enabled, selected: this.state.selectedDeviceIndex === 2, connected: this.poly1.instrument.isConnected },
+                { name: "-",                         enabled: false,              selected: this.state.selectedDeviceIndex === 3, connected: false },
+                { name: this.state.perc1.instrument, enabled: this.perc1.enabled, selected: this.state.selectedDeviceIndex === 4, connected: this.perc1.instrument.isConnected },
+                { name: this.state.perc2.instrument, enabled: this.perc2.enabled, selected: this.state.selectedDeviceIndex === 5, connected: this.perc2.instrument.isConnected },
+                { name: this.state.perc3.instrument, enabled: this.perc3.enabled, selected: this.state.selectedDeviceIndex === 6, connected: this.perc3.instrument.isConnected },
+                { name: this.state.perc4.instrument, enabled: this.perc4.enabled, selected: this.state.selectedDeviceIndex === 7, connected: this.perc4.instrument.isConnected },
+            ];
+        } else {
+            return [
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false },
+                { name: "-", enabled: false, selected: false, connected: false }
+            ]
+        }
+    }
+
+    updateDeviceState() {
+        process.send({
+            type: "deviceState",
+            deviceState:this.deviceState
+        });
+    }
+
+    updateControllerState() {
+        let seqState = this.state[this.getSeqName(this.state.selectedDeviceIndex)];
+        if (!seqState) {
+            seqState = {};
+        }
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob1, seqState.rate);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob2, seqState.low);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob3, seqState.high);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob4, Math.round(seqState.density*100)+"%");
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob5, seqState.min);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob6, seqState.max);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob7, seqState.stages);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob8, seqState.algorithm);
+
+
+
+    }
+
+    getSeqName(index) {
+        switch (index) {
+            case 0: return "mono1";
+            case 1: return "mono2";
+            case 2: return "poly1";
+            case 3: return "poly2";
+            case 4: return "perc1";
+            case 5: return "perc2";
+            case 6: return "perc3";
+            case 7: return "perc4";
+        }
     }
 
     createControllerMap() {
@@ -197,6 +265,93 @@ class PerformanceArrangement extends Arrangement {
             },
             controlChange: {
                 Knob1: {
+                    label: "Rate",
+                    callback: (data) => {
+                        let rate = data % 8;
+                        let seq = this[this.getSeqName(this.state.selectedDeviceIndex)];
+                        if (seq) {
+                            seq.rate = rate;
+                        }
+                        return rate;
+                    }
+                },
+
+                Knob2: {
+                    label: "LowNote",
+                    callback: (data) => {
+                        let note = data;
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].low = note;
+                        return note;
+                    }
+                },
+
+
+                Knob3: {
+                    label: "HighNote",
+                    callback: (data) => {
+                        let note = data;
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].high = note;
+                        return note;
+                    }
+                },
+
+
+                Knob4: {
+                    label: "Density",
+                    callback: (data) => {
+                        let d = data / 128;
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].density = d;
+                        return Math.round(d*100)+"%";
+                    }
+                },
+
+
+                Knob5: {
+                    label: "MinLength",
+                    callback: (data) => {
+                        let m = data;
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].min = m;
+                        return m;
+                    }
+                },
+
+
+                Knob6: {
+                    label: "MaxLength",
+                    callback: (data) => {
+                        let m = data;
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].max = m;
+                        return m;
+                    }
+                },
+
+
+                Knob7: {
+                    label: "Stages",
+                    callback: (data) => {
+                        let i = data % 8;
+                        let s = [];
+                        s[0] = (i & 0b001) > 0 ? 2 : 1;
+                        s[1] = (i & 0b010) > 0 ? 2 : 1;
+                        s[2] = (i & 0b100) > 0 ? 2 : 1;
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].stages = s;
+                        return s.toString();
+                    }
+                },
+
+
+                Knob8: {
+                    label: "Algorithm",
+                    callback: (data) => {
+                        let algos = ["euclid", "perc","quarterbeat","halfbeat", "ryk", "random"];
+                        let i = data % algos.length;
+                        let algo = algos[i];
+                        this.state[this.getSeqName(this.state.selectedDeviceIndex)].algorithm = algo;
+                        return algo;
+                    }
+                },
+
+                Knob9: {
                     label: "Root",
                     callback: (data) => {
                         let chord = Object.assign(this.state.chord, {
@@ -206,7 +361,7 @@ class PerformanceArrangement extends Arrangement {
                         return chord.root;
                     }
                 },
-                Knob2: {
+                Knob10: {
                     label: "Mode",
                     callback: (data) => {
                         let chord = Object.assign(this.state.chord, {
@@ -216,23 +371,7 @@ class PerformanceArrangement extends Arrangement {
                         return chord.mode;
                     }
                 },
-                Knob3: {
-                    label: "CV C",
-                    callback: (data) => {
-                        let value = data/127.0;
-                        this.minion.CVOutput(2, value);
-                        return value;
-                    }
-                },
-                Knob4: {
-                    label: "CV D",
-                    callback: (data) => {
-                        let value = data/127.0;
-                        this.minion.CVOutput(4, value);
-                        return value;
-                    }
-                },
-                Knob6: {
+                Knob11: {
                     label: "Evo Amt",
                     callback: (data) => {
                         let pct = data / 127.0;
@@ -240,7 +379,7 @@ class PerformanceArrangement extends Arrangement {
                         return Math.round(100*this.state.evolveAmount)+'%';
                     }
                 },
-                Knob7: {
+                Knob12: {
                     label: "RMTicMin",
                     callback: (data) => {
                         let pct = data / 127.0;
@@ -248,12 +387,21 @@ class PerformanceArrangement extends Arrangement {
                         return this.state.rainmakerCVTickCountMin;
                     }
                 },
-                Knob8: {
+                Knob13: {
                     label: "RMTicMax",
                     callback: (data) => {
                         let pct = data / 127.0;
                         this.state.rainmakerCVTickCountMax = Math.floor(pct * 128);
                         return this.state.rainmakerCVTickCountMax;
+                    }
+                },
+                Knob16: {
+                    label: "Device",
+                    callback: (data) => {
+                        this.state.selectedDeviceIndex = data % 8;
+                        this.updateDeviceState();
+                        this.updateControllerState();
+                        return `${this.state.selectedDeviceIndex}:${this.deviceState[this.state.selectedDeviceIndex].name}`;
                     }
                 }
             }
@@ -275,6 +423,10 @@ class PerformanceArrangement extends Arrangement {
 
         if (!this.state.chord) {
             this.state.chord = this.getRandomScale();
+        }
+
+        if (!this.state.data) {
+            this.state.data = this.getRandomStageData();
         }
 
         ////////////////////////////////////////////////////////////////
@@ -566,6 +718,11 @@ class PerformanceArrangement extends Arrangement {
      * @returns {{mono1: Array, mono2: Array, poly1: Array, perc1: Array, perc2: Array, perc3: Array, perc4: Array}}
      */
     getRandomStageData() {
+
+        // Each
+
+        this.state.noteSet = SequenceData.generateNoteSet(36, 60, this.state.noteSetSize);
+
         return {
             mono1: this.generateStages(this.getRandomMono1Data.bind(this), this.state.mono1),
             mono2: this.generateStages(this.getRandomMono2Data.bind(this), this.state.mono2),
@@ -575,6 +732,16 @@ class PerformanceArrangement extends Arrangement {
             perc3: this.generateStages(this.getRandomPerc3DrumData.bind(this), this.state.perc3),
             perc4: this.generateStages(this.getRandomPerc4DrumData.bind(this), this.state.perc4)
         }
+    }
+
+    generateRandomNoteFromSet() {
+        let i = Math.round(Math.random() * (this.state.noteSet.length-1));
+        return [
+            this.state.noteSet[i], // note
+            Math.round(Math.random()*127), // velocity
+            "8n", // duration
+            Math.random() // cv
+        ]
     }
 
     /***
@@ -619,12 +786,13 @@ class PerformanceArrangement extends Arrangement {
     ////////////////////////////////////////////////////////////////
     getRandomMono1Data() {
         return SequenceData.getSequence(() => {
-                let nextNote = SequenceData.getRandomNote(
+                /*let nextNote = SequenceData.getRandomNote(
                     this.state.mono1.low,
                     this.state.mono1.high,
                     Math.random() > 0.25 ? "8n" : "4n");
                 nextNote[1] = Math.round(Math.random()*127); // random velocity
-                return nextNote;
+                return nextNote;*/
+                return this.generateRandomNoteFromSet();
             },
             this.state.mono1);
     }
@@ -632,23 +800,26 @@ class PerformanceArrangement extends Arrangement {
     ////////////////////////////////////////////////////////////////
     getRandomMono2Data() {
         return SequenceData.getSequence(() => {
-                let nextNote = SequenceData.getRandomNote(
+ /*               let nextNote = SequenceData.getRandomNote(
                     this.state.mono2.low,
                     this.state.mono2.high,
                     Math.random() > 0.25 ? "8n" : "4n");
                 nextNote[1] = Math.round(Math.random()*127); // random velocity
-                return nextNote;
+                return nextNote;*/
+                return this.generateRandomNoteFromSet()
             },
             this.state.mono2);
     }
 
     ////////////////////////////////////////////////////////////////
     getRandomPoly1Data() {
-        return SequenceData.getSequence(
-            () => SequenceData.getRandomNote(
+        return SequenceData.getSequence(() => {
+/*            return SequenceData.getRandomNote(
                 this.state.poly1.low,
                 this.state.poly1.high,
-                "4n"),
+                "4n");*/
+                return this.generateRandomNoteFromSet();
+            },
             this.state.poly1);
     }
 

@@ -16,6 +16,17 @@
 
 class SequenceData {
 
+    static generateNoteSet(min, max, size) {
+        let notes = [];
+        while (notes.length < size) {
+            let note = Math.floor(min+Math.random()*(max-min+1));
+            if (notes.indexOf(note) < 0) {
+                notes.push(note);
+            }
+        }
+        return notes;
+    }
+
     /***
      *
      * @returns {Array}

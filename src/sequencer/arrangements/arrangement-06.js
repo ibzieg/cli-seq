@@ -16,9 +16,9 @@
 
 const PerformanceArrangement = require("../performance-arrangement");
 
-class Arrangement04 extends PerformanceArrangement {
+class Arrangement06 extends PerformanceArrangement {
     get title() {
-        return "Performance 04";
+        return "Performance 06";
     }
 }
-module.exports = Arrangement04;
+module.exports = Arrangement06;

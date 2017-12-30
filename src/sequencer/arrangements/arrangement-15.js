@@ -25,6 +25,8 @@ class Arrangement15 extends PerformanceArrangement {
             stageIndex: 0,
             evolveAmount: 0.5,
             enableEvolve: false,
+            noteSet: [64],
+            noteSetSize: 15,
             rainmakerCVTickCountMin: 12,
             rainmakerCVTickCountMax: 36,
             data: {

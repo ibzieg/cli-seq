@@ -112,6 +112,7 @@ class ArrangementManager {
         this.activeArrangement = this.arrangements[index];
         this.activeArrangement.registerController(this.controller);
         this.activeArrangement.updateTitle();
+        this.activeArrangement.updateDeviceState();
         Log.music(`${colors.blue(`Playing arrangement ${index}:`)} ${this.activeArrangement.title}`);
 
         process.send({

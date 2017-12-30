@@ -25,19 +25,25 @@ const layout = {
         left: 0,
         top: 0,
         width: SCREEN_WIDTH,
-        height: 10
+        height: 3
     },
-    controller: {
+    deviceSelect: {
         left: 0,
         top: 2,
         width: SCREEN_WIDTH,
-        height: 13
+        height: 5
+    },
+    controller: {
+        left: 0,
+        top: 6,
+        width: SCREEN_WIDTH,
+        height: 12
     },
     logBox: {
-        top: 13,
+        top: 17,
         left: 0,
         width: SCREEN_WIDTH,
-        height: 15
+        height: 11
     },
     inputBox: {
         top: 27,
@@ -123,6 +129,36 @@ class Screen {
         this.arrangementText = blessed.text({
             parent: this.statusBar
         });
+
+        this.deviceSelect = blessed.box(Object.assign({
+            scrollable: true,
+            tags: true,
+            // label: "Controller",
+            border: {
+                type: 'bg',
+                fg: '#ff0000',
+                bg: '#00ff00'
+
+            },
+            style: {
+                fg: 'white',
+                border: {
+                    fg: '#f0f0f0'
+                }
+            }
+        }, layout.deviceSelect));
+        this._screen.append(this.deviceSelect);
+
+        let deviceNames = ["mono1", "mono2", "poly1", "poly2", "perc1", "perc2", "perc3", "perc4"];
+
+        this.deviceDisplays = [];
+        for (let i = 0; i < 8; i++) {
+            this.deviceDisplays.push(this.createDeviceDisplay({
+                name: deviceNames[i],
+                left: (i%8)*12,
+                top: 0
+            }));
+        }
 
         this.controllerBox = blessed.box(Object.assign({
             scrollable: true,
@@ -253,11 +289,16 @@ class Screen {
             this._state.commandHistory.push(value);
             this._state.commandHistoryIndex = this._state.commandHistory.length;
         });
+/*        this.commandInput.on('click',  (data) => {
+            this.commandInput.focus();
+        });*/
 
 
 
 
         this._screen.render();
+
+
     }
 
     createControllerDisplay(options) {
@@ -288,12 +329,66 @@ class Screen {
         });
     }
 
+
+    createDeviceDisplay(options) {
+        //return new blessed.progressbar({
+        return new blessed.box({
+            parent: this.deviceSelect,
+            height: 3,
+            width: 13,
+            top: options.top,
+            left: options.left,
+            // label: options.label,
+            content: options.name,
+            filled: 0,
+            tags: true,
+
+            fg: '#ff0000',
+            bg: '#00ff00',
+            border: {
+                type: 'none',
+                fg: 'white',
+            },
+            style: {
+                bar: {
+                    fg: '#ffa501',
+                    bg: '#ff170a'
+                }
+            }
+
+        });
+    }
+
     log(text) {
             // this._state.logLines.push(text);
             // this.logBox.setContent(this._state.logLines.join('\n'));
         this.logBox.insertBottom(text);
-            this._screen.render();
-            this.logBox.setScrollPerc(100); 
+        this.logBox.setScrollPerc(100);
+        this._screen.render();
+
+    }
+
+    updateDeviceState(deviceState) {
+        for (let i = 0; i < 8; i++) {
+            let device = deviceState[i];
+            let statusColor = `{green-fg}`;
+            if (!device.connected) {
+                statusColor = `{red-fg}`;
+            } else if (!device.enabled) {
+                statusColor = `{yellow-fg}`;
+            }
+
+            let text = `${statusColor}${device.name.substring(0,8)}{/}`;
+
+            if (device.selected) {
+                text = `[${text}]`;
+            } else {
+                text = ` ${text} `;
+            }
+
+            this.deviceDisplays[i].setContent(text);
+        }
+
     }
 
     updateControllerLabel(element, ctrl) {
@@ -328,7 +423,7 @@ class Screen {
     }
 
     renderStatusBar() {
-        let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`
+        let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`;
         this.statusBarText.setContent(text);
         this._screen.render();
     }

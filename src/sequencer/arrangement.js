@@ -49,11 +49,19 @@ class Arrangement {
         this.state = this.defaultState;
         this.loadState().then(() => {
             Log.success(`Loaded state from '${this.filename}'.`);
-            this.initialize();
+            try {
+                this.initialize();
+            } catch (error) {
+                console.log(error);
+            }
         }).catch((error) => {
             //Log.warning(`Failed to load state from '${this.filename}': ${error}. Using default state instead.`);
             //Log.warning(`Failed to load state from '${this.filename}'.`);
-            this.initialize();
+            try {
+                this.initialize();
+            } catch (error) {
+                console.log(error);
+            }
         });
     }
 
@@ -84,7 +92,7 @@ class Arrangement {
                 } else {
                     try {
                         let newState = JSON.parse(text);
-                        this.state = Object.assign({}, this.state, newState);
+                        this.state = Object.assign(this.state, newState);
                         resolve();
                     } catch (ex) {
                         reject(ex);
@@ -108,10 +116,45 @@ class Arrangement {
         }
     }
 
+    updateControllerPad(d1, d2) {
+        process.send({
+            type: "controller",
+            status: 144,
+            d1: d1,
+            d2: d2
+        });
+    }
+
+    updateControllerKnob(d1, d2) {
+        process.send({
+            type: "controller",
+            status: 176,
+            d1: d1,
+            d2: d2
+        });
+    }
+
     updateTitle() {
         process.send({
             type: "arrangement",
             title: `{blue-fg}[${this._context.index}:{/} ${this.screenTitle}{blue-fg}]{/}`
+        });
+    }
+
+    updateDeviceState() {
+        process.send({
+            type: "deviceState",
+            deviceState: [
+                { name: "1", enabled: true, selected: true },
+                { name: "2", enabled: true, selected: false },
+                { name: "3", enabled: true, selected: false },
+                { name: "4", enabled: true, selected: false },
+                { name: "5", enabled: true, selected: false },
+                { name: "6", enabled: true, selected: false },
+                { name: "7", enabled: true, selected: false },
+                { name: "8", enabled: true, selected: false },
+            ]
+
         });
     }
 

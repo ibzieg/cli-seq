@@ -32,6 +32,10 @@ class MidiInstrument {
         return this._options.channel;
     }
 
+    get isConnected() {
+        return this._midiDevice.outputStatus;
+    }
+
     constructor(options) {
         this._options = options;
         this._midiDevice = MidiDevice.getInstance(options.device);

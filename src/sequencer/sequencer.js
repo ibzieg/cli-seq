@@ -81,7 +81,9 @@ class Sequencer {
     }
 
     set enabled(value) {
-        this._options.enabled = value;
+        this.setState({
+            enabled: value
+        });
     }
 
     get harmonizer() {
