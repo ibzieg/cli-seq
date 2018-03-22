@@ -33,10 +33,7 @@ Screen.create({
 });
 
 const arrangmentThread = fork('./src/sequencer/arrangement-thread.js');
-/*
-process.stderr.on('data', (chunk) => {
-    Screen.Instance.log(`${colors.red("\u2717")} [stderr] ${chunk.toString().substring(0,64)}`);
-});*/
+
 
 arrangmentThread.on('message', (message) => {
     try {

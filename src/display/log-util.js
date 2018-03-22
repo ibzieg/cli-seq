@@ -30,8 +30,8 @@ class Console {
                 console.log(`${colors.green("\u2717")} ${error}`);
             }
         }
-/*        if (Screen.Instance) {
-            Screen.Instance.log(text);
+/*        if (Screen.instance) {
+            Screen.instance.log(text);
         } else {
             console.log(text);
         }*/

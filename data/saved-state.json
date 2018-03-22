@@ -1,0 +1,7766 @@
+{
+ "selectedPerformance": 0,
+ "performances": [
+  {
+   "name": "ian 1",
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "B",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "selectedTrack": 0,
+   "selectedPart": 0,
+   "parts": [
+    {
+     "options": {
+      "root": "A",
+      "mode": "V",
+      "minNote": 48,
+      "maxNote": 64,
+      "noteSetSize": 4,
+      "resentEvent": ""
+     },
+     "tracks": [
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      },
+      {
+       "rate": 1,
+       "octave": 0,
+       "length": 16,
+       "steps": 4,
+       "patternType": "random",
+       "sequenceType": "graph",
+       "arp": "none",
+       "arpRate": 2,
+       "enabled": true,
+       "arpLoop": true,
+       "probability": true,
+       "sequenceData": [
+        0
+       ],
+       "patternData": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+       ]
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    },
+    {
+     "options": {},
+     "tracks": [
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      },
+      {
+       "sequenceData": [],
+       "patternData": []
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
