@@ -23,7 +23,7 @@ const Store = require("./store");
 class Sequencer {
 
     get state() {
-        return Store.instance.performancePart.tracks[this.props.index];
+        return Store.instance.scene.tracks[this.props.index];
     }
 
     get midiDevice() {

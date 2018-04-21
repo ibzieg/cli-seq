@@ -28,9 +28,9 @@ const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename)
  *         {
  *             name: string (arrangement name)
  *             selectedTrack: number (0-7 index)
- *             selectedPart: number (0-7 index)
- *             parts: [
- *                 ... (each arrangement has 8 parts, with parts[0] being the primary)
+ *             selectedScene: number (0-7 index)
+ *             scenes: [
+ *                 ... (each arrangement has 8 scenes, with scenes[0] being the primary)
  *                 {
  *                     options: {
  *                         root: string (root note)
@@ -94,14 +94,14 @@ const PERFORMANCE13_NAME = "Performance 14";
 const PERFORMANCE14_NAME = "Performance 15";
 const PERFORMANCE15_NAME = "Performance 16";
 
-const PART0_NAME = "Part 1";
-const PART1_NAME = "Part 2";
-const PART2_NAME = "Part 3";
-const PART3_NAME = "Part 4";
-const PART4_NAME = "Part 5";
-const PART5_NAME = "Part 6";
-const PART6_NAME = "Part 7";
-const PART7_NAME = "Part 8";
+const SCENE0_NAME = "Scene 1";
+const SCENE1_NAME = "Scene 2";
+const SCENE2_NAME = "Scene 3";
+const SCENE3_NAME = "Scene 4";
+const SCENE4_NAME = "Scene 5";
+const SCENE5_NAME = "Scene 6";
+const SCENE6_NAME = "Scene 7";
+const SCENE7_NAME = "Scene 8";
 
 const TRACK0_DEFAULT_NAME = "mono1";
 const TRACK1_DEFAULT_NAME = "mono2";
@@ -167,22 +167,22 @@ class Store {
     /***
      *
      * @param name
-     * @returns {{name: *, selectedTrack: number, parts: [*,*,*,*,*,*,*,*]}}
+     * @returns {{name: *, selectedTrack: number, scenes: [*,*,*,*,*,*,*,*]}}
      */
     static getDefaultPerformance(name) {
         return {
             name: name,
             selectedTrack: 0,
-            selectedPart: 0,
-            parts: [
-                Store.getDefaultPerformancePart(Store.PART0_NAME),
-                Store.getDefaultPerformancePart(Store.PART1_NAME, true),
-                Store.getDefaultPerformancePart(Store.PART2_NAME, true),
-                Store.getDefaultPerformancePart(Store.PART3_NAME, true),
-                Store.getDefaultPerformancePart(Store.PART4_NAME, true),
-                Store.getDefaultPerformancePart(Store.PART5_NAME, true),
-                Store.getDefaultPerformancePart(Store.PART6_NAME, true),
-                Store.getDefaultPerformancePart(Store.PART7_NAME, true)
+            selectedScene: 0,
+            scenes: [
+                Store.getDefaultScene(Store.PART0_NAME),
+                Store.getDefaultScene(Store.PART1_NAME, true),
+                Store.getDefaultScene(Store.PART2_NAME, true),
+                Store.getDefaultScene(Store.PART3_NAME, true),
+                Store.getDefaultScene(Store.PART4_NAME, true),
+                Store.getDefaultScene(Store.PART5_NAME, true),
+                Store.getDefaultScene(Store.PART6_NAME, true),
+                Store.getDefaultScene(Store.PART7_NAME, true)
             ]
         }
     }
@@ -197,12 +197,12 @@ class Store {
         if (!destination) {
             destination = {};
         }
-        if (!destination.parts) {
-            destination.parts = [];
+        if (!destination.scenes) {
+            destination.scenes = [];
         }
-        let p = Object.assign({}, source, destination, { parts: [] });
+        let p = Object.assign({}, source, destination, { scenes: [] });
         for (let i = 0; i < 8; i++) {
-            p.parts[i] = Store.mergePerformancePart(source.parts[i], destination.parts[i]);
+            p.scenes[i] = Store.mergeScene(source.scenes[i], destination.scenes[i]);
         }
         return p;
     }
@@ -213,9 +213,9 @@ class Store {
      * @param isEmpty
      * @returns {{name: *, options: {root: string, mode: string, minNote: number, maxNote: number, noteSetSize: number, resentEvent: string}, tracks: [*,*,*,*,*,*,*,*]}}
      */
-    static getDefaultPerformancePart(name, isEmpty) {
+    static getDefaultScene(name, isEmpty) {
         let p = {
-            options: Store.getDefaultPerformancePartOptions(isEmpty),
+            options: Store.getDefaultSceneOptions(isEmpty),
             tracks: [
                 Store.getDefaultTrackState(Store.TRACK0_DEFAULT_NAME, Store.TRACK0_DEFAULT_INSTRUMENT, isEmpty),
                 Store.getDefaultTrackState(Store.TRACK1_DEFAULT_NAME, Store.TRACK1_DEFAULT_INSTRUMENT, isEmpty),
@@ -241,7 +241,7 @@ class Store {
      * @param destination
      * @returns {*}
      */
-    static mergePerformancePart(source, destination) {
+    static mergeScene(source, destination) {
         if (!destination) {
             destination = {};
         }
@@ -249,7 +249,7 @@ class Store {
             destination.tracks = [];
         }
         let state = Object.assign({}, source, destination);
-        state.options = Store.mergePerformancePartOptions(source.options, destination.options),
+        state.options = Store.mergeSceneOptions(source.options, destination.options),
         state.tracks = [
             Store.mergeTrackState(source.tracks[0], destination.tracks[0]),
             Store.mergeTrackState(source.tracks[1], destination.tracks[1]),
@@ -268,7 +268,7 @@ class Store {
      * @param isEmpty
      * @returns {{root: string, mode: string, minNote: number, maxNote: number, noteSetSize: number, resentEvent: string}}
      */
-    static getDefaultPerformancePartOptions(isEmpty) {
+    static getDefaultSceneOptions(isEmpty) {
         return isEmpty ? {} : {
             root: "A", // TODO get a default from enum
             mode: "V", // TODO get a default from enum
@@ -286,7 +286,7 @@ class Store {
      * @param destination
      * @returns {*}
      */
-    static mergePerformancePartOptions(source, destination) {
+    static mergeSceneOptions(source, destination) {
         return Object.assign({}, source, destination);
     }
 
@@ -395,11 +395,11 @@ class Store {
      *
      * @returns {*}
      */
-    get performancePart() {
+    get scene() {
         let perf = this.performance;
-        let state = perf.parts[0];
-        for (let i = 1; i <= perf.selectedPart; i++) {
-            state = Store.mergePerformancePart(state, perf.parts[i]);
+        let state = perf.scenes[0];
+        for (let i = 1; i <= perf.selectedScene; i++) {
+            state = Store.mergeScene(state, perf.scenes[i]);
         }
         return state;
     }

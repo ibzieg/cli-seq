@@ -3,15 +3,15 @@ const path = require("path");
 
  store.create().then(() => {
 
-     console.log(`part=${store.instance.performance.selectedPart} rate=${store.instance.performancePart.tracks[0].rate}`);
-     store.instance.performance.selectedPart = 1;
-     console.log(`part=${store.instance.performance.selectedPart} rate=${store.instance.performancePart.tracks[0].rate}`);
-     store.instance.performance.selectedPart = 2;
-     console.log(`part=${store.instance.performance.selectedPart} rate=${store.instance.performancePart.tracks[0].rate}`);
-     store.instance.performance.selectedPart = 3;
-     console.log(`part=${store.instance.performance.selectedPart} rate=${store.instance.performancePart.tracks[0].rate}`);
-     store.instance.performance.selectedPart = 0;
-     console.log(`part=${store.instance.performance.selectedPart} rate=${store.instance.performancePart.tracks[0].rate}`);
+     console.log(`scene=${store.instance.performance.selectedScene} rate=${store.instance.scene.tracks[0].rate}`);
+     store.instance.performance.selectedScene = 1;
+     console.log(`scene=${store.instance.performance.selectedScene} rate=${store.instance.scene.tracks[0].rate}`);
+     store.instance.performance.selectedScene = 2;
+     console.log(`scene=${store.instance.performance.selectedScene} rate=${store.instance.scene.tracks[0].rate}`);
+     store.instance.performance.selectedScene = 3;
+     console.log(`scene=${store.instance.performance.selectedScene} rate=${store.instance.scene.tracks[0].rate}`);
+     store.instance.performance.selectedScene = 0;
+     console.log(`scene=${store.instance.performance.selectedScene} rate=${store.instance.scene.tracks[0].rate}`);
      store.instance.saveState();
  }).catch((error) => {
      console.log(error)
