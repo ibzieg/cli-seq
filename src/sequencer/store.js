@@ -27,7 +27,8 @@ const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename)
  *         ..., (there are 16 arrangements)
  *         {
  *             name: string (arrangement name)
- *             selectedDevice: number (0-7 device index)
+ *             selectedTrack: number (0-7 index)
+ *             selectedPart: number (0-7 index)
  *             parts: [
  *                 ... (each arrangement has 8 parts, with parts[0] being the primary)
  *                 {
@@ -301,6 +302,7 @@ class Store {
             name: voiceName,
             instrument: instrumentName,
 
+            partsPerQuant: 24,
             rate: 1,
             octave: 0,
             length: 16,
@@ -309,6 +311,13 @@ class Store {
             sequenceType: "graph",
             arp: "none",
             arpRate: 2,
+
+            loop: true, // reset count back to zero after end
+            note: null, // always play this note (e.g. drum machine mapping)
+
+            //TODO this will need a merge
+            constants: [], // always trigger event at these steps (e.g. always trigger Kick drum on first step)
+            follow: null, // reset this track every time the Follow track plays an event
 
             enabled: true,
             arpLoop: true,
@@ -372,6 +381,27 @@ class Store {
      */
     get state() {
         return this._state;
+    }
+
+    /***
+     *
+     * @returns {*}
+     */
+    get performance() {
+        return this.state.performances[this.state.selectedPerformance];
+    }
+
+    /***
+     *
+     * @returns {*}
+     */
+    get performancePart() {
+        let perf = this.performance;
+        let state = perf.parts[0];
+        for (let i = 1; i <= perf.selectedPart; i++) {
+            state = Store.mergePerformancePart(state, perf.parts[i]);
+        }
+        return state;
     }
 
     /***

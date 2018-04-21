@@ -17,9 +17,39 @@
 const fs = require("fs");
 const Log = require("../display/log-util");
 
-class Performance {
+class Track {
 
-    constructor() {
+    constructor(props) {
+        this.props = {
+            index: props.index
+        }
+    }
+
+    clock() {
+        // do all the sequencer things
+        // look up the midi instrument and send events
+        // the sequencer things will require helper methods
+    }
+
+    /***
+     * Generate sequence for playing the pattern data.
+     */
+    generateSequence() {
+        // generate sequence data
+    }
+
+    /***
+     * Generate a pattern of events based on selected pattern type
+     * @param index
+     */
+    generatePattern(index) {
+
+    }
+
+    /***
+     * Generate all patterns
+     */
+    generatePatterns() {
 
     }
 

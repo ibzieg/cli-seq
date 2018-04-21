@@ -230,6 +230,7 @@
      "options": {},
      "tracks": [
       {
+       "rate": 2,
        "sequenceData": [],
        "patternData": []
       },
@@ -267,6 +268,7 @@
      "options": {},
      "tracks": [
       {
+       "rate": 3,
        "sequenceData": [],
        "patternData": []
       },
@@ -304,6 +306,7 @@
      "options": {},
      "tracks": [
       {
+       "rate": 4,
        "sequenceData": [],
        "patternData": []
       },
@@ -341,6 +344,7 @@
      "options": {},
      "tracks": [
       {
+       "rate": 5,
        "sequenceData": [],
        "patternData": []
       },
@@ -489,7 +493,7 @@
   },
   {
    "selectedTrack": 0,
-   "selectedPart": 0,
+   "selectedPart": 1,
    "parts": [
     {
      "options": {
@@ -715,10 +719,12 @@
      "options": {},
      "tracks": [
       {
+       "rate": 2,
        "sequenceData": [],
        "patternData": []
       },
       {
+       "rate": 3,
        "sequenceData": [],
        "patternData": []
       },

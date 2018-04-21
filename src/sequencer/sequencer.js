@@ -16,121 +16,59 @@
 
 const MidiInstrument = require("./../midi/midi-instrument");
 const ChordHarmonizer = require("./chord-harmonizer");
+const ExternalDevices = require("../midi/external-devices");
+
+const Store = require("./store");
 
 class Sequencer {
 
-    get instrument() {
-        return this._instrument
+    get state() {
+        return Store.instance.performancePart.tracks[this.props.index];
     }
 
-    set instrument(value) {
-        this._instrument = new MidiInstrument(value);
+    get midiDevice() {
+        let instrument = ExternalDevices.instruments[this.state.instrument];
+        return MidiDevice.getInstance(instrument.device);
     }
 
-    set data(value) {
-        this._options.data = value;
+    get midiChannel() {
+        let instrument = ExternalDevices.instruments[this.state.instrument];
+        return instrument.channel;
     }
 
-    get data() {
-        return this._options.data;
-    }
-
-    get rate() {
-        return this._options.rate;
-    }
-
-    set rate(value) {
-        this.setState({
-            rate: value
-        });
-    }
-
-    get arpRate() {
-        return this._options.arpRate;
-    }
-
-    set arpRate(value) {
-        this.setState({
-            arpRate: value
-        });
-    }
-
-    get arpMode() {
-        return (typeof this._options.arpMode !== "string" || this._options.arpMode === "none") ?
-            undefined : this._options.arpMode;
-    }
-
-    set arpMode(value) {
-        this.setState({
-            arpMode: value
-        });
-    }
-    
-    get chord() {
-        return this._options.chord;
-    }
-
-    set chord(value) {
-        this._options.chord = value;
-        this.harmonizer.root = value.root;
-        this.harmonizer.mode = value.mode;
-    }
-
-    get enabled() {
-        return this._options.enabled === true;
-    }
-
-    set enabled(value) {
-        this.setState({
-            enabled: value
-        });
-    }
-
-    get harmonizer() {
+/*    get harmonizer() {
         return this._harmonizer;
-    }
+    }*/
 
-    constructor(options) {
-        this._options = Object.assign({
-            enabled: true
-        },options);
-        if (options.instrument) {
-            this._instrument = new MidiInstrument(options.instrument);
-        }
+    constructor(props) {
+        this.props = {
+            index: props.index,
+            play: props.play,
+            end: props.end
+        };
 
-
-        this._options.partsPerQuant = options.partsPerQuant ? options.partsPerQuant : 24;
-        this._options.rate = options.rate ? options.rate : 1;
-
-        if (this.chord) {
+/*        if (this.chord) {
             this.initializeChord();
-        }
+        }*/
         this.reset();
     }
 
-    setState(changes) {
-        this._options = Object.assign(this._options, changes);
-        if (this._options.setState) {
-            this._options.setState(changes);
-        }
-    }
-
-    initializeChord() {
+/*    initializeChord() {
         this._harmonizer = new ChordHarmonizer({
             root: this.chord.root,
             mode: this.chord.mode
         });
-    }
+    }*/
 
     clock(bpm) {
-        this._options.bpm = bpm;
+        this._bpm = bpm;
 
-        let clockMod = Math.floor(this._options.partsPerQuant / this.rate);
-        let arpMod = Math.floor(this._options.partsPerQuant / this.arpRate);
+        let clockMod = Math.floor(this.state.partsPerQuant / this.state.rate);
+        let arpMod = Math.floor(this.state.partsPerQuant / this.state.arpRate);
 
         if (this._count % clockMod === 0) {
             let event = this.data[this._index];
-            if (event && event.length && this.enabled) {
+            if (event && event.length && this.state.enabled) {
 
                 this._lastEvent = [...event];
                 // Set up arpeggiator for this note event
@@ -148,8 +86,8 @@ class Sequencer {
                 }
 
                 // Execute the event
-                if (typeof this._options.play === "function") {
-                    this._options.play(this._index, event);
+                if (typeof this.props.play === "function") {
+                    this.props.play(this._index, event);
                 } else {
                     this.play(event[0], event[1], event[2]);
                 }
@@ -160,7 +98,7 @@ class Sequencer {
             if (this._index === 0) {
                 this._signalEnd = true;
             }
-        } else if (this.arpMode && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
+        } else if (this.state.arpMode && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
             //Log.debug(`playing arp mode '${this.arpMode}' at rate=${this.arpRate}`);
             let note = this._arpSeq[this._arpIndex];
             let velocity = this._lastEvent[1];
@@ -175,8 +113,8 @@ class Sequencer {
 
     postClock() {
         if (this._signalEnd) {
-            if (this._options.end) {
-                this._options.end();
+            if (this.props.end) {
+                this.props.end();
             }
             this._signalEnd = false;
         }
@@ -190,8 +128,8 @@ class Sequencer {
         quant = parseInt(quant);
 
         const millisPerMin = 60000;
-        const ppq = this._options.partsPerQuant;
-        const bpm = this._options.bpm;
+        const ppq = this.state.partsPerQuant;
+        const bpm = this._bpm;
 
         let millisPerQuarter = millisPerMin / bpm;
         let duration = (4.0 / quant) * millisPerQuarter;
@@ -212,23 +150,24 @@ class Sequencer {
             duration = this.getNoteDuration(duration);
         }
 
-        if (this.instrument) {
+        if (this.midiDevice) {
             if (!this.harmonizer) {
-                this.instrument.play(note, velocity, duration);
+                this.midiDevice.play(this.midiChannel, note, velocity, duration);
             } else {
                 let chord = this.harmonizer.makeChord(note);
                 if (this.chord.first !== false) {
-                    this.instrument.play(chord[0], velocity, duration);
+                    this.midiDevice.play(this.midiChannel, chord[0], velocity, duration);
                 }
                 if (this.chord.third && chord[1]) {
-                    this.instrument.play(chord[1], velocity, duration);
+                    this.midiDevice.play(this.midiChannel, chord[1], velocity, duration);
                 }
                 if (this.chord.fifth && chord[2]) {
-                    this.instrument.play(chord[2], velocity, duration);
+                    this.midiDevice.play(this.midiChannel, chord[2], velocity, duration);
                 }
                 this.instrument.play(note, velocity, duration);
             }
         }
+
     }
 
     generateArpSeq(note) {

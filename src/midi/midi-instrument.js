@@ -75,7 +75,7 @@ const drumMap = [
     67
 ];
 
-const instruments = {
+/*const instruments = {
     BSPSeq1: {
         device: MidiDevice.devices.BeatStepPro,
         channel: 1
@@ -101,4 +101,4 @@ const instruments = {
         device: MidiDevice.devices.Midisport,
         channel: 7
     }
-};
+};*/

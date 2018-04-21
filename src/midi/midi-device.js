@@ -17,13 +17,21 @@
 const midi = require("midi");
 const colors = require("colors");
 const Log = require("./../display/log-util");
+const ExternalDevices = require("./external-devices");
 
 class MidiDevice {
 
+    /***
+     *
+     * @returns {{BeatStepPro: {names: [string,string,string,string], instance: null}, Minilogue: {names: [string,string,string], instance: null}, MOTU828x: {names: [string], instance: null}, Midisport: {names: [string,string], instance: null}}}
+     */
     static get devices() {
-        return devices;
+        return ExternalDevices.devices;
     }
 
+    /***
+     *
+     */
     static listOutputPorts() {
         let output = new midi.output();
         let portCount = output.getPortCount();
@@ -33,6 +41,9 @@ class MidiDevice {
         }
     }
 
+    /***
+     *
+     */
     static listInputPorts() {
         let input = new midi.input();
         let portCount = input.getPortCount();
@@ -42,49 +53,88 @@ class MidiDevice {
         }
     }
 
+
+    static _deviceInstances = [];
+    /***
+     *
+     * @param deviceOptions
+     * @returns {MidiDevice}
+     */
     static getInstance(deviceOptions) {
 
         for (let deviceKey of Object.keys(devices)) {
             let device = devices[deviceKey];
             if (device.names[0] === deviceOptions.names[0]) {
-                if (!(device.instance instanceof MidiDevice)) {
-                    device.instance = new MidiDevice(deviceOptions);
-                    device.instance.open();
+                let deviceInstance = MidiDevice._deviceInstances[deviceKey];
+                if (!(deviceInstance instanceof MidiDevice)) {
+                    deviceInstance = new MidiDevice(deviceOptions);
+                    deviceInstance.open();
+                    MidiDevice._deviceInstances[deviceKey] = deviceInstance;
                 }
-                return device.instance;
+                return deviceInstance;
             }
         }
     }
 
+    /***
+     *
+     * @returns {*}
+     */
     get options() {
         return this._options;
     }
 
+    /***
+     *
+     * @returns {*}
+     */
     get input() {
         return this._inputPort;
     }
 
+    /***
+     *
+     * @returns {boolean|*}
+     */
     get inputStatus() {
         return this._inputPortStatus;
     }
 
+    /***
+     *
+     * @returns {*}
+     */
     get output() {
         return this._outputPort;
     }
 
+    /**
+     *
+     * @returns {boolean|*}
+     */
     get outputStatus() {
         return this._outputPortStatus;
     }
 
+    /***
+     *
+     * @param options
+     */
     constructor(options) {
         this._options = options;
     }
 
+    /***
+     *
+     */
     open() {
         this.openInput();
         this.openOutput();
     }
 
+    /***
+     *
+     */
     openInput() {
         let input = new midi.input();
         let foundPort = false;
@@ -107,6 +157,9 @@ class MidiDevice {
 
     }
 
+    /***
+     *
+     */
     openOutput() {
         let output = new midi.output();
         let port;
@@ -129,10 +182,38 @@ class MidiDevice {
 
     }
 
+    /***
+     *
+     * @param channel
+     * @param note
+     * @param velocity
+     * @param duration
+     */
+    play(channel, note, velocity, duration) {
+        let noteOnStatus = 144 + channel-1;
+        let noteOffStatus = 128 + channel-1;
+
+        if (this.outputStatus) {
+            try {
+                this.output.sendMessage([noteOnStatus, note, velocity]);
+            } catch (ex) {
+                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+            }
+            setTimeout(() => {
+                try {
+                    this.output.sendMessage([noteOffStatus, note, velocity]);
+                } catch (ex) {
+                    Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+                }
+            }, duration);
+        }
+    }
+
 }
 module.exports = MidiDevice;
 
 
+/*
 let devices = {
     BeatStepPro: {
         names: [
@@ -160,4 +241,4 @@ let devices = {
             'USB Uno MIDI Interface 20:0'],
         instance: null
     }
-};
+};*/
