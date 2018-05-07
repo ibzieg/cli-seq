@@ -54,7 +54,7 @@ class MidiDevice {
     }
 
 
-    static _deviceInstances = [];
+    //static _deviceInstances = [];
     /***
      *
      * @param deviceOptions
@@ -62,8 +62,8 @@ class MidiDevice {
      */
     static getInstance(deviceOptions) {
 
-        for (let deviceKey of Object.keys(devices)) {
-            let device = devices[deviceKey];
+        for (let deviceKey of Object.keys(ExternalDevices.devices)) {
+            let device = ExternalDevices.devices[deviceKey];
             if (device.names[0] === deviceOptions.names[0]) {
                 let deviceInstance = MidiDevice._deviceInstances[deviceKey];
                 if (!(deviceInstance instanceof MidiDevice)) {
@@ -210,6 +210,9 @@ class MidiDevice {
     }
 
 }
+
+MidiDevice._deviceInstances = [];
+
 module.exports = MidiDevice;
 
 

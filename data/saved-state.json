@@ -21,8 +21,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -33,9 +33,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -44,6 +41,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -52,8 +52,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -64,9 +64,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -75,6 +72,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -83,8 +83,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -95,9 +95,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -106,6 +103,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -114,8 +114,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -126,9 +126,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -137,6 +134,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -145,8 +145,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -157,9 +157,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -168,6 +165,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -176,8 +176,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -188,9 +188,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -199,6 +196,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -207,8 +207,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -219,9 +219,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -230,6 +227,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -238,8 +238,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -250,9 +250,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -261,6 +258,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -268,263 +268,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "rate": 2,
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "rate": 3,
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "rate": 4,
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -549,8 +378,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -561,9 +390,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -572,6 +398,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -580,8 +409,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -592,9 +421,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -603,6 +429,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -611,8 +440,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -623,9 +452,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -634,6 +460,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -642,8 +471,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -654,9 +483,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -665,6 +491,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -673,8 +502,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -685,9 +514,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -696,6 +522,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -704,8 +533,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -716,9 +545,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -727,6 +553,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -735,8 +564,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -747,9 +576,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -758,6 +584,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -766,8 +595,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -778,9 +607,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -789,6 +615,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -796,260 +625,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -1074,8 +735,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1086,9 +747,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1097,6 +755,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1105,8 +766,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1117,9 +778,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1128,6 +786,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1136,8 +797,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1148,9 +809,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1159,6 +817,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1167,8 +828,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1179,9 +840,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1190,6 +848,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1198,8 +859,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1210,9 +871,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1221,6 +879,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1229,8 +890,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1241,9 +902,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1252,6 +910,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1260,8 +921,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1272,9 +933,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1283,6 +941,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1291,8 +952,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1303,9 +964,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1314,6 +972,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -1321,260 +982,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -1599,8 +1092,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1611,9 +1104,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1622,6 +1112,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1630,8 +1123,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1642,9 +1135,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1653,6 +1143,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1661,8 +1154,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1673,9 +1166,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1684,6 +1174,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1692,8 +1185,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1704,9 +1197,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1715,6 +1205,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1723,8 +1216,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1735,9 +1228,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1746,6 +1236,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1754,8 +1247,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1766,9 +1259,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1777,6 +1267,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1785,8 +1278,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1797,9 +1290,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1808,6 +1298,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -1816,8 +1309,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -1828,9 +1321,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -1839,6 +1329,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -1846,260 +1339,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -2124,8 +1449,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2136,9 +1461,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2147,6 +1469,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2155,8 +1480,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2167,9 +1492,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2178,6 +1500,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2186,8 +1511,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2198,9 +1523,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2209,6 +1531,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2217,8 +1542,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2229,9 +1554,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2240,6 +1562,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2248,8 +1573,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2260,9 +1585,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2271,6 +1593,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2279,8 +1604,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2291,9 +1616,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2302,6 +1624,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2310,8 +1635,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2322,9 +1647,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2333,6 +1655,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2341,8 +1666,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2353,9 +1678,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2364,6 +1686,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -2371,260 +1696,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -2649,8 +1806,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2661,9 +1818,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2672,6 +1826,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2680,8 +1837,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2692,9 +1849,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2703,6 +1857,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2711,8 +1868,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2723,9 +1880,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2734,6 +1888,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2742,8 +1899,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2754,9 +1911,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2765,6 +1919,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2773,8 +1930,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2785,9 +1942,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2796,6 +1950,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2804,8 +1961,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2816,9 +1973,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2827,6 +1981,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2835,8 +1992,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2847,9 +2004,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2858,6 +2012,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -2866,8 +2023,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -2878,9 +2035,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -2889,6 +2043,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -2896,260 +2053,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -3174,8 +2163,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3186,9 +2175,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3197,6 +2183,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3205,8 +2194,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3217,9 +2206,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3228,6 +2214,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3236,8 +2225,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3248,9 +2237,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3259,6 +2245,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3267,8 +2256,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3279,9 +2268,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3290,6 +2276,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3298,8 +2287,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3310,9 +2299,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3321,6 +2307,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3329,8 +2318,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3341,9 +2330,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3352,6 +2338,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3360,8 +2349,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3372,9 +2361,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3383,6 +2369,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3391,8 +2380,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3403,9 +2392,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3414,6 +2400,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -3421,260 +2410,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -3699,8 +2520,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3711,9 +2532,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3722,6 +2540,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3730,8 +2551,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3742,9 +2563,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3753,6 +2571,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3761,8 +2582,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3773,9 +2594,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3784,6 +2602,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3792,8 +2613,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3804,9 +2625,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3815,6 +2633,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3823,8 +2644,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3835,9 +2656,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3846,6 +2664,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3854,8 +2675,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3866,9 +2687,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3877,6 +2695,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3885,8 +2706,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3897,9 +2718,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3908,6 +2726,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -3916,8 +2737,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -3928,9 +2749,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -3939,6 +2757,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -3946,260 +2767,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -4224,8 +2877,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4236,9 +2889,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4247,6 +2897,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4255,8 +2908,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4267,9 +2920,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4278,6 +2928,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4286,8 +2939,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4298,9 +2951,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4309,6 +2959,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4317,8 +2970,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4329,9 +2982,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4340,6 +2990,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4348,8 +3001,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4360,9 +3013,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4371,6 +3021,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4379,8 +3032,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4391,9 +3044,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4402,6 +3052,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4410,8 +3063,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4422,9 +3075,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4433,6 +3083,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4441,8 +3094,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4453,9 +3106,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4464,6 +3114,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -4471,260 +3124,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -4749,8 +3234,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4761,9 +3246,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4772,6 +3254,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4780,8 +3265,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4792,9 +3277,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4803,6 +3285,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4811,8 +3296,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4823,9 +3308,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4834,6 +3316,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4842,8 +3327,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4854,9 +3339,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4865,6 +3347,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4873,8 +3358,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4885,9 +3370,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4896,6 +3378,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4904,8 +3389,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4916,9 +3401,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4927,6 +3409,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4935,8 +3420,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4947,9 +3432,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4958,6 +3440,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -4966,8 +3451,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -4978,9 +3463,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -4989,6 +3471,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -4996,260 +3481,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -5274,8 +3591,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5286,9 +3603,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5297,6 +3611,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5305,8 +3622,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5317,9 +3634,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5328,6 +3642,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5336,8 +3653,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5348,9 +3665,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5359,6 +3673,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5367,8 +3684,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5379,9 +3696,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5390,6 +3704,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5398,8 +3715,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5410,9 +3727,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5421,6 +3735,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5429,8 +3746,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5441,9 +3758,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5452,6 +3766,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5460,8 +3777,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5472,9 +3789,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5483,6 +3797,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5491,8 +3808,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5503,9 +3820,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5514,6 +3828,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -5521,260 +3838,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -5799,8 +3948,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5811,9 +3960,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5822,6 +3968,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5830,8 +3979,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5842,9 +3991,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5853,6 +3999,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5861,8 +4010,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5873,9 +4022,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5884,6 +4030,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5892,8 +4041,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5904,9 +4053,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5915,6 +4061,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5923,8 +4072,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5935,9 +4084,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5946,6 +4092,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5954,8 +4103,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5966,9 +4115,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -5977,6 +4123,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -5985,8 +4134,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -5997,9 +4146,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6008,6 +4154,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6016,8 +4165,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6028,9 +4177,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6039,6 +4185,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -6046,260 +4195,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -6324,8 +4305,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6336,9 +4317,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6347,6 +4325,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6355,8 +4336,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6367,9 +4348,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6378,6 +4356,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6386,8 +4367,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6398,9 +4379,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6409,6 +4387,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6417,8 +4398,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6429,9 +4410,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6440,6 +4418,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6448,8 +4429,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6460,9 +4441,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6471,6 +4449,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6479,8 +4460,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6491,9 +4472,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6502,6 +4480,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6510,8 +4491,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6522,9 +4503,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6533,6 +4511,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6541,8 +4522,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6553,9 +4534,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6564,6 +4542,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -6571,260 +4552,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -6849,8 +4662,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6861,9 +4674,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6872,6 +4682,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6880,8 +4693,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6892,9 +4705,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6903,6 +4713,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6911,8 +4724,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6923,9 +4736,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6934,6 +4744,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6942,8 +4755,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6954,9 +4767,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6965,6 +4775,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -6973,8 +4786,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -6985,9 +4798,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -6996,6 +4806,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7004,8 +4817,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7016,9 +4829,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7027,6 +4837,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7035,8 +4848,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7047,9 +4860,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7058,6 +4868,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7066,8 +4879,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7078,9 +4891,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7089,6 +4899,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -7096,260 +4909,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -7374,8 +5019,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7386,9 +5031,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7397,6 +5039,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7405,8 +5050,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7417,9 +5062,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7428,6 +5070,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7436,8 +5081,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7448,9 +5093,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7459,6 +5101,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7467,8 +5112,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7479,9 +5124,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7490,6 +5132,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7498,8 +5143,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7510,9 +5155,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7521,6 +5163,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7529,8 +5174,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7541,9 +5186,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7552,6 +5194,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7560,8 +5205,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7572,9 +5217,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7583,6 +5225,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7591,8 +5236,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7603,9 +5248,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7614,6 +5256,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -7621,260 +5266,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]
@@ -7899,8 +5376,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7911,9 +5388,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7922,6 +5396,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7930,8 +5407,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7942,9 +5419,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7953,6 +5427,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7961,8 +5438,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -7973,9 +5450,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -7984,6 +5458,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -7992,8 +5469,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -8004,9 +5481,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -8015,6 +5489,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -8023,8 +5500,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -8035,9 +5512,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -8046,6 +5520,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -8054,8 +5531,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -8066,9 +5543,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -8077,6 +5551,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -8085,8 +5562,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -8097,9 +5574,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -8108,6 +5582,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       },
       {
@@ -8116,8 +5593,8 @@
        "octave": 0,
        "length": 16,
        "steps": 4,
-       "patternType": "random",
-       "sequenceType": "graph",
+       "graphType": "linear",
+       "sequenceType": "random",
        "arp": "none",
        "arpRate": 2,
        "loop": true,
@@ -8128,9 +5605,6 @@
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
-        0
-       ],
-       "patternData": [
         [],
         [],
         [],
@@ -8139,6 +5613,9 @@
         [],
         [],
         []
+       ],
+       "graphData": [
+        0
        ]
       }
      ]
@@ -8146,260 +5623,92 @@
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     },
     {
      "options": {},
      "tracks": [
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      },
-      {
-       "sequenceData": [],
-       "patternData": []
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
      ]
     }
    ]

@@ -17,6 +17,10 @@
 const MidiInstrument = require("./../midi/midi-instrument");
 const ChordHarmonizer = require("./chord-harmonizer");
 const ExternalDevices = require("../midi/external-devices");
+const SequenceGraph = require("./sequence-graph");
+
+
+const Log = require("./../display/log-util");
 
 const Store = require("./store");
 
@@ -36,6 +40,13 @@ class Sequencer {
         return instrument.channel;
     }
 
+    /***
+     * Get the correct sequence based on the graph and graph counter
+     */
+    get data() {
+        return this.graph.sequence;
+    }
+
 /*    get harmonizer() {
         return this._harmonizer;
     }*/
@@ -46,6 +57,10 @@ class Sequencer {
             play: props.play,
             end: props.end
         };
+
+        this.graph = new  SequenceGraph({
+            index: props.index
+        });
 
 /*        if (this.chord) {
             this.initializeChord();
@@ -63,11 +78,17 @@ class Sequencer {
     clock(bpm) {
         this._bpm = bpm;
 
+        if (!this.state) {
+            let scene = Store.instance.scene;
+            Log.error(`state not defined! index=${this.props.index} tracks.length=${scene.tracks.length}`);
+            return;
+        }
+
         let clockMod = Math.floor(this.state.partsPerQuant / this.state.rate);
         let arpMod = Math.floor(this.state.partsPerQuant / this.state.arpRate);
 
         if (this._count % clockMod === 0) {
-            let event = this.data[this._index];
+            let event = this.data[this._index]; // TODO Scene sequence data
             if (event && event.length && this.state.enabled) {
 
                 this._lastEvent = [...event];
@@ -94,7 +115,7 @@ class Sequencer {
                 
                 
             }
-            this._index = (this._index+1) % this.data.length;
+            this._index = (this._index+1) % this.data.length; // TODO
             if (this._index === 0) {
                 this._signalEnd = true;
             }
@@ -114,6 +135,7 @@ class Sequencer {
     postClock() {
         if (this._signalEnd) {
             if (this.props.end) {
+                this.graph.clock();
                 this.props.end();
             }
             this._signalEnd = false;
@@ -145,6 +167,8 @@ class Sequencer {
      * @returns {void}
      */
     play(note, velocity, duration) {
+
+        // TODO implement track properties loop, note, constant, follow
 
         if (typeof duration === "string") {
             duration = this.getNoteDuration(duration);
@@ -200,26 +224,27 @@ class Sequencer {
 
 
     start() {
-        if (typeof this._options.start === "function") {
-            this._options.start();
+        if (typeof this.props.start === "function") {
+            this.props.start();
         }
         this.reset();
     }
 
     stop() {
-        if (typeof this._options.stop === "function") {
-            this._options.stop();
+        if (typeof this.props.stop === "function") {
+            this.props.stop();
         }
         this._count = 0;
         this.reset();
     }
 
     reset() {
-        if (typeof this._options.reset === "function") {
-            this._options.reset();
+        if (typeof this.props.reset === "function") {
+            this.props.reset();
         }
         this._index = 0;
         this._arpIndex = 0;
+        this.graph.reset();
     }
 
 }

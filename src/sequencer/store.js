@@ -52,15 +52,15 @@ const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename)
  *                             octave: number (offset)
  *                             length: number (n)
  *                             steps: number (k) where k <= n
- *                             pattern: string (generation algorithm)
- *                             progression: string (sequence progression type)
+ *                             sequenceType: string (generation algorithm)
+ *                             graphType: string (sequence progression type)
  *                             arp: string (arpeggiator pattern)
  *                             arpRate: number (necessary ?)
  *
  *                             // toggles & triggers
  *                             enabled: boolean
  *                             arpLoop: boolean
- *                             progression?: {} (trigger to randomize/generate. data to drive the progression type)
+ *                             graph: {} (trigger to randomize/generate. data to drive the graph type)
  *                             probability: boolean (if true, check prob of note event to play or ratchet)
  *
  *                             // data
@@ -124,6 +124,8 @@ const TRACK7_DEFAULT_INSTRUMENT = "BSPDrum";
 let _instance;
 
 class Store {
+
+
 
     /***
      *
@@ -295,7 +297,7 @@ class Store {
      * @param voiceName
      * @param instrumentName
      * @param isEmpty
-     * @returns {{name: *, instrument: *, rate: number, octave: number, length: number, steps: number, patternType: string, sequenceType: string, arp: string, arpRate: number, enabled: boolean, arpLoop: boolean, probability: boolean, sequenceData: [number], patternData: Array}}
+     * @returns {{name: *, instrument: *, rate: number, octave: number, length: number, steps: number, graphType: string, sequenceType: string, arp: string, arpRate: number, enabled: boolean, arpLoop: boolean, probability: boolean, sequenceData: [number], graphData: Array}}
      */
     static getDefaultTrackState(voiceName, instrumentName, isEmpty) {
         return isEmpty ? {} : {
@@ -307,23 +309,21 @@ class Store {
             octave: 0,
             length: 16,
             steps: 4,
-            patternType: "random",
-            sequenceType: "graph",
+            graphType: "linear",
+            sequenceType: "random",
             arp: "none",
             arpRate: 2,
 
             loop: true, // reset count back to zero after end
             note: null, // always play this note (e.g. drum machine mapping)
-
-            //TODO this will need a merge
             constants: [], // always trigger event at these steps (e.g. always trigger Kick drum on first step)
             follow: null, // reset this track every time the Follow track plays an event
 
             enabled: true,
             arpLoop: true,
             probability: true,
-            sequenceData: [0],
-            patternData: Array.apply(null, Array(8)).map(() => [])
+            sequenceData: Array.apply(null, Array(8)).map(() => []),
+            graphData: [0]
         }
     };
 
@@ -339,6 +339,14 @@ class Store {
         }
         let state = Object.assign({}, source, destination);
 
+        let constants = destination.constants;
+        if (!constants) {
+            constants = source.constants;
+            if (!constants) {
+                constants = [];
+            }
+        }
+        
         let sequenceData = destination.sequenceData;
         if (!sequenceData) {
             sequenceData = source.sequenceData;
@@ -347,19 +355,24 @@ class Store {
             }
         }
 
-        let patternData = destination.patternData;
-        if (!patternData) {
-            patternData = source.patternData;
-            if (!patternData) {
-                patternData = [];
+        let graphData = destination.graphData;
+        if (!graphData) {
+            graphData = source.graphData;
+            if (!graphData) {
+                graphData = [];
             }
         }
 
+        state.constants = constants.slice();
         state.sequenceData = sequenceData.slice();
-        state.patternData = patternData.slice();
+        state.graphData = graphData.slice();
         return state;
     }
 
+    /***
+     *
+      * @returns {*}
+     */
     static get instance() {
         return _instance;
     }
@@ -457,4 +470,9 @@ class Store {
     }
 
 }
+
+Store.PERFORMANCE_COUNT = 16;
+Store.TRACK_COUNT = 8;
+Store.SCENE_COUNT = 8;
+
 module.exports = Store;

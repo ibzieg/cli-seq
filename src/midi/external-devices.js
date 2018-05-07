@@ -37,6 +37,7 @@ const devices = {
     },
     Midisport: {
         names: [
+            'USB Uno MIDI Interface',
             'USB Uno MIDI Interface 28:0',
             'USB Uno MIDI Interface 20:0'],
     }

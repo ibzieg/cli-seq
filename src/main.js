@@ -21,21 +21,21 @@ const Screen = require("./display/screen");
 
 Screen.create({
     onExit: () => {
-        arrangmentThread.kill("SIGINT");
+        performanceThread.kill("SIGINT");
         return process.exit(0);
     },
     onCommandInput: (cmd) => {
-        arrangmentThread.send({
+        performanceThread.send({
             type: "command",
             script: cmd
         });
     }
 });
 
-const arrangmentThread = fork('./src/sequencer/arrangement-thread.js');
+const performanceThread = fork('./src/sequencer/performance-thread.js');
 
 
-arrangmentThread.on('message', (message) => {
+performanceThread.on('message', (message) => {
     try {
         switch (message.type) {
             case "log":

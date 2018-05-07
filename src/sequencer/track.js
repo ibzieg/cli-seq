@@ -16,41 +16,61 @@
 
 const fs = require("fs");
 const Log = require("../display/log-util");
+const Sequencer = require("./sequencer");
 
 class Track {
 
     constructor(props) {
         this.props = {
             index: props.index
-        }
+        };
+
+        this.sequencer = new Sequencer({
+            index: props.index
+        });
     }
 
-    clock() {
+    clock(bpm) {
         // do all the sequencer things
         // look up the midi instrument and send events
         // the sequencer things will require helper methods
+        this.sequencer.clock(bpm);
+    }
+
+    postClock() {
+        this.sequencer.postClock();
+    }
+
+    start() {
+        this.sequencer.start();
+    }
+
+    stop() {
+        this.sequencer.stop();
     }
 
     /***
-     * Generate sequence for playing the pattern data.
+     * Generate a sequence of events based on selected sequence type
+     * @param index
      */
-    generateSequence() {
+    generateSequenceData(index) {
         // generate sequence data
     }
 
     /***
-     * Generate a pattern of events based on selected pattern type
-     * @param index
+     * Generate data to drive the current graph type
      */
-    generatePattern(index) {
+    generateGraphData() {
 
     }
 
     /***
      * Generate all patterns
      */
-    generatePatterns() {
+    generateAllSequences() {
 
     }
 
 }
+
+module.exports = Track;

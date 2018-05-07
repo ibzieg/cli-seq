@@ -28,7 +28,7 @@ class MidiController {
     }*/
 
     constructor(options) {
-        this._sequencerMap = new Map();
+        // this._sequencerMap = new Map();
 
         this._options = options;
 
@@ -72,13 +72,13 @@ class MidiController {
 
     }
 
-    register(sequencer) {
+/*    register(sequencer) {
         this._sequencerMap.set(sequencer, null);
     }
 
     unregister(sequencer) {
         this._sequencerMap.delete(sequencer);
-    }
+    }*/
 
     receiveMessage(deltaTime, message) {
         let status = message[0];
@@ -142,45 +142,50 @@ class MidiController {
         this._lastClockTime = process.hrtime();
         let tickDuration = lastClockDur[0]/1000.0 + lastClockDur[1]/1000000.0;
         this.updateClock(tickDuration);
-        process.send({
+/*        process.send({
             type: "clock",
             tickDuration: tickDuration
-        });
+        });*/
 
-        for (let sequencer of this._sequencerMap.keys()) {
+/*        for (let sequencer of this._sequencerMap.keys()) {
             sequencer.clock(this._bpm);
         }
         for (let sequencer of this._sequencerMap.keys()) {
             sequencer.postClock();
+        }*/
+
+        if (this._options.clock) {
+            this._options.clock(this._bpm);
         }
+
         if (this._options.postClock) {
             this._options.postClock();
         }
     }
 
     start() {
-        for (let sequencer of this._sequencerMap.keys()) {
+/*        for (let sequencer of this._sequencerMap.keys()) {
             sequencer.start();
-        }
+        }*/
         if (this._options.start) {
             this._options.start();
         }
     }
 
     stop() {
-        for (let sequencer of this._sequencerMap.keys()) {
+/*        for (let sequencer of this._sequencerMap.keys()) {
             sequencer.stop();
-        }
+        }*/
         if (this._options.stop) {
             this._options.stop();
         }
     }
 
-    reset() {
+/*    reset() {
         for (let sequencer of this._sequencerMap.keys()) {
             sequencer.reset();
         }
-    }
+    }*/
 
 }
 

@@ -14,6 +14,8 @@
  * limitations under the License.
  ******************************************************************************/
 
+
+const Store = require("./store");
 const PerformanceArrangement = require("../performance-arrangement");
 
 
