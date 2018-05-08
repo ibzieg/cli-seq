@@ -18,7 +18,7 @@ const fs = require("fs");
 const path = require("path");
 const Log = require("../display/log-util");
 
-const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename),"..","data","saved-state.json");
+const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename),"..","..","data","saved-state.json");
 
 /***
  *
@@ -135,22 +135,22 @@ class Store {
         return {
             selectedPerformance: 0,
             performances: [
-                Store.getDefaultPerformance(Store.PERFORMANCE0_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE1_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE2_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE3_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE4_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE5_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE6_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE7_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE8_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE9_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE10_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE11_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE12_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE13_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE14_NAME),
-                Store.getDefaultPerformance(Store.PERFORMANCE15_NAME)
+                Store.getDefaultPerformance(PERFORMANCE0_NAME),
+                Store.getDefaultPerformance(PERFORMANCE1_NAME),
+                Store.getDefaultPerformance(PERFORMANCE2_NAME),
+                Store.getDefaultPerformance(PERFORMANCE3_NAME),
+                Store.getDefaultPerformance(PERFORMANCE4_NAME),
+                Store.getDefaultPerformance(PERFORMANCE5_NAME),
+                Store.getDefaultPerformance(PERFORMANCE6_NAME),
+                Store.getDefaultPerformance(PERFORMANCE7_NAME),
+                Store.getDefaultPerformance(PERFORMANCE8_NAME),
+                Store.getDefaultPerformance(PERFORMANCE9_NAME),
+                Store.getDefaultPerformance(PERFORMANCE10_NAME),
+                Store.getDefaultPerformance(PERFORMANCE11_NAME),
+                Store.getDefaultPerformance(PERFORMANCE12_NAME),
+                Store.getDefaultPerformance(PERFORMANCE13_NAME),
+                Store.getDefaultPerformance(PERFORMANCE14_NAME),
+                Store.getDefaultPerformance(PERFORMANCE15_NAME)
             ]
         }
     }
@@ -177,14 +177,14 @@ class Store {
             selectedTrack: 0,
             selectedScene: 0,
             scenes: [
-                Store.getDefaultScene(Store.PART0_NAME),
-                Store.getDefaultScene(Store.PART1_NAME, true),
-                Store.getDefaultScene(Store.PART2_NAME, true),
-                Store.getDefaultScene(Store.PART3_NAME, true),
-                Store.getDefaultScene(Store.PART4_NAME, true),
-                Store.getDefaultScene(Store.PART5_NAME, true),
-                Store.getDefaultScene(Store.PART6_NAME, true),
-                Store.getDefaultScene(Store.PART7_NAME, true)
+                Store.getDefaultScene(SCENE0_NAME),
+                Store.getDefaultScene(SCENE1_NAME, true),
+                Store.getDefaultScene(SCENE2_NAME, true),
+                Store.getDefaultScene(SCENE3_NAME, true),
+                Store.getDefaultScene(SCENE4_NAME, true),
+                Store.getDefaultScene(SCENE5_NAME, true),
+                Store.getDefaultScene(SCENE6_NAME, true),
+                Store.getDefaultScene(SCENE7_NAME, true)
             ]
         }
     }
@@ -219,14 +219,14 @@ class Store {
         let p = {
             options: Store.getDefaultSceneOptions(isEmpty),
             tracks: [
-                Store.getDefaultTrackState(Store.TRACK0_DEFAULT_NAME, Store.TRACK0_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK1_DEFAULT_NAME, Store.TRACK1_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK2_DEFAULT_NAME, Store.TRACK2_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK3_DEFAULT_NAME, Store.TRACK3_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK4_DEFAULT_NAME, Store.TRACK4_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK5_DEFAULT_NAME, Store.TRACK5_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK6_DEFAULT_NAME, Store.TRACK6_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(Store.TRACK7_DEFAULT_NAME, Store.TRACK7_DEFAULT_INSTRUMENT, isEmpty)
+                Store.getDefaultTrackState(TRACK0_DEFAULT_NAME, TRACK0_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK1_DEFAULT_NAME, TRACK1_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK2_DEFAULT_NAME, TRACK2_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK3_DEFAULT_NAME, TRACK3_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK4_DEFAULT_NAME, TRACK4_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK5_DEFAULT_NAME, TRACK5_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK6_DEFAULT_NAME, TRACK6_DEFAULT_INSTRUMENT, isEmpty),
+                Store.getDefaultTrackState(TRACK7_DEFAULT_NAME, TRACK7_DEFAULT_INSTRUMENT, isEmpty)
             ]
         };
 
@@ -315,9 +315,11 @@ class Store {
             arpRate: 2,
 
             loop: true, // reset count back to zero after end
+            follow: null, // reset this track every time the Follow track plays an event
+
             note: null, // always play this note (e.g. drum machine mapping)
             constants: [], // always trigger event at these steps (e.g. always trigger Kick drum on first step)
-            follow: null, // reset this track every time the Follow track plays an event
+
 
             enabled: true,
             arpLoop: true,
@@ -467,6 +469,14 @@ class Store {
                 resolve();
             }
         });
+    }
+
+    setProperty(key, value) {
+        this._state[key] = value;
+    }
+
+    setPerformanceProperty(key, value) {
+        this._state.performances[this.state.selectedPerformance][key] = value;
     }
 
 }

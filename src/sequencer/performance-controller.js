@@ -22,6 +22,8 @@ const colors = require("colors");
 
 const Performance = require("./performance");
 
+const Store = require("./store");
+
 class PerformanceController {
 
     get controllerMap() {
@@ -55,8 +57,6 @@ class PerformanceController {
             }
         });
 
-
-
     }
 
     initialize() {
@@ -84,7 +84,6 @@ class PerformanceController {
             }
         });
 
-
         let context = {
             minion: this.minion,
             controller: this.controller
@@ -93,6 +92,13 @@ class PerformanceController {
         this.performance = new Performance({
             context: context
         });
+
+        process.send({
+            type: "controllerMap",
+            map: this.controllerMap
+        });
+
+        this.performance.select(Store.instance.state.selectedPerformance);
 
     }
 

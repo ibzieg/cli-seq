@@ -149,7 +149,7 @@ class Screen {
         }, layout.deviceSelect));
         this._screen.append(this.deviceSelect);
 
-        let deviceNames = ["mono1", "mono2", "poly1", "poly2", "perc1", "perc2", "perc3", "perc4"];
+        let deviceNames = ["", "", "", "", "", "", "", ""];
 
         this.deviceDisplays = [];
         for (let i = 0; i < 8; i++) {
