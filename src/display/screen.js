@@ -256,6 +256,9 @@ class Screen {
         this.commandInput.focus();
         this.commandInput.on('keypress', (ch, key) => {
             //this.log(`keypress ${ch} ${JSON.stringify(key)}`);
+            if (key.name === "f4") {
+                this.log("pressed f4");
+            } else
             if (key.name === "up" || (key.ctrl && key.name === "p")) {
                 this._state.commandHistoryIndex = Math.max(this._state.commandHistoryIndex - 1, 0);
                 let cmd = this._state.commandHistory[this._state.commandHistoryIndex];
@@ -378,7 +381,8 @@ class Screen {
                 statusColor = `{yellow-fg}`;
             }
 
-            let text = `${statusColor}${device.name.substring(0,8)}{/}`;
+            let name = device.name ? device.name : "";
+            let text = `${statusColor}${name.substring(0,8)}{/}`;
 
             if (device.selected) {
                 text = `[${text}]`;
@@ -423,7 +427,8 @@ class Screen {
     }
 
     renderStatusBar() {
-        let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`;
+        // let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`;
+        let text = `${this._state.statusBar.title}`;
         this.statusBarText.setContent(text);
         this._screen.render();
     }

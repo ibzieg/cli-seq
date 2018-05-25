@@ -4,16 +4,23 @@
   {
    "name": "Performance 1",
    "selectedTrack": 0,
-   "selectedScene": 0,
+   "selectedScene": 4,
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -29,9 +36,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -62,9 +69,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -95,9 +102,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -128,9 +135,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -161,9 +168,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -194,9 +201,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -227,9 +234,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -260,9 +267,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -284,7 +291,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -329,7 +338,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -374,7 +385,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -419,7 +432,13 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": [
+       36,
+       84,
+       96
+      ]
+     },
      "tracks": [
       {
        "constants": [],
@@ -464,7 +483,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -509,7 +530,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -554,7 +577,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -607,12 +632,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -628,9 +660,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -661,9 +693,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -694,9 +726,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -727,9 +759,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -760,9 +792,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -793,9 +825,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -826,9 +858,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -859,9 +891,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -883,7 +915,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -928,7 +962,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -973,7 +1009,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1018,7 +1056,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1063,7 +1103,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1108,7 +1150,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1153,7 +1197,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1206,12 +1252,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -1227,9 +1280,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1260,9 +1313,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1293,9 +1346,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1326,9 +1379,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1359,9 +1412,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1392,9 +1445,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1425,9 +1478,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1458,9 +1511,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1482,7 +1535,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1527,7 +1582,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1572,7 +1629,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1617,7 +1676,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1662,7 +1723,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1707,7 +1770,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1752,7 +1817,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -1805,12 +1872,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -1826,9 +1900,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1859,9 +1933,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1892,9 +1966,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1925,9 +1999,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1958,9 +2032,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -1991,9 +2065,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2024,9 +2098,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2057,9 +2131,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2081,7 +2155,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2126,7 +2202,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2171,7 +2249,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2216,7 +2296,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2261,7 +2343,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2306,7 +2390,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2351,7 +2437,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2404,12 +2492,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -2425,9 +2520,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2458,9 +2553,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2491,9 +2586,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2524,9 +2619,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2557,9 +2652,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2590,9 +2685,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2623,9 +2718,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2656,9 +2751,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -2680,7 +2775,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2725,7 +2822,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2770,7 +2869,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2815,7 +2916,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2860,7 +2963,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2905,7 +3010,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -2950,7 +3057,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3003,12 +3112,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -3024,9 +3140,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3057,9 +3173,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3090,9 +3206,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3123,9 +3239,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3156,9 +3272,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3189,9 +3305,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3222,9 +3338,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3255,9 +3371,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3279,7 +3395,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3324,7 +3442,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3369,7 +3489,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3414,7 +3536,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3459,7 +3583,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3504,7 +3630,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3549,7 +3677,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3602,12 +3732,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -3623,9 +3760,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3656,9 +3793,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3689,9 +3826,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3722,9 +3859,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3755,9 +3892,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3788,9 +3925,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3821,9 +3958,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3854,9 +3991,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -3878,7 +4015,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3923,7 +4062,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -3968,7 +4109,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4013,7 +4156,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4058,7 +4203,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4103,7 +4250,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4148,7 +4297,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4201,12 +4352,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -4222,9 +4380,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4255,9 +4413,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4288,9 +4446,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4321,9 +4479,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4354,9 +4512,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4387,9 +4545,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4420,9 +4578,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4453,9 +4611,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4477,7 +4635,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4522,7 +4682,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4567,7 +4729,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4612,7 +4776,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4657,7 +4823,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4702,7 +4870,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4747,7 +4917,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -4800,12 +4972,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -4821,9 +5000,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4854,9 +5033,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4887,9 +5066,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4920,9 +5099,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4953,9 +5132,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -4986,9 +5165,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5019,9 +5198,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5052,9 +5231,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5076,7 +5255,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5121,7 +5302,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5166,7 +5349,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5211,7 +5396,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5256,7 +5443,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5301,7 +5490,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5346,7 +5537,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5399,12 +5592,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -5420,9 +5620,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5453,9 +5653,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5486,9 +5686,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5519,9 +5719,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5552,9 +5752,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5585,9 +5785,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5618,9 +5818,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5651,9 +5851,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -5675,7 +5875,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5720,7 +5922,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5765,7 +5969,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5810,7 +6016,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5855,7 +6063,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5900,7 +6110,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5945,7 +6157,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -5998,12 +6212,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -6019,9 +6240,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6052,9 +6273,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6085,9 +6306,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6118,9 +6339,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6151,9 +6372,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6184,9 +6405,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6217,9 +6438,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6250,9 +6471,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6274,7 +6495,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6319,7 +6542,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6364,7 +6589,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6409,7 +6636,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6454,7 +6683,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6499,7 +6730,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6544,7 +6777,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6597,12 +6832,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -6618,9 +6860,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6651,9 +6893,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6684,9 +6926,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6717,9 +6959,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6750,9 +6992,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6783,9 +7025,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6816,9 +7058,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6849,9 +7091,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -6873,7 +7115,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6918,7 +7162,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -6963,7 +7209,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7008,7 +7256,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7053,7 +7303,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7098,7 +7350,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7143,7 +7397,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7196,12 +7452,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -7217,9 +7480,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7250,9 +7513,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7283,9 +7546,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7316,9 +7579,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7349,9 +7612,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7382,9 +7645,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7415,9 +7678,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7448,9 +7711,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7472,7 +7735,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7517,7 +7782,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7562,7 +7829,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7607,7 +7876,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7652,7 +7923,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7697,7 +7970,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7742,7 +8017,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -7795,12 +8072,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -7816,9 +8100,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7849,9 +8133,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7882,9 +8166,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7915,9 +8199,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7948,9 +8232,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -7981,9 +8265,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8014,9 +8298,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8047,9 +8331,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8071,7 +8355,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8116,7 +8402,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8161,7 +8449,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8206,7 +8496,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8251,7 +8543,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8296,7 +8590,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8341,7 +8637,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8394,12 +8692,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -8415,9 +8720,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8448,9 +8753,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8481,9 +8786,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8514,9 +8819,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8547,9 +8852,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8580,9 +8885,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8613,9 +8918,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8646,9 +8951,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -8670,7 +8975,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8715,7 +9022,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8760,7 +9069,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8805,7 +9116,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8850,7 +9163,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8895,7 +9210,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8940,7 +9257,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -8993,12 +9312,19 @@
    "scenes": [
     {
      "options": {
-      "root": "A",
-      "mode": "V",
+      "root": "G",
+      "mode": "VI Aeolian (Nat. Minor)",
       "minNote": 48,
       "maxNote": 64,
-      "noteSetSize": 4,
-      "resentEvent": ""
+      "noteSetSize": 5,
+      "noteSet": [
+       48,
+       56,
+       62,
+       68,
+       76
+      ],
+      "resetEvent": 4
      },
      "tracks": [
       {
@@ -9014,9 +9340,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9047,9 +9373,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9080,9 +9406,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9113,9 +9439,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9146,9 +9472,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9179,9 +9505,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9212,9 +9538,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9245,9 +9571,9 @@
        "arp": "none",
        "arpRate": 2,
        "loop": true,
+       "follow": null,
        "note": null,
        "constants": [],
-       "follow": null,
        "enabled": true,
        "arpLoop": true,
        "probability": true,
@@ -9269,7 +9595,9 @@
      "name": "Scene 1"
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -9314,7 +9642,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -9359,7 +9689,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -9404,7 +9736,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -9449,7 +9783,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -9494,7 +9830,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],
@@ -9539,7 +9877,9 @@
      ]
     },
     {
-     "options": {},
+     "options": {
+      "noteSet": []
+     },
      "tracks": [
       {
        "constants": [],

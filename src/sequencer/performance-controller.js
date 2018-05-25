@@ -204,7 +204,9 @@ class PerformanceController {
                     case MidiController.BeatStepMap.Stage14: this.onClickStageButton(13,d2); break;
                     case MidiController.BeatStepMap.Stage15: this.onClickStageButton(14,d2); break;
                     case MidiController.BeatStepMap.Stage16: this.onClickStageButton(15,d2); break;
-
+                    default:
+                        Log.info(`unhandled cc=${d1} val=${d2}`);
+                        break;
                 }
                 break;
 

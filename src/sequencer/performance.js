@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-
 const fs = require("fs");
+
 const Log = require("../display/log-util");
 
+const MidiController = require("../midi/midi-controller");
+
+const ChordHarmonizer = require("./chord-harmonizer");
 const Store = require("./store");
+
 const Track = require("./track");
 
 class Performance {
-
-
 
     get state() {
         return Store.instance.performance;
@@ -131,118 +133,179 @@ class Performance {
                 Pad1: {
                     label: "Scene 1",
                     callback: (velocity) => {
-                        /* this.state.data.perc4 = this.evolveSequenceStages(this.state.data.perc4, this.state.evolveAmount, this.getRandomPerc4DrumData.bind(this));
-                       */ return "Evolve";
+                        this.selectScene(0);
+                        return "Scene 1";
                     }
                 },
                 Pad2: {
                     label: "Scene 2",
                     callback: (velocity) => {
-                        /*           this.state.enableEvolve = !this.state.enableEvolve;
-                        return this.state.enableEvolve ? "ON" : "OFF";*/
+                        this.selectScene(1);
                         return "Scene 2";
                     }
                 },
                 Pad3: {
                     label: "Scene 3",
                     callback: (velocity) => {
-                        /* this.state.data.perc4 = this.evolveSequenceStages(this.state.data.perc4, this.state.evolveAmount, this.getRandomPerc4DrumData.bind(this));
-                         */ return "Scene 3";
+                        this.selectScene(2);
+                        return "Scene 3";
                     }
                 },
                 Pad4: {
                     label: "Scene 4",
                     callback: (velocity) => {
-                        /*           this.state.enableEvolve = !this.state.enableEvolve;
-                         return this.state.enableEvolve ? "ON" : "OFF";*/
+                        this.selectScene(3);
                         return "Scene 4";
                     }
                 },
                 Pad5: {
                     label: "Scene 5",
                     callback: (velocity) => {
-                        /*           this.state.enableEvolve = !this.state.enableEvolve;
-                         return this.state.enableEvolve ? "ON" : "OFF";*/
+                        this.selectScene(4);
                         return "Scene 5";
                     }
                 },
                 Pad6: {
                     label: "Scene 6",
                     callback: (velocity) => {
-                        /*           this.state.enableEvolve = !this.state.enableEvolve;
-                         return this.state.enableEvolve ? "ON" : "OFF";*/
+                        this.selectScene(5);
                         return "Scene 6";
                     }
                 },
                 Pad7: {
                     label: "Scene 7",
                     callback: (velocity) => {
-                        /*           this.state.enableEvolve = !this.state.enableEvolve;
-                         return this.state.enableEvolve ? "ON" : "OFF";*/
+                        this.selectScene(6);
                         return "Scene 7";
                     }
                 },
                 Pad8: {
                     label: "Scene 8",
                     callback: (velocity) => {
-                        /*           this.state.enableEvolve = !this.state.enableEvolve;
-                         return this.state.enableEvolve ? "ON" : "OFF";*/
+                        this.selectScene(7);
                         return "Scene 8";
                     }
                 }
 
             },
             noteOff: {
+            Pad1: {
+                    label: "Scene 1",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 0) {
+                            return "Scene 1";
+                        }
+                    }
+                },
+                Pad2: {
+                    label: "Scene 2",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 1) {
+                            return "Scene 2";
+                        }
+                    }
+                },
+                Pad3: {
+                    label: "Scene 3",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 2) {
+                            return "Scene 3";
+                        }
+                    }
+                },
+                Pad4: {
+                    label: "Scene 4",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 3) {
+                            return "Scene 4";
+                        }
+                    }
+                },
+                Pad5: {
+                    label: "Scene 5",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 4) {
+                            return "Scene 5";
+                        }
+                    }
+                },
+                Pad6: {
+                    label: "Scene 6",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 5) {
+                            return "Scene 6";
+                        }
+                    }
+                },
+                Pad7: {
+                    label: "Scene 7",
+                    callback: (velocity) => {
+                        if (this.state.selectedScene === 6) {
+                            return "Scene 7";
+                        }
+                    }
+                },
+                Pad8: {
+                    label: "Scene 8",
+                    callback: (velocity) => {
+                        this.selectScene(7);
+                        return "Scene 8";
+                    }
+                }
             },
             controlChange: {
                 Knob1: {
                     label: "Rate",
                     callback: (data) => {
                         let rate = data % 8;
-                        /*              let seq = this[this.getSeqName(this.state.selectedDeviceIndex)];
-                        if (seq) {
-                            seq.rate = rate;
-                        }*/
-                        return rate;
+                        Store.instance.setTrackProperty("rate", rate);
+                        return rate.toString();
                     }
                 },
 
                 Knob2: {
                     label: "Octave",
                     callback: (data) => {
-                        let note = data;
-                        // this.state[this.getSeqName(this.state.selectedDeviceIndex)].low = note;
-                        return note;
+                        let options = [-3, -2, -1, 0, 1, 2, 3];
+                        let i = data % options.length;
+                        let octave = options[i];
+                        Store.instance.setTrackProperty("octave", octave);
+                        return octave.toString();
                     }
                 },
-
 
                 Knob3: {
                     label: "Length",
                     callback: (data) => {
-                        let note = data;
-                        // this.state[this.getSeqName(this.state.selectedDeviceIndex)].high = note;
-                        return note;
+                        let length = data;
+                        Store.instance.setTrackProperty("length", length);
+                        return length;
                     }
                 },
-
 
                 Knob4: {
                     label: "Steps",
                     callback: (data) => {
-                        let d = data / 128;
-                        //this.state[this.getSeqName(this.state.selectedDeviceIndex)].density = d;
-                        return Math.round(d*100)+"%";
+                        let steps = data;
+                        Store.instance.setTrackProperty("steps", steps);
+                        return steps;
                     }
                 },
 
-
                 Knob5: {
-                    label: "Pattern",
+                    label: "Sequence",
                     callback: (data) => {
-                        let m = data;
-                        //this.state[this.getSeqName(this.state.selectedDeviceIndex)].min = m;
-                        return m;
+                        let algos = [
+                            "euclid",
+                            "perc",
+                            "quarterbeat",
+                            "halfbeat",
+                            "ryk",
+                            "random" ];
+                        let i = data % algos.length;
+                        let algo = algos[i];
+                        Store.instance.setTrackProperty("sequenceType", algo);
+                        return algo;
                     }
                 },
 
@@ -250,9 +313,14 @@ class Performance {
                 Knob6: {
                     label: "Graph",
                     callback: (data) => {
-                        let m = data;
-                        //this.state[this.getSeqName(this.state.selectedDeviceIndex)].max = m;
-                        return m;
+                        let algos = [
+                            "linear",
+                            "markov",
+                            "evolve" ];
+                        let i = data % algos.length;
+                        let algo = algos[i];
+                        Store.instance.setTrackProperty("graphType", algo);
+                        return algo;
                     }
                 },
 
@@ -260,13 +328,22 @@ class Performance {
                 Knob7: {
                     label: "Arp",
                     callback: (data) => {
-                        let i = data % 8;
-                        let s = [];
-                        s[0] = (i & 0b001) > 0 ? 2 : 1;
-                        s[1] = (i & 0b010) > 0 ? 2 : 1;
-                        s[2] = (i & 0b100) > 0 ? 2 : 1;
-                        //this.state[this.getSeqName(this.state.selectedDeviceIndex)].stages = s;
-                        return s.toString();
+                        let arpTypes = [
+                            "none",
+                            "up1",
+                            "up2",
+                            "up3",
+                            "up2alt",
+                            "up3alt",
+                            "down1",
+                            "down2",
+                            "down3",
+                            "down2alt",
+                            "down3alt" ];
+                        let i = data % arpTypes.length;
+                        let type = arpTypes[i];
+                        Store.instance.setTrackProperty("arp", type);
+                        return type;
                     }
                 },
 
@@ -274,71 +351,55 @@ class Performance {
                 Knob8: {
                     label: "ArpRate",
                     callback: (data) => {
-                        let algos = ["euclid", "perc","quarterbeat","halfbeat", "ryk", "random"];
-                        let i = data % algos.length;
-                        let algo = algos[i];
-                        //this.state[this.getSeqName(this.state.selectedDeviceIndex)].algorithm = algo;
-                        return algo;
+                        let rate = data % 8;
+                        Store.instance.setTrackProperty("arpRate", rate);
+                        return rate.toString();
                     }
                 },
 
                 Knob9: {
                     label: "Root",
                     callback: (data) => {
-                        /*                 let chord = Object.assign(this.state.chord, {
-                            root: ChordHarmonizer.NoteNames[data % ChordHarmonizer.NoteNames.length]
-                        });
-                        this.setScale(chord);
-                        return chord.root;*/
-                        return "N";
+                        let note = ChordHarmonizer.NoteNames[data % ChordHarmonizer.NoteNames.length]
+                        Store.instance.setSceneProperty("root", note);
+                        return note;
                     }
                 },
                 Knob10: {
                     label: "Mode",
                     callback: (data) => {
-/*                        let chord = Object.assign(this.state.chord, {
-                            mode: ChordHarmonizer.ModeNames[data % ChordHarmonizer.ModeNames.length]
-                        });
-                        this.setScale(chord);
-                        return chord.mode;*/
-                        return "M";
+                        let mode = ChordHarmonizer.ModeNames[data % ChordHarmonizer.ModeNames.length]
+                        Store.instance.setSceneProperty("mode", mode);
+                        return mode;
                     }
                 },
                 Knob11: {
-                    label: "LowNote",
+                    label: "Min Note",
                     callback: (data) => {
-                        /*                       let pct = data / 127.0;
-                        this.state.evolveAmount = pct;
-                        return Math.round(100*this.state.evolveAmount)+'%';*/
-                        return 1;
+                        Store.instance.setSceneProperty("minNote", data);
+                        return data;
                     }
                 },
                 Knob12: {
-                    label: "HighNote",
+                    label: "Max Note",
                     callback: (data) => {
-                        // let pct = data / 127.0;
-                        // this.state.rainmakerCVTickCountMin = Math.floor(pct * 128);
-                        // return this.state.rainmakerCVTickCountMin;
-                        return 1;
+                        Store.instance.setSceneProperty("maxNote", data);
+                        return data;
                     }
                 },
                 Knob13: {
                     label: "Master",
                     callback: (data) => {
-                        // let pct = data / 127.0;
-                        // this.state.rainmakerCVTickCountMax = Math.floor(pct * 128);
-                        // return this.state.rainmakerCVTickCountMax;
-                        return 1;
+                        let i = data % Store.TRACK_COUNT;
+                        Store.instance.setSceneProperty("master", i);
+                        return Store.instance.scene.tracks[i].name;
                     }
                 },
                 Knob14: {
-                    label: "SetSize",
+                    label: "Set Size",
                     callback: (data) => {
-                        // this.state.selectedDeviceIndex = data % 8;
-                        // this.updateDeviceState();
-                        // this.updateControllerState();
-                        //return `${this.state.selectedDeviceIndex}:${this.deviceState[this.state.selectedDeviceIndex].name}`;
-                        return 1;
+                        Store.instance.setSceneProperty("noteSetSize", data);
+                        return data;
                     }
                 },
                 Knob15: {
@@ -354,15 +415,20 @@ class Performance {
                 Knob16: {
                     label: "Track",
                     callback: (data) => {
-                        // this.state.selectedDeviceIndex = data % 8;
-                        // this.updateDeviceState();
-                        // this.updateControllerState();
-                        //return `${this.state.selectedDeviceIndex}:${this.deviceState[this.state.selectedDeviceIndex].name}`;
-                        return 1;
+                        Store.instance.setPerformanceProperty("selectedTrack", data % 8);
+                        this.updateDisplay();
+                        let tracks = Store.instance.scene.tracks;
+                        return tracks[Store.instance.performance.selectedTrack].name;
                     }
                 }
             }
         }
+    }
+
+    selectScene(index) {
+        Store.instance.setPerformanceProperty("selectedScene", index);
+        Log.music(`Select scene ${index+1}`);
+        this.updateDisplay();
     }
 
     updateControllerPad(d1, d2) {
@@ -386,13 +452,13 @@ class Performance {
     updateTitle() {
         process.send({
             type: "arrangement",
-            title: `{blue-fg}[${Store.instance.state.selectedPerformance}:{/} ${this.state.name}{blue-fg}]{/}`
+            title: `{green-fg}[Performance ${Store.instance.state.selectedPerformance+1}:{/} ${this.state.name} {green-fg}Scene ${Store.instance.performance.selectedScene+1}{/}`
         });
     }
 
     updateDeviceState() {
         // TODO should be called TrackState ?
-        let tracks = this.state.scenes[this.state.selectedScene].tracks;
+        let tracks = Store.instance.scene.tracks;
 
         process.send({
             type: "deviceState",
@@ -410,26 +476,42 @@ class Performance {
         });
     }
 
-    updateAllKnobs() {
-        /*
-        let seqState = this.state[this.getSeqName(this.state.selectedDeviceIndex)];
-        if (!seqState) {
-            seqState = {};
-        }
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob1, seqState.rate);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob2, seqState.low);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob3, seqState.high);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob4, Math.round(seqState.density*100)+"%");
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob5, seqState.min);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob6, seqState.max);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob7, seqState.stages);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob8, seqState.algorithm);
-        */
+    updateAllPads() {
+        this.updateControllerPad(MidiController.BeatStepMap.Pad1, this.state.selectedScene === 0 ? "Scene 1" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad2, this.state.selectedScene === 1 ? "Scene 2" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad3, this.state.selectedScene === 2 ? "Scene 3" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad4, this.state.selectedScene === 3 ? "Scene 4" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad5, this.state.selectedScene === 4 ? "Scene 5" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad6, this.state.selectedScene === 5 ? "Scene 6" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad7, this.state.selectedScene === 6 ? "Scene 7" : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad8, this.state.selectedScene === 7 ? "Scene 8" : "");
+    }
 
+    updateAllKnobs() {
+
+        let trackState = Store.instance.scene.tracks[this.state.selectedTrack];
+
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob1, trackState.rate);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob2, trackState.octave);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob3, trackState.length);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob4, trackState.steps);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob5, trackState.sequenceType);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob6, trackState.graphType);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob7, trackState.arp);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob8, trackState.arpRate);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob9,  Store.instance.scene.options.root);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob10, Store.instance.scene.options.mode);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob11, Store.instance.scene.options.minNote);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob12, Store.instance.scene.options.maxNote);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob13, Store.instance.scene.tracks[Store.instance.scene.options.resetEvent].name);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob14, Store.instance.scene.options.noteSetSize);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob15, "");
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob16, Store.instance.scene.tracks[this.state.selectedTrack].name);
     }
 
     updateDisplay() {
         this.updateTitle();
+        this.updateAllPads();
         this.updateAllKnobs();
         this.updateDeviceState();
     }

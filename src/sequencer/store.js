@@ -125,7 +125,19 @@ let _instance;
 
 class Store {
 
-
+    /***
+     *
+     * @param source
+     * @param destination
+     * @returns {string|Array.<T>|Blob|ArrayBuffer}
+     */
+    static mergeArray(source, destination) {
+        if (!destination || destination.length < 1) {
+            return source ? source.slice() : source;
+        } else {
+            return destination.slice();
+        }
+    }
 
     /***
      *
@@ -159,8 +171,9 @@ class Store {
         if (!destination.performances) {
             destination.performances = [];
         }
-        let p = Object.assign({}, source, destination, { performances: [] });
-        for (let i = 0; i < 16; i++) {
+        let p = Object.assign({}, source, destination);
+        p.performances = [];
+        for (let i = 0; i < Store.PERFORMANCE_COUNT; i++) {
             p.performances[i] = Store.mergePerformance(source.performances[i], destination.performances[i]);
         }
         return p;
@@ -202,8 +215,9 @@ class Store {
         if (!destination.scenes) {
             destination.scenes = [];
         }
-        let p = Object.assign({}, source, destination, { scenes: [] });
-        for (let i = 0; i < 8; i++) {
+        let p = Object.assign({}, source, destination);
+        p.scenes = [];
+        for (let i = 0; i < Store.SCENE_COUNT; i++) {
             p.scenes[i] = Store.mergeScene(source.scenes[i], destination.scenes[i]);
         }
         return p;
@@ -250,8 +264,12 @@ class Store {
         if (!destination.tracks) {
             destination.tracks = [];
         }
+        if (!destination.options) {
+            destination.options = {};
+        }
+
         let state = Object.assign({}, source, destination);
-        state.options = Store.mergeSceneOptions(source.options, destination.options),
+        state.options = Store.mergeSceneOptions(source.options, destination.options);
         state.tracks = [
             Store.mergeTrackState(source.tracks[0], destination.tracks[0]),
             Store.mergeTrackState(source.tracks[1], destination.tracks[1]),
@@ -271,13 +289,16 @@ class Store {
      * @returns {{root: string, mode: string, minNote: number, maxNote: number, noteSetSize: number, resentEvent: string}}
      */
     static getDefaultSceneOptions(isEmpty) {
-        return isEmpty ? {} : {
-            root: "A", // TODO get a default from enum
-            mode: "V", // TODO get a default from enum
+        return isEmpty ? {
+            noteSet: []
+        } : {
+            root: "G",
+            mode: "VI Aeolian (Nat. Minor)",
             minNote: 48,
             maxNote: 64,
-            noteSetSize: 4,
-            resentEvent: ""
+            noteSetSize: 5,
+            noteSet: [48, 56, 62, 68, 76],
+            resetEvent: 4 // perc1
         }
 
     }
@@ -289,7 +310,14 @@ class Store {
      * @returns {*}
      */
     static mergeSceneOptions(source, destination) {
-        return Object.assign({}, source, destination);
+        if (!destination) {
+            destination = {};
+        }
+        let options = Object.assign({}, source, destination);
+
+        options.noteSet = Store.mergeArray(source.noteSet, destination.noteSet);
+
+        return options;
     }
 
     /***
@@ -341,33 +369,10 @@ class Store {
         }
         let state = Object.assign({}, source, destination);
 
-        let constants = destination.constants;
-        if (!constants) {
-            constants = source.constants;
-            if (!constants) {
-                constants = [];
-            }
-        }
-        
-        let sequenceData = destination.sequenceData;
-        if (!sequenceData) {
-            sequenceData = source.sequenceData;
-            if (!sequenceData) {
-                sequenceData = []; 
-            }
-        }
+        state.constants = Store.mergeArray(source.constants, destination.constants);
+        state.sequenceData = Store.mergeArray(source.sequenceData, destination.sequenceData);
+        state.graphData = Store.mergeArray(source.graphData, destination.graphData);
 
-        let graphData = destination.graphData;
-        if (!graphData) {
-            graphData = source.graphData;
-            if (!graphData) {
-                graphData = [];
-            }
-        }
-
-        state.constants = constants.slice();
-        state.sequenceData = sequenceData.slice();
-        state.graphData = graphData.slice();
         return state;
     }
 
@@ -456,7 +461,6 @@ class Store {
                     } else {
                         try {
                             let newState = JSON.parse(text);
-                            //this._state = Object.assign({}, this.state, newState);
                             this._state = Store.mergeState(this.state, newState);
                             resolve();
                         } catch (ex) {
@@ -477,6 +481,20 @@ class Store {
 
     setPerformanceProperty(key, value) {
         this._state.performances[this.state.selectedPerformance][key] = value;
+    }
+
+    setSceneProperty(key, value) {
+        let perf = this.performance;
+        let scene = perf.scenes[perf.selectedScene];
+        let options = scene.options;
+        options[key] = value;
+    }
+
+    setTrackProperty(key, value) {
+        let perf = this.performance;
+        let scene = perf.scenes[perf.selectedScene];
+        let track = scene.tracks[perf.selectedTrack];
+        track[key] = value;
     }
 
 }
