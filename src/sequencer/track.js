@@ -17,6 +17,8 @@
 const fs = require("fs");
 const Log = require("../display/log-util");
 const Sequencer = require("./sequencer");
+const SequenceData = require("./sequence-data");
+const Store = require("./store");
 
 class Track {
 
@@ -69,6 +71,26 @@ class Track {
      */
     generateAllSequences() {
 
+    }
+
+    generateNoteSet() {
+        Store.instance.setSceneProperty("noteSet",
+            SequenceData.generateNoteSet(
+                Store.instance.scene.options.minNote,
+                Store.instance.scene.options.maxNote,
+                Store.instance.scene.options.noteSetSize
+            ));
+    }
+
+    generateRandomNoteFromSet() {
+        let noteSet = Store.instance.scene.options.noteSet;
+        let i = Math.round(Math.random() * (noteSet.length-1));
+        return [
+            noteSet[i], // note
+            Math.round(Math.random()*127), // velocity
+            "8n", // duration
+            Math.random() // cv
+        ]
     }
 
 }

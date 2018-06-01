@@ -41,6 +41,10 @@ class PerformanceController {
          * Live scripting console
          */
         process.on('message', (message) => {
+
+            let performance = this.performance;
+            let track = this.performance.tracks[Store.instance.performance.selectedTrack];
+
             //this.activeArrangement.onLiveScriptInput(message.script);
             let script = message.script;
             if (script && script[0] === '/') {

@@ -38,6 +38,7 @@ const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename)
  *                         minNote: number (0-127 midi note)
  *                         maxNote: number (0-127 midi note)
  *                         noteSetSize: number (0-64 size of set of possible notes to be generated)
+ *                         noteSet: number[]
  *                         resentEvent: string ("none" | track# to reset on end)
  *                     },
  *                     tracks: [
