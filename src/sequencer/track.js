@@ -69,9 +69,9 @@ class Track {
     generateSequenceData(index) {
         let data = [...this.state.sequenceData];
         data[index] = SequenceData.getSequence(
-            this.generateRandomNoteFromSet.bind(this),
+            this.generateRandomNote.bind(this),
             this.state);
-        Store.instance.setTrackProperty("sequenceData", data);
+        Store.instance.setTrackProperty(this.props.index, "sequenceData", data);
     }
 
     /***
@@ -81,21 +81,27 @@ class Track {
         let data = [];
         for (let i = 0; i < Store.SEQUENCE_COUNT; i++) {
             data[i] = SequenceData.getSequence(
-                this.generateRandomNoteFromSet.bind(this),
+                this.generateRandomNote.bind(this),
                 this.state);
         }
-        Store.instance.setTrackProperty("sequenceData", data);
+        Store.instance.setTrackProperty(this.props.index, "sequenceData", data);
     }
 
     /**
      *
      * @returns {[*,*,string,*]}
      */
-    generateRandomNoteFromSet() {
-        let noteSet = Store.instance.scene.options.noteSet;
-        let i = Math.round(Math.random() * (noteSet.length-1));
+    generateRandomNote() {
+        let note;
+        if (typeof this.state.note === "number") {
+            note = this.state.note;
+        } else {
+            let noteSet = Store.instance.scene.options.noteSet;
+            let i = Math.round(Math.random() * (noteSet.length - 1));
+            note = noteSet[i];
+        }
         return [
-            noteSet[i], // note
+            note,
             Math.round(Math.random()*127), // velocity
             "8n", // duration
             Math.random() // cv

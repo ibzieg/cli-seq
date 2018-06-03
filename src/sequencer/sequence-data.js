@@ -39,22 +39,39 @@ class SequenceData {
     }
 
     static getSequence(fn, config) {
+        let data = [];
         switch (config.sequenceType) {
             case "euclid":
-                return SequenceData.euclidPattern(fn, config);
+                data = SequenceData.euclidPattern(fn, config);
+                break;
             case "perc":
-                return SequenceData.getRandomPercData(fn, config);
+                data = SequenceData.getRandomPercData(fn, config);
+                break;
             case "quarterbeat":
-                return SequenceData.getQuarterBeat(fn, config);
+                data = SequenceData.getQuarterBeat(fn, config);
+                break;
             case "halfbeat":
-                return SequenceData.getHalfBeat(fn, config);
+                data = SequenceData.getHalfBeat(fn, config);
+                break;
             case "ryk":
-                return SequenceData.getRykSequence(fn, config);
+                data = SequenceData.getRykSequence(fn, config);
+                break;
             case "random":
             default:
-                return SequenceData.getRandomSequence(fn, config);
+                data = SequenceData.getRandomSequence(fn, config);
+                break;
         }
-        // TODO fill in config.constants
+
+        if (config.constants && config.constants.length > 0) {
+            config.constants.forEach((n) => {
+                if (!data[n]) {
+                    data[n] = fn();
+                }
+            });
+        }
+
+        return data;
+
     }
 
     /***

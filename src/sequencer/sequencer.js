@@ -80,12 +80,6 @@ class Sequencer {
     clock(bpm) {
         this._bpm = bpm;
 
-/*
-        if (this.props.index == 0) {
-            Log.debug(`track[0] clock ${bpm}bpm length=${this.data.length}`);
-        }
-*/
-
         if (!this.state) {
             let scene = Store.instance.scene;
             Log.error(`state not defined! index=${this.props.index} tracks.length=${scene.tracks.length}`);
@@ -98,13 +92,16 @@ class Sequencer {
         if (this._count % clockMod === 0) {
             let event = this.data[this._index];
             if (event && event.length && this.state.enabled) {
-                if (this.props.index == 0) {
-                    Log.debug(`track[0] event=${event}`);
+
+                let note = event[0];
+                if (typeof this.state.octave === "number") {
+                    note += this.state.octave * 12;
                 }
+
                 this._lastEvent = [...event];
                 // Set up arpeggiator for this note event
                 if (this.harmonizer) {
-                    this._arpSeq = this.generateArpSeq(event[0]);
+                    this._arpSeq = this.generateArpSeq(note);
 
                 } else {
                     this._arpSeq = [];
@@ -120,7 +117,7 @@ class Sequencer {
                 if (typeof this.props.play === "function") {
                     this.props.play(this._index, event);
                 } else {
-                    this.play(event[0], event[1], event[2]);
+                    this.play(note, event[1], event[2]);
                 }
                 
                 

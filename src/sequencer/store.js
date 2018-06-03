@@ -17,6 +17,7 @@
 const fs = require("fs");
 const path = require("path");
 const Log = require("../display/log-util");
+const ExternalDevices = require("../midi/external-devices");
 
 const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename),"..","..","data","saved-state.json");
 
@@ -113,14 +114,51 @@ const TRACK5_DEFAULT_NAME = "perc2";
 const TRACK6_DEFAULT_NAME = "perc3";
 const TRACK7_DEFAULT_NAME = "perc4";
 
-const TRACK0_DEFAULT_INSTRUMENT = "BSPSeq1";
-const TRACK1_DEFAULT_INSTRUMENT = "BSPSeq2";
+const TRACK0_DEFAULT_INSTRUMENT = "UnoBSPSeq1";
+const TRACK1_DEFAULT_INSTRUMENT = "UnoBSPSeq2";
 const TRACK2_DEFAULT_INSTRUMENT = "Minilogue";
 const TRACK3_DEFAULT_INSTRUMENT = "NordG2A";
-const TRACK4_DEFAULT_INSTRUMENT = "BSPDrum";
-const TRACK5_DEFAULT_INSTRUMENT = "BSPDrum";
-const TRACK6_DEFAULT_INSTRUMENT = "BSPDrum";
-const TRACK7_DEFAULT_INSTRUMENT = "BSPDrum";
+const TRACK4_DEFAULT_INSTRUMENT = "UnoBSPDrum";
+const TRACK5_DEFAULT_INSTRUMENT = "UnoBSPDrum";
+const TRACK6_DEFAULT_INSTRUMENT = "UnoBSPDrum";
+const TRACK7_DEFAULT_INSTRUMENT = "UnoBSPDrum";
+
+const TRACK_DEFAULTS = [
+    {
+        name: "mono1",
+        instrument: "UnoBSPSeq1"
+    }, {
+        name: "mono2",
+        instrument: "UnoBSPSeq2"
+    }, {
+        name: "poly1",
+        instrument: "Minilogue"
+    }, {
+        name: "poly2",
+        instrument: "NordG2A"
+    }, {
+        name: "perc1",
+        instrument: "UnoBSPDrum",
+        constants: [0],
+        sequenceType: "perc",
+        note: ExternalDevices.drumMap[0]
+    }, {
+        name: "perc2",
+        instrument: "UnoBSPDrum",
+        sequenceType: "perc",
+        note: ExternalDevices.drumMap[1]
+    }, {
+        name: "perc3",
+        instrument: "UnoBSPDrum",
+        sequenceType: "perc",
+        note: ExternalDevices.drumMap[2]
+    }, {
+        name: "perc4",
+        instrument: "UnoBSPDrum",
+        sequenceType: "perc",
+        note: ExternalDevices.drumMap[3]
+    }];
+
 
 let _instance;
 
@@ -234,14 +272,14 @@ class Store {
         let p = {
             options: Store.getDefaultSceneOptions(isEmpty),
             tracks: [
-                Store.getDefaultTrackState(TRACK0_DEFAULT_NAME, TRACK0_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK1_DEFAULT_NAME, TRACK1_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK2_DEFAULT_NAME, TRACK2_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK3_DEFAULT_NAME, TRACK3_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK4_DEFAULT_NAME, TRACK4_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK5_DEFAULT_NAME, TRACK5_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK6_DEFAULT_NAME, TRACK6_DEFAULT_INSTRUMENT, isEmpty),
-                Store.getDefaultTrackState(TRACK7_DEFAULT_NAME, TRACK7_DEFAULT_INSTRUMENT, isEmpty)
+                Store.getDefaultTrackState(TRACK_DEFAULTS[0], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[1], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[2], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[3], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[4], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[5], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[6], isEmpty),
+                Store.getDefaultTrackState(TRACK_DEFAULTS[7], isEmpty)
             ]
         };
 
@@ -328,35 +366,40 @@ class Store {
      * @param isEmpty
      * @returns {{name: *, instrument: *, rate: number, octave: number, length: number, steps: number, graphType: string, sequenceType: string, arp: string, arpRate: number, enabled: boolean, arpLoop: boolean, probability: boolean, sequenceData: [number], graphData: Array}}
      */
-    static getDefaultTrackState(voiceName, instrumentName, isEmpty) {
-        return isEmpty ? {} : {
-            name: voiceName,
-            instrument: instrumentName,
+    static getDefaultTrackState(defaults, isEmpty) {
+        if (isEmpty) {
+            return {};
+        } else {
+            let state = {
+                name: "",
+                instrument: "",
 
-            partsPerQuant: 24,
-            rate: 1,
-            octave: 0,
-            length: 16,
-            steps: 4,
-            graphType: "linear",
-            sequenceType: "random",
-            arp: "none",
-            arpRate: 2,
+                partsPerQuant: 24,
+                rate: 4,
+                octave: 0,
+                length: 16,
+                steps: 4,
+                graphType: "linear",
+                sequenceType: "random",
+                arp: "none",
+                arpRate: 2,
 
-            loop: true, // reset count back to zero after end
-            follow: null, // reset this track every time the Follow track plays an event
+                loop: true, // reset count back to zero after end
+                follow: null, // reset this track every time the Follow track plays an event
 
-            note: null, // always play this note (e.g. drum machine mapping)
-            constants: [], // always trigger event at these steps (e.g. always trigger Kick drum on first step)
+                note: null, // always play this note (e.g. drum machine mapping)
+                constants: [], // always trigger event at these steps (e.g. always trigger Kick drum on first step)
 
 
-            enabled: true,
-            arpLoop: true,
-            probability: true,
-            sequenceData: Array.apply(null, Array(8)).map(() => []),
-            graphData: [0]
+                enabled: true,
+                arpLoop: true,
+                probability: true,
+                sequenceData: Array.apply(null, Array(8)).map(() => []),
+                graphData: [0]
+            };
+            return Store.mergeTrackState(state, defaults);
         }
-    };
+    }
 
     /***
      *
@@ -379,7 +422,7 @@ class Store {
 
     /***
      *
-      * @returns {*}
+     * @returns {*}
      */
     static get instance() {
         return _instance;
@@ -491,7 +534,14 @@ class Store {
         options[key] = value;
     }
 
-    setTrackProperty(key, value) {
+    setTrackProperty(index, key, value) {
+        let perf = this.performance;
+        let scene = perf.scenes[perf.selectedScene];
+        let track = scene.tracks[index];
+        track[key] = value;
+    }
+
+    setSelectedTrackProperty(key, value) {
         let perf = this.performance;
         let scene = perf.scenes[perf.selectedScene];
         let track = scene.tracks[perf.selectedTrack];

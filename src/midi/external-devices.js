@@ -47,6 +47,18 @@ const devices = {
  *
  */
 const instruments = {
+    UnoBSPSeq1: {
+        device: devices.Midisport,
+        channel: 1
+    },
+    UnoBSPSeq2: {
+        device: devices.Midisport,
+        channel: 2
+    },
+    UnoBSPDrum: {
+        device: devices.Midisport,
+        channel: 14
+    },
     BSPSeq1: {
         device: devices.BeatStepPro,
         channel: 1
@@ -74,8 +86,20 @@ const instruments = {
     }
 };
 
+const drumMap = [
+    36,
+    38,
+    39,
+    42,
+    46,
+    49,
+    75,
+    67
+];
+
 module.exports = {
     devices: devices,
-    instruments: instruments
+    instruments: instruments,
+    drumMap: drumMap
 };
 

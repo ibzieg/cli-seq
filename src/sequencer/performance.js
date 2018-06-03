@@ -76,9 +76,9 @@ class Performance {
                 Pad9: {
                     label: "Enabled",
                     callback: (velocity) => {
-                        /*                  Log.success(`Randomized stage data`);
-                        this.state.data = this.getRandomStageData();*/
-                        return "Randomize";
+                        let enabled = Store.instance.scene.tracks[this.state.selectedTrack].enabled;
+                        Store.instance.setSelectedTrackProperty("enabled", !enabled);
+                        return enabled ? "Disabled" : "Enabled";
                     }
                 },
                 Pad10: {
@@ -113,8 +113,11 @@ class Performance {
                     label: "Rnd All",
                     callback: (velocity) => {
                         this.generateNoteSet();
+                        for (let i = 0; i < Store.TRACK_COUNT; i++) {
+                            this.tracks[i].generateAllSequences();
+                        }
                         Log.debug(`generated note set ${Store.instance.scene.options.noteSet}`);
-                        return "Rnd All";
+                        return "Randomize";
                     }
                 },
                 Pad15: {
@@ -259,7 +262,7 @@ class Performance {
                     label: "Rate",
                     callback: (data) => {
                         let rate = data % 8;
-                        Store.instance.setTrackProperty("rate", rate);
+                        Store.instance.setSelectedTrackProperty("rate", rate);
                         return rate.toString();
                     }
                 },
@@ -270,7 +273,7 @@ class Performance {
                         let options = [-3, -2, -1, 0, 1, 2, 3];
                         let i = data % options.length;
                         let octave = options[i];
-                        Store.instance.setTrackProperty("octave", octave);
+                        Store.instance.setSelectedTrackProperty("octave", octave);
                         return octave.toString();
                     }
                 },
@@ -279,7 +282,7 @@ class Performance {
                     label: "Length",
                     callback: (data) => {
                         let length = data;
-                        Store.instance.setTrackProperty("length", length);
+                        Store.instance.setSelectedTrackProperty("length", length);
                         return length;
                     }
                 },
@@ -288,7 +291,7 @@ class Performance {
                     label: "Steps",
                     callback: (data) => {
                         let steps = data;
-                        Store.instance.setTrackProperty("steps", steps);
+                        Store.instance.setSelectedTrackProperty("steps", steps);
                         return steps;
                     }
                 },
@@ -305,7 +308,7 @@ class Performance {
                             "random" ];
                         let i = data % algos.length;
                         let algo = algos[i];
-                        Store.instance.setTrackProperty("sequenceType", algo);
+                        Store.instance.setSelectedTrackProperty("sequenceType", algo);
                         return algo;
                     }
                 },
@@ -320,7 +323,7 @@ class Performance {
                             "evolve" ];
                         let i = data % algos.length;
                         let algo = algos[i];
-                        Store.instance.setTrackProperty("graphType", algo);
+                        Store.instance.setSelectedTrackProperty("graphType", algo);
                         return algo;
                     }
                 },
@@ -343,7 +346,7 @@ class Performance {
                             "down3alt" ];
                         let i = data % arpTypes.length;
                         let type = arpTypes[i];
-                        Store.instance.setTrackProperty("arp", type);
+                        Store.instance.setSelectedTrackProperty("arp", type);
                         return type;
                     }
                 },
@@ -353,7 +356,7 @@ class Performance {
                     label: "ArpRate",
                     callback: (data) => {
                         let rate = data % 8;
-                        Store.instance.setTrackProperty("arpRate", rate);
+                        Store.instance.setSelectedTrackProperty("arpRate", rate);
                         return rate.toString();
                     }
                 },
