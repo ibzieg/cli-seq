@@ -22,6 +22,7 @@ const MidiController = require("../midi/midi-controller");
 const ChordHarmonizer = require("./chord-harmonizer");
 const Store = require("./store");
 
+const SequenceData = require("./sequence-data");
 const Track = require("./track");
 
 class Performance {
@@ -29,7 +30,6 @@ class Performance {
     get state() {
         return Store.instance.performance;
     }
-
 
     constructor() {
         this.tracks = [];
@@ -105,15 +105,16 @@ class Performance {
                 Pad13: {
                     label: "Rnd Track",
                     callback: (velocity) => {
-                        /* this.state.data.poly1 = this.evolveSequenceStages(this.state.data.poly1, this.state.evolveAmount, this.getRandomPoly1Data.bind(this));
-                       */ return "Evolve";
+                        this.tracks[this.state.selectedTrack].generateAllSequences();
+                        return "Randomize";
                     }
                 },
                 Pad14: {
                     label: "Rnd All",
                     callback: (velocity) => {
-                        /* this.state.data.perc1 = this.evolveSequenceStages(this.state.data.perc1, this.state.evolveAmount, this.getRandomPerc1DrumData.bind(this));
-                      */  return "Evolve";
+                        this.generateNoteSet();
+                        Log.debug(`generated note set ${Store.instance.scene.options.noteSet}`);
+                        return "Rnd All";
                     }
                 },
                 Pad15: {
@@ -514,6 +515,15 @@ class Performance {
         this.updateAllPads();
         this.updateAllKnobs();
         this.updateDeviceState();
+    }
+
+    generateNoteSet() {
+        Store.instance.setSceneProperty("noteSet",
+            SequenceData.generateNoteSet(
+                Store.instance.scene.options.minNote,
+                Store.instance.scene.options.maxNote,
+                Store.instance.scene.options.noteSetSize
+            ));
     }
 
 }

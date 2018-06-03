@@ -14,6 +14,8 @@
  * limitations under the License.
  ******************************************************************************/
 
+
+const MidiDevice = require("./../midi/midi-device");
 const MidiInstrument = require("./../midi/midi-instrument");
 const ChordHarmonizer = require("./chord-harmonizer");
 const ExternalDevices = require("../midi/external-devices");
@@ -78,6 +80,12 @@ class Sequencer {
     clock(bpm) {
         this._bpm = bpm;
 
+/*
+        if (this.props.index == 0) {
+            Log.debug(`track[0] clock ${bpm}bpm length=${this.data.length}`);
+        }
+*/
+
         if (!this.state) {
             let scene = Store.instance.scene;
             Log.error(`state not defined! index=${this.props.index} tracks.length=${scene.tracks.length}`);
@@ -88,9 +96,11 @@ class Sequencer {
         let arpMod = Math.floor(this.state.partsPerQuant / this.state.arpRate);
 
         if (this._count % clockMod === 0) {
-            let event = this.data[this._index]; // TODO Scene sequence data
+            let event = this.data[this._index];
             if (event && event.length && this.state.enabled) {
-
+                if (this.props.index == 0) {
+                    Log.debug(`track[0] event=${event}`);
+                }
                 this._lastEvent = [...event];
                 // Set up arpeggiator for this note event
                 if (this.harmonizer) {
@@ -169,6 +179,9 @@ class Sequencer {
     play(note, velocity, duration) {
 
         // TODO implement track properties loop, note, constant, follow
+        if (this.props.index == 0) {
+            Log.debug(`track[0].play `);
+        }
 
         if (typeof duration === "string") {
             duration = this.getNoteDuration(duration);

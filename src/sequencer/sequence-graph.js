@@ -29,7 +29,8 @@ class SequenceGraph {
     }
 
     get sequence() {
-        return this.data[this.index];
+        let trackState = Store.instance.scene.tracks[this.props.index];
+        return trackState.sequenceData[this.index];
     }
 
     get index() {

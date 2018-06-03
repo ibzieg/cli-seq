@@ -22,6 +22,10 @@ const Store = require("./store");
 
 class Track {
 
+    get state() {
+        return Store.instance.scene.tracks[this.props.index];
+    }
+
     constructor(props) {
         this.props = {
             index: props.index
@@ -52,14 +56,6 @@ class Track {
     }
 
     /***
-     * Generate a sequence of events based on selected sequence type
-     * @param index
-     */
-    generateSequenceData(index) {
-        // generate sequence data
-    }
-
-    /***
      * Generate data to drive the current graph type
      */
     generateGraphData() {
@@ -67,21 +63,34 @@ class Track {
     }
 
     /***
+     * Generate a sequence of events based on selected sequence type
+     * @param index
+     */
+    generateSequenceData(index) {
+        let data = [...this.state.sequenceData];
+        data[index] = SequenceData.getSequence(
+            this.generateRandomNoteFromSet.bind(this),
+            this.state);
+        Store.instance.setTrackProperty("sequenceData", data);
+    }
+
+    /***
      * Generate all patterns
      */
     generateAllSequences() {
-
+        let data = [];
+        for (let i = 0; i < Store.SEQUENCE_COUNT; i++) {
+            data[i] = SequenceData.getSequence(
+                this.generateRandomNoteFromSet.bind(this),
+                this.state);
+        }
+        Store.instance.setTrackProperty("sequenceData", data);
     }
 
-    generateNoteSet() {
-        Store.instance.setSceneProperty("noteSet",
-            SequenceData.generateNoteSet(
-                Store.instance.scene.options.minNote,
-                Store.instance.scene.options.maxNote,
-                Store.instance.scene.options.noteSetSize
-            ));
-    }
-
+    /**
+     *
+     * @returns {[*,*,string,*]}
+     */
     generateRandomNoteFromSet() {
         let noteSet = Store.instance.scene.options.noteSet;
         let i = Math.round(Math.random() * (noteSet.length-1));

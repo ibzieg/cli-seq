@@ -26,6 +26,10 @@ const Store = require("./store");
 
 class PerformanceController {
 
+    /***
+     *
+     * @returns {{noteOn, noteOff, controlChange}|*}
+     */
     get controllerMap() {
         if (!this._controllerMap) {
             this._controllerMap = this.performance.createControllerMap();
@@ -33,6 +37,9 @@ class PerformanceController {
         return this._controllerMap;
     }
 
+    /***
+     *
+     */
     constructor() {
 
         this.initialize();
@@ -63,6 +70,9 @@ class PerformanceController {
 
     }
 
+    /***
+     *
+     */
     initialize() {
 
         this.minion = new EuropiMinion();
@@ -75,7 +85,8 @@ class PerformanceController {
                 this.controllerMessage(status, d1, d2);
             },
             clock: () => {
-                this.performance.clock();
+                this.updateClock();
+                this.performance.clock(this.bpm);
             },
             postClock: () => {
                 this.performance.postClock();
@@ -104,10 +115,37 @@ class PerformanceController {
 
         this.performance.select(Store.instance.state.selectedPerformance);
 
+        this.tickDurations = [];
+        this.lastTick = process.hrtime();
     }
 
+    /***
+     * Track the internal clock ticks and store as bpm
+     */
+    updateClock() {
+        let hrtime = process.hrtime(this.lastTick);
+        this.lastTick = process.hrtime();
+        let duration = hrtime[0] * 1000 + hrtime[1] / 1000000;
 
+        const historyLength = 48; // TODO Move constant
+        const ppq = 24; // TODO Move constant
+        this.tickDurations.push(duration);
+        this.tickDurations = this.tickDurations.splice(Math.max(0, this.tickDurations.length-historyLength), historyLength);
+        let tickMillis = this.tickDurations.reduce((sum, value) => sum + value) / this.tickDurations.length;
+        let beatMillis = tickMillis * ppq;
+        const millisPerMin = 60000;
+        let bpm = Math.round(millisPerMin / beatMillis);
 
+        this.bpm = bpm;
+    }
+
+    /***
+     *
+     * @param ctrl
+     * @param status
+     * @param d1
+     * @param d2
+     */
     invokeControllerMapCallback(ctrl, status, d1, d2) {
         let value = d2;
         if (ctrl && ctrl.callback) {
@@ -124,12 +162,23 @@ class PerformanceController {
         });
     }
 
+    /***
+     *
+     * @param index
+     * @param data
+     */
     onClickStageButton(index, data) {
         if (data === 127) {
             this.performance.select(index);
         }
     }
 
+    /***
+     *
+     * @param status
+     * @param d1
+     * @param d2
+     */
     controllerMessage(status, d1, d2) {
 
         switch (status) {

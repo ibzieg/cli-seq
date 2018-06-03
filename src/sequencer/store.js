@@ -503,5 +503,7 @@ class Store {
 Store.PERFORMANCE_COUNT = 16;
 Store.TRACK_COUNT = 8;
 Store.SCENE_COUNT = 8;
+Store.SEQUENCE_COUNT = 8;
+Store.GRAPH_COUNT = 8;
 
 module.exports = Store;
