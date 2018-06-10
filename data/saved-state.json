@@ -1785,7 +1785,7 @@
        "follow": null,
        "note": 39,
        "constants": [],
-       "enabled": true,
+       "enabled": false,
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
@@ -2344,7 +2344,7 @@
        "follow": null,
        "note": 42,
        "constants": [],
-       "enabled": true,
+       "enabled": false,
        "arpLoop": true,
        "probability": true,
        "sequenceData": [
@@ -2885,14 +2885,21 @@
       "noteSet": []
      },
      "tracks": [
+      {
+       "octave": -2
+      },
       {},
       {},
       {},
       {},
       {},
-      {},
-      {},
-      {}
+      {
+       "enabled": true
+      },
+      {
+       "octave": 0,
+       "enabled": true
+      }
      ]
     },
     {

@@ -18,10 +18,11 @@ const fs = require("fs");
 const Log = require("../display/log-util");
 
 const MidiController = require("../midi/midi-controller");
-
-const ChordHarmonizer = require("./chord-harmonizer");
+const MidiDevice = require("../midi/midi-device");
+const ExternalDevices = require("../midi/external-devices");
 const Store = require("./store");
 
+const NoteQuantizer = require("./note-quantizer");
 const SequenceData = require("./sequence-data");
 const Track = require("./track");
 
@@ -78,6 +79,7 @@ class Performance {
                     callback: (velocity) => {
                         let enabled = Store.instance.scene.tracks[this.state.selectedTrack].enabled;
                         Store.instance.setSelectedTrackProperty("enabled", !enabled);
+                        this.updateDeviceState();
                         return enabled ? "Disabled" : "Enabled";
                     }
                 },
@@ -364,7 +366,7 @@ class Performance {
                 Knob9: {
                     label: "Root",
                     callback: (data) => {
-                        let note = ChordHarmonizer.NoteNames[data % ChordHarmonizer.NoteNames.length]
+                        let note = NoteQuantizer.NoteNames[data % NoteQuantizer.NoteNames.length]
                         Store.instance.setSceneProperty("root", note);
                         return note;
                     }
@@ -372,7 +374,7 @@ class Performance {
                 Knob10: {
                     label: "Mode",
                     callback: (data) => {
-                        let mode = ChordHarmonizer.ModeNames[data % ChordHarmonizer.ModeNames.length]
+                        let mode = NoteQuantizer.ModeNames[data % NoteQuantizer.ModeNames.length]
                         Store.instance.setSceneProperty("mode", mode);
                         return mode;
                     }
@@ -467,17 +469,23 @@ class Performance {
         process.send({
             type: "deviceState",
             deviceState: [
-                { name: tracks[0].name, enabled: tracks[0].enabled, selected: this.state.selectedTrack === 0 },
-                { name: tracks[1].name, enabled: tracks[1].enabled, selected: this.state.selectedTrack === 1 },
-                { name: tracks[2].name, enabled: tracks[2].enabled, selected: this.state.selectedTrack === 2 },
-                { name: tracks[3].name, enabled: tracks[3].enabled, selected: this.state.selectedTrack === 3 },
-                { name: tracks[4].name, enabled: tracks[4].enabled, selected: this.state.selectedTrack === 4 },
-                { name: tracks[5].name, enabled: tracks[5].enabled, selected: this.state.selectedTrack === 5 },
-                { name: tracks[6].name, enabled: tracks[6].enabled, selected: this.state.selectedTrack === 6 },
-                { name: tracks[7].name, enabled: tracks[7].enabled, selected: this.state.selectedTrack === 7 },
+                { name: tracks[0].name, enabled: tracks[0].enabled, selected: this.state.selectedTrack === 0, connected: this.isTrackMidiAvailable(0) },
+                { name: tracks[1].name, enabled: tracks[1].enabled, selected: this.state.selectedTrack === 1, connected: this.isTrackMidiAvailable(1) },
+                { name: tracks[2].name, enabled: tracks[2].enabled, selected: this.state.selectedTrack === 2, connected: this.isTrackMidiAvailable(2) },
+                { name: tracks[3].name, enabled: tracks[3].enabled, selected: this.state.selectedTrack === 3, connected: this.isTrackMidiAvailable(3) },
+                { name: tracks[4].name, enabled: tracks[4].enabled, selected: this.state.selectedTrack === 4, connected: this.isTrackMidiAvailable(4) },
+                { name: tracks[5].name, enabled: tracks[5].enabled, selected: this.state.selectedTrack === 5, connected: this.isTrackMidiAvailable(5) },
+                { name: tracks[6].name, enabled: tracks[6].enabled, selected: this.state.selectedTrack === 6, connected: this.isTrackMidiAvailable(6) },
+                { name: tracks[7].name, enabled: tracks[7].enabled, selected: this.state.selectedTrack === 7, connected: this.isTrackMidiAvailable(7) },
             ]
 
         });
+    }
+
+    isTrackMidiAvailable(index) {
+        let track = Store.instance.scene.tracks[index];
+        let instrument = ExternalDevices.instruments[track.instrument];
+        return MidiDevice.getInstance(instrument.device) && true;
     }
 
     updateAllPads() {

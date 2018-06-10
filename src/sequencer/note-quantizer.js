@@ -16,6 +16,7 @@
 
 const Log = require("../display/log-util");
 
+const Store = require("./store");
 
 const Notes = [
     { Name: "C" , Type: "natural" },
@@ -32,20 +33,17 @@ const Notes = [
     { Name: "B" , Type: "natural" }
 ];
 
-
 const Modes = [
-    { Name: "I Ionian (Major)",       Sequence: [2, 2, 1, 2, 2, 2, 1] },
+    { Name: "I Ionian (Major)",        Sequence: [2, 2, 1, 2, 2, 2, 1] },
     { Name: "II Dorian",               Sequence: [2, 1, 2, 2, 2, 1, 2] },
-    { Name: "III Phrygian",             Sequence: [1, 2, 2, 2, 1, 2, 2] },
+    { Name: "III Phrygian",            Sequence: [1, 2, 2, 2, 1, 2, 2] },
     { Name: "IV Lydian",               Sequence: [2, 2, 2, 1, 2, 2, 1] },
-    { Name: "V Mixolydian",           Sequence: [2, 2, 1, 2, 2, 1, 2] },
+    { Name: "V Mixolydian",            Sequence: [2, 2, 1, 2, 2, 1, 2] },
     { Name: "VI Aeolian (Nat. Minor)", Sequence: [2, 1, 2, 2, 1, 2, 2] },
     { Name: "VII Locrian",             Sequence: [1, 2, 2, 1, 2, 2, 2] }
 ];
 
-
-
-class ChordHarmonizer {
+class NoteQuantizer {
 
     static get NoteNames() {
         return Notes.map((note) => {
@@ -59,24 +57,32 @@ class ChordHarmonizer {
         });
     }
 
-    set mode(value) {
-        this._modeIndex = this.getModeIndexFromName(value) % 6;
-        this._masterScale = this.generateScaleFromIndex(this._rootNoteIndex, this._modeIndex);
-    }
-
-    set root(value) {
-        this._rootNoteIndex = this.getNoteIndexFromName(value) % 11;
-        this._masterScale = this.generateScaleFromIndex(this._rootNoteIndex, this._modeIndex);
-    }
-
+    /***
+     *
+     * @param options
+     */
     constructor(options) {
         this._options = options;
-        this._modeIndex = this.getModeIndexFromName(options.mode) % 6;
-        this._rootNoteIndex = this.getNoteIndexFromName(options.root) % 11;
-        this._masterScale = this.generateScaleFromIndex(this._rootNoteIndex, this._modeIndex);
     }
 
-    getNoteIndexFromName(noteName) {
+    /***
+     *
+     * @returns {*}
+     */
+    static get activeScale() {
+        let scene = Store.instance.scene;
+
+        let rootNoteIndex = NoteQuantizer.getNoteIndexFromName(scene.options.root) % 11;
+        let modeIndex = NoteQuantizer.getModeIndexFromName(scene.options.mode) % 6;
+        return NoteQuantizer.generateScaleFromIndex(rootNoteIndex, modeIndex, false);
+    }
+
+    /***
+     *
+     * @param noteName
+     * @returns {number}
+     */
+    static getNoteIndexFromName(noteName) {
         let i, n;
         for (i = 0, n = Notes.length; i < n; i++) {
             if (noteName == Notes[i].Name) {
@@ -85,8 +91,12 @@ class ChordHarmonizer {
         }
     };
 
-
-    getModeIndexFromName(modeName) {
+    /***
+     *
+     * @param modeName
+     * @returns {number}
+     */
+    static getModeIndexFromName(modeName) {
         let i, n;
         for (i = 0, n = Modes.length; i < n; i++) {
             if (modeName == Modes[i].Name) {
@@ -95,8 +105,14 @@ class ChordHarmonizer {
         }
     };
 
-    generateScaleFromIndex(rootIndex, scaleIndex, isPentatonic) {
-
+    /***
+     *
+     * @param rootIndex
+     * @param scaleIndex
+     * @param isPentatonic
+     * @returns {Array}
+     */
+    static generateScaleFromIndex(rootIndex, scaleIndex, isPentatonic) {
         if (typeof isPentatonic !== "boolean") {
             isPentatonic = false;
         }
@@ -124,15 +140,25 @@ class ChordHarmonizer {
         return scaleNotes;
     };
 
-    isTriadMemberOfScale(triad) {
-        if (this._masterScale.indexOf(triad[0]) >= 0 &&
-            this._masterScale.indexOf(triad[1]) >= 0 &&
-            this._masterScale.indexOf(triad[2]) >= 0) {
+    /***
+     *
+     * @param triad
+     * @returns {boolean}
+     */
+    static isTriadMemberOfScale(triad) {
+        if (NoteQuantizer.activeScale.indexOf(triad[0]) >= 0 &&
+            NoteQuantizer.activeScale.indexOf(triad[1]) >= 0 &&
+            NoteQuantizer.activeScale.indexOf(triad[2]) >= 0) {
             return true;
         }
     };
 
-    getHarmonizedChord(noteIndex) {
+    /***
+     *
+     * @param noteIndex
+     * @returns {*}
+     */
+    static getHarmonizedChord(noteIndex) {
         // generate all the chords corresponding to this note
         // major triad
         // minor triad (transposed major)
@@ -143,8 +169,8 @@ class ChordHarmonizer {
         let harmonizedChord = {};
 
 
-        let majorScale = this.generateScaleFromIndex(noteIndex, 0);
-        let minorScale = this.generateScaleFromIndex(noteIndex, 5);
+        let majorScale = NoteQuantizer.generateScaleFromIndex(noteIndex, 0);
+        let minorScale = NoteQuantizer.generateScaleFromIndex(noteIndex, 5);
 
         let majorTriad = [
             majorScale[0],
@@ -155,7 +181,7 @@ class ChordHarmonizer {
         let diminishedTriad = [
             minorScale[0],
             minorScale[2],
-            Notes[this.getNoteIndexFromName(minorScale[4]) - 1]
+            Notes[NoteQuantizer.getNoteIndexFromName(minorScale[4]) - 1]
         ];
         if (typeof diminishedTriad[2] === "object") {
             diminishedTriad[2] = diminishedTriad[2].Name;
@@ -164,7 +190,7 @@ class ChordHarmonizer {
         let augmentedTriad = [
             majorScale[0],
             majorScale[2],
-            Notes[this.getNoteIndexFromName(majorScale[4]) + 1]
+            Notes[NoteQuantizer.getNoteIndexFromName(majorScale[4]) + 1]
         ];
         if (typeof augmentedTriad[2] === "object") {
             augmentedTriad[2] = augmentedTriad[2].Name;
@@ -176,29 +202,23 @@ class ChordHarmonizer {
             minorScale[4]
         ];
 
-
-
-        if (this.isTriadMemberOfScale(majorTriad)) {
+        if (NoteQuantizer.isTriadMemberOfScale(majorTriad)) {
             harmonizedChord = {
-                //Type:  Scales[0].Name,
                 Type: "",
                 Notes: majorTriad
             };
-        } else if (this.isTriadMemberOfScale(augmentedTriad)) {
+        } else if (NoteQuantizer.isTriadMemberOfScale(augmentedTriad)) {
             harmonizedChord = {
-                //Type:  "Augmented " + Scales[0].Name,
                 Type: "aug",
                 Notes: augmentedTriad
             };
-        } else if (this.isTriadMemberOfScale(minorTriad)) {
+        } else if (NoteQuantizer.isTriadMemberOfScale(minorTriad)) {
             harmonizedChord = {
-                //Type:  Scales[5].Name,
                 Type: "min",
                 Notes: minorTriad
             };
-        } else if (this.isTriadMemberOfScale(diminishedTriad)) {
+        } else if (NoteQuantizer.isTriadMemberOfScale(diminishedTriad)) {
             harmonizedChord = {
-                //Type:  "Diminished " + Scales[0].Name,
                 Type: "dim",
                 Notes: diminishedTriad
             };
@@ -208,8 +228,12 @@ class ChordHarmonizer {
 
     };
 
-
-    makeChord(value) {
+    /***
+     *
+     * @param value
+     * @returns {*}
+     */
+    static makeChord(value) {
         // get the triad pattern for this note index, given the key & mode ?
         value--;
         let note = value % 12;
@@ -218,12 +242,12 @@ class ChordHarmonizer {
         note = note % 6; // keep it on a 7 note scale
 
         // Use incoming note 0-11 as an index into the current master scale;
-        note = this.getNoteIndexFromName(this._masterScale[note]);
-        let chord = this.getHarmonizedChord(note, this._masterScale);
+        note = NoteQuantizer.getNoteIndexFromName(NoteQuantizer.activeScale[note]);
+        let chord = NoteQuantizer.getHarmonizedChord(note, NoteQuantizer.activeScale);
 
         if (chord) {
             return chord.map((noteName) => {
-                let chordNoteIndex = this.getNoteIndexFromName(noteName);
+                let chordNoteIndex = NoteQuantizer.getNoteIndexFromName(noteName);
                 let octaveOut = octave;
                 if (chordNoteIndex < note) {
                     octaveOut++;
@@ -231,11 +255,11 @@ class ChordHarmonizer {
                 return chordNoteIndex + (octaveOut * 12);
             });
         } else {
-            Log.debug(`makeChord: no chord exists for note=${note} name=${this._masterScale[note]} scale=${this._masterScale}`);
+            Log.debug(`makeChord: no chord exists for note=${note} name=${NoteQuantizer.activeScale[note]} scale=${NoteQuantizer.activeScale}`);
             return [];
         }
 
     }
 
 }
-module.exports = ChordHarmonizer;
+module.exports = NoteQuantizer;

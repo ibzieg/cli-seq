@@ -17,7 +17,7 @@
 const Arrangement = require("./arrangement");
 const SequenceData = require("./sequence-data");
 const Sequencer = require("./sequencer");
-const ChordHarmonizer = require("./chord-harmonizer");
+//const ChordHarmonizer = require("./chord-harmonizer");
 const Log = require("../display/log-util");
 
 const MidiController = require("../midi/midi-controller");
