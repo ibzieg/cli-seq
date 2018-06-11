@@ -15,6 +15,7 @@
  ******************************************************************************/
 
 const Store = require("./store");
+const Log = require("../display/log-util");
 
 class SequenceGraph {
 
@@ -34,8 +35,7 @@ class SequenceGraph {
     }
 
     get index() {
-        // TODO Determine the index based on state.count & type
-        return 0;
+        return this.state.index;
     }
 
     constructor(props) {
@@ -44,16 +44,75 @@ class SequenceGraph {
         };
 
         this.state = {
-            count: 0
+            index: 0,
+            count: 0,
+            secondaryCounters: []
         };
     }
 
     clock() {
-        this.state = Object.assign({}, this.state, { count: this.state.count++ });
+        if (this.type === "linear") {
+            let primaryIndex = this.state.count % this.data.length;
+            let i = this.data[primaryIndex];
+            if (typeof i === "number") {
+                this.state.index = i;
+            } else if (typeof i === "object") {
+                let j = this.state.secondaryCounters[primaryIndex];
+                if (typeof j !== "number") {
+                    j = 0;
+                }
+                this.state.secondaryCounters[primaryIndex] = j+1;
+                this.state.index = i[j%i.length];
+            }
+        } else if (this.type === "markov") {
+            let p = this.data[this.index];
+            let sum = p.reduce((s, element) => s+element, 0);
+            let q = p.reduce((s, element, i) => [...s, ...Array(Math.floor(element/sum*100)).join(i)], []);
+            this.state.index = q[Math.floor(Math.random()*q.length)];
+        }
+        this.state.count = this.state.count+1;
+
+        if (this.props.index === 0) {
+            Log.debug(`track[0] graph clock ${JSON.stringify(this.state)}`);
+        }
+
+    }
+
+    static randomInt(min, max) {
+        return Math.floor(min+Math.random()*(max-min+1));
+    }
+
+    generateData() {
+        let data = [];
+        if (this.type === "linear") {
+            let length = SequenceGraph.randomInt(1,3);
+            for (let i = 0; i < length; i++) {
+                let k = SequenceGraph.randomInt(0,3);
+                let r = [];
+                if (k < 2) {
+                    r.push(SequenceGraph.randomInt(0, Store.SEQUENCE_COUNT-1));
+                } else {
+                    for (let j = 0; j < k; j++) {
+                        r.push(SequenceGraph.randomInt(0, Store.SEQUENCE_COUNT-1));
+                    }
+                }
+                data.push(r);
+            }
+        } else if (this.type === "markov") {
+            for (let i = 0; i < Store.SEQUENCE_COUNT; i++) {
+                let p = [];
+                for (let j = 0; j < Store.SEQUENCE_COUNT; j++) {
+                    p.push(Math.random());
+                }
+                data.push(p);
+            }
+        }
+        Store.instance.setTrackProperty(this.props.index, "graphData", data);
     }
 
     reset() {
         this.state.count = 0;
+        this.state.secondaryCounters = [];
     }
 
 }

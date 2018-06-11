@@ -59,7 +59,7 @@ class Track {
      * Generate data to drive the current graph type
      */
     generateGraphData() {
-
+        this.sequencer.generateGraphData();
     }
 
     /***
@@ -85,6 +85,7 @@ class Track {
                 this.state);
         }
         Store.instance.setTrackProperty(this.props.index, "sequenceData", data);
+        this.generateGraphData();
     }
 
     /**

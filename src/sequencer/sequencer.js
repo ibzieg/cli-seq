@@ -14,29 +14,37 @@
  * limitations under the License.
  ******************************************************************************/
 
-
+const Log = require("./../display/log-util");
 const MidiDevice = require("./../midi/midi-device");
 const MidiInstrument = require("./../midi/midi-instrument");
-// const ChordHarmonizer = require("./chord-harmonizer");
 const ExternalDevices = require("../midi/external-devices");
 const SequenceGraph = require("./sequence-graph");
 const NoteQuantizer = require("./note-quantizer");
-
-const Log = require("./../display/log-util");
-
 const Store = require("./store");
 
 class Sequencer {
 
+    /***
+     *
+     * @returns {*}
+     */
     get state() {
         return Store.instance.scene.tracks[this.props.index];
     }
 
+    /***
+     *
+     * @returns {MidiDevice}
+     */
     get midiDevice() {
         let instrument = ExternalDevices.instruments[this.state.instrument];
         return MidiDevice.getInstance(instrument.device);
     }
 
+    /***
+     *
+     * @returns {number|*}
+     */
     get midiChannel() {
         let instrument = ExternalDevices.instruments[this.state.instrument];
         return instrument.channel;
@@ -49,6 +57,10 @@ class Sequencer {
         return this.graph.sequence;
     }
 
+    /***
+     *
+     * @param props
+     */
     constructor(props) {
         this.props = {
             index: props.index,
@@ -60,12 +72,13 @@ class Sequencer {
             index: props.index
         });
 
-/*        if (this.chord) {
-            this.initializeChord();
-        }*/
         this.reset();
     }
 
+    /***
+     *
+     * @param bpm
+     */
     clock(bpm) {
         this._bpm = bpm;
 
@@ -105,16 +118,14 @@ class Sequencer {
                 }
 
             }
-            this._index = (this._index+1) % this.data.length; // TODO
+            this._index = (this._index+1) % Math.min(this.data.length, this.state.length);
             if (this._index === 0) {
                 this._signalEnd = true;
             }
         } else if (this.state.arp && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
-            //Log.debug(`playing arp mode '${this.state.arp}' at rate=${this.state.arpRate}`);
             let note = this._arpSeq[this._arpIndex];
             let velocity = this._lastEvent[1];
             let duration = this.getArpNoteDuration();
-            Log.debug(`play arp note: ${note} ${velocity} ${duration}`);
             this.play(note, velocity, duration);
 
             this._arpIndex = (this._arpIndex+1) % this._arpSeq.length;
@@ -123,20 +134,32 @@ class Sequencer {
         this._count++;
     }
 
+    /***
+     *
+     */
     postClock() {
         if (this._signalEnd) {
             if (this.props.end) {
-                this.graph.clock();
                 this.props.end();
             }
+            this.graph.clock();
             this._signalEnd = false;
         }
     }
 
+    /***
+     *
+     * @returns {string}
+     */
     getArpNoteDuration() {
         return this.getNoteDuration(this.state.arpRate * 2) + "n";
     }
 
+    /***
+     *
+     * @param quant
+     * @returns {number}
+     */
     getNoteDuration(quant) {
         quant = parseInt(quant);
 
@@ -159,10 +182,7 @@ class Sequencer {
      */
     play(note, velocity, duration) {
 
-        // TODO implement track properties loop, note, follow
-        if (this.props.index == 0) {
-            Log.debug(`track[0].play `);
-        }
+        // TODO implement track properties loop, follow
 
         if (typeof duration === "string") {
             duration = this.getNoteDuration(duration);
@@ -182,12 +202,16 @@ class Sequencer {
                 if (this.state.scaleFifth && chord[2]) {
                     this.midiDevice.play(this.midiChannel, chord[2], velocity, duration);
                 }
-                //this.instrument.play(note, velocity, duration);
             }
         }
 
     }
 
+    /***
+     *
+     * @param note
+     * @returns {*}
+     */
     generateArpSeq(note) {
         let superchord = NoteQuantizer.makeChord(note+12);
         let chord = NoteQuantizer.makeChord(note);
@@ -216,7 +240,16 @@ class Sequencer {
         }
     }
 
+    /***
+     * Generate data to drive the current graph type
+     */
+    generateGraphData() {
+        this.graph.generateData();
+    }
 
+    /***
+     *
+     */
     start() {
         if (typeof this.props.start === "function") {
             this.props.start();
@@ -224,6 +257,9 @@ class Sequencer {
         this.reset();
     }
 
+    /***
+     *
+     */
     stop() {
         if (typeof this.props.stop === "function") {
             this.props.stop();
@@ -232,6 +268,9 @@ class Sequencer {
         this.reset();
     }
 
+    /***
+     *
+     */
     reset() {
         if (typeof this.props.reset === "function") {
             this.props.reset();

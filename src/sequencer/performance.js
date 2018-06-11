@@ -100,8 +100,9 @@ class Performance {
                 Pad12: {
                     label: "Rnd Graph",
                     callback: (velocity) => {
-                        /* this.state.data.mono2 = this.evolveSequenceStages(this.state.data.mono2, this.state.evolveAmount, this.getRandomMono2Data.bind(this));
-                       */ return "Evolve";
+                        this.tracks[this.state.selectedTrack].generateGraphData();
+                        Log.info(`tracks[${this.state.selectedTrack}].graphData=${JSON.stringify(Store.instance.scene.tracks[this.state.selectedTrack].graphData)}`);
+                        return "Graph";
                     }
                 },
                 Pad13: {
