@@ -395,7 +395,19 @@ class Store {
                 arpLoop: true,
                 probability: true,
                 sequenceData: Array.apply(null, Array(8)).map(() => []),
-                graphData: [0]
+                graphData: {
+                    linear: [0],
+                    markov: [
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                        [ 1, 1, 1, 1, 1, 1, 1, 1],
+                    ]
+                }
             };
             return Store.mergeTrackState(state, defaults);
         }
@@ -415,7 +427,8 @@ class Store {
 
         state.constants = Store.mergeArray(source.constants, destination.constants);
         state.sequenceData = Store.mergeArray(source.sequenceData, destination.sequenceData);
-        state.graphData = Store.mergeArray(source.graphData, destination.graphData);
+        //state.graphData = Store.mergeArray(source.graphData, destination.graphData);
+        state.graphData = Object.assign({}, source.graphData, destination.graphData);
 
         return state;
     }

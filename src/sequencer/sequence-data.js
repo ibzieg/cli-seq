@@ -286,6 +286,7 @@ class SequenceData {
 
         let n = config.length;
         let k = config.steps;
+        let d = config.steps / config.length; // TODO use step count instead
         // TODO some random k or offset?
 
         let i;
