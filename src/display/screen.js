@@ -256,8 +256,12 @@ class Screen {
         this.commandInput.focus();
         this.commandInput.on('keypress', (ch, key) => {
             //this.log(`keypress ${ch} ${JSON.stringify(key)}`);
-            if (key.name === "f4") {
-                this.log("pressed f4");
+
+            const fkeys = ["f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12"];
+            if (fkeys.indexOf(key.name) >= 0) {
+                if (typeof this.options.onFunctionKey === "function") {
+                    this.options.onFunctionKey(fkeys.indexOf(key.name));
+                }
             } else
             if (key.name === "up" || (key.ctrl && key.name === "p")) {
                 this._state.commandHistoryIndex = Math.max(this._state.commandHistoryIndex - 1, 0);

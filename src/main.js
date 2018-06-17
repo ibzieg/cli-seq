@@ -29,6 +29,12 @@ Screen.create({
             type: "command",
             script: cmd
         });
+    },
+    onFunctionKey: (index) => {
+        performanceThread.send({
+            type: "functionKey",
+            index: index
+        });
     }
 });
 

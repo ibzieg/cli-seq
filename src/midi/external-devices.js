@@ -75,6 +75,10 @@ const instruments = {
         device: devices.Minilogue,
         channel: 1
     },
+    UnoMinilogue: {
+        device: devices.Midisport,
+        channel: 12
+    },
     Juno106: {
         device: devices.Midisport,
         channel: 13

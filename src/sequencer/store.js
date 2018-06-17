@@ -91,10 +91,10 @@ const PERFORMANCE8_NAME = "Performance 9";
 const PERFORMANCE9_NAME = "Performance 10";
 const PERFORMANCE10_NAME = "Performance 11";
 const PERFORMANCE11_NAME = "Performance 12";
-const PERFORMANCE12_NAME = "Performance 13";
-const PERFORMANCE13_NAME = "Performance 14";
-const PERFORMANCE14_NAME = "Performance 15";
-const PERFORMANCE15_NAME = "Performance 16";
+// const PERFORMANCE12_NAME = "Performance 13";
+// const PERFORMANCE13_NAME = "Performance 14";
+// const PERFORMANCE14_NAME = "Performance 15";
+// const PERFORMANCE15_NAME = "Performance 16";
 
 const SCENE0_NAME = "Scene 1";
 const SCENE1_NAME = "Scene 2";
@@ -104,6 +104,14 @@ const SCENE4_NAME = "Scene 5";
 const SCENE5_NAME = "Scene 6";
 const SCENE6_NAME = "Scene 7";
 const SCENE7_NAME = "Scene 8";
+const SCENE8_NAME = "Scene 9";
+const SCENE9_NAME = "Scene 10";
+const SCENE10_NAME = "Scene 11";
+const SCENE11_NAME = "Scene 12";
+const SCENE12_NAME = "Scene 13";
+const SCENE13_NAME = "Scene 14";
+const SCENE14_NAME = "Scene 15";
+const SCENE15_NAME = "Scene 16";
 
 const TRACK0_DEFAULT_NAME = "mono1";
 const TRACK1_DEFAULT_NAME = "mono2";
@@ -116,7 +124,7 @@ const TRACK7_DEFAULT_NAME = "perc4";
 
 const TRACK0_DEFAULT_INSTRUMENT = "UnoBSPSeq1";
 const TRACK1_DEFAULT_INSTRUMENT = "UnoBSPSeq2";
-const TRACK2_DEFAULT_INSTRUMENT = "Minilogue";
+const TRACK2_DEFAULT_INSTRUMENT = "UnoMinilogue";
 const TRACK3_DEFAULT_INSTRUMENT = "NordG2A";
 const TRACK4_DEFAULT_INSTRUMENT = "UnoBSPDrum";
 const TRACK5_DEFAULT_INSTRUMENT = "UnoBSPDrum";
@@ -198,10 +206,10 @@ class Store {
                 Store.getDefaultPerformance(PERFORMANCE9_NAME),
                 Store.getDefaultPerformance(PERFORMANCE10_NAME),
                 Store.getDefaultPerformance(PERFORMANCE11_NAME),
-                Store.getDefaultPerformance(PERFORMANCE12_NAME),
-                Store.getDefaultPerformance(PERFORMANCE13_NAME),
-                Store.getDefaultPerformance(PERFORMANCE14_NAME),
-                Store.getDefaultPerformance(PERFORMANCE15_NAME)
+                // Store.getDefaultPerformance(PERFORMANCE12_NAME),
+                // Store.getDefaultPerformance(PERFORMANCE13_NAME),
+                // Store.getDefaultPerformance(PERFORMANCE14_NAME),
+                // Store.getDefaultPerformance(PERFORMANCE15_NAME)
             ]
         }
     }
@@ -236,7 +244,15 @@ class Store {
                 Store.getDefaultScene(SCENE4_NAME, true),
                 Store.getDefaultScene(SCENE5_NAME, true),
                 Store.getDefaultScene(SCENE6_NAME, true),
-                Store.getDefaultScene(SCENE7_NAME, true)
+                Store.getDefaultScene(SCENE7_NAME, true),
+                Store.getDefaultScene(SCENE8_NAME, true),
+                Store.getDefaultScene(SCENE9_NAME, true),
+                Store.getDefaultScene(SCENE10_NAME, true),
+                Store.getDefaultScene(SCENE11_NAME, true),
+                Store.getDefaultScene(SCENE12_NAME, true),
+                Store.getDefaultScene(SCENE13_NAME, true),
+                Store.getDefaultScene(SCENE14_NAME, true),
+                Store.getDefaultScene(SCENE15_NAME, true)
             ]
         }
     }
@@ -473,12 +489,15 @@ class Store {
      * @returns {*}
      */
     get scene() {
-        let perf = this.performance;
-        let state = perf.scenes[0];
-        for (let i = 1; i <= perf.selectedScene; i++) {
-            state = Store.mergeScene(state, perf.scenes[i]);
+        if (!this._cachedScene) {
+            let perf = this.performance;
+            let state = perf.scenes[0];
+            for (let i = 1; i <= perf.selectedScene; i++) {
+                state = Store.mergeScene(state, perf.scenes[i]);
+            }
+            this._cachedScene = state;
         }
-        return state;
+        return this._cachedScene;
     }
 
     /***
@@ -486,6 +505,11 @@ class Store {
      */
     constructor() {
         this._state = Store.getDefaultState();
+        this.stateChanged();
+    }
+
+    stateChanged() {
+        this._cachedScene = null;
     }
 
     /***
@@ -519,6 +543,7 @@ class Store {
                         try {
                             let newState = JSON.parse(text);
                             this._state = Store.mergeState(this.state, newState);
+                            this.stateChanged();
                             resolve();
                         } catch (ex) {
                             reject(ex);
@@ -534,10 +559,12 @@ class Store {
 
     setProperty(key, value) {
         this._state[key] = value;
+        this.stateChanged();
     }
 
     setPerformanceProperty(key, value) {
         this._state.performances[this.state.selectedPerformance][key] = value;
+        this.stateChanged();
     }
 
     setSceneProperty(key, value) {
@@ -545,6 +572,7 @@ class Store {
         let scene = perf.scenes[perf.selectedScene];
         let options = scene.options;
         options[key] = value;
+        this.stateChanged();
     }
 
     setTrackProperty(index, key, value) {
@@ -552,6 +580,7 @@ class Store {
         let scene = perf.scenes[perf.selectedScene];
         let track = scene.tracks[index];
         track[key] = value;
+        this.stateChanged();
     }
 
     setSelectedTrackProperty(key, value) {
@@ -559,13 +588,14 @@ class Store {
         let scene = perf.scenes[perf.selectedScene];
         let track = scene.tracks[perf.selectedTrack];
         track[key] = value;
+        this.stateChanged();
     }
 
 }
 
-Store.PERFORMANCE_COUNT = 16;
+Store.PERFORMANCE_COUNT = 12;
 Store.TRACK_COUNT = 8;
-Store.SCENE_COUNT = 8;
+Store.SCENE_COUNT = 16;
 Store.SEQUENCE_COUNT = 8;
 Store.GRAPH_COUNT = 8;
 

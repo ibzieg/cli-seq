@@ -138,125 +138,118 @@ class Performance {
                     }
                 },
                 Pad1: {
-                    label: "Scene 1",
+                    label: "Track 1",
                     callback: (velocity) => {
-                        this.selectScene(0);
-                        return "Scene 1";
+                        return this.selectTrack(0);
                     }
                 },
                 Pad2: {
-                    label: "Scene 2",
+                    label: "Track 2",
                     callback: (velocity) => {
-                        this.selectScene(1);
-                        return "Scene 2";
+                        return this.selectTrack(1);
                     }
                 },
                 Pad3: {
-                    label: "Scene 3",
+                    label: "Track 3",
                     callback: (velocity) => {
-                        this.selectScene(2);
-                        return "Scene 3";
+                        return this.selectTrack(2);
                     }
                 },
                 Pad4: {
-                    label: "Scene 4",
+                    label: "Track 4",
                     callback: (velocity) => {
-                        this.selectScene(3);
-                        return "Scene 4";
+                        return this.selectTrack(3);
                     }
                 },
                 Pad5: {
-                    label: "Scene 5",
+                    label: "Track 5",
                     callback: (velocity) => {
-                        this.selectScene(4);
-                        return "Scene 5";
+                        return this.selectTrack(4);
                     }
                 },
                 Pad6: {
-                    label: "Scene 6",
+                    label: "Track 6",
                     callback: (velocity) => {
-                        this.selectScene(5);
-                        return "Scene 6";
+                        return this.selectTrack(5);
                     }
                 },
                 Pad7: {
-                    label: "Scene 7",
+                    label: "Track 7",
                     callback: (velocity) => {
-                        this.selectScene(6);
-                        return "Scene 7";
+                        return this.selectTrack(6);
                     }
                 },
                 Pad8: {
-                    label: "Scene 8",
+                    label: "Track 8",
                     callback: (velocity) => {
-                        this.selectScene(7);
-                        return "Scene 8";
+                        return this.selectTrack(7);
                     }
                 }
 
             },
             noteOff: {
-            Pad1: {
-                    label: "Scene 1",
+                Pad1: {
+                    label: "Track 1",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 0) {
-                            return "Scene 1";
+                        if (this.state.selectedTrack === 0) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad2: {
-                    label: "Scene 2",
+                    label: "Track 2",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 1) {
-                            return "Scene 2";
+                        if (this.state.selectedTrack === 1) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad3: {
-                    label: "Scene 3",
+                    label: "Track 3",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 2) {
-                            return "Scene 3";
+                        if (this.state.selectedTrack === 2) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad4: {
-                    label: "Scene 4",
+                    label: "Track 4",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 3) {
-                            return "Scene 4";
+                        if (this.state.selectedTrack === 3) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad5: {
-                    label: "Scene 5",
+                    label: "Track 5",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 4) {
-                            return "Scene 5";
+                        if (this.state.selectedTrack === 4) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad6: {
-                    label: "Scene 6",
+                    label: "Track 6",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 5) {
-                            return "Scene 6";
+                        if (this.state.selectedTrack === 5) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad7: {
-                    label: "Scene 7",
+                    label: "Track 7",
                     callback: (velocity) => {
-                        if (this.state.selectedScene === 6) {
-                            return "Scene 7";
+                        if (this.state.selectedTrack === 6) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
                         }
                     }
                 },
                 Pad8: {
-                    label: "Scene 8",
+                    label: "Track 8",
                     callback: (velocity) => {
-                        this.selectScene(7);
-                        return "Scene 8";
+                        if (this.state.selectedTrack === 7) {
+                            return Store.instance.scene.tracks[this.state.selectedTrack].name;
+                        }
                     }
                 }
             },
@@ -420,16 +413,24 @@ class Performance {
                     }
                 },
                 Knob16: {
-                    label: "Track",
+                    label: "",
                     callback: (data) => {
-                        Store.instance.setPerformanceProperty("selectedTrack", data % 8);
-                        this.updateDisplay();
-                        let tracks = Store.instance.scene.tracks;
-                        return tracks[Store.instance.performance.selectedTrack].name;
+                        // Store.instance.setPerformanceProperty("selectedTrack", data % 8);
+                        // this.updateDisplay();
+                        // let tracks = Store.instance.scene.tracks;
+                        // return tracks[Store.instance.performance.selectedTrack].name;
                     }
                 }
             }
         }
+    }
+
+
+    selectTrack(index) {
+        Store.instance.setPerformanceProperty("selectedTrack", index);
+        this.updateDisplay();
+        let tracks = Store.instance.scene.tracks;
+        return tracks[Store.instance.performance.selectedTrack].name;
     }
 
     selectScene(index) {
@@ -490,14 +491,15 @@ class Performance {
     }
 
     updateAllPads() {
-        this.updateControllerPad(MidiController.BeatStepMap.Pad1, this.state.selectedScene === 0 ? "Scene 1" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad2, this.state.selectedScene === 1 ? "Scene 2" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad3, this.state.selectedScene === 2 ? "Scene 3" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad4, this.state.selectedScene === 3 ? "Scene 4" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad5, this.state.selectedScene === 4 ? "Scene 5" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad6, this.state.selectedScene === 5 ? "Scene 6" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad7, this.state.selectedScene === 6 ? "Scene 7" : "");
-        this.updateControllerPad(MidiController.BeatStepMap.Pad8, this.state.selectedScene === 7 ? "Scene 8" : "");
+        let name = Store.instance.scene.tracks[this.state.selectedTrack].name;
+        this.updateControllerPad(MidiController.BeatStepMap.Pad1, this.state.selectedTrack === 0 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad2, this.state.selectedTrack === 1 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad3, this.state.selectedTrack === 2 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad4, this.state.selectedTrack === 3 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad5, this.state.selectedTrack === 4 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad6, this.state.selectedTrack === 5 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad7, this.state.selectedTrack === 6 ? name : "");
+        this.updateControllerPad(MidiController.BeatStepMap.Pad8, this.state.selectedTrack === 7 ? name : "");
     }
 
     updateAllKnobs() {
@@ -519,7 +521,7 @@ class Performance {
         this.updateControllerKnob(MidiController.BeatStepMap.Knob13, Store.instance.scene.tracks[Store.instance.scene.options.resetEvent].name);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob14, Store.instance.scene.options.noteSetSize);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob15, "");
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob16, Store.instance.scene.tracks[this.state.selectedTrack].name);
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob16, "");
     }
 
     updateDisplay() {

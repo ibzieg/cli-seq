@@ -49,22 +49,28 @@ class PerformanceController {
          */
         process.on('message', (message) => {
 
-            let performance = this.performance;
-            let track = this.performance.tracks[Store.instance.performance.selectedTrack];
+            if (message.type === "command") {
 
-            //this.activeArrangement.onLiveScriptInput(message.script);
-            let script = message.script;
-            if (script && script[0] === '/') {
-                script = `${script.substring(1, script.length)}`;
-            }
-            try {
-                let result = eval(script);
-                Log.success(message.script);
-                if (result) {
-                    Log.info(result);
+                let performance = this.performance;
+                let track = this.performance.tracks[Store.instance.performance.selectedTrack];
+
+                //this.activeArrangement.onLiveScriptInput(message.script);
+                let script = message.script;
+                if (script && script[0] === '/') {
+                    script = `${script.substring(1, script.length)}`;
                 }
-            } catch(error) {
-                Log.error(error);
+                try {
+                    let result = eval(script);
+                    Log.success(message.script);
+                    if (result) {
+                        Log.info(result);
+                    }
+                } catch (error) {
+                    Log.error(error);
+                }
+            } else if (message.type === "functionKey") {
+                this.performance.select(message.index);
+                Log.info(`Selected performance ${message.index+1}`);
             }
         });
 
@@ -169,7 +175,7 @@ class PerformanceController {
      */
     onClickStageButton(index, data) {
         if (data === 127) {
-            this.performance.select(index);
+            this.performance.selectScene(index);
         }
     }
 
