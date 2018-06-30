@@ -140,10 +140,11 @@ const TRACK_DEFAULTS = [
         instrument: "UnoBSPSeq2"
     }, {
         name: "poly1",
-        instrument: "Minilogue"
+        instrument: "UnoKorg",
+        velocity: 120
     }, {
         name: "poly2",
-        instrument: "NordG2A"
+        instrument: "NordG2A",
     }, {
         name: "perc1",
         instrument: "UnoBSPDrum",
@@ -404,6 +405,7 @@ class Store {
                 follow: null, // reset this track every time the Follow track plays an event
 
                 note: null, // always play this note (e.g. drum machine mapping)
+                velocity: null, // always play with this velocity
                 constants: [], // always trigger event at these steps (e.g. always trigger Kick drum on first step)
 
 

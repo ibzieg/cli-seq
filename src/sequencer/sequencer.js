@@ -90,6 +90,8 @@ class Sequencer {
 
         let clockMod = Math.floor(this.state.partsPerQuant / this.state.rate);
         let arpMod = Math.floor(this.state.partsPerQuant / this.state.arpRate);
+        let eventTriggered = false;
+
 
         if (this._count % clockMod === 0) {
             let event = this.data[this._index];
@@ -111,6 +113,7 @@ class Sequencer {
                 }
 
                 // Execute the event
+                eventTriggered = true;
                 if (typeof this.props.play === "function") {
                     this.props.play(this._index, event);
                 } else {
@@ -122,7 +125,9 @@ class Sequencer {
             if (this._index === 0) {
                 this._signalEnd = true;
             }
-        } else if (this.state.arp && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
+        }
+
+        if (!eventTriggered && this.state.arp && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
             let note = this._arpSeq[this._arpIndex];
             let velocity = this._lastEvent[1];
             let duration = this.getArpNoteDuration();
@@ -144,6 +149,7 @@ class Sequencer {
             }
             this.graph.clock();
             this._signalEnd = false;
+            this._loopEnd = true;
         }
     }
 
@@ -266,6 +272,15 @@ class Sequencer {
         }
         this._count = 0;
         this.reset();
+    }
+
+    /***
+     *
+     */
+    continue() {
+        this._index = 0;
+        this._arpIndex = 0;
+        this._loopEnd = false;
     }
 
     /***

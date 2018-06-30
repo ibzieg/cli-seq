@@ -101,9 +101,17 @@ class Track {
             let i = Math.round(Math.random() * (noteSet.length - 1));
             note = noteSet[i];
         }
+
+        let velocity;
+        if (typeof this.state.velocity === "number") {
+            velocity = this.state.velocity;
+        } else {
+            velocity = Math.round(Math.random()*127);
+        }
+
         return [
             note,
-            Math.round(Math.random()*127), // velocity
+            velocity,
             "8n", // duration
             Math.random() // cv
         ]

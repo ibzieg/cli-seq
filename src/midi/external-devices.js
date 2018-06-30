@@ -75,7 +75,7 @@ const instruments = {
         device: devices.Minilogue,
         channel: 1
     },
-    UnoMinilogue: {
+    UnoKorg: {
         device: devices.Midisport,
         channel: 12
     },
