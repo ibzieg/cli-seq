@@ -36,8 +36,22 @@ class Performance {
         this.tracks = [];
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i] = new Track({
-                index: i
+                index: i,
+                playEvent: (note, velocity, duration) => { this.playEvent(i, note, velocity, duration);}
             });
+        }
+    }
+
+    playEvent(index, note, velocity, duration) {
+        this.notifyFollowers(index);
+    }
+
+    notifyFollowers(index) {
+        for (let i = 0; i < Store.TRACK_COUNT; i++) {
+            let track = this.tracks[i];
+            if (track.state.follow === index) {
+                track.continue();
+            }
         }
     }
 
@@ -405,6 +419,8 @@ class Performance {
                 Knob15: {
                     label: "",
                     callback: (data) => {
+
+
                         // this.state.selectedDeviceIndex = data % 8;
                         // this.updateDeviceState();
                         // this.updateControllerState();
@@ -413,12 +429,19 @@ class Performance {
                     }
                 },
                 Knob16: {
-                    label: "",
+                    label: "Follow",
                     callback: (data) => {
-                        // Store.instance.setPerformanceProperty("selectedTrack", data % 8);
-                        // this.updateDisplay();
-                        // let tracks = Store.instance.scene.tracks;
-                        // return tracks[Store.instance.performance.selectedTrack].name;
+                        let index = data % (Store.TRACK_COUNT +1);
+                        let name;
+                        if (index === Store.TRACK_COUNT) {
+                            Store.instance.setSelectedTrackProperty("follow", null);
+                            name = "none";
+                        } else {
+                            let tracks = Store.instance.scene.tracks;
+                            Store.instance.setSelectedTrackProperty("follow", index);
+                            name = tracks[index].name;
+                        }
+                        return name;
                     }
                 }
             }
@@ -521,7 +544,7 @@ class Performance {
         this.updateControllerKnob(MidiController.BeatStepMap.Knob13, Store.instance.scene.tracks[Store.instance.scene.options.resetEvent].name);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob14, Store.instance.scene.options.noteSetSize);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob15, "");
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob16, "");
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob16, typeof trackState.follow === "number" ? Store.instance.scene.tracks[trackState.follow].name : "none" );
     }
 
     updateDisplay() {

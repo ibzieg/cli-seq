@@ -28,12 +28,22 @@ class Track {
 
     constructor(props) {
         this.props = {
-            index: props.index
+            index: props.index,
+            playEvent: props.playEvent
         };
 
         this.sequencer = new Sequencer({
-            index: props.index
+            index: props.index,
+            play:(note, velocity, duration) => {
+                this.playEvent(note, velocity, duration);
+            }
         });
+    }
+
+    playEvent(note, velocity, duration) {
+        if (typeof this.props.playEvent === "function") {
+            this.props.playEvent(note, velocity, duration);
+        }
     }
 
     clock(bpm) {
@@ -41,6 +51,10 @@ class Track {
         // look up the midi instrument and send events
         // the sequencer things will require helper methods
         this.sequencer.clock(bpm);
+    }
+
+    continue() {
+        this.sequencer.continue();
     }
 
     postClock() {

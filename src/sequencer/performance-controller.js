@@ -53,6 +53,8 @@ class PerformanceController {
 
                 let performance = this.performance;
                 let track = this.performance.tracks[Store.instance.performance.selectedTrack];
+                let setProp = Store.instance.setSelectedTrackProperty.bind(Store.instance);
+                let save = Store.instance.saveState.bind(Store.instance);
 
                 //this.activeArrangement.onLiveScriptInput(message.script);
                 let script = message.script;
@@ -62,9 +64,7 @@ class PerformanceController {
                 try {
                     let result = eval(script);
                     Log.success(message.script);
-                    if (result) {
-                        Log.info(result);
-                    }
+                    Log.info(result);
                 } catch (error) {
                     Log.error(error);
                 }

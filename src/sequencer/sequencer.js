@@ -92,50 +92,62 @@ class Sequencer {
         let arpMod = Math.floor(this.state.partsPerQuant / this.state.arpRate);
         let eventTriggered = false;
 
+        let shouldLoop = true;
+        if (this.state.follow) {
+            //Log.debug(`follow ${this._loopEnd}`);
+            shouldLoop = !this._loopEnd;
+        } else if (this.state.loop === false) {
+            //Log.debug(`loop=false ${this._loopEnd}`);
+            shouldLoop = !this._loopEnd;
+        }
 
-        if (this._count % clockMod === 0) {
-            let event = this.data[this._index];
-            if (event && event.length && this.state.enabled) {
+        if (shouldLoop) {
+            if (this._count % clockMod === 0) {
+                let event = this.data[this._index];
+                if (event && event.length && this.state.enabled) {
 
-                let note = event[0];
-                if (typeof this.state.octave === "number") {
-                    note += this.state.octave * 12;
-                }
+                    let note = event[0];
+                    if (typeof this.state.octave === "number") {
+                        note += this.state.octave * 12;
+                    }
 
-                this._lastEvent = [...event];
-                // Set up arpeggiator for this note event
-                this._arpSeq = this.generateArpSeq(note);
-                this._arpIndex = 1;
+                    this._lastEvent = [...event];
+                    // Set up arpeggiator for this note event
+                    this._arpSeq = this.generateArpSeq(note);
+                    this._arpIndex = 1;
 
-                if (this.state.arp) {
-                    // override duration with arp note length
-                    event[2] = this.getArpNoteDuration();
-                }
+                    if (this.state.arp) {
+                        // override duration with arp note length
+                        event[2] = this.getArpNoteDuration();
+                    }
 
-                // Execute the event
-                eventTriggered = true;
-                if (typeof this.props.play === "function") {
-                    this.props.play(this._index, event);
-                } else {
+                    // Execute the event
+                    eventTriggered = true;
+                    if (typeof this.props.play === "function") {
+                        this.props.play(note, event[1], event[2]);
+                    }
                     this.play(note, event[1], event[2]);
+
+
                 }
+                this._index = (this._index + 1) % Math.min(this.data.length, this.state.length);
+                if (this._index === 0) {
+                    this._signalEnd = true;
+                }
+            }
+
+            if (!eventTriggered && this.state.arp && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
+                let note = this._arpSeq[this._arpIndex];
+                let velocity = this._lastEvent[1];
+                let duration = this.getArpNoteDuration();
+                this.play(note, velocity, duration);
+
+                this._arpIndex = (this._arpIndex + 1) % this._arpSeq.length;
 
             }
-            this._index = (this._index+1) % Math.min(this.data.length, this.state.length);
-            if (this._index === 0) {
-                this._signalEnd = true;
-            }
-        }
-
-        if (!eventTriggered && this.state.arp && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
-            let note = this._arpSeq[this._arpIndex];
-            let velocity = this._lastEvent[1];
-            let duration = this.getArpNoteDuration();
-            this.play(note, velocity, duration);
-
-            this._arpIndex = (this._arpIndex+1) % this._arpSeq.length;
 
         }
+
         this._count++;
     }
 
@@ -147,7 +159,9 @@ class Sequencer {
             if (this.props.end) {
                 this.props.end();
             }
-            this.graph.clock();
+            if (!this.state.follow) {
+                this.graph.clock();
+            }
             this._signalEnd = false;
             this._loopEnd = true;
         }
@@ -278,6 +292,9 @@ class Sequencer {
      *
      */
     continue() {
+        if (this.state.follow) {
+            this.graph.clock();
+        }
         this._index = 0;
         this._arpIndex = 0;
         this._loopEnd = false;
@@ -292,6 +309,7 @@ class Sequencer {
         }
         this._index = 0;
         this._arpIndex = 0;
+        this._loopEnd = false;
         this.graph.reset();
     }
 

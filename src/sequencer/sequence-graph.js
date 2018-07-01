@@ -76,10 +76,6 @@ class SequenceGraph {
         }
         this.state.count = this.state.count+1;
 
-        if (this.props.index === 0) {
-            Log.debug(`track[0] graph clock ${JSON.stringify(this.state)}`);
-        }
-
     }
 
     static randomInt(min, max) {

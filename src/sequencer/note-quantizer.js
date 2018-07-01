@@ -128,7 +128,9 @@ class NoteQuantizer {
         let scaleObj = Modes[scaleIndex];
         for (let i = 0, n = scaleObj.Sequence.length; i < n; i++) {
             let curNote = Notes[noteIndex % Notes.length];
-            scaleNotes.push(curNote.Name);
+            if (curNote) {
+                scaleNotes.push(curNote.Name);
+            }
             noteIndex += scaleObj.Sequence[i];
         }
 
