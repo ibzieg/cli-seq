@@ -29,15 +29,25 @@ class Track {
     constructor(props) {
         this.props = {
             index: props.index,
-            playEvent: props.playEvent
+            playEvent: props.playEvent,
+            endEvent: props.endEvent
         };
 
         this.sequencer = new Sequencer({
             index: props.index,
             play:(note, velocity, duration) => {
                 this.playEvent(note, velocity, duration);
+            },
+            end: () => {
+                this.endEvent();
             }
         });
+    }
+
+    endEvent() {
+        if (typeof this.props.endEvent === "function") {
+            this.props.endEvent();
+        }
     }
 
     playEvent(note, velocity, duration) {
@@ -67,6 +77,10 @@ class Track {
 
     stop() {
         this.sequencer.stop();
+    }
+
+    reset() {
+        this.sequencer.reset();
     }
 
     /***

@@ -73,6 +73,8 @@ class SequenceGraph {
             } else {
                 Log.error("SequenceGraph: clock: markov data missing");
             }
+        } else if (parseInt(this.type) >= 0) {
+            this.state.index = parseInt(this.type);
         }
         this.state.count = this.state.count+1;
 

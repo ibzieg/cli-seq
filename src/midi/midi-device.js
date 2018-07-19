@@ -209,6 +209,29 @@ class MidiDevice {
         }
     }
 
+    noteOn(channel, note, velocity) {
+        let noteOnStatus = 144 + channel-1;
+        if (this.outputStatus) {
+            try {
+                this.output.sendMessage([noteOnStatus, note, velocity]);
+            } catch (ex) {
+                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+            }
+        }
+    }
+
+    noteOff(channel, note, velocity) {
+        let noteOffStatus = 128 + channel-1;
+        if (this.outputStatus) {
+            try {
+                this.output.sendMessage([noteOffStatus, note, velocity]);
+            } catch (ex) {
+                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+            }
+        }
+    }
+
+
 }
 
 MidiDevice._deviceInstances = [];

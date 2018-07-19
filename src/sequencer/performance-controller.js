@@ -83,6 +83,7 @@ class PerformanceController {
 
         this.minion = new EuropiMinion();
 
+        this.isPlaying = false;
         this.controller = new MidiController({
             // device: MidiDevice.devices.BeatStepPro,
             device: MidiDevice.devices.Midisport,
@@ -91,6 +92,7 @@ class PerformanceController {
                 this.controllerMessage(status, d1, d2);
             },
             clock: () => {
+                this.isPlaying = true;
                 this.updateClock();
                 this.performance.clock(this.bpm);
             },
@@ -98,9 +100,11 @@ class PerformanceController {
                 this.performance.postClock();
             },
             start: () => {
+                this.isPlaying = true;
                 this.performance.start();
             },
             stop: () => {
+                this.isPlaying = false;
                 this.performance.stop();
             }
         });
@@ -175,7 +179,11 @@ class PerformanceController {
      */
     onClickStageButton(index, data) {
         if (data === 127) {
-            this.performance.selectScene(index);
+            if (!this.isPlaying) {
+                this.performance.selectScene(index);
+            } else {
+                this.performance.queueScene(index);
+            }
         }
     }
 

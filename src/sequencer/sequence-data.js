@@ -38,6 +38,12 @@ class SequenceData {
         return [Math.floor(min+Math.random()*(max-min+1)), 127, duration, Math.random()];
     }
 
+    /***
+     *
+     * @param fn
+     * @param config
+     * @returns {*|Array}
+     */
     static getSequence(fn, config) {
         let data = [];
         switch (config.sequenceType) {
@@ -55,6 +61,15 @@ class SequenceData {
                 break;
             case "ryk":
                 data = SequenceData.getRykSequence(fn, config);
+                break;
+            case "brmnghm":
+                data = SequenceData.getBrmnghmSequence(fn, config);
+                break;
+            case "expfwd":
+                data = SequenceData.getExponentialSequence(fn, config);
+                break;
+            case "exprev":
+                data = SequenceData.getExponentialSequence(fn, config).reverse();
                 break;
             case "random":
             default:
@@ -338,6 +353,112 @@ class SequenceData {
 
     /***
      *
+     * @param nextNote
+     * @param config
+     * @returns {Array}
+     */
+    static getExponentialSequence(nextNote, config) {
+        let n = config.length;
+        let k = config.steps;
+
+        let seq = [];
+        let i, s;
+        for (i = 0; i < n; i++) {
+            seq[i] = null;
+        }
+
+        for (i = 0; i < n; i += s) {
+            seq[i] = nextNote();
+            s = Math.ceil((n - i) / k);
+            if (s === 0) {
+                break;
+            }
+        }
+
+        return seq;
+
+    }
+
+    /***
+     *
+     * @param nextNote
+     * @param config
+     * @returns {Array}
+     */
+    static getBrmnghmSequence(nextNote, config) {
+        let n = config.length;
+        let k = config.steps;
+        let d = config.steps / config.length; // TODO use step count instead
+
+        let seq = [];
+
+        let i;
+        for (i = 0; i < n; i++) {
+            seq[i] = null;
+        }
+
+        let [n1, n2] = SequenceData.randomSplit(n);
+        let [m1, m2] = SequenceData.randomSplit(n1);
+        let [m3, m4] = SequenceData.randomSplit(n2);
+
+        let [k1, k2] = SequenceData.randomSplit(k);
+        let [p1, p2] = SequenceData.randomSplit(k1);
+        let [p3, p4] = SequenceData.randomSplit(k2);
+
+        SequenceData.assignRandomSteps(seq, 0, m1-1, p1, nextNote);
+        SequenceData.assignRandomSteps(seq, m1, m1+m2-1 , p2, nextNote);
+        SequenceData.assignRandomSteps(seq, m1+m2, m1+m2+m3-1 , p3, nextNote);
+        SequenceData.assignRandomSteps(seq, m1+m2+m3, m1+m2+m3+m4-1 , p4, nextNote);
+
+        return seq;
+
+    }
+
+    /***
+     *
+     * @param n
+     * @returns {*[]}
+     */
+    static randomSplit(n) {
+        let a = Math.random() > 0.5 ? Math.floor(n / 2) : Math.ceil(n /2);
+        let b = n - a;
+        return [a, b];
+    }
+
+    /***
+     *
+     * @param seq
+     * @param min
+     * @param max
+     * @param stepCount
+     * @param nextNote
+     */
+    static assignRandomSteps(seq, min, max, stepCount, nextNote) {
+        let i, j;
+        let done = false;
+        for (i = 0; i < stepCount; i++) {
+            while (!done) {
+                j = SequenceData.getRandomInt(min, max);
+                if (seq[j] == null) {
+                    seq[j] = nextNote();
+                    done = true;
+                }
+            }
+        }
+    }
+
+    /***
+     *
+     * @param min
+     * @param max
+     * @returns {number}
+     */
+    static getRandomInt(min, max) {
+        return Math.floor(min+Math.random()*(max-min+1));
+    }
+
+    /***
+     *
      * @param min
      * @param max
      * @returns {number}
@@ -395,6 +516,11 @@ class SequenceData {
 
     }
 
+    /***
+     *
+     * @param seq
+     * @returns {string}
+     */
     static toString(seq) {
         return seq.map((v) => v ? v[0] : "__").join(" ");
     }

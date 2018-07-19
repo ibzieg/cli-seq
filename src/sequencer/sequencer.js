@@ -21,6 +21,8 @@ const ExternalDevices = require("../midi/external-devices");
 const SequenceGraph = require("./sequence-graph");
 const NoteQuantizer = require("./note-quantizer");
 const Store = require("./store");
+const EventRouter = require("./event-router");
+const EventScheduler = require("./event-scheduler");
 
 class Sequencer {
 
@@ -68,6 +70,8 @@ class Sequencer {
             end: props.end
         };
 
+        this.eventScheduler = new EventScheduler();
+
         this.graph = new  SequenceGraph({
             index: props.index
         });
@@ -82,6 +86,8 @@ class Sequencer {
     clock(bpm) {
         this._bpm = bpm;
 
+        this.eventScheduler.clock();
+
         if (!this.state) {
             let scene = Store.instance.scene;
             Log.error(`state not defined! index=${this.props.index} tracks.length=${scene.tracks.length}`);
@@ -93,7 +99,7 @@ class Sequencer {
         let eventTriggered = false;
 
         let shouldLoop = true;
-        if (this.state.follow) {
+        if (typeof this.state.follow === "number") {
             //Log.debug(`follow ${this._loopEnd}`);
             shouldLoop = !this._loopEnd;
         } else if (this.state.loop === false) {
@@ -159,7 +165,7 @@ class Sequencer {
             if (this.props.end) {
                 this.props.end();
             }
-            if (!this.state.follow) {
+            if (typeof this.state.follow!== "number") {
                 this.graph.clock();
             }
             this._signalEnd = false;
@@ -211,20 +217,32 @@ class Sequencer {
         if (this.midiDevice) {
             let chord = NoteQuantizer.makeChord(note);
             if (this.state.note || !chord || chord.length < 1) {
-                this.midiDevice.play(this.midiChannel, note, velocity, duration);
+                // this.midiDevice.play(this.midiChannel, note, velocity, duration);
+                this.playMidiNote(note, velocity);
             } else {
                 if (this.state.scaleFirst !== false) {
-                    this.midiDevice.play(this.midiChannel, chord[0], velocity, duration);
+                    // this.midiDevice.play(this.midiChannel, chord[0], velocity, duration);
+                    this.playMidiNote(chord[0], velocity)
                 }
                 if (this.state.scaleThird && chord[1]) {
-                    this.midiDevice.play(this.midiChannel, chord[1], velocity, duration);
+                    this.playMidiNote(chord[1], velocity)
+                    // this.midiDevice.play(this.midiChannel, chord[1], velocity, duration);
                 }
                 if (this.state.scaleFifth && chord[2]) {
-                    this.midiDevice.play(this.midiChannel, chord[2], velocity, duration);
+                    this.playMidiNote(chord[2], velocity)
+                    // this.midiDevice.play(this.midiChannel, chord[2], velocity, duration);
                 }
             }
         }
 
+    }
+
+    playMidiNote(note, velocity) {
+        let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) / 2);
+        this.eventScheduler.schedule(ticks, () => {
+            this.midiDevice.noteOff(this.midiChannel, note, velocity);
+        });
+        this.midiDevice.noteOn(this.midiChannel, note, velocity);
     }
 
     /***
@@ -281,6 +299,7 @@ class Sequencer {
      *
      */
     stop() {
+        this.eventScheduler.flushAllEvents(this.props.index === 2);
         if (typeof this.props.stop === "function") {
             this.props.stop();
         }
@@ -292,7 +311,7 @@ class Sequencer {
      *
      */
     continue() {
-        if (this.state.follow) {
+        if (typeof this.state.follow === "number") {
             this.graph.clock();
         }
         this._index = 0;

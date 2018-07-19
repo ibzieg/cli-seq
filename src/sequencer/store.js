@@ -149,17 +149,17 @@ const TRACK_DEFAULTS = [
         name: "perc1",
         instrument: "UnoBSPDrum",
         constants: [0],
-        sequenceType: "perc",
+        sequenceType: "quarterbeat",
         note: ExternalDevices.drumMap[0]
     }, {
         name: "perc2",
         instrument: "UnoBSPDrum",
-        sequenceType: "perc",
+        sequenceType: "halfbeat",
         note: ExternalDevices.drumMap[1]
     }, {
         name: "perc3",
         instrument: "UnoBSPDrum",
-        sequenceType: "perc",
+        sequenceType: "ryk",
         note: ExternalDevices.drumMap[2]
     }, {
         name: "perc4",

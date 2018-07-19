@@ -37,8 +37,25 @@ class Performance {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i] = new Track({
                 index: i,
-                playEvent: (note, velocity, duration) => { this.playEvent(i, note, velocity, duration);}
+                playEvent: (note, velocity, duration) => { this.playEvent(i, note, velocity, duration); },
+                endEvent: () => { this.endEvent(i); }
             });
+        }
+
+        this.queuedSceneIndex = null;
+    }
+
+    endEvent(index) {
+        if (Store.instance.scene.options.resetEvent === index &&
+            typeof this.queuedSceneIndex === "number") {
+            this.resetAllTracks();
+            this.selectScene(this.queuedSceneIndex);
+        }
+    }
+
+    resetAllTracks() {
+        for (let i = 0; i < Store.TRACK_COUNT; i++) {
+            this.tracks[i].reset();
         }
     }
 
@@ -56,7 +73,7 @@ class Performance {
     }
 
     select(index) {
-        // TODO Set selected Performance Index
+        // TODO Queue this for beat syncing
         Store.instance.setProperty("selectedPerformance", index);
         this.updateDisplay();
     }
@@ -315,6 +332,9 @@ class Performance {
                             "quarterbeat",
                             "halfbeat",
                             "ryk",
+                            "brmnghm",
+                            "expfwd",
+                            "exprev",
                             "random" ];
                         let i = data % algos.length;
                         let algo = algos[i];
@@ -330,7 +350,8 @@ class Performance {
                         let algos = [
                             "linear",
                             "markov",
-                            "evolve" ];
+                            "evolve",
+                            "0", "1", "2", "3", "4", "5", "6", "7"];
                         let i = data % algos.length;
                         let algo = algos[i];
                         Store.instance.setSelectedTrackProperty("graphType", algo);
@@ -405,7 +426,7 @@ class Performance {
                     label: "Master",
                     callback: (data) => {
                         let i = data % Store.TRACK_COUNT;
-                        Store.instance.setSceneProperty("master", i);
+                        Store.instance.setSceneProperty("resetEvent", i);
                         return Store.instance.scene.tracks[i].name;
                     }
                 },
@@ -456,7 +477,17 @@ class Performance {
         return tracks[Store.instance.performance.selectedTrack].name;
     }
 
+    queueScene(index) {
+        if (typeof Store.instance.scene.options.resetEvent === "number") {
+            this.queuedSceneIndex = index;
+            Log.music(`Queue scene ${index + 1}`);
+        } else {
+            this.selectScene(index);
+        }
+    }
+
     selectScene(index) {
+        this.queuedSceneIndex = null;
         Store.instance.setPerformanceProperty("selectedScene", index);
         Log.music(`Select scene ${index+1}`);
         this.updateDisplay();
