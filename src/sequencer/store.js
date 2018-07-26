@@ -340,7 +340,18 @@ class Store {
     }
 
     /***
-     *
+     Events output via the EuropiMinion CV Outputs
+     pitch.1-8 // 1V/Octave CV of midi note event on tracks 1-8
+     vel.1-8 // Velocity CV of midi note event on tracks 1-8
+     mod.1-8 // Extra Mod CV related to midi note event on tracks 1-8
+     step.1-8 // Increasing CV indicates progress through sequence on tracks 1-8
+     cv.a-d // Corresponding to the modA-B properties in Scene Options
+
+     Events output via the EuropiMinion Gate Outputs
+     gate.1-8 // Gate output corresponding to midi not event on tracks 1-8
+     end.1-8 // Gate indicating squence has reach end on tracks 1-8
+     scene // Gate indicating scene change.
+
      * @param isEmpty
      * @returns {{root: string, mode: string, minNote: number, maxNote: number, noteSetSize: number, resentEvent: string}}
      */
@@ -352,9 +363,21 @@ class Store {
             mode: "VI Aeolian (Nat. Minor)",
             minNote: 48,
             maxNote: 64,
-            noteSetSize: 5,
+            resetEvent: 4, // perc1
+            noteSetSize: 7,
             noteSet: [48, 56, 62, 68, 76],
-            resetEvent: 4 // perc1
+            modA: 0.2,
+            modB: 0.4,
+            modC: 0.6,
+            modD: 0.8,
+            cvA: "pitch.0",
+            cvB: "pitch.1",
+            cvC: "cv.c",
+            cvD: "cv.d",
+            gateA: "gate.0",
+            gateB: "gate.1",
+            gateC: "end.4",
+            gateD: "scene"
         }
 
     }

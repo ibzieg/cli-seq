@@ -198,5 +198,54 @@ class EuropiMinion {
         });
     }
 
+
+    /***
+     *
+     * Data gathered from CVA.
+     0.0958 = 1.000V
+     0.1923 = 2.000V  d = 0.0965
+     0.2888 = 3.000V  d = 0.0965
+     0.3851 = 4.000V  d = 0.0963
+     0.4819 = 5.000V  d = 0.0968
+     0.5783 = 6.000V  d = 0.0964
+     0.6742 = 7.000V  d = 0.09589
+     0.7704 = 8.000V  d = 0.09619
+     0.8667 = 9.000V  d = 0.0963
+     0.9631 = 10.000V d = 0.0963
+     * @param pitch
+     * @returns {number}
+     */
+    static pitchToCV(pitch) {
+
+        let octaveRef =
+            [0.0958,
+            0.1923,
+            0.2888,
+            0.3851,
+            0.4819,
+            0.5783,
+            0.6742,
+            0.7704,
+            0.8667,
+            0.9631];
+
+
+        let octave = Math.floor(pitch / 12);
+        let note = pitch - octave*12;
+
+        if (octave < 0) octave = 0;
+        if (octave > 8) octave = 8;
+
+        let octaveCV = octaveRef[octave];
+        let nextOctaveCV = octaveRef[octave+1];
+
+        let range = nextOctaveCV - octaveCV;
+        let cv = octaveCV + ((note/12.0) * range);
+
+        //Log.debug(`pitch=${pitch} octave=${octave} note=${note} octaveCV=${octaveCV} nextOctaveCV=${nextOctaveCV} range=${range} cv=${cv}`);
+
+        return cv;
+    }
+
 }
 module.exports = EuropiMinion;

@@ -21,10 +21,12 @@ const MidiController = require("../midi/midi-controller");
 const MidiDevice = require("../midi/midi-device");
 const ExternalDevices = require("../midi/external-devices");
 const Store = require("./store");
+const EuropiMinion = require("../europi/europi-minion");
 
 const NoteQuantizer = require("./note-quantizer");
 const SequenceData = require("./sequence-data");
 const Track = require("./track");
+const EventScheduler = require("./event-scheduler");
 
 class Performance {
 
@@ -32,20 +34,84 @@ class Performance {
         return Store.instance.performance;
     }
 
-    constructor() {
+    /***
+     *
+     * @param props
+     */
+    constructor(props) {
+
+        this.props = {
+            context: props.context
+        };
+
         this.tracks = [];
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i] = new Track({
                 index: i,
+                cvEvent: (eventType, value) => { this.cvEvent(eventType, value, i) },
                 playEvent: (note, velocity, duration) => { this.playEvent(i, note, velocity, duration); },
                 endEvent: () => { this.endEvent(i); }
             });
         }
 
+        this.eventScheduler = new EventScheduler();
+
         this.queuedSceneIndex = null;
     }
 
+    /***
+     *
+     * @param eventType
+     * @param value
+     * @param trackIndex
+     */
+    cvEvent(eventType, value, trackIndex) {
+        let sceneOptions = Store.instance.scene.options;
+        const keys =["cvA", "cvB", "cvC", "cvD", "gateA", "gateB", "gateC", "gateD"];
+        for (let i = 0; i < keys.length; i++) {
+            let eventRoute = sceneOptions[keys[i]].split('.');
+            if (eventRoute[0] === eventType && eventRoute[1] == trackIndex) {
+                this.routeCVEvent(eventType, value, i % 4/*dependent on keys[] order*/);
+            }
+        }
+    }
+
+    /***
+     *
+     * @param type
+     * @param value
+     * @param channel
+     */
+    routeCVEvent(type, value, channel) {
+        let minion = this.props.context.minion;
+        switch(type) {
+            case "gate":
+            case "end":
+            case "scene":
+                this.eventScheduler.schedule(parseInt(value), () => {
+                    minion.GateOutput(channel, 0);
+                });
+                minion.GateOutput(channel, 1);
+                break;
+
+            case "pitch":
+                minion.CVOutput(channel, EuropiMinion.pitchToCV(value));
+                break;
+            case "vel":
+            case "mod":
+            case "step":
+            case "cv":
+                minion.CVOutput(channel, value);
+                break;
+        }
+    }
+
+    /***
+     *
+     * @param index
+     */
     endEvent(index) {
+        this.cvEvent("end", 1, index);
         if (Store.instance.scene.options.resetEvent === index &&
             typeof this.queuedSceneIndex === "number") {
             this.resetAllTracks();
@@ -53,16 +119,30 @@ class Performance {
         }
     }
 
+    /***
+     *
+     */
     resetAllTracks() {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].reset();
         }
     }
 
+    /***
+     *
+     * @param index
+     * @param note
+     * @param velocity
+     * @param duration
+     */
     playEvent(index, note, velocity, duration) {
         this.notifyFollowers(index);
     }
 
+    /***
+     *
+     * @param index
+     */
     notifyFollowers(index) {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             let track = this.tracks[i];
@@ -82,6 +162,7 @@ class Performance {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].clock(bpm);
         }
+        this.eventScheduler.clock();
     }
 
     postClock() {
@@ -100,6 +181,7 @@ class Performance {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].stop();
         }
+        this.eventScheduler.flushAllEvents();
     }
 
     createControllerMap() {
@@ -489,6 +571,14 @@ class Performance {
     selectScene(index) {
         this.queuedSceneIndex = null;
         Store.instance.setPerformanceProperty("selectedScene", index);
+
+        let sceneOptions = Store.instance.scene.options;
+        this.cvEvent("scene", 1);
+        this.cvEvent("cv", sceneOptions.modA, "a");
+        this.cvEvent("cv", sceneOptions.modB, "b");
+        this.cvEvent("cv", sceneOptions.modC, "c");
+        this.cvEvent("cv", sceneOptions.modD, "d");
+
         Log.music(`Select scene ${index+1}`);
         this.updateDisplay();
     }

@@ -35,6 +35,7 @@ class Track {
 
         this.sequencer = new Sequencer({
             index: props.index,
+            cvEvent: props.cvEvent,
             play:(note, velocity, duration) => {
                 this.playEvent(note, velocity, duration);
             },

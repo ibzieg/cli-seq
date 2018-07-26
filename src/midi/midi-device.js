@@ -231,6 +231,17 @@ class MidiDevice {
         }
     }
 
+    allNotesOff(channel) {
+        let status = 176 + channel-1;
+        if (this.outputStatus) {
+            try {
+                this.output.sendMessage([status, 123, 0]);
+            } catch (ex) {
+                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
+            }
+        }
+    }
+
 
 }
 

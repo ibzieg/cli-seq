@@ -65,6 +65,7 @@ class Sequencer {
      */
     constructor(props) {
         this.props = {
+            cvEvent: props.cvEvent,
             index: props.index,
             play: props.play,
             end: props.end
@@ -110,6 +111,7 @@ class Sequencer {
         if (shouldLoop) {
             if (this._count % clockMod === 0) {
                 let event = this.data[this._index];
+                this.props.cvEvent("step", this._index / this.data.length);
                 if (event && event.length && this.state.enabled) {
 
                     let note = event[0];
@@ -130,9 +132,10 @@ class Sequencer {
                     // Execute the event
                     eventTriggered = true;
                     if (typeof this.props.play === "function") {
-                        this.props.play(note, event[1], event[2]);
+                        // TODO this is the unquantized note value
+                        this.props.play(note, event[1], event[2], event[3]);
                     }
-                    this.play(note, event[1], event[2]);
+                    this.play(note, event[1], event[2], event[3]);
 
 
                 }
@@ -146,7 +149,7 @@ class Sequencer {
                 let note = this._arpSeq[this._arpIndex];
                 let velocity = this._lastEvent[1];
                 let duration = this.getArpNoteDuration();
-                this.play(note, velocity, duration);
+                this.play(note, velocity, duration, this._lastEvent[3]);
 
                 this._arpIndex = (this._arpIndex + 1) % this._arpSeq.length;
 
@@ -206,31 +209,23 @@ class Sequencer {
      * @param duration
      * @returns {void}
      */
-    play(note, velocity, duration) {
-
-        // TODO implement track properties loop, follow
-
-        if (typeof duration === "string") {
-            duration = this.getNoteDuration(duration);
-        }
+    play(note, velocity, duration, mod) {
 
         if (this.midiDevice) {
             let chord = NoteQuantizer.makeChord(note);
             if (this.state.note || !chord || chord.length < 1) {
-                // this.midiDevice.play(this.midiChannel, note, velocity, duration);
                 this.playMidiNote(note, velocity);
+                this.playCVNote(note, velocity, mod);
             } else {
                 if (this.state.scaleFirst !== false) {
-                    // this.midiDevice.play(this.midiChannel, chord[0], velocity, duration);
-                    this.playMidiNote(chord[0], velocity)
+                    this.playMidiNote(chord[0], velocity);
+                    this.playCVNote(chord[0], velocity, mod);
                 }
                 if (this.state.scaleThird && chord[1]) {
-                    this.playMidiNote(chord[1], velocity)
-                    // this.midiDevice.play(this.midiChannel, chord[1], velocity, duration);
+                    this.playMidiNote(chord[1], velocity);
                 }
                 if (this.state.scaleFifth && chord[2]) {
-                    this.playMidiNote(chord[2], velocity)
-                    // this.midiDevice.play(this.midiChannel, chord[2], velocity, duration);
+                    this.playMidiNote(chord[2], velocity);
                 }
             }
         }
@@ -243,6 +238,14 @@ class Sequencer {
             this.midiDevice.noteOff(this.midiChannel, note, velocity);
         });
         this.midiDevice.noteOn(this.midiChannel, note, velocity);
+    }
+
+    playCVNote(note, velocity, mod) {
+        let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) / 2);
+        this.props.cvEvent("pitch", note);
+        this.props.cvEvent("vel", velocity);
+        this.props.cvEvent("gate", ticks);
+        this.props.cvEvent("mod", mod);
     }
 
     /***
@@ -326,6 +329,7 @@ class Sequencer {
         if (typeof this.props.reset === "function") {
             this.props.reset();
         }
+        this.midiDevice.allNotesOff(this.midiChannel);
         this._index = 0;
         this._arpIndex = 0;
         this._loopEnd = false;
