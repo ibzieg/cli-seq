@@ -85,6 +85,21 @@ class Performance {
     routeCVEvent(type, value, channel) {
         let minion = this.props.context.minion;
         switch(type) {
+            case "tog":
+                // first trigger
+                this.eventScheduler.schedule(2, () => {
+                    minion.GateOutput(channel, 0);
+                });
+                minion.GateOutput(channel, 1);
+
+                // second trigger
+                this.eventScheduler.schedule(parseInt(value), () => {
+                    this.eventScheduler.schedule(2, () => {
+                        minion.GateOutput(channel, 0);
+                    });
+                    minion.GateOutput(channel, 1);
+                });
+                break;
             case "gate":
             case "end":
             case "scene":
@@ -152,12 +167,20 @@ class Performance {
         }
     }
 
+    /***
+     *
+     * @param index
+     */
     select(index) {
         // TODO Queue this for beat syncing
         Store.instance.setProperty("selectedPerformance", index);
         this.updateDisplay();
     }
 
+    /***
+     *
+     * @param bpm
+     */
     clock(bpm) {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].clock(bpm);
@@ -165,18 +188,27 @@ class Performance {
         this.eventScheduler.clock();
     }
 
+    /***
+     *
+     */
     postClock() {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].postClock();
         }
     }
 
+    /***
+     *
+     */
     start() {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].start();
         }
     }
 
+    /***
+     *
+     */
     stop() {
         for (let i = 0; i < Store.TRACK_COUNT; i++) {
             this.tracks[i].stop();
@@ -184,6 +216,9 @@ class Performance {
         this.eventScheduler.flushAllEvents();
     }
 
+    /***
+     *
+     */
     createControllerMap() {
         return {
             noteOn: {
@@ -370,7 +405,7 @@ class Performance {
                 Knob1: {
                     label: "Rate",
                     callback: (data) => {
-                        let rate = data % 8;
+                        let rate = data % 9;
                         Store.instance.setSelectedTrackProperty("rate", rate);
                         return rate.toString();
                     }
@@ -520,15 +555,10 @@ class Performance {
                     }
                 },
                 Knob15: {
-                    label: "",
+                    label: "End",
                     callback: (data) => {
-
-
-                        // this.state.selectedDeviceIndex = data % 8;
-                        // this.updateDeviceState();
-                        // this.updateControllerState();
-                        //return `${this.state.selectedDeviceIndex}:${this.deviceState[this.state.selectedDeviceIndex].name}`;
-                        return 1;
+                        Store.instance.setSelectedTrackProperty("end", data);
+                        return data;
                     }
                 },
                 Knob16: {
@@ -551,7 +581,11 @@ class Performance {
         }
     }
 
-
+    /***
+     *
+     * @param index
+     * @returns {*}
+     */
     selectTrack(index) {
         Store.instance.setPerformanceProperty("selectedTrack", index);
         this.updateDisplay();
@@ -559,6 +593,10 @@ class Performance {
         return tracks[Store.instance.performance.selectedTrack].name;
     }
 
+    /***
+     *
+     * @param index
+     */
     queueScene(index) {
         if (typeof Store.instance.scene.options.resetEvent === "number") {
             this.queuedSceneIndex = index;
@@ -568,6 +606,10 @@ class Performance {
         }
     }
 
+    /***
+     *
+     * @param index
+     */
     selectScene(index) {
         this.queuedSceneIndex = null;
         Store.instance.setPerformanceProperty("selectedScene", index);
@@ -583,6 +625,11 @@ class Performance {
         this.updateDisplay();
     }
 
+    /***
+     *
+     * @param d1
+     * @param d2
+     */
     updateControllerPad(d1, d2) {
         process.send({
             type: "controller",
@@ -592,6 +639,11 @@ class Performance {
         });
     }
 
+    /***
+     *
+     * @param d1
+     * @param d2
+     */
     updateControllerKnob(d1, d2) {
         process.send({
             type: "controller",
@@ -601,6 +653,9 @@ class Performance {
         });
     }
 
+    /***
+     *
+     */
     updateTitle() {
         process.send({
             type: "arrangement",
@@ -608,6 +663,9 @@ class Performance {
         });
     }
 
+    /***
+     *
+     */
     updateDeviceState() {
         // TODO should be called TrackState ?
         let tracks = Store.instance.scene.tracks;
@@ -628,12 +686,40 @@ class Performance {
         });
     }
 
+    /***
+     *
+     */
+    updateTrackState() {
+        process.send({
+            type: "trackState",
+            trackState: Store.instance.scene.tracks[this.state.selectedTrack]
+        });
+    }
+
+    /***
+     *
+     */
+    updateSceneState() {
+        process.send({
+            type: "sceneState",
+            sceneState: Store.instance.scene.options
+        });
+    }
+
+    /***
+     *
+     * @param index
+     * @returns {MidiDevice|boolean}
+     */
     isTrackMidiAvailable(index) {
         let track = Store.instance.scene.tracks[index];
         let instrument = ExternalDevices.instruments[track.instrument];
         return MidiDevice.getInstance(instrument.device) && true;
     }
 
+    /***
+     *
+     */
     updateAllPads() {
         let name = Store.instance.scene.tracks[this.state.selectedTrack].name;
         this.updateControllerPad(MidiController.BeatStepMap.Pad1, this.state.selectedTrack === 0 ? name : "");
@@ -646,6 +732,9 @@ class Performance {
         this.updateControllerPad(MidiController.BeatStepMap.Pad8, this.state.selectedTrack === 7 ? name : "");
     }
 
+    /***
+     *
+     */
     updateAllKnobs() {
 
         let trackState = Store.instance.scene.tracks[this.state.selectedTrack];
@@ -664,17 +753,25 @@ class Performance {
         this.updateControllerKnob(MidiController.BeatStepMap.Knob12, Store.instance.scene.options.maxNote);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob13, Store.instance.scene.tracks[Store.instance.scene.options.resetEvent].name);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob14, Store.instance.scene.options.noteSetSize);
-        this.updateControllerKnob(MidiController.BeatStepMap.Knob15, "");
+        this.updateControllerKnob(MidiController.BeatStepMap.Knob15, trackState.end);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob16, typeof trackState.follow === "number" ? Store.instance.scene.tracks[trackState.follow].name : "none" );
     }
 
+    /***
+     *
+     */
     updateDisplay() {
         this.updateTitle();
         this.updateAllPads();
         this.updateAllKnobs();
         this.updateDeviceState();
+        this.updateSceneState();
+        this.updateTrackState();
     }
 
+    /***
+     *
+     */
     generateNoteSet() {
         Store.instance.setSceneProperty("noteSet",
             SequenceData.generateNoteSet(

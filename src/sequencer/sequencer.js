@@ -16,12 +16,10 @@
 
 const Log = require("./../display/log-util");
 const MidiDevice = require("./../midi/midi-device");
-const MidiInstrument = require("./../midi/midi-instrument");
 const ExternalDevices = require("../midi/external-devices");
 const SequenceGraph = require("./sequence-graph");
 const NoteQuantizer = require("./note-quantizer");
 const Store = require("./store");
-const EventRouter = require("./event-router");
 const EventScheduler = require("./event-scheduler");
 
 class Sequencer {
@@ -139,7 +137,7 @@ class Sequencer {
 
 
                 }
-                this._index = (this._index + 1) % Math.min(this.data.length, this.state.length);
+                this._index = (this._index + 1) % Math.min(this.data.length, this.state.end);
                 if (this._index === 0) {
                     this._signalEnd = true;
                 }
@@ -234,6 +232,7 @@ class Sequencer {
 
     playMidiNote(note, velocity) {
         let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) / 2);
+        // let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) - 1);
         this.eventScheduler.schedule(ticks, () => {
             this.midiDevice.noteOff(this.midiChannel, note, velocity);
         });
@@ -242,10 +241,13 @@ class Sequencer {
 
     playCVNote(note, velocity, mod) {
         let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) / 2);
+        //let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) - 1);
         this.props.cvEvent("pitch", note);
         this.props.cvEvent("vel", velocity);
-        this.props.cvEvent("gate", ticks);
         this.props.cvEvent("mod", mod);
+        this.props.cvEvent("gate", ticks);
+        this.props.cvEvent("tog", ticks);
+
     }
 
     /***

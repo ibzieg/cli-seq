@@ -349,6 +349,7 @@ class Store {
 
      Events output via the EuropiMinion Gate Outputs
      gate.1-8 // Gate output corresponding to midi not event on tracks 1-8
+     tog.1-8 // Send trigger at beginning and end of Gate on tracks 1-8
      end.1-8 // Gate indicating squence has reach end on tracks 1-8
      scene // Gate indicating scene change.
 
@@ -418,6 +419,7 @@ class Store {
                 rate: 4,
                 octave: 0,
                 length: 16,
+                end: 16,
                 steps: 4,
                 graphType: "linear",
                 sequenceType: "random",

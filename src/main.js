@@ -56,6 +56,12 @@ performanceThread.on('message', (message) => {
             case "deviceState":
                 Screen.Instance.updateDeviceState(message.deviceState);
                 break;
+            case "sceneState":
+                Screen.Instance.updateSceneState(message.sceneState);
+                break;
+            case "trackState":
+                Screen.Instance.updateTrackState(message.trackState);
+                break;
             case "arrangement":
                 Screen.Instance.arrangement(message.title);
                 break;

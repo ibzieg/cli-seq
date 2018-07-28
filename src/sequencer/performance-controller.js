@@ -39,6 +39,110 @@ class PerformanceController {
 
     /***
      *
+     * @param key
+     * @param value
+     */
+    trackProp(key, value) {
+        Store.instance.setSelectedTrackProperty(key, value);
+        this.performance.updateTrackState();
+    }
+
+    /***
+     *
+     * @param key
+     * @param value
+     */
+    sceneProp(key, value) {
+        Store.instance.setSceneProperty(key, value);
+
+        switch (key) {
+            case "modA":
+                this.performance.cvEvent("cv", value, "a");
+                break;
+            case "modB":
+                this.performance.cvEvent("cv", value, "b");
+                break;
+            case "modC":
+                this.performance.cvEvent("cv", value, "c");
+                break;
+            case "modD":
+                this.performance.cvEvent("cv", value, "d");
+                break;
+        }
+
+        this.performance.updateSceneState();
+    }
+
+    /***
+     * Track Property accessors
+     * @returns {*}
+     */
+    get instrument() {
+        return Store.instance.scene.tracks[
+            Store.instance.performance.selectedTrack].instrument; 
+    }
+    set instrument(value) { this.trackProp("instrument", value); }
+
+    get note() {
+        return Store.instance.scene.tracks[
+            Store.instance.performance.selectedTrack].note;
+    }
+    set note(value) { this.trackProp("note", value); }
+
+    get velocity() {
+        return Store.instance.scene.tracks[
+            Store.instance.performance.selectedTrack].velocity;
+    }
+    set velocity(value) { this.trackProp("velocity", value); }
+
+    get constants() {
+        return Store.instance.scene.tracks[
+            Store.instance.performance.selectedTrack].constants;
+    }
+    set constants(value) { this.trackProp("constants", value); }
+    
+    get modA() { return Store.instance.scene.options.modA; }
+    set modA(value) { this.sceneProp("modA", value); }
+
+    /***
+     * Scene Property accessors
+     * @returns {*|number}
+     */
+    get modB() { return Store.instance.scene.options.modB; }
+    set modB(value) { this.sceneProp("modB", value); }
+
+    get modC() { return Store.instance.scene.options.modC; }
+    set modC(value) { this.sceneProp("modC", value); }
+
+    get modD() { return Store.instance.scene.options.modD; }
+    set modD(value) { this.sceneProp("modD", value); }
+
+    get cvA() { return Store.instance.scene.options.cvA; }
+    set cvA(value) { this.sceneProp("cvA", value); }
+
+    get cvB() { return Store.instance.scene.options.cvB; }
+    set cvB(value) { this.sceneProp("cvB", value); }
+
+    get cvC() { return Store.instance.scene.options.cvC; }
+    set cvC(value) { this.sceneProp("cvC", value); }
+
+    get cvD() { return Store.instance.scene.options.cvD; }
+    set cvD(value) { this.sceneProp("cvD", value); }
+
+    get gateA() { return Store.instance.scene.options.gateA; }
+    set gateA(value) { this.sceneProp("gateA", value); }
+
+    get gateB() { return Store.instance.scene.options.gateB; }
+    set gateB(value) { this.sceneProp("gateB", value); }
+
+    get gateC() { return Store.instance.scene.options.gateC; }
+    set gateC(value) { this.sceneProp("gateC", value); }
+
+    get gateD() { return Store.instance.scene.options.gateD; }
+    set gateD(value) { this.sceneProp("gateD", value); }
+    
+    /***
+     *
      */
     constructor() {
 
@@ -53,13 +157,15 @@ class PerformanceController {
 
                 let performance = this.performance;
                 let track = this.performance.tracks[Store.instance.performance.selectedTrack];
-                let setProp = Store.instance.setSelectedTrackProperty.bind(Store.instance);
+                let trackProp = this.trackProp.bind(this);
+                let sceneProp = this.sceneProp.bind(this);
                 let save = Store.instance.saveState.bind(Store.instance);
 
                 //this.activeArrangement.onLiveScriptInput(message.script);
                 let script = message.script;
-                if (script && script[0] === '/') {
-                    script = `${script.substring(1, script.length)}`;
+                if (script && script[0] === '.') {
+                    //script = `${script.substring(1, script.length)}`;
+                    script = 'this'+script;
                 }
                 try {
                     let result = eval(script);
