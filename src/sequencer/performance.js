@@ -249,6 +249,7 @@ class Performance {
                     label: "Rnd Graph",
                     callback: (velocity) => {
                         this.tracks[this.state.selectedTrack].generateGraphData();
+                        this.updateTrackState();
                         Log.info(`tracks[${this.state.selectedTrack}].graphData=${JSON.stringify(Store.instance.scene.tracks[this.state.selectedTrack].graphData)}`);
                         return "Graph";
                     }
@@ -256,7 +257,15 @@ class Performance {
                 Pad13: {
                     label: "Rnd Track",
                     callback: (velocity) => {
-                        this.tracks[this.state.selectedTrack].generateAllSequences();
+                        let track = this.tracks[this.state.selectedTrack];
+                        let seqIndex = parseInt(track.state.graphType);
+                        if (seqIndex >= 0) {
+                            // If a specific sequence index is chosen, only randomize that slot
+                            track.generateSequenceData(seqIndex);
+                        } else {
+                            track.generateAllSequences();
+                        }
+                        this.updateTrackState();
                         return "Randomize";
                     }
                 },
@@ -267,6 +276,7 @@ class Performance {
                         for (let i = 0; i < Store.TRACK_COUNT; i++) {
                             this.tracks[i].generateAllSequences();
                         }
+                        this.updateTrackState();
                         Log.debug(`generated note set ${Store.instance.scene.options.noteSet}`);
                         return "Randomize";
                     }

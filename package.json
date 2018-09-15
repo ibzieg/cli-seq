@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodejs src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "deploy": "rsync -avh ./ pi@192.168.0.147:code/cli-seq-dev/ --exclude node_modules",
     "deploy2": "rsync -avh ./ pi@192.168.0.148:code/cli-seq-dev/ --exclude node_modules"
   },
@@ -18,5 +18,8 @@
     "raspi": "^4.0.0",
     "raspi-i2c": "^5.0.4",
     "rpi-gpio": "^0.8.1"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }

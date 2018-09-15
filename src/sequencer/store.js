@@ -17,9 +17,12 @@
 const fs = require("fs");
 const path = require("path");
 const Log = require("../display/log-util");
+const JSONFile = require('./json-file');
 const ExternalDevices = require("../midi/external-devices");
 
-const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename),"..","..","data","saved-state.json");
+const SAVED_STATE_FILENAME = process.mainModule ?
+    path.join(path.dirname(process.mainModule.filename),"..","..","data","saved-state.json") :
+    "saved-state.json";
 
 /***
  *
@@ -31,7 +34,7 @@ const SAVED_STATE_FILENAME = path.join(path.dirname(process.mainModule.filename)
  *             selectedTrack: number (0-7 index)
  *             selectedScene: number (0-7 index)
  *             scenes: [
- *                 ... (each arrangement has 8 scenes, with scenes[0] being the primary)
+ *                 ... (each performance has 16 scenes, with scenes[0] being the primary)
  *                 {
  *                     options: {
  *                         root: string (root note)
@@ -91,10 +94,6 @@ const PERFORMANCE8_NAME = "Performance 9";
 const PERFORMANCE9_NAME = "Performance 10";
 const PERFORMANCE10_NAME = "Performance 11";
 const PERFORMANCE11_NAME = "Performance 12";
-// const PERFORMANCE12_NAME = "Performance 13";
-// const PERFORMANCE13_NAME = "Performance 14";
-// const PERFORMANCE14_NAME = "Performance 15";
-// const PERFORMANCE15_NAME = "Performance 16";
 
 const SCENE0_NAME = "Scene 1";
 const SCENE1_NAME = "Scene 2";
@@ -112,24 +111,6 @@ const SCENE12_NAME = "Scene 13";
 const SCENE13_NAME = "Scene 14";
 const SCENE14_NAME = "Scene 15";
 const SCENE15_NAME = "Scene 16";
-
-const TRACK0_DEFAULT_NAME = "mono1";
-const TRACK1_DEFAULT_NAME = "mono2";
-const TRACK2_DEFAULT_NAME = "poly1";
-const TRACK3_DEFAULT_NAME = "poly2";
-const TRACK4_DEFAULT_NAME = "perc1";
-const TRACK5_DEFAULT_NAME = "perc2";
-const TRACK6_DEFAULT_NAME = "perc3";
-const TRACK7_DEFAULT_NAME = "perc4";
-
-const TRACK0_DEFAULT_INSTRUMENT = "UnoBSPSeq1";
-const TRACK1_DEFAULT_INSTRUMENT = "UnoBSPSeq2";
-const TRACK2_DEFAULT_INSTRUMENT = "UnoMinilogue";
-const TRACK3_DEFAULT_INSTRUMENT = "NordG2A";
-const TRACK4_DEFAULT_INSTRUMENT = "UnoBSPDrum";
-const TRACK5_DEFAULT_INSTRUMENT = "UnoBSPDrum";
-const TRACK6_DEFAULT_INSTRUMENT = "UnoBSPDrum";
-const TRACK7_DEFAULT_INSTRUMENT = "UnoBSPDrum";
 
 const TRACK_DEFAULTS = [
     {
@@ -206,11 +187,7 @@ class Store {
                 Store.getDefaultPerformance(PERFORMANCE8_NAME),
                 Store.getDefaultPerformance(PERFORMANCE9_NAME),
                 Store.getDefaultPerformance(PERFORMANCE10_NAME),
-                Store.getDefaultPerformance(PERFORMANCE11_NAME),
-                // Store.getDefaultPerformance(PERFORMANCE12_NAME),
-                // Store.getDefaultPerformance(PERFORMANCE13_NAME),
-                // Store.getDefaultPerformance(PERFORMANCE14_NAME),
-                // Store.getDefaultPerformance(PERFORMANCE15_NAME)
+                Store.getDefaultPerformance(PERFORMANCE11_NAME)
             ]
         }
     }
@@ -485,7 +462,7 @@ class Store {
     }
 
     /***
-     *
+     * Create singleton
      * @returns {Promise}
      */
     static create() {
@@ -493,6 +470,10 @@ class Store {
            _instance = new Store();
         }
         return Store.instance.loadState();
+    }
+
+    static destroy() {
+        _instance = null;
     }
 
     /***
@@ -535,6 +516,9 @@ class Store {
         this.stateChanged();
     }
 
+    /***
+     *
+     */
     stateChanged() {
         this._cachedScene = null;
     }
@@ -544,16 +528,7 @@ class Store {
      * @returns {Promise}
      */
     saveState() {
-        return new Promise((resolve, reject) => {
-            let json = JSON.stringify(this.state, null, ' ');
-            fs.writeFile(SAVED_STATE_FILENAME, json, (error) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve();
-                }
-            });
-        });
+        return JSONFile.writeFile(SAVED_STATE_FILENAME, this.state);
     }
 
     /***
@@ -561,39 +536,60 @@ class Store {
      * @returns {Promise}
      */
     loadState() {
-        return new Promise((resolve, reject) => {
-            if (fs.existsSync(SAVED_STATE_FILENAME)) {
-                fs.readFile(SAVED_STATE_FILENAME, {encoding: 'utf-8'}, (error, text) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        try {
-                            let newState = JSON.parse(text);
-                            this._state = Store.mergeState(this.state, newState);
-                            this.stateChanged();
-                            resolve();
-                        } catch (ex) {
-                            reject(ex);
-                        }
-
-                    }
-                });
-            } else {
-                resolve();
-            }
+        return JSONFile.readFile(SAVED_STATE_FILENAME).then((newState) => {
+            this._state = Store.mergeState(this.state, newState);
+            this.stateChanged();
         });
     }
 
+    /***
+     *
+     * @param perfIndex
+     */
+    copySceneToPerformance(perfIndex) {
+        if (perfIndex < 0 || perfIndex > Store.PERFORMANCE_COUNT) {
+            throw new Error(`Index out of bounds: ${perfIndex}`);
+        }
+
+        // clone the active scene
+        let scene = Store.mergeScene(
+            Store.getDefaultScene('asdf', false),
+            this.scene);
+
+        // create an empty performance
+        let perf = Store.getDefaultPerformance(`(copy) Performance ${perfIndex+1}`);
+        // set the cloned scene as the base scene
+        perf.scenes[0] = scene;
+
+        this._state.performances[perfIndex] = perf;
+        this.stateChanged();
+    }
+
+    /***
+     *
+     * @param key
+     * @param value
+     */
     setProperty(key, value) {
         this._state[key] = value;
         this.stateChanged();
     }
 
+    /***
+     *
+     * @param key
+     * @param value
+     */
     setPerformanceProperty(key, value) {
         this._state.performances[this.state.selectedPerformance][key] = value;
         this.stateChanged();
     }
 
+    /***
+     *
+     * @param key
+     * @param value
+     */
     setSceneProperty(key, value) {
         let perf = this.performance;
         let scene = perf.scenes[perf.selectedScene];
@@ -602,6 +598,12 @@ class Store {
         this.stateChanged();
     }
 
+    /***
+     *
+     * @param index
+     * @param key
+     * @param value
+     */
     setTrackProperty(index, key, value) {
         let perf = this.performance;
         let scene = perf.scenes[perf.selectedScene];
@@ -610,6 +612,11 @@ class Store {
         this.stateChanged();
     }
 
+    /***
+     *
+     * @param key
+     * @param value
+     */
     setSelectedTrackProperty(key, value) {
         let perf = this.performance;
         let scene = perf.scenes[perf.selectedScene];

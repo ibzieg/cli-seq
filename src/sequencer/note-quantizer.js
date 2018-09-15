@@ -59,14 +59,6 @@ class NoteQuantizer {
 
     /***
      *
-     * @param options
-     */
-    constructor(options) {
-        this._options = options;
-    }
-
-    /***
-     *
      * @returns {*}
      */
     static get activeScale() {

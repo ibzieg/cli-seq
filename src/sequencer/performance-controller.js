@@ -100,14 +100,29 @@ class PerformanceController {
             Store.instance.performance.selectedTrack].constants;
     }
     set constants(value) { this.trackProp("constants", value); }
-    
-    get modA() { return Store.instance.scene.options.modA; }
-    set modA(value) { this.sceneProp("modA", value); }
+
+    get linearGraph() {
+        return Store.instance.scene.tracks[
+            Store.instance.performance.selectedTrack].graphData.linear;
+    }
+    set linearGraph(data) {
+/*        let graphData = { ...Store.instance.scene.tracks[
+            Store.instance.performance.selectedTrack].graphData };*/
+
+        let graphData = Object.assign({}, graphData,
+            Store.instance.scene.tracks[
+                Store.instance.performance.selectedTrack].graphData);
+        graphData.linear = data;
+        this.trackProp("graphData", graphData);
+    }
 
     /***
      * Scene Property accessors
      * @returns {*|number}
      */
+    get modA() { return Store.instance.scene.options.modA; }
+    set modA(value) { this.sceneProp("modA", value); }
+
     get modB() { return Store.instance.scene.options.modB; }
     set modB(value) { this.sceneProp("modB", value); }
 
@@ -150,11 +165,13 @@ class PerformanceController {
 
         /***
          * Live scripting console
+         * // TODO move this into a separate function
          */
         process.on('message', (message) => {
 
             if (message.type === "command") {
 
+                // local scope for command line script:
                 let performance = this.performance;
                 let track = this.performance.tracks[Store.instance.performance.selectedTrack];
                 let trackProp = this.trackProp.bind(this);

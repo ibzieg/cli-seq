@@ -512,16 +512,26 @@ class Screen {
      * @param trackState
      */
     updateTrackState(trackState) {
+
+/*        trackState = {
+            ...trackState,
+            linearGraph: JSON.stringify(trackState.graphData.linear)
+        };*/
+        let state = {};
+        state = Object.assign({}, state, trackState);
+        state.linearGraph = JSON.stringify(trackState.graphData.linear);
+
         let keys = [
             "instrument",
             "note",
             "velocity",
-            "constants"
+            "constants",
+            "linearGraph"
         ];
 
         let text = ``;
         for (let i = 0; i < keys.length; i++) {
-            text += `${keys[i]}:\t${colors.green(trackState[keys[i]])}\n`
+            text += `${keys[i]}:\t${colors.green(state[keys[i]])}\n`
         }
         this.trackConfigBox.setContent(text);
         this._screen.render();
