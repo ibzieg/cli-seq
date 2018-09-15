@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-const NoteQuantizer = require("./note-quantizer");
+const NoteQuantizer = require("../note-quantizer");
 
 /******************************************************************************
  * getNoteIndexFromName(noteName)

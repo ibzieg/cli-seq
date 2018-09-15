@@ -15,7 +15,7 @@
  ******************************************************************************/
 
 const fs = require("fs");
-const JSONFile = require("./json-file");
+const JSONFile = require("../json-file");
 
 const TEST_FILE_NAME = "json-file.test.data.json";
 

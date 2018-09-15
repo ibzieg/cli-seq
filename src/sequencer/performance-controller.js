@@ -163,34 +163,9 @@ class PerformanceController {
 
         this.initialize();
 
-        /***
-         * Live scripting console
-         * // TODO move this into a separate function
-         */
         process.on('message', (message) => {
-
             if (message.type === "command") {
-
-                // local scope for command line script:
-                let performance = this.performance;
-                let track = this.performance.tracks[Store.instance.performance.selectedTrack];
-                let trackProp = this.trackProp.bind(this);
-                let sceneProp = this.sceneProp.bind(this);
-                let save = Store.instance.saveState.bind(Store.instance);
-
-                //this.activeArrangement.onLiveScriptInput(message.script);
-                let script = message.script;
-                if (script && script[0] === '.') {
-                    //script = `${script.substring(1, script.length)}`;
-                    script = 'this'+script;
-                }
-                try {
-                    let result = eval(script);
-                    Log.success(message.script);
-                    Log.info(result);
-                } catch (error) {
-                    Log.error(error);
-                }
+                this.processCommand(message.script);
             } else if (message.type === "functionKey") {
                 this.performance.select(message.index);
                 Log.info(`Selected performance ${message.index+1}`);
@@ -250,6 +225,34 @@ class PerformanceController {
 
         this.tickDurations = [];
         this.lastTick = process.hrtime();
+    }
+
+    /***
+     *
+     * @param script
+     */
+    processCommand(script) {
+        // local scope aliases for command line script:
+        let performance = this.performance;
+        let track = this.performance.tracks[Store.instance.performance.selectedTrack];
+        let trackProp = this.trackProp.bind(this);
+        let sceneProp = this.sceneProp.bind(this);
+        let save = Store.instance.saveState.bind(Store.instance);
+        let copyTo = (i) => {
+            Store.instance.copySceneToPerformance(i-1);
+            return `Copied active scene into new Performance ${i}`;
+        };
+
+        if (script && script[0] === '.') {
+            script = 'this'+script;
+        }
+        try {
+            let result = eval(script);
+            Log.success(script);
+            Log.info(result);
+        } catch (error) {
+            Log.error(error);
+        }
     }
 
     /***
