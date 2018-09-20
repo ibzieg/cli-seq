@@ -15,13 +15,13 @@
  ******************************************************************************/
 
 const colors = require("colors");
-const { fork } = require('child_process');
+const { fork, spawn } = require('child_process');
 
 const Screen = require("./display/screen");
 
 Screen.create({
     onExit: () => {
-        performanceThread.kill("SIGINT");
+        stopAllThreads();
         return process.exit(0);
     },
     onCommandInput: (cmd) => {
@@ -39,7 +39,6 @@ Screen.create({
 });
 
 const performanceThread = fork('./src/sequencer/performance-thread.js');
-
 
 performanceThread.on('message', (message) => {
     try {
@@ -76,4 +75,32 @@ performanceThread.on('message', (message) => {
         Screen.Instance.log(`${colors.red("\u2717")} [main] ${error} ${error.stack}`);
     }
 
+});
+
+
+const apiServerThread = fork('./server/bin/www', {
+    env: {
+        PORT: 3001
+    },
+    silent: true
+});
+
+
+const webServerThread = fork('./node_modules/react-scripts/scripts/start',{
+    cwd: './client/',
+    silent: true
+});
+
+Screen.Instance.log(`web server started on port ${webServerThread.pid}`);
+
+function stopAllThreads() {
+    apiServerThread.kill();
+    webServerThread.kill();
+    performanceThread.kill("SIGINT");
+}
+
+
+process.on('SIGTERM',function(){
+    stopAllThreads();
+    process.exit(1);
 });
