@@ -17,6 +17,8 @@
 const colors = require("colors");
 const { fork, spawn } = require('child_process');
 
+const InterfaceAddress = require("./network/interface-address");
+const Console = require("./display/log-util");
 const Screen = require("./display/screen");
 
 Screen.create({
@@ -67,6 +69,9 @@ performanceThread.on('message', (message) => {
             case "clock":
                 Screen.Instance.updateClock(message.tickDuration);
                 break;
+            case "state":
+                apiServerThread.send(message);
+                break;
             default:
                 Screen.Instance.log(`Unknown message type: ${JSON.stringify(message)}`);
                 break;
@@ -82,16 +87,19 @@ const apiServerThread = fork('./server/bin/www', {
     env: {
         PORT: 3001
     },
-    silent: true
+    //silent: true
 });
 
 
 const webServerThread = fork('./node_modules/react-scripts/scripts/start',{
+    env: {
+        PORT: 3000
+    },
     cwd: './client/',
     silent: true
 });
 
-Screen.Instance.log(`web server started on port ${webServerThread.pid}`);
+Screen.Instance.log(Console.successStyle(`HTTP server started at http://${InterfaceAddress.localAddress}:3000`));
 
 function stopAllThreads() {
     apiServerThread.kill();

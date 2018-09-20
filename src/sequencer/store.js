@@ -521,6 +521,9 @@ class Store {
      */
     stateChanged() {
         this._cachedScene = null;
+
+        // TODO is this slow?
+        process.send({ type: 'state', state: this.state});
     }
 
     /***

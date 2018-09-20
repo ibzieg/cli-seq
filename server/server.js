@@ -4,10 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const http = require('http');
 
-var app = express();
+
+const expressWs = require('express-ws');
+const app = express();
+
+const port = require("./port");
+
+app.set('port', port);
+
+const server = http.createServer(app);
+const wsInstance = expressWs(app, server);
+
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+const sequencerRouter = require("./routes/sequencer");
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +35,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/sequencer', sequencerRouter);
+
+/*app.ws('/echo', (ws, req) => {
+    ws.on('message', msg => {
+        ws.send(msg)
+    });
+
+    ws.on('close', () => {
+        console.log('WebSocket was closed')
+    });
+});*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,4 +63,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = server;
