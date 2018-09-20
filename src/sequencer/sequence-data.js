@@ -96,18 +96,6 @@ class SequenceData {
      * @returns {Array}
      */
     static getRandomSequence(nextNote, config) {
-/*        let min = config.min;
-        let max = config.max;
-        let density = config.density;
-        // min = Math.floor(min/2)*2; // force even
-        // max = Math.floor(max/2)*2; // force even
-        if (density < 0) density = 0;
-        if (density > 1) density = 1;
-        let length = Math.floor(min+Math.random()*(max-min+1));
-        if (length % 2 !== 0) {
-            length = length + 1;
-        }*/
-
         let length = config.length;
         let density = config.steps / config.length; // TODO use step count instead
 
@@ -135,14 +123,6 @@ class SequenceData {
      * @returns {Array}
      */
     static getRykSequence(nextNote, config) {
-/*        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));*/
-
 
         let length = config.length;
         let d = config.steps / config.length; // TODO use step count instead
@@ -185,14 +165,6 @@ class SequenceData {
      * @returns {Array}
      */
     static getRandomPercData(nextNote, config) {
-/*        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));*/
-
         let length = config.length;
         let d = config.steps / config.length; // TODO use step count instead
 
@@ -227,14 +199,6 @@ class SequenceData {
      * @returns {Array}
      */
     static getQuarterBeat(nextNote, config) {
-/*        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));*/
-
         let length = config.length;
 
         let quarter = Math.round(length / 4);
@@ -258,14 +222,6 @@ class SequenceData {
      * @returns {Array}
      */
     static getHalfBeat(nextNote, config) {
-/*        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));*/
-
         let length = config.length;
 
         let quarter = Math.round(length / 4);
@@ -286,20 +242,7 @@ class SequenceData {
     }
 
 
-    static euclidPattern(nextNote, config) {
-/*        let min = config.min ? config.min : (config.max ? config.max : config.n);
-        let max = config.max ? config.max : (config.min ? config.min : config.n);
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let n = Math.floor(min+Math.random()*(max-min+1));
-
-        let kmin = config.kmin ? config.kmin : (config.kmax ? config.kmax : config.k);
-        let kmax = config.kmax ? config.kmax : (config.kmin ? config.kmin : config.k);
-        let k = Math.floor(kmin+Math.random()*(kmax-kmin+1));
-
-        let d = config.density ? config.density : 1;*/
-
-        let n = config.length;
+    static euclidPattern(nextNote, config) {let n = config.length;
         let k = config.steps;
         let d = config.steps / config.length; // TODO use step count instead
         // TODO some random k or offset?
@@ -388,7 +331,6 @@ class SequenceData {
     static getBrmnghmSequence(nextNote, config) {
         let n = config.length;
         let k = config.steps;
-        let d = config.steps / config.length; // TODO use step count instead
 
         let seq = [];
 

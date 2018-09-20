@@ -22,6 +22,8 @@ const colors = require("colors");
 
 const Performance = require("./performance");
 
+const MasterClock = require("./master-clock");
+
 const Store = require("./store");
 
 class PerformanceController {
@@ -189,22 +191,14 @@ class PerformanceController {
             receiveMessage: (status, d1, d2) => {
                 this.controllerMessage(status, d1, d2);
             },
-            clock: () => {
-                this.isPlaying = true;
-                this.updateClock();
-                this.performance.clock(this.bpm);
-            },
-            postClock: () => {
-                this.performance.postClock();
-            },
-            start: () => {
-                this.isPlaying = true;
-                this.performance.start();
-            },
-            stop: () => {
-                this.isPlaying = false;
-                this.performance.stop();
-            }
+            clock: this.clock.bind(this),
+            //postClock: this.postClock.bind(this)
+            start: this.start.bind(this),
+            stop: this.stop.bind(this)
+        });
+
+        this.masterClock = new MasterClock({
+            clock: this.clock.bind(this)
         });
 
         let context = {
@@ -227,6 +221,22 @@ class PerformanceController {
         this.lastTick = process.hrtime();
     }
 
+    clock() {
+        this.isPlaying = true;
+        this.updateClock();
+        this.performance.clock(this.bpm);
+        this.performance.postClock();
+    }
+
+    start() {
+        this.isPlaying = true;
+        this.performance.start();
+    }
+    stop() {
+        this.isPlaying = false;
+        this.performance.stop();
+    }
+
     /***
      *
      * @param script
@@ -241,6 +251,15 @@ class PerformanceController {
         let copyTo = (i) => {
             Store.instance.copySceneToPerformance(i-1);
             return `Copied active scene into new Performance ${i}`;
+        };
+        let start = () => {
+            this.masterClock.start();
+            return `Start master clock`;
+        };
+
+        let stop = () => {
+            this.masterClock.stop();
+            return `Stop master clock`;
         };
 
         if (script && script[0] === '.') {

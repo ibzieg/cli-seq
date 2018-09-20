@@ -90,10 +90,10 @@ class SequenceGraph {
             markov: []
         };
         let i, j;
-        //if (this.type === "linear") {
-        let length = SequenceGraph.randomInt(1,3);
+        // Linear
+        let length = SequenceGraph.randomInt(1,2);
         for (i = 0; i < length; i++) {
-            let k = SequenceGraph.randomInt(0,3);
+            let k = SequenceGraph.randomInt(0,2);
             let r = [];
             if (k < 2) {
                 r.push(SequenceGraph.randomInt(0, Store.SEQUENCE_COUNT-1));
@@ -104,7 +104,7 @@ class SequenceGraph {
             }
             data.linear.push(r);
         }
-        //} else if (this.type === "markov") {
+        // Markov
         for (i = 0; i < Store.SEQUENCE_COUNT; i++) {
             let p = [];
             for (j = 0; j < Store.SEQUENCE_COUNT; j++) {
@@ -112,7 +112,7 @@ class SequenceGraph {
             }
             data.markov.push(p);
         }
-        //}
+
         Store.instance.setTrackProperty(this.props.index, "graphData", data);
     }
 

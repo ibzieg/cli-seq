@@ -272,20 +272,19 @@ class Performance {
                 Pad14: {
                     label: "Rnd All",
                     callback: (velocity) => {
-                        this.generateNoteSet();
                         for (let i = 0; i < Store.TRACK_COUNT; i++) {
                             this.tracks[i].generateAllSequences();
                         }
                         this.updateTrackState();
-                        Log.debug(`generated note set ${Store.instance.scene.options.noteSet}`);
                         return "Randomize";
                     }
                 },
                 Pad15: {
-                    label: "",
+                    label: "Gen Notes",
                     callback: (velocity) => {
-                        /* this.state.data.perc2 = this.evolveSequenceStages(this.state.data.perc2, this.state.evolveAmount, this.getRandomPerc2DrumData.bind(this));
-                       */ return "Evolve";
+                        this.generateNoteSet();
+                        Log.debug(`generated note set ${Store.instance.scene.options.noteSet}`);
+                        return "Randomize";
                     }
                 },
                 Pad16: {
