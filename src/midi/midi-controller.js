@@ -15,21 +15,16 @@
  ******************************************************************************/
 
 const colors = require("colors");
-const NanoTimer = require("nanotimer");
-
 const Log = require("./../display/log-util");
 const MidiDevice = require("./midi-device");
 
-
 class MidiController {
 
-/*    static get BeatStepMap() {
-        return BeatStepControllerMap;
-    }*/
-
+    /***
+     *
+     * @param options
+     */
     constructor(options) {
-        this._sequencerMap = new Map();
-
         this._options = options;
 
         this._lastClockTime = process.hrtime();
@@ -39,11 +34,13 @@ class MidiController {
         let device = options.device;
         if (device) {
             this.initializeDevice(device);
-        } else {
-            this.initializeInternalClock();
         }
     }
 
+    /***
+     *
+     * @param device
+     */
     initializeDevice(device) {
         this._midiDevice = MidiDevice.getInstance(device);
         if (this._midiDevice.input) {
@@ -52,34 +49,11 @@ class MidiController {
         }
     }
 
-    initializeInternalClock() {
-        this._isPlaying = true;
-
-        let tempo = this._options.tempo;
-        if (!tempo || tempo < 1) {
-            tempo = 120;
-        }
-        function tempoInterval() {
-            return (60000.0) / (tempo * 24.0);
-        }
-
-        this._masterClock = new NanoTimer();
-        this._masterClock.setInterval(() => {
-            if (this._isPlaying) {
-                this.receiveMessage(null/*hrtime?*/, [248]);
-            }
-        }, '', `${tempoInterval()}m`);
-
-    }
-
-    register(sequencer) {
-        this._sequencerMap.set(sequencer, null);
-    }
-
-    unregister(sequencer) {
-        this._sequencerMap.delete(sequencer);
-    }
-
+    /***
+     *
+     * @param deltaTime
+     * @param message
+     */
     receiveMessage(deltaTime, message) {
         let status = message[0];
         let d1 = message[1];
@@ -125,6 +99,10 @@ class MidiController {
         }
     }
 
+    /***
+     *
+     * @param duration
+     */
     updateClock(duration) {
         const historyLength = 36; // TODO Move constant
         const ppq = 24; // TODO Move constant
@@ -136,49 +114,42 @@ class MidiController {
         this._bpm = Math.round(millisPerMin / beatMillis);
     }
 
+    /***
+     *
+     */
     clock() {
 
         let lastClockDur = process.hrtime(this._lastClockTime);
         this._lastClockTime = process.hrtime();
         let tickDuration = lastClockDur[0]/1000.0 + lastClockDur[1]/1000000.0;
         this.updateClock(tickDuration);
-        process.send({
-            type: "clock",
-            tickDuration: tickDuration
-        });
 
-        for (let sequencer of this._sequencerMap.keys()) {
-            sequencer.clock(this._bpm);
+        if (this._options.clock) {
+            this._options.clock(this._bpm);
         }
-        for (let sequencer of this._sequencerMap.keys()) {
-            sequencer.postClock();
-        }
-        if (this._options.postClock) {
+
+/*        if (this._options.postClock) {
             this._options.postClock();
-        }
+        }*/
     }
 
+    /***
+     *
+     */
     start() {
-        for (let sequencer of this._sequencerMap.keys()) {
-            sequencer.start();
-        }
+
         if (this._options.start) {
             this._options.start();
         }
     }
 
+    /***
+     *
+     */
     stop() {
-        for (let sequencer of this._sequencerMap.keys()) {
-            sequencer.stop();
-        }
+
         if (this._options.stop) {
             this._options.stop();
-        }
-    }
-
-    reset() {
-        for (let sequencer of this._sequencerMap.keys()) {
-            sequencer.reset();
         }
     }
 

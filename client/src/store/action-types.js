@@ -1,0 +1,7 @@
+
+const ActionTypes = {
+    SET_SEQUENCER_DEFINITION: 'SEQUENCER_DEFINITION',
+    SET_CONNECTION_STATUS: 'SET_CONNECTION_STATUS'
+};
+
+export default ActionTypes;

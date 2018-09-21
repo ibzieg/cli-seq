@@ -14,184 +14,185 @@
  * limitations under the License.
  ******************************************************************************/
 
-const MidiInstrument = require("./../midi/midi-instrument");
-const ChordHarmonizer = require("./chord-harmonizer");
+const Log = require("./../display/log-util");
+const MidiDevice = require("./../midi/midi-device");
+const ExternalDevices = require("../midi/external-devices");
+const SequenceGraph = require("./sequence-graph");
+const NoteQuantizer = require("./note-quantizer");
+const Store = require("./store");
+const EventScheduler = require("./event-scheduler");
 
 class Sequencer {
 
-    get instrument() {
-        return this._instrument
+    /***
+     *
+     * @returns {*}
+     */
+    get state() {
+        return Store.instance.scene.tracks[this.props.index];
     }
 
-    set instrument(value) {
-        this._instrument = new MidiInstrument(value);
+    /***
+     *
+     * @returns {MidiDevice}
+     */
+    get midiDevice() {
+        let instrument = ExternalDevices.instruments[this.state.instrument];
+        return MidiDevice.getInstance(instrument.device);
     }
 
-    set data(value) {
-        this._options.data = value;
+    /***
+     *
+     * @returns {number|*}
+     */
+    get midiChannel() {
+        let instrument = ExternalDevices.instruments[this.state.instrument];
+        return instrument.channel;
     }
 
+    /***
+     * Get the correct sequence based on the graph and graph counter
+     */
     get data() {
-        return this._options.data;
+        return this.graph.sequence;
     }
 
-    get rate() {
-        return this._options.rate;
-    }
+    /***
+     *
+     * @param props
+     */
+    constructor(props) {
+        this.props = {
+            cvEvent: props.cvEvent,
+            index: props.index,
+            play: props.play,
+            end: props.end
+        };
 
-    set rate(value) {
-        this.setState({
-            rate: value
+        this.eventScheduler = new EventScheduler();
+
+        this.graph = new  SequenceGraph({
+            index: props.index
         });
-    }
 
-    get arpRate() {
-        return this._options.arpRate;
-    }
-
-    set arpRate(value) {
-        this.setState({
-            arpRate: value
-        });
-    }
-
-    get arpMode() {
-        return (typeof this._options.arpMode !== "string" || this._options.arpMode === "none") ?
-            undefined : this._options.arpMode;
-    }
-
-    set arpMode(value) {
-        this.setState({
-            arpMode: value
-        });
-    }
-    
-    get chord() {
-        return this._options.chord;
-    }
-
-    set chord(value) {
-        this._options.chord = value;
-        this.harmonizer.root = value.root;
-        this.harmonizer.mode = value.mode;
-    }
-
-    get enabled() {
-        return this._options.enabled === true;
-    }
-
-    set enabled(value) {
-        this.setState({
-            enabled: value
-        });
-    }
-
-    get harmonizer() {
-        return this._harmonizer;
-    }
-
-    constructor(options) {
-        this._options = Object.assign({
-            enabled: true
-        },options);
-        if (options.instrument) {
-            this._instrument = new MidiInstrument(options.instrument);
-        }
-
-
-        this._options.partsPerQuant = options.partsPerQuant ? options.partsPerQuant : 24;
-        this._options.rate = options.rate ? options.rate : 1;
-
-        if (this.chord) {
-            this.initializeChord();
-        }
         this.reset();
     }
 
-    setState(changes) {
-        this._options = Object.assign(this._options, changes);
-        if (this._options.setState) {
-            this._options.setState(changes);
-        }
-    }
-
-    initializeChord() {
-        this._harmonizer = new ChordHarmonizer({
-            root: this.chord.root,
-            mode: this.chord.mode
-        });
-    }
-
+    /***
+     *
+     * @param bpm
+     */
     clock(bpm) {
-        this._options.bpm = bpm;
+        this._bpm = bpm;
 
-        let clockMod = Math.floor(this._options.partsPerQuant / this.rate);
-        let arpMod = Math.floor(this._options.partsPerQuant / this.arpRate);
+        this.eventScheduler.clock();
 
-        if (this._count % clockMod === 0) {
-            let event = this.data[this._index];
-            if (event && event.length && this.enabled) {
+        if (!this.state) {
+            let scene = Store.instance.scene;
+            Log.error(`state not defined! index=${this.props.index} tracks.length=${scene.tracks.length}`);
+            return;
+        }
 
-                this._lastEvent = [...event];
-                // Set up arpeggiator for this note event
-                if (this.harmonizer) {
-                    this._arpSeq = this.generateArpSeq(event[0]);
+        let clockMod = Math.floor(this.state.partsPerQuant / this.state.rate);
+        let arpMod = Math.floor(this.state.partsPerQuant / this.state.arpRate);
+        let eventTriggered = false;
 
-                } else {
-                    this._arpSeq = [];
+        let shouldLoop = true;
+        if (typeof this.state.follow === "number") {
+            //Log.debug(`follow ${this._loopEnd}`);
+            shouldLoop = !this._loopEnd;
+        } else if (this.state.loop === false) {
+            //Log.debug(`loop=false ${this._loopEnd}`);
+            shouldLoop = !this._loopEnd;
+        }
+
+        if (shouldLoop) {
+            if (this._count % clockMod === 0) {
+                let event = this.data[this._index];
+                this.props.cvEvent("step", this._index / this.data.length);
+                if (event && event.length && this.state.enabled) {
+
+                    let note = event[0];
+                    if (typeof this.state.octave === "number") {
+                        note += this.state.octave * 12;
+                    }
+
+                    this._lastEvent = [...event];
+                    // Set up arpeggiator for this note event
+                    this._arpSeq = this.generateArpSeq(note);
+                    this._arpIndex = 1;
+
+                    if (this.state.arp) {
+                        // override duration with arp note length
+                        event[2] = this.getArpNoteDuration();
+                    }
+
+                    // Execute the event
+                    eventTriggered = true;
+                    if (typeof this.props.play === "function") {
+                        // TODO this is the unquantized note value
+                        this.props.play(note, event[1], event[2], event[3]);
+                    }
+                    this.play(note, event[1], event[2], event[3]);
+
+
                 }
-                this._arpIndex = 1;
-
-                if (this.arpMode) {
-                    // override duration with arp note length
-                    event[2] = this.getArpNoteDuration();
+                this._index = (this._index + 1) % Math.min(this.data.length, this.state.end);
+                if (this._index === 0) {
+                    this._signalEnd = true;
                 }
-
-                // Execute the event
-                if (typeof this._options.play === "function") {
-                    this._options.play(this._index, event);
-                } else {
-                    this.play(event[0], event[1], event[2]);
-                }
-                
-                
             }
-            this._index = (this._index+1) % this.data.length;
-            if (this._index === 0) {
-                this._signalEnd = true;
-            }
-        } else if (this.arpMode && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
-            //Log.debug(`playing arp mode '${this.arpMode}' at rate=${this.arpRate}`);
-            let note = this._arpSeq[this._arpIndex];
-            let velocity = this._lastEvent[1];
-            let duration = this.getArpNoteDuration();
-            this.play(note, velocity, duration);
 
-            this._arpIndex = (this._arpIndex+1) % this._arpSeq.length;
+            if (!eventTriggered && this.state.arp && this._count % arpMod === 0 && this._arpSeq && this._arpSeq.length > 0) {
+                let note = this._arpSeq[this._arpIndex];
+                let velocity = this._lastEvent[1];
+                let duration = this.getArpNoteDuration();
+                this.play(note, velocity, duration, this._lastEvent[3]);
+
+                this._arpIndex = (this._arpIndex + 1) % this._arpSeq.length;
+
+            }
 
         }
+
         this._count++;
     }
 
+    /***
+     *
+     */
     postClock() {
         if (this._signalEnd) {
-            if (this._options.end) {
-                this._options.end();
+            if (this.props.end) {
+                this.props.end();
+            }
+            if (typeof this.state.follow!== "number") {
+                this.graph.clock();
             }
             this._signalEnd = false;
+            this._loopEnd = true;
         }
     }
 
+    /***
+     *
+     * @returns {string}
+     */
     getArpNoteDuration() {
-        return this.getNoteDuration(this.arpRate * 2) + "n";
+        return this.getNoteDuration(this.state.arpRate * 2) + "n";
     }
 
+    /***
+     *
+     * @param quant
+     * @returns {number}
+     */
     getNoteDuration(quant) {
         quant = parseInt(quant);
 
         const millisPerMin = 60000;
-        const ppq = this._options.partsPerQuant;
-        const bpm = this._options.bpm;
+        const ppq = this.state.partsPerQuant;
+        const bpm = this._bpm;
 
         let millisPerQuarter = millisPerMin / bpm;
         let duration = (4.0 / quant) * millisPerQuarter;
@@ -206,36 +207,59 @@ class Sequencer {
      * @param duration
      * @returns {void}
      */
-    play(note, velocity, duration) {
+    play(note, velocity, duration, mod) {
 
-        if (typeof duration === "string") {
-            duration = this.getNoteDuration(duration);
-        }
-
-        if (this.instrument) {
-            if (!this.harmonizer) {
-                this.instrument.play(note, velocity, duration);
+        if (this.midiDevice) {
+            let chord = NoteQuantizer.makeChord(note);
+            if (this.state.note || !chord || chord.length < 1) {
+                this.playMidiNote(note, velocity);
+                this.playCVNote(note, velocity, mod);
             } else {
-                let chord = this.harmonizer.makeChord(note);
-                if (this.chord.first !== false) {
-                    this.instrument.play(chord[0], velocity, duration);
+                if (this.state.scaleFirst !== false) {
+                    this.playMidiNote(chord[0], velocity);
+                    this.playCVNote(chord[0], velocity, mod);
                 }
-                if (this.chord.third && chord[1]) {
-                    this.instrument.play(chord[1], velocity, duration);
+                if (this.state.scaleThird && chord[1]) {
+                    this.playMidiNote(chord[1], velocity);
                 }
-                if (this.chord.fifth && chord[2]) {
-                    this.instrument.play(chord[2], velocity, duration);
+                if (this.state.scaleFifth && chord[2]) {
+                    this.playMidiNote(chord[2], velocity);
                 }
-                this.instrument.play(note, velocity, duration);
             }
         }
+
     }
 
+    playMidiNote(note, velocity) {
+        let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) / 2);
+        // let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) - 1);
+        this.eventScheduler.schedule(ticks, () => {
+            this.midiDevice.noteOff(this.midiChannel, note, velocity);
+        });
+        this.midiDevice.noteOn(this.midiChannel, note, velocity);
+    }
+
+    playCVNote(note, velocity, mod) {
+        let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) / 2);
+        //let ticks = Math.floor((this.state.partsPerQuant / this.state.rate) - 1);
+        this.props.cvEvent("pitch", note);
+        this.props.cvEvent("vel", velocity);
+        this.props.cvEvent("mod", mod);
+        this.props.cvEvent("gate", ticks);
+        this.props.cvEvent("tog", ticks);
+
+    }
+
+    /***
+     *
+     * @param note
+     * @returns {*}
+     */
     generateArpSeq(note) {
-        let superchord = this.harmonizer.makeChord(note+12);
-        let chord = this.harmonizer.makeChord(note);
-        let subchord = this.harmonizer.makeChord(note-12);
-        switch (this.arpMode) {
+        let superchord = NoteQuantizer.makeChord(note+12);
+        let chord = NoteQuantizer.makeChord(note);
+        let subchord = NoteQuantizer.makeChord(note-12);
+        switch (this.state.arp) {
             case "up1":
                 return [chord[0], chord[1]];
             case "up2":
@@ -259,28 +283,59 @@ class Sequencer {
         }
     }
 
+    /***
+     * Generate data to drive the current graph type
+     */
+    generateGraphData() {
+        this.graph.generateData();
+    }
 
+    /***
+     *
+     */
     start() {
-        if (typeof this._options.start === "function") {
-            this._options.start();
+        if (typeof this.props.start === "function") {
+            this.props.start();
         }
         this.reset();
     }
 
+    /***
+     *
+     */
     stop() {
-        if (typeof this._options.stop === "function") {
-            this._options.stop();
+        this.eventScheduler.flushAllEvents(this.props.index === 2);
+        if (typeof this.props.stop === "function") {
+            this.props.stop();
         }
         this._count = 0;
         this.reset();
     }
 
-    reset() {
-        if (typeof this._options.reset === "function") {
-            this._options.reset();
+    /***
+     *
+     */
+    continue() {
+        if (typeof this.state.follow === "number") {
+            this.graph.clock();
         }
         this._index = 0;
         this._arpIndex = 0;
+        this._loopEnd = false;
+    }
+
+    /***
+     *
+     */
+    reset() {
+        if (typeof this.props.reset === "function") {
+            this.props.reset();
+        }
+        this.midiDevice.allNotesOff(this.midiChannel);
+        this._index = 0;
+        this._arpIndex = 0;
+        this._loopEnd = false;
+        this.graph.reset();
     }
 
 }

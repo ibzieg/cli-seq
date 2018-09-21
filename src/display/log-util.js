@@ -30,13 +30,7 @@ class Console {
                 console.log(`${colors.green("\u2717")} ${error}`);
             }
         }
-/*        if (Screen.Instance) {
-            Screen.Instance.log(text);
-        } else {
-            console.log(text);
-        }*/
-
-    }
+   }
 
     static error(text) {
         Console.log(`${colors.red("\u2717")} ${text}`);
@@ -47,11 +41,19 @@ class Console {
     }
 
     static info(text) {
-        Console.log(`${colors.gray("\u21D2")} ${text}`);
+        Console.log(Console.infoStyle(text));
+    }
+
+    static infoStyle(text) {
+        return `${colors.gray("\u21D2")} ${text}`
     }
 
     static success(text) {
-        Console.log(`${colors.green("\u2713")} ${text}`);
+        Console.log(Console.successStyle(text));
+    }
+
+    static successStyle(text) {
+        return `${colors.green("\u2713")} ${text}`;
     }
 
     static debug(text) {

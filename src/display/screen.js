@@ -14,11 +14,13 @@
  * limitations under the License.
  ******************************************************************************/
 
+const colors = require("colors");
 const blessed = require('blessed');
-//const MidiController = require("./midi-controller");
 
 const SCREEN_HEIGHT = 30;
 const SCREEN_WIDTH = 100;
+const SCENE_BOX_WIDTH = 20;
+const TRACK_BOX_WIDTH = 20;
 
 const layout = {
     statusBar: {
@@ -28,37 +30,57 @@ const layout = {
         height: 3
     },
     deviceSelect: {
-        left: 0,
+        left: 1,
         top: 2,
         width: SCREEN_WIDTH,
         height: 5
     },
     controller: {
         left: 0,
-        top: 6,
+        top: 4,
         width: SCREEN_WIDTH,
         height: 12
     },
     logBox: {
-        top: 17,
+        top: 15,
         left: 0,
-        width: SCREEN_WIDTH,
-        height: 11
+        width: SCREEN_WIDTH - SCENE_BOX_WIDTH - TRACK_BOX_WIDTH + 2,
+        height: 13
     },
     inputBox: {
         top: 27,
         left: 0,
-        width: SCREEN_WIDTH,
+        width: SCREEN_WIDTH - SCENE_BOX_WIDTH - TRACK_BOX_WIDTH + 2,
         height: 3,
+    },
+    trackConfigBox: {
+        top: 15,
+        left: SCREEN_WIDTH - SCENE_BOX_WIDTH - TRACK_BOX_WIDTH + 1,
+        width: TRACK_BOX_WIDTH,
+        height: 15
+    },
+    sceneConfigBox: {
+        top: 15,
+        left: SCREEN_WIDTH - SCENE_BOX_WIDTH,
+        width: SCENE_BOX_WIDTH,
+        height: 15
     }
 };
 
 class Screen {
 
+    /***
+     *
+     * @param options
+     */
     static create(options) {
         Screen.Instance = new Screen(options);
     }
 
+    /***
+     *
+     * @param options
+     */
     constructor(options) {
         this.options = options;
         if (Screen.Instance instanceof Screen) {
@@ -80,6 +102,10 @@ class Screen {
 
     }
 
+    /***
+     *
+     * @returns {*}
+     */
     exit() {
         if (this.options.onExit) {
             return this.options.onExit();
@@ -88,6 +114,9 @@ class Screen {
         }
     }
 
+    /***
+     *
+     */
     initialize() {
         // Create a screen object.
         this._screen = blessed.screen({
@@ -102,6 +131,9 @@ class Screen {
             this.exit();
         });
 
+        ////////////////////////////////////////////////////////////////
+        // Status Bar
+        ////////////////////////////////////////////////////////////////
         this.statusBar = blessed.box(Object.assign({
             scrollable: true,
             tags: true,
@@ -126,20 +158,18 @@ class Screen {
             tags: true
         });
 
-        this.arrangementText = blessed.text({
-            parent: this.statusBar
-        });
-
+        ////////////////////////////////////////////////////////////////
+        // Track Select
+        ////////////////////////////////////////////////////////////////
         this.deviceSelect = blessed.box(Object.assign({
             scrollable: true,
             tags: true,
             // label: "Controller",
-            border: {
+/*            border: {
                 type: 'bg',
                 fg: '#ff0000',
                 bg: '#00ff00'
-
-            },
+            },*/
             style: {
                 fg: 'white',
                 border: {
@@ -149,7 +179,7 @@ class Screen {
         }, layout.deviceSelect));
         this._screen.append(this.deviceSelect);
 
-        let deviceNames = ["mono1", "mono2", "poly1", "poly2", "perc1", "perc2", "perc3", "perc4"];
+        let deviceNames = ["", "", "", "", "", "", "", ""];
 
         this.deviceDisplays = [];
         for (let i = 0; i < 8; i++) {
@@ -160,6 +190,9 @@ class Screen {
             }));
         }
 
+        ////////////////////////////////////////////////////////////////
+        // Controller Map
+        ////////////////////////////////////////////////////////////////
         this.controllerBox = blessed.box(Object.assign({
             scrollable: true,
             tags: true,
@@ -197,8 +230,9 @@ class Screen {
             }));
         }
 
-
-        // Create a box perfectly centered horizontally and vertically.
+        ////////////////////////////////////////////////////////////////
+        // Log Display
+        ////////////////////////////////////////////////////////////////
         this.logBox = blessed.box(Object.assign({
             // label: "Log",
             scrollable: true,
@@ -214,17 +248,11 @@ class Screen {
                 }
             }
         }, layout.logBox));
-
-        // Append our box to the screen.
         this._screen.append(this.logBox);
 
-        // If our box is clicked, change the content.
-        this.logBox.on('click',  (data) => {
-            //this.log("click: "+data);
-            //this.logBox.focus();
-        });
-
-        // Create a box perfectly centered horizontally and vertically.
+        ////////////////////////////////////////////////////////////////
+        // Input Box
+        ////////////////////////////////////////////////////////////////
         this.inputBox = blessed.box(Object.assign({
             // label: "Input",
             scrollable: true,
@@ -255,7 +283,13 @@ class Screen {
         });
         this.commandInput.focus();
         this.commandInput.on('keypress', (ch, key) => {
-            //this.log(`keypress ${ch} ${JSON.stringify(key)}`);
+
+            const fkeys = ["f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12"];
+            if (fkeys.indexOf(key.name) >= 0) {
+                if (typeof this.options.onFunctionKey === "function") {
+                    this.options.onFunctionKey(fkeys.indexOf(key.name));
+                }
+            } else
             if (key.name === "up" || (key.ctrl && key.name === "p")) {
                 this._state.commandHistoryIndex = Math.max(this._state.commandHistoryIndex - 1, 0);
                 let cmd = this._state.commandHistory[this._state.commandHistoryIndex];
@@ -293,16 +327,60 @@ class Screen {
             this.commandInput.focus();
         });*/
 
+        ////////////////////////////////////////////////////////////////
+        // Scene State
+        ////////////////////////////////////////////////////////////////
+        this.sceneConfigBox = blessed.box(Object.assign({
+            label: "Scene",
+            //scrollable: true,
+            tags: true,
+            keys: true,
+            border: {
+                type: 'line',
+                fg: '#ff0000',
+                bg: '#00ff00'
+            },
+            style: {
+                fg: 'white',
+                border: {
+                    fg: '#f0f0f0'
+                }
+            }
+        }, layout.sceneConfigBox));
+        this._screen.append(this.sceneConfigBox);
 
-
+        ////////////////////////////////////////////////////////////////
+        // Track State
+        ////////////////////////////////////////////////////////////////
+        this.trackConfigBox = blessed.box(Object.assign({
+            label: "Track",
+            //scrollable: true,
+            tags: true,
+            keys: true,
+            border: {
+                type: 'line',
+                fg: '#ff0000',
+                bg: '#00ff00'
+            },
+            style: {
+                fg: 'white',
+                border: {
+                    fg: '#f0f0f0'
+                }
+            }
+        }, layout.trackConfigBox));
+        this._screen.append(this.trackConfigBox);
 
         this._screen.render();
 
-
     }
 
+    /***
+     *
+     * @param options
+     * @returns {blessed.box}
+     */
     createControllerDisplay(options) {
-        //return new blessed.progressbar({
         return new blessed.box({
             parent: this.controllerBox,
             height: 3,
@@ -329,9 +407,12 @@ class Screen {
         });
     }
 
-
+    /***
+     *
+     * @param options
+     * @returns {blessed.box}
+     */
     createDeviceDisplay(options) {
-        //return new blessed.progressbar({
         return new blessed.box({
             parent: this.deviceSelect,
             height: 3,
@@ -359,15 +440,21 @@ class Screen {
         });
     }
 
+    /***
+     *
+     * @param text
+     */
     log(text) {
-            // this._state.logLines.push(text);
-            // this.logBox.setContent(this._state.logLines.join('\n'));
         this.logBox.insertBottom(text);
         this.logBox.setScrollPerc(100);
         this._screen.render();
 
     }
 
+    /***
+     *
+     * @param deviceState
+     */
     updateDeviceState(deviceState) {
         for (let i = 0; i < 8; i++) {
             let device = deviceState[i];
@@ -378,7 +465,8 @@ class Screen {
                 statusColor = `{yellow-fg}`;
             }
 
-            let text = `${statusColor}${device.name.substring(0,8)}{/}`;
+            let name = device.name ? device.name : "";
+            let text = `${statusColor}${name.substring(0,8)}{/}`;
 
             if (device.selected) {
                 text = `[${text}]`;
@@ -391,6 +479,69 @@ class Screen {
 
     }
 
+    /***
+     *
+     * @param sceneState
+     */
+    updateSceneState(sceneState) {
+        let keys = [
+            "cvA",
+            "cvB",
+            "cvC",
+            "cvD",
+            "gateA",
+            "gateB",
+            "gateC",
+            "gateD",
+            "modA",
+            "modB",
+            "modC",
+            "modD"
+        ];
+
+        let text = ``;
+        for (let i = 0; i < keys.length; i++) {
+            text += `${keys[i]}:\t${colors.green(sceneState[keys[i]])}\n`
+        }
+        this.sceneConfigBox.setContent(text);
+        this._screen.render();
+    }
+
+    /***
+     *
+     * @param trackState
+     */
+    updateTrackState(trackState) {
+
+/*        trackState = {
+            ...trackState,
+            linearGraph: JSON.stringify(trackState.graphData.linear)
+        };*/
+        let state = {};
+        state = Object.assign({}, state, trackState);
+        state.linearGraph = JSON.stringify(trackState.graphData.linear);
+
+        let keys = [
+            "instrument",
+            "note",
+            "velocity",
+            "constants",
+            "linearGraph"
+        ];
+
+        let text = ``;
+        for (let i = 0; i < keys.length; i++) {
+            text += `${keys[i]}:\t${colors.green(state[keys[i]])}\n`
+        }
+        this.trackConfigBox.setContent(text);
+        this._screen.render();
+    }
+
+    /***
+     *
+     * @param element
+     * @param ctrl
+     */
     updateControllerLabel(element, ctrl) {
         let label = "";
         if (ctrl && ctrl.label) {
@@ -399,10 +550,19 @@ class Screen {
         element.setLabel(`{bold}${label}{/}`);
     }
 
+    /***
+     *
+     * @param element
+     * @param value
+     */
     updateControllerValue(element, value) {
         element.setContent(`{green-fg}${value}{/}`);
     }
 
+    /***
+     *
+     * @param duration
+     */
     updateClock(duration) {
         const historyLength = 48; // TODO Move constant
         const ppq = 24; // TODO Move constant
@@ -417,20 +577,32 @@ class Screen {
         this.renderStatusBar();
     }
 
+    /***
+     *
+     * @param title
+     */
     arrangement(title) {
         this._state.statusBar.title = title;
         this.renderStatusBar();
     }
 
+    /***
+     *
+     */
     renderStatusBar() {
-        let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`;
+        // let text = ` {green-fg}${this._state.statusBar.bpm}bpm{/} ${this._state.statusBar.title}`;
+        let text = `${this._state.statusBar.title}`;
         this.statusBarText.setContent(text);
         this._screen.render();
     }
 
+    /***
+     *
+     * @param status
+     * @param d1
+     * @param d2
+     */
     controller(status, d1, d2) {
-
-
         switch (status) {
             case 144: // Note on
                 switch (d1) {
@@ -498,6 +670,10 @@ class Screen {
 
     }
 
+    /***
+     *
+     * @param ctrlMap
+     */
     setControllerMap(ctrlMap) {
         this._controllerMap = Object.assign({},ctrlMap);
 
@@ -575,9 +751,10 @@ class Screen {
 }
 module.exports = Screen;
 
-
-
-
+/***
+ *
+ * @type {{Knob1: number, Knob2: number, Knob3: number, Knob4: number, Knob5: number, Knob6: number, Knob7: number, Knob8: number, Knob9: number, Knob10: number, Knob11: number, Knob12: number, Knob13: number, Knob14: number, Knob15: number, Knob16: number, Pad1: number, Pad2: number, Pad3: number, Pad4: number, Pad5: number, Pad6: number, Pad7: number, Pad8: number, Pad9: number, Pad10: number, Pad11: number, Pad12: number, Pad13: number, Pad14: number, Pad15: number, Pad16: number, Stage1: number, Stage2: number, Stage3: number, Stage4: number, Stage5: number, Stage6: number, Stage7: number, Stage8: number, Stage9: number, Stage10: number, Stage11: number, Stage12: number, Stage13: number, Stage14: number, Stage15: number, Stage16: number}}
+ */
 const BeatStepControllerMap = {
     Knob1: 10,
     Knob2: 74,

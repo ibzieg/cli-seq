@@ -38,22 +38,55 @@ class SequenceData {
         return [Math.floor(min+Math.random()*(max-min+1)), 127, duration, Math.random()];
     }
 
+    /***
+     *
+     * @param fn
+     * @param config
+     * @returns {*|Array}
+     */
     static getSequence(fn, config) {
-        switch (config.algorithm) {
+        let data = [];
+        switch (config.sequenceType) {
             case "euclid":
-                return SequenceData.euclidPattern(fn, config);
+                data = SequenceData.euclidPattern(fn, config);
+                break;
             case "perc":
-                return SequenceData.getRandomPercData(fn, config);
+                data = SequenceData.getRandomPercData(fn, config);
+                break;
             case "quarterbeat":
-                return SequenceData.getQuarterBeat(fn, config);
+                data = SequenceData.getQuarterBeat(fn, config);
+                break;
             case "halfbeat":
-                return SequenceData.getHalfBeat(fn, config);
+                data = SequenceData.getHalfBeat(fn, config);
+                break;
             case "ryk":
-                return SequenceData.getRykSequence(fn, config);
+                data = SequenceData.getRykSequence(fn, config);
+                break;
+            case "brmnghm":
+                data = SequenceData.getBrmnghmSequence(fn, config);
+                break;
+            case "expfwd":
+                data = SequenceData.getExponentialSequence(fn, config);
+                break;
+            case "exprev":
+                data = SequenceData.getExponentialSequence(fn, config).reverse();
+                break;
             case "random":
             default:
-                return SequenceData.getRandomSequence(fn, config);
+                data = SequenceData.getRandomSequence(fn, config);
+                break;
         }
+
+        if (config.constants && config.constants.length > 0) {
+            config.constants.forEach((n) => {
+                if (!data[n]) {
+                    data[n] = fn();
+                }
+            });
+        }
+
+        return data;
+
     }
 
     /***
@@ -63,17 +96,9 @@ class SequenceData {
      * @returns {Array}
      */
     static getRandomSequence(nextNote, config) {
-        let min = config.min;
-        let max = config.max;
-        let density = config.density;
-        // min = Math.floor(min/2)*2; // force even
-        // max = Math.floor(max/2)*2; // force even
-        if (density < 0) density = 0;
-        if (density > 1) density = 1;
-        let length = Math.floor(min+Math.random()*(max-min+1));
-        if (length % 2 !== 0) {
-            length = length + 1;
-        }
+        let length = config.length;
+        let density = config.steps / config.length; // TODO use step count instead
+
         let seq = [];
         for (let i = 0; i < length; i++) {
             if (Math.random() < density) {
@@ -98,13 +123,9 @@ class SequenceData {
      * @returns {Array}
      */
     static getRykSequence(nextNote, config) {
-        let min = config.min;
-        let max = config.max;
-        let d = config.density;
 
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));
+        let length = config.length;
+        let d = config.steps / config.length; // TODO use step count instead
 
         let seq = [];
         let r;
@@ -139,18 +160,13 @@ class SequenceData {
 
     /***
      *
-     * @param makeSnare
+     * @param nextNote
      * @param config
      * @returns {Array}
      */
-    static getRandomPercData(makeSnare, config) {
-        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));
+    static getRandomPercData(nextNote, config) {
+        let length = config.length;
+        let d = config.steps / config.length; // TODO use step count instead
 
         let density = [0.4*d, 0.3*d, 0.2*d, 0.1*d];
         let half = Math.floor(length/2.0);
@@ -167,7 +183,7 @@ class SequenceData {
                     (i % eighth === 0 && density[2] > Math.random()) ||
                     (i % sixteenth === 0 && density[3] > Math.random())
                 )) {
-                seq.push(makeSnare());
+                seq.push(nextNote());
             } else {
                 seq.push(null);
             }
@@ -183,13 +199,7 @@ class SequenceData {
      * @returns {Array}
      */
     static getQuarterBeat(nextNote, config) {
-        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));
+        let length = config.length;
 
         let quarter = Math.round(length / 4);
         let seq = [];
@@ -207,18 +217,12 @@ class SequenceData {
 
     /***
      *
-     * @param makeSnare
+     * @param nextNote
      * @param config
      * @returns {Array}
      */
     static getHalfBeat(nextNote, config) {
-        let min = config.min;
-        let max = config.max;
-        let d = config.density;
-
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let length = Math.floor(min+Math.random()*(max-min+1));
+        let length = config.length;
 
         let quarter = Math.round(length / 4);
         let half = Math.round(length / 2);
@@ -238,18 +242,10 @@ class SequenceData {
     }
 
 
-    static euclidPattern(nextNote, config) {
-        let min = config.min ? config.min : (config.max ? config.max : config.n);
-        let max = config.max ? config.max : (config.min ? config.min : config.n);
-        min = Math.floor(min/2)*2; // force even
-        max = Math.floor(max/2)*2; // force even
-        let n = Math.floor(min+Math.random()*(max-min+1));
-
-        let kmin = config.kmin ? config.kmin : (config.kmax ? config.kmax : config.k);
-        let kmax = config.kmax ? config.kmax : (config.kmin ? config.kmin : config.k);
-        let k = Math.floor(kmin+Math.random()*(kmax-kmin+1));
-
-        let d = config.density ? config.density : 1;
+    static euclidPattern(nextNote, config) {let n = config.length;
+        let k = config.steps;
+        let d = config.steps / config.length; // TODO use step count instead
+        // TODO some random k or offset?
 
         let i;
         let p = [];
@@ -298,13 +294,130 @@ class SequenceData {
 
     };
 
+    /***
+     *
+     * @param nextNote
+     * @param config
+     * @returns {Array}
+     */
+    static getExponentialSequence(nextNote, config) {
+        let n = config.length;
+        let k = config.steps;
 
+        let seq = [];
+        let i, s;
+        for (i = 0; i < n; i++) {
+            seq[i] = null;
+        }
+
+        for (i = 0; i < n; i += s) {
+            seq[i] = nextNote();
+            s = Math.ceil((n - i) / k);
+            if (s === 0) {
+                break;
+            }
+        }
+
+        return seq;
+
+    }
+
+    /***
+     *
+     * @param nextNote
+     * @param config
+     * @returns {Array}
+     */
+    static getBrmnghmSequence(nextNote, config) {
+        let n = config.length;
+        let k = config.steps;
+
+        let seq = [];
+
+        let i;
+        for (i = 0; i < n; i++) {
+            seq[i] = null;
+        }
+
+        let [n1, n2] = SequenceData.randomSplit(n);
+        let [m1, m2] = SequenceData.randomSplit(n1);
+        let [m3, m4] = SequenceData.randomSplit(n2);
+
+        let [k1, k2] = SequenceData.randomSplit(k);
+        let [p1, p2] = SequenceData.randomSplit(k1);
+        let [p3, p4] = SequenceData.randomSplit(k2);
+
+        SequenceData.assignRandomSteps(seq, 0, m1-1, p1, nextNote);
+        SequenceData.assignRandomSteps(seq, m1, m1+m2-1 , p2, nextNote);
+        SequenceData.assignRandomSteps(seq, m1+m2, m1+m2+m3-1 , p3, nextNote);
+        SequenceData.assignRandomSteps(seq, m1+m2+m3, m1+m2+m3+m4-1 , p4, nextNote);
+
+        return seq;
+
+    }
+
+    /***
+     *
+     * @param n
+     * @returns {*[]}
+     */
+    static randomSplit(n) {
+        let a = Math.random() > 0.5 ? Math.floor(n / 2) : Math.ceil(n /2);
+        let b = n - a;
+        return [a, b];
+    }
+
+    /***
+     *
+     * @param seq
+     * @param min
+     * @param max
+     * @param stepCount
+     * @param nextNote
+     */
+    static assignRandomSteps(seq, min, max, stepCount, nextNote) {
+        let i, j;
+        let done = false;
+        for (i = 0; i < stepCount; i++) {
+            while (!done) {
+                j = SequenceData.getRandomInt(min, max);
+                if (seq[j] == null) {
+                    seq[j] = nextNote();
+                    done = true;
+                }
+            }
+        }
+    }
+
+    /***
+     *
+     * @param min
+     * @param max
+     * @returns {number}
+     */
+    static getRandomInt(min, max) {
+        return Math.floor(min+Math.random()*(max-min+1));
+    }
+
+    /***
+     *
+     * @param min
+     * @param max
+     * @returns {number}
+     */
     static getRandomEven(min, max) {
         min = Math.floor(min/2)*2; // force even
         max = Math.floor(max/2)*2; // force even
         return Math.floor(min+Math.random()*(max-min+1));
     }
 
+    /***
+     *
+     * @param oldSeq
+     * @param newSeq
+     * @param prob
+     * @returns {Array}
+     */
     static evolveSequence(oldSeq, newSeq, prob) {
 
         let p = Math.random();
@@ -345,6 +458,11 @@ class SequenceData {
 
     }
 
+    /***
+     *
+     * @param seq
+     * @returns {string}
+     */
     static toString(seq) {
         return seq.map((v) => v ? v[0] : "__").join(" ");
     }

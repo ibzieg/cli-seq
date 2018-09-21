@@ -15,30 +15,34 @@
  ******************************************************************************/
 
 const colors = require("colors");
-const { fork } = require('child_process');
+const { fork, spawn } = require('child_process');
 
+const InterfaceAddress = require("./network/interface-address");
+const Console = require("./display/log-util");
 const Screen = require("./display/screen");
 
 Screen.create({
     onExit: () => {
-        arrangmentThread.kill("SIGINT");
+        stopAllThreads();
         return process.exit(0);
     },
     onCommandInput: (cmd) => {
-        arrangmentThread.send({
+        performanceThread.send({
             type: "command",
             script: cmd
+        });
+    },
+    onFunctionKey: (index) => {
+        performanceThread.send({
+            type: "functionKey",
+            index: index
         });
     }
 });
 
-const arrangmentThread = fork('./src/sequencer/arrangement-thread.js');
-/*
-process.stderr.on('data', (chunk) => {
-    Screen.Instance.log(`${colors.red("\u2717")} [stderr] ${chunk.toString().substring(0,64)}`);
-});*/
+const performanceThread = fork('./src/sequencer/performance-thread.js');
 
-arrangmentThread.on('message', (message) => {
+performanceThread.on('message', (message) => {
     try {
         switch (message.type) {
             case "log":
@@ -53,11 +57,20 @@ arrangmentThread.on('message', (message) => {
             case "deviceState":
                 Screen.Instance.updateDeviceState(message.deviceState);
                 break;
+            case "sceneState":
+                Screen.Instance.updateSceneState(message.sceneState);
+                break;
+            case "trackState":
+                Screen.Instance.updateTrackState(message.trackState);
+                break;
             case "arrangement":
                 Screen.Instance.arrangement(message.title);
                 break;
             case "clock":
                 Screen.Instance.updateClock(message.tickDuration);
+                break;
+            case "state":
+                apiServerThread.send(message);
                 break;
             default:
                 Screen.Instance.log(`Unknown message type: ${JSON.stringify(message)}`);
@@ -67,4 +80,35 @@ arrangmentThread.on('message', (message) => {
         Screen.Instance.log(`${colors.red("\u2717")} [main] ${error} ${error.stack}`);
     }
 
+});
+
+
+const apiServerThread = fork('./server/bin/www', {
+    env: {
+        PORT: 3001
+    },
+    silent: true
+});
+
+
+const webServerThread = fork('./node_modules/react-scripts/scripts/start',{
+    env: {
+        PORT: 3000
+    },
+    cwd: './client/',
+    silent: true
+});
+
+Screen.Instance.log(Console.successStyle(`HTTP server started at http://${InterfaceAddress.localAddress}:3000`));
+
+function stopAllThreads() {
+    apiServerThread.kill();
+    webServerThread.kill();
+    performanceThread.kill("SIGINT");
+}
+
+
+process.on('SIGTERM',function(){
+    stopAllThreads();
+    process.exit(1);
 });
