@@ -1,64 +1,60 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import reducer from './store/reducer';
+
+import { createStore, bindActionCreators } from 'redux';
+import { Provider, connect } from 'react-redux';
+import ActionCreators from './store/action-creators';
+
+import SequencerView from './views/SequencerView';
 
 
+const store = createStore(reducer);
 
 class App extends Component {
 
     constructor(props, context) {
         super(props, context);
-
-        this.state = {
-            data: {
-                performances: []
-            }
-        }
     }
 
     componentDidMount() {
-        this.connection = new WebSocket(`ws://${window.location.hostname}:3001/sequencer/state`);
-
-        this.connection.onmessage = (message) => {
-            this.setState({
-                data: JSON.parse(message.data)
-            });
-        };
-        console.log(window.location.hostname);
+        this.connectWebSocket();
     }
 
-    getSeq() {
-        fetch('/sequencer').then((res) => {
-            res.json().then((data) => {
-                this.setState({data: data});
-            });
-        });
+    connectWebSocket() {
+        this.connection = new WebSocket(`ws://${window.location.hostname}:3001/sequencer/state`);
+
+        this.connection.onopen = (event) => {
+            store.dispatch(ActionCreators.setConnectionStatus(true));
+        };
+
+        this.connection.onmessage = (message) => {
+            store.dispatch(ActionCreators.setSequencerDefinition(JSON.parse(message.data)));
+        };
+
+        this.connection.onclose = (event) => {
+            store.dispatch(ActionCreators.setConnectionStatus(false));
+        };
+
     }
 
     render() {
         return (
+            <Provider store={store}>
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
+                    <h1 className="App-title">paraseq</h1>
                 </header>
-                <div>
-                    {this.state.data.performances.map((value, index) =>
-                        <div key={index}>
-                            <h1>{`Performance ${index} has ${value.scenes.length} scenes`}</h1>
-                            <p>
-                                {JSON.stringify(value.scenes[0].options)}
-                            </p>
-                        </div>
-                    )}
-                </div>
-                <p className="App-intro">
-                    To geeeet started, edit <code>src/App.js</code> and save to reload.
-                </p>
-                <button onClick={() => { this.getSeq();}}>fetch</button>
+
+                <SequencerView />
+
             </div>
+            </Provider>
         );
     }
 }
+
+
 
 export default App;

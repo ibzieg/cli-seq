@@ -87,7 +87,7 @@ const apiServerThread = fork('./server/bin/www', {
     env: {
         PORT: 3001
     },
-    //silent: true
+    silent: true
 });
 
 
