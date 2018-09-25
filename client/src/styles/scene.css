@@ -1,0 +1,23 @@
+.scene-container {
+    flex: 4;
+    display: flex;
+    border: 1px solid #807974;
+    /*margin-right: -1px;*/
+    margin-bottom: -1px;
+    text-decoration: none;
+
+    justify-content: space-between;
+    align-self: stretch;
+}
+
+.scene-summary {
+    display: inline-block;
+    /*flex: 1;*/
+    border-left: 1px solid #807974;
+    margin-left: -1px;
+    text-decoration: none;
+}
+
+.scene-summary-route {
+    background-color: #95CD2F;
+}

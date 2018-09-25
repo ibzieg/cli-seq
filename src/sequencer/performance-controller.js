@@ -185,14 +185,12 @@ class PerformanceController {
 
         this.isPlaying = false;
         this.controller = new MidiController({
-            // device: MidiDevice.devices.BeatStepPro,
             device: MidiDevice.devices.Midisport,
             channel: 7,
             receiveMessage: (status, d1, d2) => {
                 this.controllerMessage(status, d1, d2);
             },
             clock: this.clock.bind(this),
-            //postClock: this.postClock.bind(this)
             start: this.start.bind(this),
             stop: this.stop.bind(this)
         });
@@ -223,6 +221,7 @@ class PerformanceController {
 
     clock() {
         this.isPlaying = true;
+        this.controller.outputTransportClock();
         this.updateClock();
         this.performance.clock(this.bpm);
         this.performance.postClock();
@@ -230,10 +229,12 @@ class PerformanceController {
 
     start() {
         this.isPlaying = true;
+        this.controller.outputTransportRun();
         this.performance.start();
     }
     stop() {
         this.isPlaying = false;
+        this.controller.outputTransportStop();
         this.performance.stop();
     }
 

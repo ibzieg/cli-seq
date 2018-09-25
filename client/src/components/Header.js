@@ -14,42 +14,16 @@
  * limitations under the License.
  ******************************************************************************/
 
-const NanoTimer = require("nanotimer");
-
-const TEMPO = 120;
-
-class MasterClock {
-
-    get tempoInterval() {
-        return (60000.0) / (TEMPO * 24.0);
+import React, { Component } from 'react';
+import ConnectionManager from './ConnectionManager';
+export default class Header extends Component {
+    render() {
+        return (
+            <header className="app-header">
+                <h1 className="app-title">paraseq</h1>
+                <ConnectionManager/>
+            </header>
+        );
     }
-
-    constructor(options) {
-        this._options = options;
-        this._isPlaying = false;
-        this._masterClock = new NanoTimer();
-    }
-
-    clock() {
-        if (this._options.clock) {
-            this._options.clock();
-        }
-    }
-
-    start() {
-        this._isPlaying = true;
-
-        this._masterClock.setInterval(() => {
-            if (this._isPlaying) {
-                this.clock();
-            }
-        }, '', `${this.tempoInterval}m`);
-    }
-
-    stop() {
-        this._masterClock.clearInterval();
-    }
-
 }
 
-module.exports = MasterClock;

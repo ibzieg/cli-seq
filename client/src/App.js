@@ -1,14 +1,30 @@
+/******************************************************************************
+ * Copyright 2018 Ian Bertram Zieg
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/app.css';
 import reducer from './store/reducer';
 
-import { createStore, bindActionCreators } from 'redux';
-import { Provider, connect } from 'react-redux';
-import ActionCreators from './store/action-creators';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import { Switch, Route, Redirect } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 import SequencerView from './views/SequencerView';
-
+import Header from "./components/Header";
 
 const store = createStore(reducer);
 
@@ -18,43 +34,18 @@ class App extends Component {
         super(props, context);
     }
 
-    componentDidMount() {
-        this.connectWebSocket();
-    }
-
-    connectWebSocket() {
-        this.connection = new WebSocket(`ws://${window.location.hostname}:3001/sequencer/state`);
-
-        this.connection.onopen = (event) => {
-            store.dispatch(ActionCreators.setConnectionStatus(true));
-        };
-
-        this.connection.onmessage = (message) => {
-            store.dispatch(ActionCreators.setSequencerDefinition(JSON.parse(message.data)));
-        };
-
-        this.connection.onclose = (event) => {
-            store.dispatch(ActionCreators.setConnectionStatus(false));
-        };
-
-    }
-
     render() {
         return (
             <Provider store={store}>
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">paraseq</h1>
-                </header>
-
-                <SequencerView />
-
-            </div>
+                <BrowserRouter>
+                    <div className="app">
+                        <Header/>
+                        <Route path="/" component={SequencerView}/>
+                    </div>
+                </BrowserRouter>
             </Provider>
         );
     }
 }
-
-
 
 export default App;

@@ -153,6 +153,18 @@ class MidiController {
         }
     }
 
+    outputTransportRun() {
+        this._midiDevice.output.sendMessage([250])
+    }
+
+    outputTransportStop() {
+        this._midiDevice.output.sendMessage([252])
+    }
+
+    outputTransportClock() {
+        this._midiDevice.output.sendMessage([248])
+    }
+
 }
 
 
