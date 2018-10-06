@@ -24,15 +24,34 @@ const SAVED_STATE_FILENAME = process.mainModule ?
     path.join(path.dirname(process.mainModule.filename),"..","..","data","saved-state.json") :
     "saved-state.json";
 
+const playlist = [
+    // 1-based index
+    // [ number: performance 1-12,
+    //   number: scene 1-16,
+    //   number: repeat count >= 1 ]
+    [1, 1, 4],
+    [1, 2, 4],
+    [1, 3, 1],
+    [1, 4, 8]
+];
+
 /***
  *
  * state schema: {
+ *     selectedPerformance: number (0-12 index)
+ *     playlistMode: boolean (true for playlist playback, otherwise regular looping mode)
+ *     playlist: [
+ *         ...,
+ *         [ number: performance 1-12,
+ *           number: scene 1-16,
+ *           number: repeat count >= 1 ]
+ *     ]
  *     performances: [
- *         ..., (there are 16 arrangements)
+ *         ..., (there are 12 performances)
  *         {
  *             name: string (arrangement name)
  *             selectedTrack: number (0-7 index)
- *             selectedScene: number (0-7 index)
+ *             selectedScene: number (0-15 index)
  *             scenes: [
  *                 ... (each performance has 16 scenes, with scenes[0] being the primary)
  *                 {
@@ -175,6 +194,8 @@ class Store {
     static getDefaultState() {
         return {
             selectedPerformance: 0,
+            playlistMode: false,
+            playlist: [],
             performances: [
                 Store.getDefaultPerformance(PERFORMANCE0_NAME),
                 Store.getDefaultPerformance(PERFORMANCE1_NAME),
@@ -448,7 +469,9 @@ class Store {
         state.constants = Store.mergeArray(source.constants, destination.constants);
         state.sequenceData = Store.mergeArray(source.sequenceData, destination.sequenceData);
         //state.graphData = Store.mergeArray(source.graphData, destination.graphData);
-        state.graphData = Object.assign({}, source.graphData, destination.graphData);
+        if (source.graphData || destination.graphData) {
+            state.graphData = Object.assign({}, source.graphData, destination.graphData);
+        }
 
         return state;
     }
@@ -524,6 +547,7 @@ class Store {
 
         // TODO is this slow?
         process.send({ type: 'state', state: this.state});
+        process.send({ type: 'scene', data: this.scene});
     }
 
     /***
@@ -565,6 +589,18 @@ class Store {
         perf.scenes[0] = scene;
 
         this._state.performances[perfIndex] = perf;
+        this.stateChanged();
+    }
+
+    /***
+     *
+     */
+    clearActiveTrack() {
+        let perf = this._state.performances[this.state.selectedPerformance];
+        let scene = perf.scenes[perf.selectedScene];
+        scene.tracks[perf.selectedTrack] =
+            Store.getDefaultTrackState(TRACK_DEFAULTS[perf.selectedTrack],
+                perf.selectedScene > 0);
         this.stateChanged();
     }
 

@@ -84,7 +84,7 @@ class Screen {
     constructor(options) {
         this.options = options;
         if (Screen.Instance instanceof Screen) {
-            throw new Error("Singleton instance of Screen already exists");
+            throw new Error("Singleton instance of PerformanceController already exists");
         }
 
         this.initialize();

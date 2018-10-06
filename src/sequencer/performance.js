@@ -174,7 +174,7 @@ class Performance {
     select(index) {
         // TODO Queue this for beat syncing
         Store.instance.setProperty("selectedPerformance", index);
-        this.updateDisplay();
+        //this.updateDisplay();
     }
 
     /***
@@ -227,7 +227,7 @@ class Performance {
                     callback: (velocity) => {
                         let enabled = Store.instance.scene.tracks[this.state.selectedTrack].enabled;
                         Store.instance.setSelectedTrackProperty("enabled", !enabled);
-                        this.updateDeviceState();
+                        //this.updateDeviceState();
                         return enabled ? "Disabled" : "Enabled";
                     }
                 },
@@ -249,7 +249,7 @@ class Performance {
                     label: "Rnd Graph",
                     callback: (velocity) => {
                         this.tracks[this.state.selectedTrack].generateGraphData();
-                        this.updateTrackState();
+                        //this.updateTrackState()();
                         Log.info(`tracks[${this.state.selectedTrack}].graphData=${JSON.stringify(Store.instance.scene.tracks[this.state.selectedTrack].graphData)}`);
                         return "Graph";
                     }
@@ -265,7 +265,7 @@ class Performance {
                         } else {
                             track.generateAllSequences();
                         }
-                        this.updateTrackState();
+                        //this.updateTrackState()();
                         return "Randomize";
                     }
                 },
@@ -275,7 +275,7 @@ class Performance {
                         for (let i = 0; i < Store.TRACK_COUNT; i++) {
                             this.tracks[i].generateAllSequences();
                         }
-                        this.updateTrackState();
+                        //this.updateTrackState()();
                         return "Randomize";
                     }
                 },
@@ -288,10 +288,10 @@ class Performance {
                     }
                 },
                 Pad16: {
-                    label: "",
+                    label: "Play Mode",
                     callback: (velocity) => {
-                        /* this.state.data.perc3 = this.evolveSequenceStages(this.state.data.perc3, this.state.evolveAmount, this.getRandomPerc3DrumData.bind(this));
-                       */ return "Evolve";
+
+                        return;
                     }
                 },
                 Pad1: {
@@ -597,7 +597,7 @@ class Performance {
      */
     selectTrack(index) {
         Store.instance.setPerformanceProperty("selectedTrack", index);
-        this.updateDisplay();
+        //this.updateDisplay();
         let tracks = Store.instance.scene.tracks;
         return tracks[Store.instance.performance.selectedTrack].name;
     }
@@ -631,7 +631,7 @@ class Performance {
         this.cvEvent("cv", sceneOptions.modD, "d");
 
         Log.music(`Select scene ${index+1}`);
-        this.updateDisplay();
+        //this.updateDisplay();
     }
 
     /***
@@ -639,43 +639,43 @@ class Performance {
      * @param d1
      * @param d2
      */
-    updateControllerPad(d1, d2) {
+/*    updateControllerPad(d1, d2) {
         process.send({
             type: "controller",
             status: 144,
             d1: d1,
             d2: d2
         });
-    }
+    }*/
 
     /***
      *
      * @param d1
      * @param d2
      */
-    updateControllerKnob(d1, d2) {
+/*    updateControllerKnob(d1, d2) {
         process.send({
             type: "controller",
             status: 176,
             d1: d1,
             d2: d2
         });
-    }
+    }*/
 
     /***
      *
      */
-    updateTitle() {
+/*    updateTitle() {
         process.send({
             type: "arrangement",
             title: `{green-fg}[Performance ${Store.instance.state.selectedPerformance+1}:{/} ${this.state.name} {green-fg}Scene ${Store.instance.performance.selectedScene+1}{/}`
         });
-    }
+    }*/
 
     /***
      *
      */
-    updateDeviceState() {
+/*    updateDeviceState() {
         // TODO should be called TrackState ?
         let tracks = Store.instance.scene.tracks;
 
@@ -693,27 +693,27 @@ class Performance {
             ]
 
         });
-    }
+    }*/
 
     /***
      *
      */
-    updateTrackState() {
+/*    updateTrackState() {
         process.send({
             type: "trackState",
             trackState: Store.instance.scene.tracks[this.state.selectedTrack]
         });
-    }
+    }*/
 
     /***
      *
      */
-    updateSceneState() {
+/*    updateSceneState() {
         process.send({
             type: "sceneState",
             sceneState: Store.instance.scene.options
         });
-    }
+    }*/
 
     /***
      *
@@ -729,7 +729,7 @@ class Performance {
     /***
      *
      */
-    updateAllPads() {
+/*    updateAllPads() {
         let name = Store.instance.scene.tracks[this.state.selectedTrack].name;
         this.updateControllerPad(MidiController.BeatStepMap.Pad1, this.state.selectedTrack === 0 ? name : "");
         this.updateControllerPad(MidiController.BeatStepMap.Pad2, this.state.selectedTrack === 1 ? name : "");
@@ -739,12 +739,12 @@ class Performance {
         this.updateControllerPad(MidiController.BeatStepMap.Pad6, this.state.selectedTrack === 5 ? name : "");
         this.updateControllerPad(MidiController.BeatStepMap.Pad7, this.state.selectedTrack === 6 ? name : "");
         this.updateControllerPad(MidiController.BeatStepMap.Pad8, this.state.selectedTrack === 7 ? name : "");
-    }
+    }*/
 
     /***
      *
      */
-    updateAllKnobs() {
+/*    updateAllKnobs() {
 
         let trackState = Store.instance.scene.tracks[this.state.selectedTrack];
 
@@ -764,19 +764,19 @@ class Performance {
         this.updateControllerKnob(MidiController.BeatStepMap.Knob14, Store.instance.scene.options.noteSetSize);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob15, trackState.end);
         this.updateControllerKnob(MidiController.BeatStepMap.Knob16, typeof trackState.follow === "number" ? Store.instance.scene.tracks[trackState.follow].name : "none" );
-    }
+    }*/
 
     /***
      *
      */
-    updateDisplay() {
-        this.updateTitle();
+/*    updateDisplay() {
+/!*        this.updateTitle();
         this.updateAllPads();
         this.updateAllKnobs();
         this.updateDeviceState();
         this.updateSceneState();
-        this.updateTrackState();
-    }
+        this.updateTrackState();*!/
+    }*/
 
     /***
      *

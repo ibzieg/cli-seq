@@ -249,6 +249,7 @@ class PerformanceController {
         let trackProp = this.trackProp.bind(this);
         let sceneProp = this.sceneProp.bind(this);
         let save = Store.instance.saveState.bind(Store.instance);
+        let clear = Store.instance.clearActiveTrack.bind(Store.instance);
         let copyTo = (i) => {
             Store.instance.copySceneToPerformance(i-1);
             return `Copied active scene into new Performance ${i}`;
@@ -303,19 +304,9 @@ class PerformanceController {
      * @param d2
      */
     invokeControllerMapCallback(ctrl, status, d1, d2) {
-        let value = d2;
         if (ctrl && ctrl.callback) {
-            value = ctrl.callback(d2);
-        } else {
-            value = " ";
+            ctrl.callback(d2);
         }
-
-        process.send({
-            type: "controller",
-            status: status,
-            d1: d1,
-            d2: value ? "" + value : d2
-        });
     }
 
     /***

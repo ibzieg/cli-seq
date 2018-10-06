@@ -19,7 +19,8 @@ const { fork, spawn } = require('child_process');
 
 const InterfaceAddress = require("./network/interface-address");
 const Console = require("./display/log-util");
-const Screen = require("./display/screen");
+//const Screen = require("./display/screen");
+const Screen = require("../screen/lib/screen");
 
 Screen.create({
     onExit: () => {
@@ -48,29 +49,33 @@ performanceThread.on('message', (message) => {
             case "log":
                 Screen.Instance.log(message ? message.text : "");
                 break;
-            case "controller":
-                Screen.Instance.controller(message.status, message.d1, message.d2);
-                break;
-            case "controllerMap":
-                Screen.Instance.setControllerMap(message.map);
-                break;
-            case "deviceState":
-                Screen.Instance.updateDeviceState(message.deviceState);
-                break;
-            case "sceneState":
-                Screen.Instance.updateSceneState(message.sceneState);
-                break;
-            case "trackState":
-                Screen.Instance.updateTrackState(message.trackState);
-                break;
-            case "arrangement":
-                Screen.Instance.arrangement(message.title);
-                break;
-            case "clock":
-                Screen.Instance.updateClock(message.tickDuration);
-                break;
+          //case "controller":
+          //    Screen.Instance.controller(message.status, message.d1, message.d2);
+          //    break;
+          case "controllerMap":
+              Screen.Instance.updateControllerMap(message.map);
+              break;
+          //case "deviceState":
+          //    Screen.Instance.updateDeviceState(message.deviceState);
+          //    break;
+          //case "sceneState":
+          //    Screen.Instance.updateSceneState(message.sceneState);
+          //    break;
+          //case "trackState":
+          //    Screen.Instance.updateTrackState(message.trackState);
+          //    break;
+          //case "arrangement":
+          //    Screen.Instance.arrangement(message.title);
+          //    break;
+          //case "clock":
+          //    Screen.Instance.updateClock(message.tickDuration);
+          //    break;
             case "state":
+                Screen.instance.updateState(message.state);
                 apiServerThread.send(message);
+                break;
+            case "scene":
+                Screen.instance.updateScene(message.data);
                 break;
             default:
                 Screen.Instance.log(`Unknown message type: ${JSON.stringify(message)}`);

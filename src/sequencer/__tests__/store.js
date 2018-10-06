@@ -75,3 +75,31 @@ describe('copySceneToPerformance', () => {
         expect(Store.instance.scene.options.noteSetSize).toBe(127);
     });
 });
+
+/******************************************************************************
+ * create()
+ ******************************************************************************/
+describe('clear', () => {
+    beforeEach(() => {
+        return Store.create();
+    });
+
+    afterEach(() => {
+        Store.destroy();
+    });
+
+    test('if scene index > 0, active track is cleared', () => {
+
+        expect(Store.instance.state.selectedPerformance).toBe(0);
+        expect(Store.instance.performance.selectedScene).toBe(0);
+
+        Store.instance.setPerformanceProperty('selectedScene', 2);
+        Store.instance.setPerformanceProperty('selectedTrack', 2);
+        expect(Store.instance.performance.selectedScene).toBe(2);
+
+        Store.instance.setSelectedTrackProperty('steps', 17);
+        expect(Store.instance.performance.selectedTrack).toBe(2);
+        Store.instance.clearActiveTrack();
+        expect(Store.instance.scene.tracks[Store.instance.performance.selectedTrack].steps).toBeUndefined();
+    });
+});

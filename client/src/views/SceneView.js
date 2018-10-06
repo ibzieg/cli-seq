@@ -61,9 +61,9 @@ class SceneView extends Component {
                     return (<NavLink key={i}
                                      style={{width: w}}
                                      className="scene-summary"
-                                     to={`/performances/${this.performanceId+1}/scene/${this.sceneId+1}/track/${i+1}`}
+                                     to={`/performances/${this.performanceId+1}/scene/${this.sceneId+1}/track/${i+1}/options`}
                                      activeClassName="scene-summary-route">
-                        <TrackSummary track={track}/>
+                        <TrackSummary first={this.props.location.sceneId === 0} track={track}/>
                     </NavLink>);
                 }) }
             </div>
