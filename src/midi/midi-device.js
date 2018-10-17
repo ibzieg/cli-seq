@@ -20,262 +20,234 @@ const Log = require("./../display/log-util");
 const ExternalDevices = require("./external-devices");
 
 class MidiDevice {
+  /***
+   *
+   * @returns {{BeatStepPro: {names: [string,string,string,string], instance: null}, Minilogue: {names: [string,string,string], instance: null}, MOTU828x: {names: [string], instance: null}, Midisport: {names: [string,string], instance: null}}}
+   */
+  static get devices() {
+    return ExternalDevices.devices;
+  }
 
-    /***
-     *
-     * @returns {{BeatStepPro: {names: [string,string,string,string], instance: null}, Minilogue: {names: [string,string,string], instance: null}, MOTU828x: {names: [string], instance: null}, Midisport: {names: [string,string], instance: null}}}
-     */
-    static get devices() {
-        return ExternalDevices.devices;
+  /***
+   *
+   */
+  static listOutputPorts() {
+    let output = new midi.output();
+    let portCount = output.getPortCount();
+    for (let i = 0; i < portCount; i++) {
+      let portName = output.getPortName(i);
+      Log.info(portName);
     }
+  }
 
-    /***
-     *
-     */
-    static listOutputPorts() {
-        let output = new midi.output();
-        let portCount = output.getPortCount();
-        for (let i = 0; i < portCount; i++) {
-            let portName = output.getPortName(i);
-            Log.info(portName);
+  /***
+   *
+   */
+  static listInputPorts() {
+    let input = new midi.input();
+    let portCount = input.getPortCount();
+    for (let i = 0; i < portCount; i++) {
+      let portName = input.getPortName(i);
+      Log.info(portName);
+    }
+  }
+
+  /***
+   *
+   * @param deviceOptions
+   * @returns {MidiDevice}
+   */
+  static getInstance(deviceOptions) {
+    for (let deviceKey of Object.keys(ExternalDevices.devices)) {
+      let device = ExternalDevices.devices[deviceKey];
+      if (device.names[0] === deviceOptions.names[0]) {
+        let deviceInstance = MidiDevice._deviceInstances[deviceKey];
+        if (!(deviceInstance instanceof MidiDevice)) {
+          deviceInstance = new MidiDevice(deviceOptions);
+          deviceInstance.open();
+          MidiDevice._deviceInstances[deviceKey] = deviceInstance;
         }
+        return deviceInstance;
+      }
+    }
+  }
+
+  /***
+   *
+   * @returns {*}
+   */
+  get options() {
+    return this._options;
+  }
+
+  /***
+   *
+   * @returns {*}
+   */
+  get input() {
+    return this._inputPort;
+  }
+
+  /***
+   *
+   * @returns {boolean|*}
+   */
+  get inputStatus() {
+    return this._inputPortStatus;
+  }
+
+  /***
+   *
+   * @returns {*}
+   */
+  get output() {
+    return this._outputPort;
+  }
+
+  /**
+   *
+   * @returns {boolean|*}
+   */
+  get outputStatus() {
+    return this._outputPortStatus;
+  }
+
+  /***
+   *
+   * @param options
+   */
+  constructor(options) {
+    this._options = options;
+  }
+
+  /***
+   *
+   */
+  open() {
+    this.openInput();
+    this.openOutput();
+  }
+
+  /***
+   *
+   */
+  openInput() {
+    let input = new midi.input();
+    let foundPort = false;
+    let port;
+    let portCount = input.getPortCount();
+    for (let i = 0; i < portCount; i++) {
+      let portName = input.getPortName(i);
+      if (this.options.names.indexOf(portName) >= 0) {
+        port = input.openPort(i);
+        foundPort = true;
+        Log.success(`${portName}: Input port open`);
+      }
     }
 
-    /***
-     *
-     */
-    static listInputPorts() {
-        let input = new midi.input();
-        let portCount = input.getPortCount();
-        for (let i = 0; i < portCount; i++) {
-            let portName = input.getPortName(i);
-            Log.info(portName);
+    if (!foundPort) {
+      Log.error(
+        `No Input MIDI Output devices found matching ${this.options.names}`
+      );
+    }
+    this._inputPortStatus = foundPort;
+    this._inputPort = input;
+  }
+
+  /***
+   *
+   */
+  openOutput() {
+    let output = new midi.output();
+    let port;
+    let portCount = output.getPortCount();
+    let foundPort = false;
+    for (let i = 0; i < portCount; i++) {
+      let portName = output.getPortName(i);
+      if (this.options.names.indexOf(portName) >= 0) {
+        port = output.openPort(i);
+        foundPort = true;
+        Log.success(`${portName}: Output port open`);
+      }
+    }
+    if (!foundPort) {
+      Log.error(`No MIDI Output devices found matching ${this.options.names}`);
+    }
+    this._outputPortStatus = foundPort;
+    this._outputPort = output;
+  }
+
+  /***
+   *
+   * @param channel
+   * @param note
+   * @param velocity
+   * @param duration
+   */
+  play(channel, note, velocity, duration) {
+    let noteOnStatus = 144 + channel - 1;
+    let noteOffStatus = 128 + channel - 1;
+
+    if (this.outputStatus) {
+      try {
+        this.output.sendMessage([noteOnStatus, note, velocity]);
+      } catch (ex) {
+        Log.error(
+          `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+        );
+      }
+      setTimeout(() => {
+        try {
+          this.output.sendMessage([noteOffStatus, note, velocity]);
+        } catch (ex) {
+          Log.error(
+            `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+          );
         }
+      }, duration);
     }
+  }
 
-
-    //static _deviceInstances = [];
-    /***
-     *
-     * @param deviceOptions
-     * @returns {MidiDevice}
-     */
-    static getInstance(deviceOptions) {
-
-        for (let deviceKey of Object.keys(ExternalDevices.devices)) {
-            let device = ExternalDevices.devices[deviceKey];
-            if (device.names[0] === deviceOptions.names[0]) {
-                let deviceInstance = MidiDevice._deviceInstances[deviceKey];
-                if (!(deviceInstance instanceof MidiDevice)) {
-                    deviceInstance = new MidiDevice(deviceOptions);
-                    deviceInstance.open();
-                    MidiDevice._deviceInstances[deviceKey] = deviceInstance;
-                }
-                return deviceInstance;
-            }
-        }
+  noteOn(channel, note, velocity) {
+    let noteOnStatus = 144 + channel - 1;
+    if (this.outputStatus) {
+      try {
+        this.output.sendMessage([noteOnStatus, note, velocity]);
+      } catch (ex) {
+        Log.error(
+          `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+        );
+      }
     }
+  }
 
-    /***
-     *
-     * @returns {*}
-     */
-    get options() {
-        return this._options;
+  noteOff(channel, note, velocity) {
+    let noteOffStatus = 128 + channel - 1;
+    if (this.outputStatus) {
+      try {
+        this.output.sendMessage([noteOffStatus, note, velocity]);
+      } catch (ex) {
+        Log.error(
+          `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+        );
+      }
     }
+  }
 
-    /***
-     *
-     * @returns {*}
-     */
-    get input() {
-        return this._inputPort;
+  allNotesOff(channel) {
+    let status = 176 + channel - 1;
+    if (this.outputStatus) {
+      try {
+        this.output.sendMessage([status, 123, 0]);
+      } catch (ex) {
+        Log.error(
+          `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+        );
+      }
     }
-
-    /***
-     *
-     * @returns {boolean|*}
-     */
-    get inputStatus() {
-        return this._inputPortStatus;
-    }
-
-    /***
-     *
-     * @returns {*}
-     */
-    get output() {
-        return this._outputPort;
-    }
-
-    /**
-     *
-     * @returns {boolean|*}
-     */
-    get outputStatus() {
-        return this._outputPortStatus;
-    }
-
-    /***
-     *
-     * @param options
-     */
-    constructor(options) {
-        this._options = options;
-    }
-
-    /***
-     *
-     */
-    open() {
-        this.openInput();
-        this.openOutput();
-    }
-
-    /***
-     *
-     */
-    openInput() {
-        let input = new midi.input();
-        let foundPort = false;
-        let port;
-        let portCount = input.getPortCount();
-        for (let i = 0; i < portCount; i++) {
-            let portName = input.getPortName(i);
-            if (this.options.names.indexOf(portName) >= 0) {
-                port = input.openPort(i);
-                foundPort = true;
-                Log.success(`${portName}: Input port open`);
-            }
-        }
-
-        if (!foundPort) {
-            Log.error(`No Input MIDI Output devices found matching ${this.options.names}`);
-        }
-        this._inputPortStatus = foundPort;
-        this._inputPort = input;
-
-    }
-
-    /***
-     *
-     */
-    openOutput() {
-        let output = new midi.output();
-        let port;
-        let portCount = output.getPortCount();
-        let foundPort = false;
-        for (let i = 0; i < portCount; i++) {
-            let portName = output.getPortName(i);
-            if (this.options.names.indexOf(portName) >= 0) {
-                port = output.openPort(i);
-                foundPort = true;
-                Log.success(`${portName}: Output port open`);
-            }
-        }
-        if (!foundPort) {
-            Log.error(`No MIDI Output devices found matching ${this.options.names}`);
-
-        }
-        this._outputPortStatus = foundPort;
-        this._outputPort = output;
-
-    }
-
-    /***
-     *
-     * @param channel
-     * @param note
-     * @param velocity
-     * @param duration
-     */
-    play(channel, note, velocity, duration) {
-        let noteOnStatus = 144 + channel-1;
-        let noteOffStatus = 128 + channel-1;
-
-        if (this.outputStatus) {
-            try {
-                this.output.sendMessage([noteOnStatus, note, velocity]);
-            } catch (ex) {
-                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-            }
-            setTimeout(() => {
-                try {
-                    this.output.sendMessage([noteOffStatus, note, velocity]);
-                } catch (ex) {
-                    Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-                }
-            }, duration);
-        }
-    }
-
-    noteOn(channel, note, velocity) {
-        let noteOnStatus = 144 + channel-1;
-        if (this.outputStatus) {
-            try {
-                this.output.sendMessage([noteOnStatus, note, velocity]);
-            } catch (ex) {
-                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-            }
-        }
-    }
-
-    noteOff(channel, note, velocity) {
-        let noteOffStatus = 128 + channel-1;
-        if (this.outputStatus) {
-            try {
-                this.output.sendMessage([noteOffStatus, note, velocity]);
-            } catch (ex) {
-                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-            }
-        }
-    }
-
-    allNotesOff(channel) {
-        let status = 176 + channel-1;
-        if (this.outputStatus) {
-            try {
-                this.output.sendMessage([status, 123, 0]);
-            } catch (ex) {
-                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-            }
-        }
-    }
-
-
+  }
 }
 
 MidiDevice._deviceInstances = [];
 
 module.exports = MidiDevice;
-
-
-/*
-let devices = {
-    BeatStepPro: {
-        names: [
-            'Arturia BeatStep Pro Arturia BeatStepPro',
-            'Arturia BeatStep Pro 20:0',
-            'Arturia BeatStep Pro 24:0',
-            'Arturia BeatStep Pro 28:0'],
-        instance: null
-    },
-    Minilogue: {
-        names: [
-            'minilogue SOUND',
-            'minilogue 24:1',
-            'minilogue 28:1'
-        ],
-        instance: null
-    },
-    MOTU828x: {
-        names: ['828x MIDI Port'],
-        instance: null
-    },
-    Midisport: {
-        names: [
-            'USB Uno MIDI Interface 28:0',
-            'USB Uno MIDI Interface 20:0'],
-        instance: null
-    }
-};*/

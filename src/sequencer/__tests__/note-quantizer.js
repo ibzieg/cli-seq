@@ -19,40 +19,42 @@ const NoteQuantizer = require("../note-quantizer");
 /******************************************************************************
  * getNoteIndexFromName(noteName)
  ******************************************************************************/
-test('getNoteIndexFromName bounds', () => {
-    expect(NoteQuantizer.getNoteIndexFromName("C")).toBe(0);
-    expect(NoteQuantizer.getNoteIndexFromName("B")).toBe(11);
+test("getNoteIndexFromName bounds", () => {
+  expect(NoteQuantizer.getNoteIndexFromName("C")).toBe(0);
+  expect(NoteQuantizer.getNoteIndexFromName("B")).toBe(11);
 });
 
 /******************************************************************************
  * getModeIndexFromName(modeName)
  ******************************************************************************/
-test('getModeIndexFromName bounds', () => {
-    expect(NoteQuantizer.getModeIndexFromName("I Ionian (Major)")).toBe(0);
-    expect(NoteQuantizer.getModeIndexFromName("VII Locrian")).toBe(6);
+test("getModeIndexFromName bounds", () => {
+  expect(NoteQuantizer.getModeIndexFromName("I Ionian (Major)")).toBe(0);
+  expect(NoteQuantizer.getModeIndexFromName("VII Locrian")).toBe(6);
 });
 
 /******************************************************************************
  * generateScaleFromIndex(rootIndex, scaleIndex, isPentatonic)
  ******************************************************************************/
-test('generateScaleFromIndex test G minor', () => {
-    const expectedNotes = [
-        "G", "A", "A#", "C", "D", "D#", "F"
-    ];
-    expect(NoteQuantizer.generateScaleFromIndex(
-        NoteQuantizer.getNoteIndexFromName("G"),
-        NoteQuantizer.getModeIndexFromName("VI Aeolian (Nat. Minor)"),
-        false)).toEqual(expect.arrayContaining(expectedNotes));
+test("generateScaleFromIndex test G minor", () => {
+  const expectedNotes = ["G", "A", "A#", "C", "D", "D#", "F"];
+  expect(
+    NoteQuantizer.generateScaleFromIndex(
+      NoteQuantizer.getNoteIndexFromName("G"),
+      NoteQuantizer.getModeIndexFromName("VI Aeolian (Nat. Minor)"),
+      false
+    )
+  ).toEqual(expect.arrayContaining(expectedNotes));
 });
 
-test('generateScaleFromIndex test F major', () => {
-    const expectedNotes = [
-        "F", "G", "A", "A#", "C", "D", "E"
-    ];
-    expect(NoteQuantizer.generateScaleFromIndex(
-        NoteQuantizer.getNoteIndexFromName("F"),
-        NoteQuantizer.getModeIndexFromName("I Ionian (Major)"),
-        false)).toEqual(expect.arrayContaining(expectedNotes));
+test("generateScaleFromIndex test F major", () => {
+  const expectedNotes = ["F", "G", "A", "A#", "C", "D", "E"];
+  expect(
+    NoteQuantizer.generateScaleFromIndex(
+      NoteQuantizer.getNoteIndexFromName("F"),
+      NoteQuantizer.getModeIndexFromName("I Ionian (Major)"),
+      false
+    )
+  ).toEqual(expect.arrayContaining(expectedNotes));
 });
 
 // TODO test triad chords

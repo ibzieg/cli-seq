@@ -9,51 +9,6 @@ const SCREEN_WIDTH = 100;
 const SCENE_BOX_WIDTH = 20;
 const TRACK_BOX_WIDTH = 20;
 
-const layout = {
-    statusBar: {
-        left: 0,
-        top: 0,
-        width: SCREEN_WIDTH,
-        height: 3
-    },
-    deviceSelect: {
-        left: 1,
-        top: 2,
-        width: SCREEN_WIDTH,
-        height: 5
-    },
-    controller: {
-        left: 0,
-        top: 4,
-        width: SCREEN_WIDTH,
-        height: 12
-    },
-    logBox: {
-        top: 15,
-        left: 0,
-        width: SCREEN_WIDTH - SCENE_BOX_WIDTH - TRACK_BOX_WIDTH + 2,
-        height: 13
-    },
-    inputBox: {
-        top: 27,
-        left: 0,
-        width: SCREEN_WIDTH - SCENE_BOX_WIDTH - TRACK_BOX_WIDTH + 2,
-        height: 3,
-    },
-    trackConfigBox: {
-        top: 15,
-        left: SCREEN_WIDTH - SCENE_BOX_WIDTH - TRACK_BOX_WIDTH + 1,
-        width: TRACK_BOX_WIDTH,
-        height: 15
-    },
-    sceneConfigBox: {
-        top: 15,
-        left: SCREEN_WIDTH - SCENE_BOX_WIDTH,
-        width: SCENE_BOX_WIDTH,
-        height: 15
-    }
-};
-
 const knobMap = [
     {label: "Rate", name: "rate", type: "track"},
     {label: "Octave", name: "octave", type: "track"},
@@ -79,8 +34,6 @@ const knobMap = [
     {label: "Gen→All", name: "", type: ""},
     {label: "Gen→Notes", name: "", type: ""},
     {label: "Playlist", name: "playlistMode", type: "root"},
-
-
 ];
 
 export default class PerformanceController extends React.Component {
@@ -233,7 +186,6 @@ export default class PerformanceController extends React.Component {
                     style={{border: {fg: 'white'}}}>
                     {this.getTrackStateText()}
                 </box>
-
                 <box
                     top={11}
                     left={73}
@@ -243,7 +195,6 @@ export default class PerformanceController extends React.Component {
                     style={{border: {fg: 'white'}}}>
                     {this.getSceneStateText()}
                 </box>
-
             </element>
         );
     }

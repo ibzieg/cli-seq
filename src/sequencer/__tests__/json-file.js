@@ -20,30 +20,29 @@ const JSONFile = require("../json-file");
 const TEST_FILE_NAME = "json-file.test.data.json";
 
 beforeEach(() => {
-    if (fs.existsSync(TEST_FILE_NAME)) {
-        fs.unlinkSync(TEST_FILE_NAME);
-    }
+  if (fs.existsSync(TEST_FILE_NAME)) {
+    fs.unlinkSync(TEST_FILE_NAME);
+  }
 });
 
 afterEach(() => {
-    if (fs.existsSync(TEST_FILE_NAME)) {
-       fs.unlinkSync(TEST_FILE_NAME);
-    }
+  if (fs.existsSync(TEST_FILE_NAME)) {
+    fs.unlinkSync(TEST_FILE_NAME);
+  }
 });
 
 /******************************************************************************
  * writeFile(fileName, data)
  * readFile(fileName)
  ******************************************************************************/
-test('write and read data', () => {
-    let data = { testKey: "testValue" };
-    expect.assertions(3);
-    expect(fs.existsSync(TEST_FILE_NAME)).toBeFalsy();
-    return JSONFile.writeFile(TEST_FILE_NAME, data).then(() => {
-        expect(fs.existsSync(TEST_FILE_NAME)).toBeTruthy();
-        return JSONFile.readFile(TEST_FILE_NAME).then((json) => {
-            expect(json.testKey).toBe("testValue");
-        });
+test("write and read data", () => {
+  let data = { testKey: "testValue" };
+  expect.assertions(3);
+  expect(fs.existsSync(TEST_FILE_NAME)).toBeFalsy();
+  return JSONFile.writeFile(TEST_FILE_NAME, data).then(() => {
+    expect(fs.existsSync(TEST_FILE_NAME)).toBeTruthy();
+    return JSONFile.readFile(TEST_FILE_NAME).then(json => {
+      expect(json.testKey).toBe("testValue");
     });
+  });
 });
-

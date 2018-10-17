@@ -18,5 +18,5 @@ const PerformanceController = require("./performance-controller");
 const Store = require("./store");
 
 Store.create().then(() => {
-    let p = new PerformanceController();
+  let p = new PerformanceController();
 });

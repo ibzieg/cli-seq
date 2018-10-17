@@ -17,51 +17,47 @@
 const fs = require("fs");
 
 class JSONFile {
-    /***
-     *
-     * @param fileName
-     * @param data
-     * @returns {Promise<any>}
-     */
-    static writeFile(fileName, data) {
-        return new Promise((resolve, reject) => {
-            fs.writeFile(
-                fileName,
-                JSON.stringify(data, null, ' '),
-                (error) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve();
-                    }
-                });
-        });
-    }
+  /***
+   *
+   * @param fileName
+   * @param data
+   * @returns {Promise<any>}
+   */
+  static writeFile(fileName, data) {
+    return new Promise((resolve, reject) => {
+      fs.writeFile(fileName, JSON.stringify(data, null, " "), error => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
 
-    /***
-     *
-     * @returns {Promise}
-     */
-    static readFile(fileName) {
-        return new Promise((resolve, reject) => {
-            if (fs.existsSync(fileName)) {
-                fs.readFile(fileName, {encoding: 'utf-8'}, (error, text) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        try {
-                            resolve(JSON.parse(text));
-                        } catch (ex) {
-                            reject(ex);
-                        }
-                    }
-                });
-            } else {
-                resolve();
+  /***
+   *
+   * @returns {Promise}
+   */
+  static readFile(fileName) {
+    return new Promise((resolve, reject) => {
+      if (fs.existsSync(fileName)) {
+        fs.readFile(fileName, { encoding: "utf-8" }, (error, text) => {
+          if (error) {
+            reject(error);
+          } else {
+            try {
+              resolve(JSON.parse(text));
+            } catch (ex) {
+              reject(ex);
             }
+          }
         });
-    }
-
+      } else {
+        resolve();
+      }
+    });
+  }
 }
 
 module.exports = JSONFile;

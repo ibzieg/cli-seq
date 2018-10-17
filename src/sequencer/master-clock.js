@@ -19,37 +19,39 @@ const NanoTimer = require("nanotimer");
 const TEMPO = 120;
 
 class MasterClock {
+  get tempoInterval() {
+    return 60000.0 / (TEMPO * 24.0);
+  }
 
-    get tempoInterval() {
-        return (60000.0) / (TEMPO * 24.0);
+  constructor(options) {
+    this._options = options;
+    this._isPlaying = false;
+    this._masterClock = new NanoTimer();
+  }
+
+  clock() {
+    if (this._options.clock) {
+      this._options.clock();
     }
+  }
 
-    constructor(options) {
-        this._options = options;
-        this._isPlaying = false;
-        this._masterClock = new NanoTimer();
-    }
+  start() {
+    this._isPlaying = true;
 
-    clock() {
-        if (this._options.clock) {
-            this._options.clock();
+    this._masterClock.setInterval(
+      () => {
+        if (this._isPlaying) {
+          this.clock();
         }
-    }
+      },
+      "",
+      `${this.tempoInterval}m`
+    );
+  }
 
-    start() {
-        this._isPlaying = true;
-
-        this._masterClock.setInterval(() => {
-            if (this._isPlaying) {
-                this.clock();
-            }
-        }, '', `${this.tempoInterval}m`);
-    }
-
-    stop() {
-        this._masterClock.clearInterval();
-    }
-
+  stop() {
+    this._masterClock.clearInterval();
+  }
 }
 
 module.exports = MasterClock;

@@ -14,71 +14,68 @@
  * limitations under the License.
  ******************************************************************************/
 
-const Log = require("./../display/log-util");
-
 class EventScheduler {
+  /***
+   *
+   */
+  constructor() {
+    this.counter = 0;
+    this.eventsMap = new Map();
+  }
 
-    /***
-     *
-     */
-    constructor() {
-        this.counter = 0;
-        this.eventsMap = new Map();
+  /***
+   *
+   */
+  clock() {
+    this.counter++;
+    this.executeEvents(this.counter);
+  }
+
+  /***
+   *
+   * @param time
+   */
+  executeEvents(time) {
+    let events = this.eventsMap.get(time);
+    if (events) {
+      for (let i = 0; i < events.length; i++) {
+        // execute each callback
+        events[i]();
+        events[i] = null;
+      }
+      this.eventsMap.delete(time);
     }
+  }
 
-    /***
-     *
-     */
-    clock() {
-        this.counter++;
-        this.executeEvents(this.counter);
+  /***
+   *
+   */
+  flushAllEvents() {
+    let keyList = [];
+    for (let key of this.eventsMap.keys()) {
+      keyList.push(key);
     }
-
-    /***
-     *
-     * @param time
-     */
-    executeEvents(time) {
-        let events = this.eventsMap.get(time);
-        if (events) {
-            for (let i = 0; i < events.length; i++) {
-                // execute each callback
-                events[i]();
-                events[i] = null;
-            }
-            this.eventsMap.delete(time);
-        }
+    for (let i = 0; i < keyList.length; i++) {
+      this.executeEvents(keyList[i]);
     }
+  }
 
-    /***
-     *
-     */
-    flushAllEvents() {
-        let keyList = [];
-        for (let key of this.eventsMap.keys()) {
-            keyList.push(key);
-        }
-        for (let i = 0; i < keyList.length; i++) {
-            this.executeEvents(keyList[i]);
-        }
+  /***
+   *
+   * @param ticks
+   * @param callback
+   * @returns {*}
+   */
+  schedule(ticks, callback) {
+    let time = this.counter + ticks;
+    let events = this.eventsMap.get(time);
+    if (!events) {
+      events = [];
     }
-
-    /***
-     *
-     * @param ticks
-     * @param callback
-     * @returns {*}
-     */
-    schedule(ticks, callback) {
-        let time = this.counter+ticks;
-        let events = this.eventsMap.get(time);
-        if (!events) {
-            events = [];
-        }
-        events.push(callback);
-        this.eventsMap.set(time, events);
-        return time;
-    }
-
+    events.push(callback);
+    this.eventsMap.set(time, events);
+    return time;
+  }
 }
+
 module.exports = EventScheduler;

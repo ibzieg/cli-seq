@@ -19,86 +19,52 @@ let MidiDevice = require("./midi-device");
 const Log = require("./../display/log-util");
 
 class MidiInstrument {
+  static get instruments() {
+    return instruments;
+  }
 
-    static get instruments() {
-        return instruments;
-    }
+  static get drumMap() {
+    return drumMap;
+  }
 
-    static get drumMap() {
-        return drumMap;
-    }
+  get channel() {
+    return this._options.channel;
+  }
 
-    get channel() {
-        return this._options.channel;
-    }
+  get isConnected() {
+    return this._midiDevice.outputStatus;
+  }
 
-    get isConnected() {
-        return this._midiDevice.outputStatus;
-    }
+  constructor(options) {
+    this._options = options;
+    this._midiDevice = MidiDevice.getInstance(options.device);
+  }
 
-    constructor(options) {
-        this._options = options;
-        this._midiDevice = MidiDevice.getInstance(options.device);
-    }
+  play(note, velocity, duration) {
+    let noteOnStatus = 144 + this.channel - 1;
+    let noteOffStatus = 128 + this.channel - 1;
 
-    play(note, velocity, duration) {
-        let noteOnStatus = 144 + this.channel-1;
-        let noteOffStatus = 128 + this.channel-1;
-
-        if (this._midiDevice.outputStatus) {
-            try {
-                this._midiDevice.output.sendMessage([noteOnStatus, note, velocity]);
-            } catch (ex) {
-                Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-            }
-            setTimeout(() => {
-                try {
-                    this._midiDevice.output.sendMessage([noteOffStatus, note, velocity]);
-                } catch (ex) {
-                    Log.error(`Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`);
-                }
-            }, duration);
+    if (this._midiDevice.outputStatus) {
+      try {
+        this._midiDevice.output.sendMessage([noteOnStatus, note, velocity]);
+      } catch (ex) {
+        Log.error(
+          `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+        );
+      }
+      setTimeout(() => {
+        try {
+          this._midiDevice.output.sendMessage([noteOffStatus, note, velocity]);
+        } catch (ex) {
+          Log.error(
+            `Failed to send MIDI message [${noteOnStatus},${note},${velocity}]: ${ex}`
+          );
         }
+      }, duration);
     }
-
+  }
 }
+
 module.exports = MidiInstrument;
 
-const drumMap = [
-    36,
-    38,
-    39,
-    42,
-    46,
-    49,
-    75,
-    67
-];
-
-/*const instruments = {
-    BSPSeq1: {
-        device: MidiDevice.devices.BeatStepPro,
-        channel: 1
-    },
-    BSPSeq2: {
-        device: MidiDevice.devices.BeatStepPro,
-        channel: 2
-    },
-    BSPDrum: {
-        device: MidiDevice.devices.BeatStepPro,
-        channel: 14
-    },
-    Minilogue: {
-        device: MidiDevice.devices.Minilogue,
-        channel: 1
-    },
-    Juno106: {
-        device: MidiDevice.devices.Midisport,
-        channel: 13
-    },
-    NordG2A: {
-        //device: MidiDevice.devices.MOTU828x,
-        device: MidiDevice.devices.Midisport,
-        channel: 7
-    }
-};*/
+const drumMap = [36, 38, 39, 42, 46, 49, 75, 67];
