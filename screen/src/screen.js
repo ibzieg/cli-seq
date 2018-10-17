@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import blessed from 'blessed';
 import {render} from 'react-blessed';
@@ -9,63 +8,68 @@ let _instance = null;
 
 class Screen {
 
-    static get Instance() {
-        return _instance;
+  /***
+   * Deprecated.
+   * @returns {*}
+   * @constructor
+   */
+  static get Instance() {
+    return _instance;
+  }
+
+  static get instance() {
+    return _instance;
+  }
+
+  static create(options) {
+    if (_instance instanceof Screen) {
+      throw new Error('Screen instance has already been created');
+    } else {
+      _instance = new Screen(options);
     }
+  }
 
-    static get instance() {
-        return _instance;
-    }
+  constructor(options) {
+    this.options = options;
 
-    static create(options) {
-        if (_instance instanceof Screen) {
-            throw new Error('Screen instance has already been created');
-        } else {
-            _instance = new Screen(options);
-        }
-    }
+    const screen = blessed.screen({
+      autoPadding: true,
+      dockBorders: true,
+      smartCSR: true,
+      title: 'paraseq'
+    });
 
-    constructor(options) {
-        this.options = options;
+    screen.key(['escape', 'q', 'C-c'], (ch, key) => {
+      if (this.options.onExit) {
+        this.options.onExit();
+      } else {
+        return process.exit(0);
+      }
+    });
 
-        const screen = blessed.screen({
-            autoPadding: true,
-            dockBorders: true,
-            smartCSR: true,
-            title: 'paraseq'
-        });
+    this.component = render(
+      <App
+        onCommandInput={this.options.onCommandInput}
+        onExit={this.options.onExit}
+      />, screen);
+  }
 
-        screen.key(['escape', 'q', 'C-c'], (ch, key) => {
-            if (this.options.onExit) {
-                this.options.onExit();
-            } else {
-                return process.exit(0);
-            }
-        });
+  log(text) {
+    this.component.addLogLine(text);
+  }
 
-        this.component = render(
-            <App
-                onCommandInput={this.options.onCommandInput}
-                onExit={this.options.onExit}
-            />, screen);
-    }
+  updateState(state) {
+    // TODO move this into event emitter?
+    this.component.updateState(state);
+  }
 
-    log(text) {
-        this.component.addLogLine(text);
-    }
+  updateScene(scene) {
+    this.component.updateScene(scene);
+  }
 
-    updateState(state) {
-        // TODO move this into event emitter?
-        this.component.updateState(state);
-    }
-
-    updateScene(scene) {
-        this.component.updateScene(scene);
-    }
-
-    updateControllerMap(controllerMap) {
-        // TODO;
-    }
+  updateControllerMap(controllerMap) {
+    // TODO;
+  }
 
 }
 
